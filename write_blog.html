@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Personal Website [blogs] | Kenneth Odoh's Blog</title>
+    <meta name="description" content=" The personal website of Kenneth Emeka Odoh">
+    <meta name="author" content="">
+
+    <title>Admin Page</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/signin.css">  </head>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script data-require="bootstrap@3.1.1" data-semver="3.1.1" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script data-require="marked@*" data-semver="0.3.1" src="http://cdnjs.cloudflare.com/ajax/libs/marked/0.3.1/marked.js"></script>
+    <script src="https://cdn.rawgit.com/toopay/bootstrap-markdown/master/js/bootstrap-markdown.js
+"></script>
+    <script src="https://rawgit.com/lodev09/jquery-filedrop/master/jquery.filedrop.js
+"></script>
+    <script src="https://rawgit.com/jeresig/jquery.hotkeys/master/jquery.hotkeys.js"></script>
+
+    <link data-require="bootstrap-css@3.1.1" data-semver="3.1.1" rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link data-require="fontawesome@4.1.0" data-semver="4.1.0" rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdn.rawgit.com/toopay/bootstrap-markdown/master/css/bootstrap-markdown.min.css" />
+
+    <link href="/static/write_blog.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src="/static/write_blog.js"></script>
+
+  <body>
+
+    <div class="container">
+    
+
+           <form  method="POST">
+            <h2 class="form-signin-heading">Create a New Blog Post</h2>
+            <label for="example-text-input">Title</label>
+            <input class="form-control" type="text" value="" name= "title" id="example-text-input" required="">
+            <label for="exampleTextarea">Enter Post Here</label>
+            <textarea class="form-control" value = "" name= "text" id="comment-md" required=""></textarea>
+            <label for="example-tag-input">Enter Tags (Seperated by Commas)</label>
+            <input class="form-control" type="text" value="" name= "tag" id="example-tag-input" required="">
+            <label class="form-check-label">
+            <input type="checkbox" name="draft" class="form-check-input">
+              Save as Draft
+            </label>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
+          </form>
+
+    
+    </div> 
+
+    <div class="container">
+
+        <h3 class="text-center" style="height:50px;" > To see more posted <a target="_blank" href=/blogs/1.html> blogs </a>  </h3>
+    </div>
+
+  </body>
+</html>
