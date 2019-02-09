@@ -394,6 +394,7 @@ figcaption {
     display: flex;*/
 
 display : inline-table;
+display : inline-block;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
@@ -595,3 +596,4 @@ display : inline-table;
     opacity: .8;
     background-color: #224562;
     max-width: 100%}
+
