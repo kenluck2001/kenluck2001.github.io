@@ -387,17 +387,20 @@ figcaption {
     font-size: 133%}
 .Nav-sections {
     -webkit-box-flex: 1;
-    -ms-flex: 1 0 auto;
+    /*-ms-flex: 1 0 auto;
     flex: 1 0 auto;
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    display: flex;*/
+
+display : inline-table;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
 }
 @media (min-width:35.5em) {
     .Nav-sections {
+    width: auto;
     -webkit-box-pack: end;
     -ms-flex-pack: end;
     justify-content: flex-end;
