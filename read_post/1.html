@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Personal Website [current blog] | Kenneth Odoh's Blog</title>
+    <meta name="author" content="Kenneth Emeka Odoh">
+    <meta name="description" content=" The personal website of Kenneth Emeka Odoh">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!---<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+    </script> -->
+    <!---<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: {
+         equationNumbers: {  autoNumber: "AMS"  },
+         extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+      }
+    });
+    </script> -->
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <style>
+      mjx-container[display="block"] {
+        display: block;
+        margin: 1em 0;
+      }
+      </style>
+      <script>
+      MathJax = {
+        //
+        //  Load only TeX input and the contextual menu
+        //
+        loader: {load: ['input/tex', 'ui/menu']},
+        //
+        //  When page is ready, render the document
+        //
+        startup: {pageReady: () => MathJax.startup.document.render()},
+        //
+        //  Use dollar signs for in-line delimiters in addition to the usual ones
+        //
+        tex: {inlineMath: {'[+]': [['$', '$']]}},
+        //
+        //  Override the usual typeset render action with one that generates MathML output
+        //
+        options: {
+          renderActions: {
+            typeset: [150,
+              //
+              //  The function for rendering a document's math elements
+              //
+              (doc) => {
+                const toMML = MathJax.startup.toMML;
+                for (math of doc.math) {
+                  math.typesetRoot = document.createElement('mjx-container');
+                  math.typesetRoot.innerHTML = toMML(math.root);
+                  math.display && math.typesetRoot.setAttribute('display', 'block');
+                }
+              },
+              //
+              //  The function for rendering a single math expression
+              //
+              (math, doc) => {
+                math.typesetRoot = document.createElement('mjx-container');
+                math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
+                math.display && math.typesetRoot.setAttribute('display', 'block');
+              }
+            ]
+          }
+        }
+      };
+      </script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js"></script>
+  </head>
+  <body class="Site">
+    <header class="Site-header">
+      <nav class="Nav">
+        <div class="Nav-home">
+          <a href=/index.html>Kenneth Emeka Odoh</a>
+        </div>
+        <div class="Nav-sections">
+          <a class="Nav-section " href=/index.html >About</a>
+          <a class="Nav-section " href=/projects.html>Projects</a>
+          <a class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a class="Nav-section" href=/publications.html>Publications</a>
+          <a class="Nav-section" href=/news.html>News</a>
+        </div>
+      </nav>
+      <div class="u-separator"></div>
+    </header>
+    <div class="Site-content">
+      <div class="u-container">
+
+        <div class="Page">
+            <article role="main" class="Article">
+                <h1 class="Article-title"> Contributing to Open Source Software </h1>
+                <div class="Article-meta">
+                  <time datetime=2019-10-05 16:38:31.719389 class="Article-date">2019-10-05</time>
+                </div>
+
+                <div class="Article-meta">Tag: general</div>
+
+                <section class="Article-content"> 
+Open source software is a set of software project with permissive license that can allow anyone to modify and customize the code. While the license may enforce copyright or copyleft. This will fall outside the scope of the writing.
+
+Joining an open source project can be overwhelming as the effort at on-boarding is not as straightforward as in a traditional brick and mortar software shop. 
+
+### How to start contributing to open source software
+
+The primary contributions are usually in the form of code that enhances the functionality of the project.
+
+- Read the documentation.
+- Try the software on your local machine.
+- Build from source.
+- Set up your local development.
+- Familiarize yourself with important git commands.
+- How to clone the repo
+- How the update the local repo to be in sync with remote
+- How to make a pull request (PR)
+- Read the coding standard
+- Join the discussion forum
+- Understand the culture from reading code reviews on old or stalled PRs.
+- Read the source code
+
+There are other ways to contribute
+
+- Writing tests
+- Writing document
+- Doing code reviews
+- Improving the build system
+- Doing code reviews
+- Answering questions in the forum
+
+### After Making a PR
+
+You will be asked to make changes. Your design choices will be criticized. You have to keep in mind that the suggestions are in line to keep up with the philosophy of the current maintainers. Be patient as many open source maintainers are volunteers with a full-time job.  There is a case of a person waiting for 7 years to get his PR merged into Linux master
+{https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=aefcf2f4b58155d27340ba5f9ddbe9513da8286d }
+
+Your PR may be declined or rejected. These are some of the reasons that come to mind. We are in a politically correct world, so people will not tell you exactly how they feel. You can infer intent and what comes to my mind include but not limited to
+Solving an issue that no one has or will ever have.
+
+- Poor code quality
+- Huge technical debt
+- Untested module
+
+The rule of thumb to minimize rejection is to choose from open issues and ask in the forum before working on the problem. Every PR must come with a detailed description of the contribution, so the merits of the PR can be properly evaluated. The code quality can be improved by reading the coding standard and obeying rules typical of software craftsman. The likelihood of stalled PR tends to increase with mature open source problems. Majority is very subjective, so my definition is based on popularity of use and big firm or projects depending on it. This is because the maintainers are aware of keeping the code maintainable to minimize sleepless nights on their path. Try to add tests to every PR and ensure that every existing test passes to increase confidence and reduce the likelihood of rejection.
+
+### How to handle rejection
+
+There is no real rejection as your contribution remains public in your GitHub account for the world to see. However, there is a misconception among a few individuals that every PR has to be merged to be a valid contribution. This myth is flawed on multiple levels as it is perpetuated by those who unknowingly misunderstand that a PR is a medium of communication. Not every PR has to be merged. For example, a PR may be showing why an approach is flawed or even why an idea is dangerous. These kinds of PRs are very useful for their educational content and should therefore remain open. The words of Albert Einstein come in handy > Insanity is repeating the same mistakes and expecting different results.
+
+Kenneth Emeka Odoh is a Software Engineer based in the beautiful city of Vancouver, Canada. I have started contributing to the sympy project {https://www.sympy.org/en/index.html} and have written my observations based on my first attempt at making an open source contribution. </section>
+
+                <div class="Article-meta"><a href=/blogs/1.html> Read more Blogs </a> </div>
+
+                <a target="_blank" data-size="large" class="twitter-share-button"
+                  href="https://twitter.com/intent/tweet?url=https://kenluck2001.github.io/read_post/1.html&text= Share the blog here">
+                 <img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" alt="Smiley face" height="42" width="42">  </a>
+
+
+            </article>
+        </div>
+
+
+      </div>
+    </div>
+
+    <script  type="text/javascript" >
+        txt = $('.Article-content').text( );     
+        $('.Article-content').html( marked(txt) );
+    </script >
+
+
+  </body>
+</html>
