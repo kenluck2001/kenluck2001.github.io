@@ -55,3 +55,16 @@
   -moz-opacity: 0.0;
   /* FF lt 1.5, Netscape */
 }
+
+
+#textDescription
+{
+    height: 400px;
+    max-height: 400px;  
+    word-wrap: break-word;
+    overflow-y: scroll;
+}
+
+
+
+

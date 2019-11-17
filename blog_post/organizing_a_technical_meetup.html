@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Personal Website [current blog] | Kenneth Odoh's Blog</title>
+    <meta name="author" content="Kenneth Emeka Odoh">
+    <meta name="description" content=" The personal website of Kenneth Emeka Odoh">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!---<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+    </script> -->
+    <!---<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: {
+         equationNumbers: {  autoNumber: "AMS"  },
+         extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+      }
+    });
+    </script> -->
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <style>
+      mjx-container[display="block"] {
+        display: block;
+        margin: 1em 0;
+      }
+      </style>
+      <script>
+      MathJax = {
+        //
+        //  Load only TeX input and the contextual menu
+        //
+        loader: {load: ['input/tex', 'ui/menu']},
+        //
+        //  When page is ready, render the document
+        //
+        startup: {pageReady: () => MathJax.startup.document.render()},
+        //
+        //  Use dollar signs for in-line delimiters in addition to the usual ones
+        //
+        tex: {inlineMath: {'[+]': [['$', '$']]}},
+        //
+        //  Override the usual typeset render action with one that generates MathML output
+        //
+        options: {
+          renderActions: {
+            typeset: [150,
+              //
+              //  The function for rendering a document's math elements
+              //
+              (doc) => {
+                const toMML = MathJax.startup.toMML;
+                for (math of doc.math) {
+                  math.typesetRoot = document.createElement('mjx-container');
+                  math.typesetRoot.innerHTML = toMML(math.root);
+                  math.display && math.typesetRoot.setAttribute('display', 'block');
+                }
+              },
+              //
+              //  The function for rendering a single math expression
+              //
+              (math, doc) => {
+                math.typesetRoot = document.createElement('mjx-container');
+                math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
+                math.display && math.typesetRoot.setAttribute('display', 'block');
+              }
+            ]
+          }
+        }
+      };
+      </script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js">
+      </script>
+      <!--<script async src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.2/markdown-it-footnote.js">
+      </script>-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js">
+      </script>
+
+
+  </head>
+  <body class="Site">
+    <header class="Site-header">
+      <nav class="Nav">
+        <div class="Nav-home">
+          <a href=/index.html>Kenneth Emeka Odoh</a>
+        </div>
+        <div class="Nav-sections">
+          <a class="Nav-section " href=/index.html >About</a>
+          <a class="Nav-section " href=/projects.html>Projects</a>
+          <a class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a class="Nav-section" href=/publications.html>Publications</a>
+          <a class="Nav-section" href=/news.html>News</a>
+        </div>
+      </nav>
+      <div class="u-separator"></div>
+    </header>
+    <div class="Site-content">
+      <div class="u-container">
+
+        <div class="Page">
+            <article role="main" class="Article">
+                <h1 class="Article-title"> Organizing a Technical Meetup </h1>
+                <div class="Article-meta">
+                  <time datetime=2019-11-17 15:16:23.486859 class="Article-date">2019-11-17</time>
+                </div>
+
+                <div class="Article-meta">Tag: general</div>
+
+                <section class="Article-content"> This is a collection of some of my experiences in organizing meetups in Vancouver. My experiences are with technical meetups related to Computer science. It is not clear to me how some of my insights may be applicable to other kinds of gatherings.
+A meetup is a gathering of people with similar interests. This can take the form of a mini-conference, workshop, classroom-style lecture, and public discussion. It has different names such as study group, reading group, hacking group among others.
+
+### Why host a meetup
+It is counter-intuitive to a few people as to why a person would undergo the challenging prospect of arranging a technical meetup for free. The benefits are twofold: it helps to increase technical mastery of a subject as well as improves your networking skills.
+There are debunked misconceptions that claims that technical mastery on the subject is a prerequisite for hosting a successful meetup. However, even though that the organizer need not be an expert on the technical subject of the meetup, there is a general consensus that the organizers must be dedicated and interested in the subject of the group. There are benefits to having technical mastery on the subject as it can drive attendance to your meetings.
+
+### Challenges in hosting a meetup
+This is not an exhaustive list of the challenges that organizers experience when hosting a meetup. We have highlighted a few issues to drive home the point in this blog post.
+
+- An appropriate topic should be chosen by the organizer. This is essential as that can facilitate a healthy discussion in the group.
+- The organizer should seek out collaborations as co-founders to reduce the burdens of hosting a meetup.
+- It takes time to get quality speakers. Begin early and groom the available speakers to fit with the needs of the group. Always have a contingency plan if a speaker fails to show up due to unforeseen circumstances.
+- The organizer needs to identify a target audience and advertise the group to them. Advertisements can be made on existing meetups or social media. There is a conundrum about the size of the group as an uncontrolled size of the group can harm creativity and reduce the commitment to technical mastery of its members. However, if the goal of the group is networking, then larger crowds are better.
+- A venue should be chosen that is accessible by public transportation. The meeting location should be in less-crime infested neighbourhoods as most meetups hold their gatherings at night (after the participants have finished their day work). Outdoor events such as beer-drinking sessions where intellectual freely share ideas should be located close to the meetup venue.
+- Each meetup session must follow a preset and advertised agenda to minimize frustrations. Consideration should be given to ensure precise and accurate time of the meeting to prevent extensions. The material (research papers and course materials) must be accessible and free from copyright to reduce the risk of litigation.
+- Mind your language to prevent issues.
+- Maintain a positive posture and be welcoming. Don’t keep guests waiting for so long if they require access to the elevator.
+
+Organizing a meetup can be a daunting task. There is a customer service aspect to it. You will get pings in forms of email from people seeking information about your group. Be calm and polite as most of the questions are things that are already written on the meetup advertisement page. Ensure that everybody who is seeking information gets a reply as soon as possible to make them plan for attending the meetup sessions.
+
+Based on my experience with organizing meetups, human expectations are very difficult to satisfy. Your best efforts may be misunderstood and you may even get insulted. It is in your best interest to stay calm, give a smile, and cleverly redirect the insult to the sender while staying respectful and well-mannered. I once met a UBC professor who was happy that the paper discussed on that meetup was based on his PHD thesis. He was excited about the study group and encouraged me to continue the great work. This was a compliment that has always kept me in a happy state of mind.
+
+### Conclusion
+The write-up is based on my experience in organizing meetups (Cryptography and distributed systems meetups) in Vancouver. Our applied Cryptography meetup based on the [book](https://crypto.stanford.edu/~dabo/cryptobook/BonehShoup_0_4.pdf) which holds once a month. The reliable and distributed systems meetup, where we spent almost 1 year to do the entire exercises of the Distributed System graduate program at KTH Sweden with material available here ([course 1](https://www.edx.org/course/reliable-distributed-algorithms-part-1-kthx-id2203-1x-0), [course 2](https://www.edx.org/course/reliable-distributed-algorithms-part-2-kthx-id2203-2x)). Organizing meetups was a fulfilling experience that has made me a better person. </section>
+
+                <div class="Article-meta"><a href=/blogs/1.html> Read more Blogs </a> </div>
+
+                <a target="_blank" data-size="large" class="twitter-share-button"
+                  href="https://twitter.com/intent/tweet?url=https://kenluck2001.github.io/blog_post/organizing_a_technical_meetup.html&text= Share the blog here">
+                 <img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" alt="Smiley face" height="42" width="42">  </a>
+
+
+            </article>
+        </div>
+
+
+      </div>
+    </div>
+
+    <script  type="text/javascript" >
+        txt = $('.Article-content').text( );     
+        $('.Article-content').html( marked(txt) );
+
+        var md = window.markdownit().use(markdownitFootnote);
+        //md.render(/*...*/) // See examples above
+
+        var result = md.render('# markdown-it rulezz!');
+
+    </script >
+
+
+  </body>
+</html>

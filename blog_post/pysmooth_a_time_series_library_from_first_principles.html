@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Personal Website [current blog] | Kenneth Odoh's Blog</title>
+    <meta name="author" content="Kenneth Emeka Odoh">
+    <meta name="description" content=" The personal website of Kenneth Emeka Odoh">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!---<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+    </script> -->
+    <!---<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: {
+         equationNumbers: {  autoNumber: "AMS"  },
+         extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+      }
+    });
+    </script> -->
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <style>
+      mjx-container[display="block"] {
+        display: block;
+        margin: 1em 0;
+      }
+      </style>
+      <script>
+      MathJax = {
+        //
+        //  Load only TeX input and the contextual menu
+        //
+        loader: {load: ['input/tex', 'ui/menu']},
+        //
+        //  When page is ready, render the document
+        //
+        startup: {pageReady: () => MathJax.startup.document.render()},
+        //
+        //  Use dollar signs for in-line delimiters in addition to the usual ones
+        //
+        tex: {inlineMath: {'[+]': [['$', '$']]}},
+        //
+        //  Override the usual typeset render action with one that generates MathML output
+        //
+        options: {
+          renderActions: {
+            typeset: [150,
+              //
+              //  The function for rendering a document's math elements
+              //
+              (doc) => {
+                const toMML = MathJax.startup.toMML;
+                for (math of doc.math) {
+                  math.typesetRoot = document.createElement('mjx-container');
+                  math.typesetRoot.innerHTML = toMML(math.root);
+                  math.display && math.typesetRoot.setAttribute('display', 'block');
+                }
+              },
+              //
+              //  The function for rendering a single math expression
+              //
+              (math, doc) => {
+                math.typesetRoot = document.createElement('mjx-container');
+                math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
+                math.display && math.typesetRoot.setAttribute('display', 'block');
+              }
+            ]
+          }
+        }
+      };
+      </script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js">
+      </script>
+      <!--<script async src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.2/markdown-it-footnote.js">
+      </script>-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js">
+      </script>
+
+
+  </head>
+  <body class="Site">
+    <header class="Site-header">
+      <nav class="Nav">
+        <div class="Nav-home">
+          <a href=/index.html>Kenneth Emeka Odoh</a>
+        </div>
+        <div class="Nav-sections">
+          <a class="Nav-section " href=/index.html >About</a>
+          <a class="Nav-section " href=/projects.html>Projects</a>
+          <a class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a class="Nav-section" href=/publications.html>Publications</a>
+          <a class="Nav-section" href=/news.html>News</a>
+        </div>
+      </nav>
+      <div class="u-separator"></div>
+    </header>
+    <div class="Site-content">
+      <div class="u-container">
+
+        <div class="Page">
+            <article role="main" class="Article">
+                <h1 class="Article-title"> PySmooth: A time series library from first principles </h1>
+                <div class="Article-meta">
+                  <time datetime=2019-11-17 15:22:54.561914 class="Article-date">2019-11-17</time>
+                </div>
+
+                <div class="Article-meta">Tag: machine-learning</div>
+
+                <section class="Article-content"> This blog post is the culmination of a number of technical talks given at the Python Conference (Singapore) in 2018 and a meetup session held in Vancouver titled “Tracking the Tracker: Time Series Analysis in Python from first principles”. The slides and video recordings can be found in [slides](https://www.slideshare.net/kenluck2001/tracking-the-tracker-time-series-analysis-in-python-from-first-principles-101506045), [video_1](https://youtu.be/jGiHxHt1q6A), and [video_2](https://youtu.be/cTeTGHI6vBU). Python programming language is widely used for scientific computation due to the proliferation of third-party packages such as numpy [[04]](), scipy [[J+01]](), pandas [[12]]() among others. The availability of extensive documentation for these packages with a built-in package managers (pip [[08]]() and easy\_install [[04]]()) for stress-free installation of these libraries has led to a wider adoption of Python programming in diverse domains.
+
+Time series analysis is a ubiquitous problem that occurs in a number of interdisciplinary domains such as finance, social sciences, and engineering. There is an inherent need for an easy to use time series library that serves the need of multiple users. PySmooth was released as an open-source library to promote mass adoption with little restriction on usage, thereby ensuring that the source code is accessible to practitioners, students, and researchers. Why go through the stress of writing a new software library, when there are existing alternatives in the wild? This is not exactly the case as our approach is unique because to the best of our knowledge the majority of existing time series analysis libraries tends to lack a state-space formulation. However, PySmooth is unique in solving general time series problem by reducing to a state-space formulation.
+
+The software was built with a philosophy that encourages pedagogy by designing an application programming interface (API) that is easy for new users to use the package in their work with minimal training. It is desirable that the usage of the software does not impose significant cognitive burden on the user. Furthermore, the API should provide a trade-off between educating the user on the logical functionality of the library and managing the complexity of the software design. Some users are interested in using the library to solve the problem at hand, while a different set of users are curious about perusing the internals of the library with the goal of refactoring the library. PySmooth was built to meet the expectations of a diverse set of users.
+
+This paper gives a presentation of the software architecture and algorithms used in PySmooth library. The fundamental architecture of PySmooth is suited to real-time analysis of time series data. Under the hood, PySmooth uses numpy for all the matrix operations. 
+
+Our contributions consist of the following:
+  - Creation of a novel online ARIMA algorithm based on RLS [[Liu+16]]().
+  - [Comprehensive proof](https://www.geogebra.org/m/t7Gj6Vv3) of Kalman filter equations from first principles. Thanks to Dr. Eugene for the creative charts.
+  - Providing a software implementation in an easy to use package [[Odo17]]().
+
+This paper is organized as follows. In the Literature Review section, we provide a review of major milestones in the development of the field of time series analysis. In Implementation section, we provide a description of the algorithms in PySmooth and give justifications for the software design. In Evaluation section, we provide an empirical testing of the algorithms in the PySmooth [[Odo17]]() Library. In the Conclusion section, we provide a reflection and future work in advancing the research presented in this paper.
+
+### Literature Review 
+
+Every activity that requires planning for the future tend to require some forms of forecasting of future events. Forecasting is an important aspect of planning activities within organizations. This can be used for resource allocation as gridlocks can be averted once we know what to expect in the near future. The reliability of the estimation is of high importance due to the cost of failed prediction. Bad forecasting is tantamount to bad planning for the future. Accurate forecasting are essential for these systems to be deployed in production. Ideally time series analysis library should be adaptive, self healing, and self correcting to learn from the data. The reliability is also exacerbated by the need to make prediction in real time. This calls for a method that can make quick predictions and make corrections to future estimations as more data arrive, even in the presence of concept drift [[WSK10]]().
+
+Popular time series analysis projects like Facebook's prophet [[TL17]]() allows for a man-in-the-loop adjustment and review. In contrast, we take a different approach by automatically doing the prediction with a self healing method thereby avoiding a man-in-the-loop. This allows for self correction in changing distributions of the stream. Human need to have domain expertise to be useful in the prediction loop. We want to save the cost of training a human and avoiding some preconceived biases that are inherent in humans. The models are largely interpretable and explainable, so we have less problems in that context. These design decisions means that the library can be used out of the box by practitioners for some non-trivial tasks within reason. We propose a number of time series algorithms that are flexible and predict even in the presence of concept drift. Prophet also has a break change detection with a scheme that looks like a simplified Multivariate adaptive regression spline (MARS) in terms of the piecewise regression, which we don’t support. The scale cannot be compared as it is battle tested. Ours is a poor-man time series library.
+
+A time series problem can be formulated as a curve fitting procedure which captures the time dependence on the stream. Every time series can be decomposed into trend, seasonality and holidays [[HP90]](). The ARIMA models which was developed by Box and Jenkins [[BJ90]]() have been utilized in linear time series modelling. However, the average user would have it difficult to get the appropriate value for order of difference, auto-regressive component, and seasonality difference. Muth [[Mut60]]() laid the foundation for exponential smoothing by showing that it provides optimal estimates using random walk with some noise. Further works were done to provide a statistical framework for exponential smoothing leading to the creation of linear models [[BJ76]](), [[Rob82]](). Unfortunately, this does to apply to nonlinear models. Yule postulated a formulation of time series as a realization of a stochastic process [[Yul27]]().
+
+Kalman filter is a recursive algorithm for incrementally recomputing forecast based on past data [[Kal60]](). This is ideal for one-step prediction, of course, it is not so difficult to extend to the case of multi-steps prediction. There are theoretical estimations of the multi-step look-ahead forecast error [[GK92]]() with bounded guarantees. Due to the popularity of linear models, there is a movement towards solving nonlinear models by linearizing a nonlinear model into a linear model [[FZ98]]() with accuracy to higher orders such as Extended Kalman filter which is a linearization by Taylor series.
+[(1)]()
+\begin{equation}
+\label{add}
+Y_t = V_t + S_t + H_t + \xi_t,   \quad     t = 1,...,n    
+\end{equation}
+
+where $V_t$ is the trend in the data, $S_t$ is seasonality in the data, $H_t$ is the holiday in the data, and $\xi_t$ is error. The trend, $V_t$, is a varying component, and seasonality, $S_t$, is the cyclic component and the holiday component helps in modeling discontinuous time series as seen in Equation ~\eqref{add}.
+
+The time series can be multiplicative in nature
+[(2)]()
+\begin{equation}
+\label{mult}
+Y_t = V_t * S_t * H_t * \xi_t,   \quad       t = 1,...,n   
+\end{equation}
+
+From this Equation [(2)](), we can take logs and ignoring scalar multiplier thereby giving rise to Equation [(1)]().
+
+Neural networks have been used for time series applications [[PP14], [Mal+17], [Dor96], [LB98]]() as a consequence of the universal approximation theorem [[Cyb89], [Hor91]](). Recurrent neural network (RNN) [[JM99]]() and Long short-term memory (LSTM) [[HS97]]() are class types of neural network suited for time series due to the sequence prediction.
+
+### Implementation 
+
+PySmooth is designed as a time series analysis library to support real-time series analysis for time series data.
+
+
+##### Recursive Linear Regression
+
+The Matrix Inversion Lemma RLS, version 1 of page 89 in the paper [[WZ91]]() is the version used in the implementation.
+
+```
+import numpy as np
+from utils import OnlineLinearRegression
+olr = OnlineLinearRegression()
+y = np.random.rand(1,5)
+x = np.random.rand(1,15)
+olr.update(x, y)
+print olr.getA( ) # $\theta$ matrix
+print olr.getB( ) # bias vector
+y = np.random.rand(1,5)
+x = np.random.rand(1,15)
+olr.update(x, y)
+print olr.getA( ) # $\theta$ matrix
+print olr.getB( ) # bias vector
+```
+##### Time Difference
+
+The RLS routine described in this Subsection is used for mapping input to output in equation 2.1 and 2.2 of the paper [[WB95]]().
+
+```
+import numpy as np
+from TimeDifference import TimeDifference
+
+X = np.random.rand(200,4)
+d = 5 #time lag
+tdObj = TimeDifference(d)
+#train a model
+tdObj.train( X )
+#predict on lag
+y = np.random.rand(5,4)
+ypred = tdObj.predict ( y )
+print ypred
+```
+
+##### Online ARIMA
+
+Auto-regressive processes (AR) and moving average processes (MA) were introduced by Yule in paper [[Yul27]](). This is also used to make the time difference model described in this Subsection operate in incremental model as in equation 1.2.1 in page 7 of the paper [[Hami94]](). This is also used as a foundation the ARMA model. Both AR and MA processes in equations 3.3.8 and 3.3.13 respectively make use of the RLS to make the process of performing the ARIMA model in an incremental manner.
+
+```
+import numpy as np
+from RecursiveARIMA import RecursiveARIMA
+X = np.random.rand(10,5)
+recArimaObj = RecursiveARIMA(p=6, d=0, q=6)
+recArimaObj.init( X )
+for ind in range (100):
+    x = np.random.rand(1,5)
+    print "----------------------------"
+    print "{}#".format (ind+1)
+    print "----------------------------"
+    recArimaObj.update ( x )
+    print recArimaObj.predict( )
+```
+##### Kalman Filtering
+
+Kalman filter is the continuous form of the forward algorithm of the Hidden Markov model. The general form of Kalman filter is similar to those in the paper [[WB95]](). This is similar to the formulation in most standard research papers. There are two common formulations of the kalman filter. This can be understood using the following analogies. The first case, I know the present in some form, and want to predict the future. The second case, I know the essence of the immediate past, and want to determine the present. The use case for the first formulation is used for time series prediction. The use case for the second formulation is used for training say a neural neural network without back-propagation thereby working in near online basis [[OC15]]().
+
+The paper handles the first case, where we have a set of states and measurements. The state are the major focus, but the next state is not observable from the current state. This can be say the target time series that we are tracking. However, we augment the estimation of the states using the measurements. By capturing dependency between states and measurements. Kalman filter can estimate the next state by using past state and current measurements.
+
+##### Discrete Kalman Filters 
+The discrete Kalman filter follows the implementation that is described in Figure 1-2 on page 5 \& 6 of paper [[WB95]](). This captures the linear relationships in the data. Our estimations fluctuates around the means and covariance. The filter is likely to reach convergence as the data increases, thereby improving filter performance. On the contrary, in the presence of nonlinear relationship, the error rate increases in the posterior estimates, thereby leading to sub-optimal filter performance (under-fitting).
+
+```
+import numpy as np
+from DiscreteKalmanFilter import DiscreteKalmanFilter
+X = np.random.rand(2,2)
+Z = np.random.rand(2,2)
+dkf = DiscreteKalmanFilter()
+dkf.init( X, Z ) #training phase
+for ind in range (100):
+    kf.update( )   
+    x = np.random.rand(1,2)
+    z = np.random.rand(1,2)
+    print "----------------------------"
+    print "{}#  {}, {}".format (ind+1, x,z)
+    print "----------------------------"
+    print dkf.predict( x, z )
+```
+##### Extended Kalman Filters 
+
+The Extended Kalman filter follows the implementation that is described in Figure 1-2 on page  8, 9, 10 \& 11 in the paper [[WB95]](). More details on the workings of Extended Kalman filters can be found in tutorial [[Ter08]](). This captures the nonlinear relationship in the data. The approximation using limited order of Taylor series (linearizing nonlinear equation using Taylor series to 1st order) can lead to errors in the posterior estimates, thereby leading to sub-optimal filter performance. The filter makes use of Jacobians and hessians, thereby mandating the need for differentiable non-linear function with increased computation cost. This has the same computational complexity as Unscented kalman filter.
+
+```
+import numpy as np
+from ExtendedKalmanFilter import ExtendedKalmanFilter
+X = np.random.rand(2,2)
+Z = np.random.rand(2,15)
+dkf = ExtendedKalmanFilter()
+dkf.init( X, Z ) #training phase
+for ind in range (100):
+    dkf.update( )   
+    x = np.random.rand(1,2)
+    z = np.random.rand(1,15)
+    print "----------------------------"
+    print "{}#  {}, {}".format (ind+1, x,z)
+    print "----------------------------"
+    print dkf.predict( x, z )
+```
+##### Unscented Kalman Filters 
+The unscented kalman filter follows the implementation that is described in Algorithm 3.1 in the paper [[WM00]](). For a thorough understanding of unscented transformation, then see the paper [[Jul02]](). This captures the nonlinear relationship in the data. The approximation using a better order of Taylor series (linearizing nonlinear equation using Taylor series to 3rd order) thereby leading to better filter performance. This filter makes use of better sampling to capture more representative characteristics of the model by using sigma points. Sigma points are extra data points that are chosen within the region surrounding the original data. This accounts for variability by capturing the likely position that data could be given some perturbations. Sampling these points provides richer information of the distribution of the data as it is more ergodic. The filter does not make use of Jacobians and hessians, thereby allowing the use of differentiable and non-differentiable non-linear function with increased computation cost. This has the same computational complexity as Extended Kalman filter.
+
+```
+import numpy as np
+from UnscentedKalmanFilter import UnscentedKalmanFilter
+X = np.random.rand(2,2)
+Z = np.random.rand(2,15)
+dkf = UnscentedKalmanFilter()
+dkf.init( X, Z ) #training phase
+for ind in range (100):
+    dkf.update( )   
+    x = np.random.rand(1,2)
+    z = np.random.rand(1,15)
+    print "----------------------------"
+    print "{}#  {}, {}".format (ind+1, x,z)
+    print "----------------------------"
+    print dkf.predict( x, z )
+```
+We will discuss box-jenkins methodology as a way of selecting appropriate values for the parameter of the model.
+
+Transform data so that a form of stationarity is attained.
+E.g taking logarithm of the data, or other forms of scaling.
+Guess values p, d, and q respectively for ARIMA (p, d, q).
+Estimate the parameters needed for future prediction.
+Perform diagnostics using AIC, BIC, or REC (Regression Error Characteristic Curves) [[BB03]](). It is probably a generalization of Occam’s Razor
+
+### Evaluation
+
+Extended Kalman filter was not evaluated in comparison to other methods as the result is subjective based on the method to estimate the nonlinear function which is a core of the algorithm. One could use a feed-forward network to estimate this relation and as such we fall to yet another issue of second system effects.
+
+One choice of evaluation metric as ROC is well understood for practical machine learner, and as such the ROC equivalence for regression problem has captured based metric like Regression Error Characteristic Curves [[BB03]](), MAE, and other while Bayesian methods like AIC [[SIG86]](), BIC, Deviance suffers from interpretability to a non-statistical expert.
+
+A follow-up blog post titled “ROC vs REC: Evaluation measures for classification and Regression ” will be released in the spring of 2020. The article will discuss REC and ROC with intuitive explanations and accompanying source code.
+
+### Acknowledgment
+I would like to thank (my mentors) Dr. Ziyuan Gao and Dr. Eugene Yablonsky from the National University of Singapore and Fraser Valley University, BC respectively for providing technical support during the writing of this manuscript. I am grateful to the advanced reading group under the umbrella of [Learn Data Science meetup](https://www.meetup.com/LearnDataScience/) in Vancouver for the lively intellectual conversations on a number of machine learning topics.
+
+### Conclusion
+
+There is a trend among applied scientists to use algorithms with provable guarantees of convergence as a result the context of the problem usually dictates the kind of convergence to aim for. As a result the algorithms included in the PySmooth packages has provable theoretical guarantees for convergence.
+
+The current implementation uses only Central processing unit (CPU). Future work would include extending the PySmooth library to use Graphics processing unit (GPU) due to the number of matrix multiplication in the kalman filters. Particle filtering package can be introduced in the next iteration of the software. An implementation detail to enhance numerical stability was using pseudo-inverse in place of exact inverse with minimal effects in performance.
+
+### References
+
+- [[Yul27]]() Yule G. U. “On a Method of Investigating Periodicities in Disturbed Series, with Special Reference to Wolfer’s Sunspot Numbers”. In: Philosophical Transactions of the Royal Society of London. Series A, Containing Papers of a Mathematical or Physical Character 226 (1927), pp. 267–298.
+- [[Kal60]]() Kalman R. E. “A New Approach to Linear Filtering And Prediction Problems”. In: ASME Journal of Basic Engineering (1960), pp. 35–45.
+- [[Mut60]]() Muth J.F. “Optimal properties of exponentially weighted forecasts”. In: Journal of the American Statistical Association 55 (1960), pp. 299–306.
+- [[BJ76]]() Box G.E.P. and Jenkins G. M. Time Series Analysis: Forecasting and Control. Holden-Day, 1976.
+- [[Rob82]]() Roberts S.A. “A General Class of Holt-Winters Type Forecasting Models”. In: Management Science 28.7 (1982), pp. 808–820.
+- [[SIG86]]() Sakamoto Y., Ishiguro M., and Kitagawa G. Akaike Information Criterion Statistics. Reidel Publishing Company, 1986.
+- [[Cyb89]]() Cybenko G.  “Approximation by Superpositions of a Sigmoidal Function”. In: Mathematics of Control, Signals, and Systems 2 (1989), pp. 303–314.
+- [[BJ90]]() Box G.E.P. and Jenkins G. M.  Time Series Analysis, Forecasting and Control. Holden-Day, 1990.
+- [[HP90]]() Harvey A.C. and Peters S.  “Estimation procedures for structural time series models”. In: Journal of Forecasting 9.2 (1990), pp. 89–108.
+- [[Hor91]]() Hornik K. “Approximation Capabilities of Multilayer Feedforward Networks”. In: Neural Networks 4.2 (1991), pp. 251–257.
+- [[WZ91]]() Wellstead P.E  and Zarrop M.B. Self-Tuning Systems: Control and Signal Processing. 1st. Chichester, United Kingdom: John Wiley \& Sons, 1991.
+- [[GK92]]() de Gooijer J.G.  and  Klein A. “On the cumulated multi-step ahead predictions of vector autoregressive moving average processes”. In: International Journal of Forecasting 7.4 (1992), pp. 501–513.
+- [[Ham94]]() Hamilton, J. D. Time Series Analysis. 1st edition. Chichester, United Kingdom: Princeton University Press, 1994.
+- [[WB95]]() Welch G. and Bishop G. An Introduction to the Kalman Filter. Tech. rep. Chapel Hill, USA, 1995.
+- [[Dor96]]() Dorffner G. “Neural Networks for Time Series Processing”. In: Neural Network World 6 (1996), pp. 447–468.
+- [[HS97]]() Hochreiter S. and Schmidhuber J. “Long Short-Term Memory”. In: Neural Computation 9.8 (1997), pp. 1735–1780.
+- [[FZ98]]() Francq C. and Zakoian J.M. “Estimating linear representations of nonlinear processes”. In: Journal of Statistical Planning and Inference 68.1 (1998), pp. 145–165.
+- [[LB98]]() LeCun Y. and Bengio Y. “The Handbook of Brain Theory and Neural Networks”. In: Cambridge, MA, USA: MIT Press, 1998. Chap. Convolutional Networks for Images, Speech, and Time Series, pp. 255–258.
+- [[JM99]]() Jain L.C. and Medsker L.R. Recurrent Neural Networks: Design and Applications. 1st edition. Boca Raton, FL, USA: CRC Press, Inc., 1999. isbn: 0849371813.
+- [[WM00]]() Wan E.A. and Merwe R.V.D. “The unscented Kalman filter for nonlinear estimation”. In: Proceedings of the IEEE Adaptive Systems for Signal Processing, Communications, and Control Symposium. 2000, pp. 153–158.
+- [[J+01]]() Jones E., Oliphant T., Pearu Peterson, et al. SciPy: Open source scientific tools for Python. 2001. url: http://www.scipy. org/.
+- [[Jul02]]() Julier S.J.  “The Scaled Unscented Transformation”. In: Proceed- ings of the IEEE American Control Conference. 2002, pp. 4555– 4559.
+- [[BB03]]() Bi J. and Bennett K.P. “Regression Error Characteristic Curves”. In: Proceedings of the Twentieth International Conference on Machine Learning. 2003, pp. 43–50.
+- [[04]]() easy install. 2004. url: http://setuptools.readthedocs.io/en/latest/easy_install.html.
+- [[05]]() NumPy. 2005. url: http://www.numpy.org/index.html.
+- [[08]]() pip. 2008. url: https://pip.pypa.io/en/stable/.
+- [[Ter08]]() Terejanu G.A. Extended Kalman Filter Tutorial.. Buffalo, USA, 2008.
+- [[WSK10]]() Wang S., Schlobach S., and Klein M.. “What Is Concept Drift and How to Measure It?” In: Knowledge Engineering and Management by the Masses: 17th International Conference. Berlin, Heidelberg: Springer Berlin Heidelberg, 2010, pp. 241–256.
+- [[12]]() pandas: Python Data Analysis Library. 2012. url: http://pandas. pydata.org/.
+- [[PP14]]() Prasad S.C. and Prasad P. “Deep Recurrent Neural Networks for Time Series Prediction”. In: CoRR abs/1407.5949 (2014). arXiv: 1407.5949. url: http://arxiv.org/abs/1407.5949.
+- [[OC15]]() Ollivier Y. and Charpiat G. “Training recurrent networks online without backtracking”. In: CoRR abs/1507.07680 (2015). arXiv: 1507.07680. url: http://arxiv.org/abs/1507.07680.
+- [[Liu+16]]() Chenghao Liu et al. “Online ARIMA Algorithms for Time Series Prediction”. In: Proceedings of the Thirtieth AAAI Conference on Artificial Intelligence. 2016, pp. 1867–1873.
+- [[Mal+17]]() Pankaj Malhotra et al. “TimeNet: Pre-trained deep recurrent neural network for time series classification”. In: CoRR abs/1706.08838 (2017). arXiv: 1706.08838. url: http://arxiv.org/abs/1706.08838.
+- [[Odo17]]() Kenneth Odoh. PySmooth: an open source object-oriented library for time series analysis in Python. 2017. url: https://github.com/kenluck2001/pySmooth.
+- [[TL17]]() Taylor S.J. and Letham B. Forecasting at Scale. 2017. url: https://doi.org/10.7287/peerj.preprints.3190v2. </section>
+
+                <div class="Article-meta"><a href=/blogs/1.html> Read more Blogs </a> </div>
+
+                <a target="_blank" data-size="large" class="twitter-share-button"
+                  href="https://twitter.com/intent/tweet?url=https://kenluck2001.github.io/blog_post/pysmooth_a_time_series_library_from_first_principles.html&text= Share the blog here">
+                 <img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" alt="Smiley face" height="42" width="42">  </a>
+
+
+            </article>
+        </div>
+
+
+      </div>
+    </div>
+
+    <script  type="text/javascript" >
+        txt = $('.Article-content').text( );     
+        $('.Article-content').html( marked(txt) );
+
+        var md = window.markdownit().use(markdownitFootnote);
+        //md.render(/*...*/) // See examples above
+
+        var result = md.render('# markdown-it rulezz!');
+
+    </script >
+
+
+  </body>
+</html>
