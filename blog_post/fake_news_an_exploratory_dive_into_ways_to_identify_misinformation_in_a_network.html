@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Personal Website [current blog] | Kenneth Odoh's Blog</title>
+    <meta name="author" content="Kenneth Emeka Odoh">
+    <meta name="description" content=" The personal website of Kenneth Emeka Odoh">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!---<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+    </script> -->
+    <!---<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: {
+         equationNumbers: {  autoNumber: "AMS"  },
+         extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+      }
+    });
+    </script> -->
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <style>
+      mjx-container[display="block"] {
+        display: block;
+        margin: 1em 0;
+      }
+      </style>
+      <script>
+      MathJax = {
+        //
+        //  Load only TeX input and the contextual menu
+        //
+        loader: {load: ['input/tex', 'ui/menu']},
+        //
+        //  When page is ready, render the document
+        //
+        startup: {pageReady: () => MathJax.startup.document.render()},
+        //
+        //  Use dollar signs for in-line delimiters in addition to the usual ones
+        //
+        tex: {inlineMath: {'[+]': [['$', '$']]}},
+        //
+        //  Override the usual typeset render action with one that generates MathML output
+        //
+        options: {
+          renderActions: {
+            typeset: [150,
+              //
+              //  The function for rendering a document's math elements
+              //
+              (doc) => {
+                const toMML = MathJax.startup.toMML;
+                for (math of doc.math) {
+                  math.typesetRoot = document.createElement('mjx-container');
+                  math.typesetRoot.innerHTML = toMML(math.root);
+                  math.display && math.typesetRoot.setAttribute('display', 'block');
+                }
+              },
+              //
+              //  The function for rendering a single math expression
+              //
+              (math, doc) => {
+                math.typesetRoot = document.createElement('mjx-container');
+                math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
+                math.display && math.typesetRoot.setAttribute('display', 'block');
+              }
+            ]
+          }
+        }
+      };
+      </script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js">
+      </script>
+      <!--<script async src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.2/markdown-it-footnote.js">
+      </script>-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js">
+      </script>
+
+
+  </head>
+  <body class="Site">
+    <header class="Site-header">
+      <nav class="Nav">
+        <div class="Nav-home">
+          <a href=/index.html>Kenneth Emeka Odoh</a>
+        </div>
+        <div class="Nav-sections">
+          <a class="Nav-section " href=/index.html >About</a>
+          <a class="Nav-section " href=/projects.html>Projects</a>
+          <a class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a class="Nav-section" href=/publications.html>Publications</a>
+          <a class="Nav-section" href=/news.html>News</a>
+        </div>
+      </nav>
+      <div class="u-separator"></div>
+    </header>
+    <div class="Site-content">
+      <div class="u-container">
+
+        <div class="Page">
+            <article role="main" class="Article">
+                <h1 class="Article-title"> Fake news: An exploratory dive into ways to identify misinformation in a network </h1>
+                <div class="Article-meta">
+                  <time datetime=2019-12-03 17:59:55.169774 class="Article-date">03 Dec, 2019</time>
+                </div>
+
+                <div class="Article-meta">Tag: bayesian-statistics, machine-learning</div>
+
+                <section class="Article-content"> Fake news is a false piece of information that was purposely created to deceive a person. The effect on a single individual can be devastating, however, modern trends show that actors are deploying fake news on a large scale to influence a group of users. Identifying fake news by manual inspection is a daunting task because a number of fake news take the form of half-truths, which means there are some forms of reality, but the events in the message may have been deceptively modified to fool an individual. The credibility of a fake news can vary from outright insanity to a likely real. A crafty attacker will stick to creating news that has the semblance of reality as it is likely to yield the greatest utility. A typical fake news can take the form of innuendos, rumours, and gossip among others. It is important to note that unpleasant news that is true cannot be categorized as fake news. In this blog post, we will work to understand the fake news from both perspectives (attacker, victim). As part of setting the stage for this research, we would pretend to be the attacker and simulate their reasoning. 
+
+Fake news is a subjective term which has various meanings to different people. For example, a political operative sees fake news as anything that makes them lose an election. We will stay apolitical for the remainder of this blog post. Fake news is a news item that is designed to deceive the user. Some motivation may be hilarious or with malicious intent. It can take the form of a misinformation campaign, news with doctored artifacts, half-truth, and extreme sensationalism among others. Fake news can also be weaponized to serve geopolitical interests. There is a case during the Cold War where the US used the pretext of deep sea mining to hunt for a lost soviet submarine [[1]](). While a number of people can express discord over the activities around election interference on social media, there is a consensus that state actors are likely involved in electoral misinformation [[2]](). This is another classical example of fake news coming to life.
+
+The explosive growth of the Internet has resulted in a sizable population that socializes, trades, studies, and get entertained on the World Wide Web. It is important to note that things have changed in modern times as anyone can be a citizen journalist by virtue of social media. Moreover, it is more difficult to police the World Wide Web. The potential reach of the Internet has made it an attractive avenue for special interest groups and government-sanctioned actors to deceive the public by spreading misinformation in a viral spread. Fake news problem is exacerbated by the ease of creating and disseminating news in social media. It should be noted that not all fake news is created with a malignant intent as there are a number of false news made for entertainment purposes [[3]](). 
+
+The detection of fake news is an interesting research topic as there are significant economic and political benefits. Experiences have shown that the impact of a fake news can be devastating as it can lead to the crumbling of businesses and government officials as recent experiences have shown. The readers can undergo psychological torture and emotional distress based on false information that has been provided. The classification of fake news can become blurry as news organizations tend to disseminate news with either a conservative or liberal bias. 
+
+In no specific order, this blog post will attempt to answer the following questions as part of this research:
+- What are the motives for the creators of  fake news?
+- How can the authors of fake news optimize their rewards?
+- What is the cost of staging an attack?
+- How to detect fake news?
+
+There is an old saying that goes “If you want to catch a thief, then you have to think like one”. We would like to follow the reasoning of the attacker. There are benefits for the dissemination of fake news and as such it is sensible to optimize the reward of an attack. Unfortunately, the future is bright for bad actors as there are advances in machine learning models due to the wider availability of research papers and open source packages. The trend has led to the realistic fake news generation. Furthermore, the adversary can dedicate few computing resources to the task, because of the reduced cost of staging a successful attack.
+
+### Content vs Context
+
+The content that can be obtained from the raw news can include textual content, video, audio, and images. The news content is converted into a vector representation that can be fed into a machine learning model. Extra metadata can be obtained (spam, sentiment, subjectivity, stance) which can provide more attributes for feature engineering. Care must be taken to avoid the second-system effect where a poor prediction in the pipeline due to the derived metadata which can lead to degradation in the performance of the fake news classifier. These contents can be transformed into a suitable representation that can be fed into a classifier. Any news classifier that is focused solely on textual content to detect fake news is likely to fooled especially if the system is gamed. It is desirable to incorporate the context of the news in the modeling stage.
+
+The context is the circumstances around the news. The amount of the shock or amazement of a particular news item can be influenced or conditioned on prior related news. Both content and context have to be incorporated into making a good classifier. For a fake new classifier to be useful, it must consider the context such as geographical information, metadata, reputation of the news organization \& journalist, and temporal nature of the news. The locations that news is originating can affect how the facts are embellished. A news can be disguised in metaphors that are location-specific. This kind of information can be seen as misinformation to people outside the cultural context, but the targeted group will understand the message. This should also be considered during modeling, otherwise, you will suffer from reduced model performance.
+
+Spatio-temporal is based on categorization of news by geographical location with time sensitive properties as the relevance of a news item decays with time. This helps to create a time series data by binning the news items into a suitable time aggregation and geographical location for further processing. In this blog post, we focus on the spread of news over a network as it is easier to fix news that are false in traditional news outlet by means of legislation.  A fake news item in isolation does not spread. Conventional wisdom tells us that your information will remain unknown to the public; given that you go not share with a trusted friend, and there is no side channel attack.
+
+There are existing works on graph analytics that discussed concepts such as page rank, eigenvector centrality, Laplacian centrality in the context of graph as shown in the [paper](https://www.researchgate.net/profile/Muhammad_Rezaul_Karim/publication/263314701_Robust_Features_for_Detecting_Evasive_Spammers_in_Twitter/links/552208710cf2f9c130529b10.pdf), we did not investigate this path any further in this blog post.
+
+Contextual information can incorporate the action of an actor using ideas from game theory. The process of staging a very successful attack would mandate understanding the problem of “when to post”. This is because it is in the attacker’s best interests to figure out the best time to send fake news on the network to get the greatest devastation. A naive way of solving the “when to post” problem is aim your post for the time when the majority of the nodes are online in the social media. However, if the world was that simple, then we would not need to do research. The current world has multiple time zones and when it is day in a place, it can be night elsewhere. Another approach would be to identify nodes in the network that are articulation point and trick those users into retweeting their posts. The position of the tweet on the news feed shown can impact how likely it would spread. There is a rigorous [paper](https://arxiv.org/abs/1610.05773) on the subject, more information is provided in an upcoming section that discusses Bayesian modelling.
+
+### Detecting Fake news
+
+A model in the wild is only useful if it incorporates sufficient error analysis like error bars, confidence level, and uncertainty quantification in evaluating its performance. This premise does not rule out the existence of a specialized detector that works well for a class of fake news. This is in contrast with my emphasis on a generic classifier that works for every fake news. Read more about the limitations of current AI system and the definition of [intelligence](https://arxiv.org/pdf/1911.01547.pdf). 
+
+The likelihood of gaming a fake news classifier is high and as such consideration must be taken to incorporate defences against adversarial attacks. Unbalanced data set will always remain a problem. This would mandate future advances in single shot learning in NLP. This is a long way out as current models are data-hungry. There is still hope as transfer learning and distillation techniques can be carefully applied to mitigate some problems with the data. However, in this blog post, we make use of Bayesian modeling for the content and SIRS model for relationship analysis. The justifications for Bayesian modelling is provided in an upcoming section.
+
+We present two mathematical frameworks
+- Bayesian modeling (for content analysis)
+- SIRS (for context analysis)
+
+##### Bayesian Modeling
+Bayesian statistics is a probabilistic framework that allows for adjusting the degree of belief as more data becomes available. At the beginning of the analysis, one has to specify a prior which is your belief about the underlying phenomenon that you are trying to model, this prior is updated as more information is known. The choice of priors can have an influence in your analysis. This has led to discussion about what constitutes a good prior. Some school of thought has proceeded to categorize priors as informative or uninformative based on its influence on the results of our analyses. For discussion on the subject, read this [tutorial](http://www.scholarpedia.org/article/Bayesian_statistics) and [blog](https://sempwn.github.io/blog/).
+
+The Bayesian approach to modeling the utility of fake news in the blog post was inspired by the previous work of Evan Miller's work on deriving reddit formula [[4]]() and inferring tweet quality [[5]](). These works modeled using the expected utility hypothesis [[6]](). Our formulation is similar to their work, but we added a modeling of fake news which was missing in the original formulation [[4, 5]]().
+
+If we know that the news is fake, then there is no point solving the problem and no need to write another blog post. This work makes use of a quantifiable metric of like / dislike as a form of upvote and downvote is a requirement for the news to go viral. As such it should be included in our model for modeling the spread of fake news in social networks.
+
+When using the expected utility theorem [[6]](), we may have to decide on the values of the utility vector. It can be found by using human experience and as such we had manually set arbitrary values for the utility for a number of cases and reasonably excluded a few cases that are less likely in the wild. The ideal situation is to use counterfactual analysis to estimate the utility vector. An important caveat is in understanding the blurry lines between ethicality and legality for it is problematic to feed people with fake news on purpose as part of an experiment. This will be become a public relations issue for the firm if it becomes public. The goal of our analysis is to obtain a closed form solution to the problem as it is easier to implement.
+
+Fake news effects will be captured by modeling as a Poisson process. We will set the stage by describing what a Poisson distribution is about. Poisson's distribution is ideal for modeling the distribution of scarce events in a given population. It is suitable when the average time between event is given (observed) and constant, but the real timing between events are stochastic.  Every recent event is independent of the past event. The fake news occurs randomly In the news stream and as such the Poisson distribution fits our problem. For more information on the Poisson distribution, see [blog](https://towardsdatascience.com/the-poisson-distribution-and-poisson-process-explained-4e2cb17d459).
+
+The expected utility of a news item can be useful for ranking news items as we can penalize fake news in a list of available news.
+
+Visitors reload the page every $s$ seconds on average.
+\begin{equation}
+    \lambda = \frac{1}{s}
+\end{equation}
+
+Users are reloading their page, this could be an implicit action (default by the web browser) or explicitly by the user. $\lambda$ can be known as the time between reloads. We can now see why the Poisson distribution is a reasonable distribution to use here.
+
+News are stories that can be liked by users in a network.
+The list of events:
++ $P$: is it fake news
++ $Q$: is it liked news
++ $R$: is it new (recent)
+
+The probability of events:
++ $p$: probability a story is fake
++ $q$: probability a story is liked
++ $r$: probability that a story is new
+
+The table of possibilities can be seen below.
+
+| $P$  | $Q$  |  $R$  | Probability | Payoff |
+|----|----|-----|-------------|-------:|
+|T|T|T|pqr|a|
+|T|T|F|pq(1-r)|b|
+|T|F|T|p(1-q)r|c|
+|T|F|F|p(1-q)(1-r)|d|
+|F|T|T|(1-p)qr|e|
+|F|T|F|(1-p)q(1-r)|f|
+|F|F|T|(1-p)(1-q)r|g|
+|F|F|F|(1-p)(1-q)(1-r)|h|
+
+Table 1: list of possibilities
+
+It is a common practice to ignore the cases that are not likely in reality, by setting the payoff to 0.
+
+\begin{equation}
+u(p, q, r) = pqr \times a + pq(1-r) \times b + p(1-q)r \times c + p(1-q)(1-r) \times d + (1-p)qr \times e  + (1-p)q(1-r) \times f  + (1-p)(1-q)r \times g  + (1-p)(1-q)(1-r) \times h
+\end{equation}
+
+where $u(p, q, r)$ is expected utility.
+
+\begin{equation}
+E[q] = \frac{U+1}{U+D+2} 
+\end{equation}
+
+\begin{equation}
+E[1-q] = \frac{D+1}{U+D+2}
+\end{equation}
+
+where $U$, $D$, $E[q]$, $E[1-q]$ is the number of upvotes, number of downvotes, proportion of upvotes, and proportion of downvotes of the story respectively. The +1 and +2 is from beta distribution.
+
+\begin{equation}
+r = e^{-\lambda s}
+\end{equation}
+
+
+\begin{equation}
+p = \frac{\lambda^{k}e^{-\lambda}}{k!}
+\end{equation}
+
+where $r$ is the probability that it is at least $s$ seconds since last reload ($\lambda$),  and $p$ is the probability that fake news of $k$ fake stories has arrived. The value of $k$ can be empirically determined and application-specific.
+
+Rewrite $u(p, q, r)$ in terms of $U$, $D$
+
+In our formulation, we had set $a=1$, $b=1$, $c=1$, $d=1$, $e=1$, $f=1$, $g=0$,and $h=0$.
+
+\begin{equation}
+u(p, q, r) = pqr \times a + pq(1-r) \times b + p(1-q)r \times c + p(1-q)(1-r) \times d + (1-p)qr \times e  + (1-p)q(1-r) \times f  + (1-p)(1-q)r \times g  + (1-p)(1-q)(1-r) \times h
+\end{equation}
+
+\begin{equation}
+u(p, q, r) = pqr \times a + pq(1-r) \times b + p(1-q)r \times c + p(1-q)(1-r) \times d + (1-p)qr \times e  + (1-p)q(1-r) \times f
+\end{equation}
+
+\begin{equation}
+u(p, q, r) = p(qr \times a + q(1-r) \times b + (1-q)r \times c + (1-q)(1-r) \times d ) + (1-p)(qr \times e  + q(1-r) \times f)
+\end{equation}
+
+
+\begin{equation}
+u(p, q, r) = \left(\left(\frac{\lambda^{k}e^{-\lambda}}{k!} \right) \times \left( \frac{U+1}{U+D+2} e^{-\lambda s} + \frac{U+1}{U+D+2} 1-e^{-\lambda s} + \frac{D+1}{U+D+2} e^{-\lambda s} + \frac{D+1}{U+D+2} 1-e^{-\lambda s} \right) \right)+ \left(1 - \frac{\lambda^{k}e^{-\lambda}}{k!}\right) \left(\frac{U+1}{U+D+2}\right)
+\end{equation}
+
+The equation reduces to the product of the probability and proportion of downvotes. We can say the model makes the claim is a product of the probability of at least k stories are fake news and the proportion of the downvotes. We weigh the probability by the ratio of downvotes. The entire details of the proof can be found [here](/static/attachment/fake_news_proof.pdf).
+
+\begin{equation}
+u(p, q, r) = \frac{\lambda^{k}e^{-\lambda}}{k!} \frac{D+1}{U+D+2}
+\end{equation}
+
+The expected utility, $u(p, q, r)$, provides a scoring function for ordering news in a list. A higher score indicates a higher chance of the news becoming fake, while a lower score indicates less chance that news is fake. This is only useful if the nodes in the network are acting in good faith without compromise.
+
+Given how we decided on the utility of some cases, we ended up with a bias closed form equation of the expected utility. Our derived measure that considers fake news to be anything that has been downgraded by the user. Experience has shown that not the case in the real world as fake news is designed to fool readers. However, this issue in our derived formulation can be remedied by giving more weight to more probable cases. This is not a challenging proposition and as such it is left as an exercise to the reader.
+
+Bayesian framework has been used to model the best time to make a post on the social media to get the maximum impact. Bad actors can infer the best time to post fake news on social media that would have the greatest impact on the followers using ideas similar to those discussed in [paper](https://arxiv.org/abs/1610.05773).
+
+##### Spread of Fake news
+
+Social influence can be estimated by using a number of techniques which include: experimental generalization, agent-based modeling, and compartmental modeling [[7]](). Experimental generalization captures the dynamics of the spread behaviour by finding patterns that match historical data. This does not provide individual-level insight. Agent-based modeling builds individual agents that can capture the dynamics of spread behaviour by observing the aggregate behaviour of interacting agents. It is difficult to fit the parameters properly to the data [[7]](). Compartmental modeling categorizes individuals into a number of states which transitions allowed between states with given probability. This gives more control in observing the dynamics when compared to the agent based modeling [[7]](). We will use SIR modeling which is a form of Compartmental models in the blog post.
+
+The relationship between entities can be more informative than the content of the entity, and this has motivated our research into the spread of news on social networks. The edges (links) and nodes of the graph can encode relation-specific information. Some encoded information include the strength of a link between nodes as a measure the propensity of a node to influence other (neighbouring) nodes. All nodes are not created equal in a typical graph and as such some will be more important than others. In our formulation, a node in the graph represents a user. The users differ in their degrees of influence on their peers. In Social science circles, it is called peer pressure. In social network analysis, page rank algorithms are used to measure the influence of the nodes in the graph. Nodes with higher influence on their peers are said to be influencers. 
+
+In the original formulation [[4,5]](), the author estimated the number of people who saw a retweet, we change the purpose of the analysis to provide a closed form solution to the spread of fake news by re-purposing the existing formulation to suit our use case.
+
+$u$: is the fraction of user who reshared a fake news item. This is between 0 and 1. 0 means nobody and 1 means everybody.
+- $n_d$: number of users at distance, d.
+- $q_d(t)$: represent fraction of users at distance, d that saw initial (fake) news.
+- $R_d(t)$: number of users at a distance, d, who reshared fake news within time, t.
+
+\begin{equation}
+R_d(t) = n_d q_d(t)u
+\end{equation}
+
+
+\begin{equation}
+q_d(t) = p^{d-1}\left(1-\sum_{n=0}^{d-1} \frac{(\lambda t)^n e^{-\lambda t}}{n!}\right)
+\end{equation}
+
+
+\begin{equation}
+R(t) = \sum_d R_d(t)
+\end{equation}
+
+We have provided equations to model the flow of fake news in the network with depth (hops) with the time taken from the source to the current node in the graph. We obtained a function for the number of users who reshared fake news at depth, d.
+
+The goal is to estimate the spread of news given the fact that we know that is fake. We begin by representing the problem as a graph structure of relationships between users on the network. This is essentially capturing the followings and followers of a user in context. The node is a user and the edge is a connection between a user and its neighbours, which is typically a directed graph to appropriately capture followers and followings in a structured manner.
+
+SIR is a well known method for modeling the spread of infectious diseases. We are adapting it for use [[8]]() for capturing the dynamics of the spread of fake news [[9]](). Traditional SIR has a number of limitations which is people do read fake news with the intention of recovering after a set time. The user doesn’t even know if it is fake news at the point of reading.
+
++ $S$: number of susceptible people
++ $I$ : number of Infected people
++ $R$: number of recovered people (some may have immunity)
++ $N$: total population
++ $\beta$ : infection rate
++ $v$ : recovery rate
+
+\begin{equation}
+S+ I + R = N
+\end{equation}
+
+\begin{equation}
+S- = ( -\beta IS ) / N
+\end{equation}
+
+\begin{equation}
+I- = ( ( \beta IS ) - (vIR ) ) / N
+\end{equation}
+
+\begin{equation}
+R- = (vIR ) / N
+\end{equation}
+
+We get a time series of the occurrence of the news at aggregated time intervals. The next step is to estimate the equation of the curve, $I(t)$. The following parameters $S$, $I$, $R$, $N$, $\beta$ ,and $v$ at different time steps $t$, can be inferred by solving an ODE.
+
+Percolation theory is a model that explains how a liquid can pass through a material with pores. We think that it is related to the SIR model and provide a reference to a proof. The percolation theory can be used as a way of modeling the spread of news. I did an investigation and realized that it is conceptually similar to the SIRS model. For a primer on [percolation theory](http://www.math.chalmers.se/~steif/perc.pdf). One may be thought to be a specialization or generalization of the other. There is a relationship between the thresholds as shown in [equation 4]() of [paper]( https://arxiv.org/pdf/1401.4208.pdf ) with critical probability in percolation theory which shows a connection to SIR model.
+
+I was thinking that critical probability of percolation theory can be used as an estimation of the severity of the epidemic. This can also capture the severity of a fake news spread over a social network. The influential nodes would efficiently propagate the information to many nodes. The influence of a node can be estimated by page rank. Higher the values of the page rank of a node, the more severe the epidemic would be if the node is activated.
+
+The possible issues with incorporating vaccination in the SIRS. At the surface, prior vaccination would reduce the population of the susceptible. This would reduce the likelihood that they will fall victim to fake news in the future as they seek out to verify facts, thereby truncating the spread of fake news. However, the flu epidemic has been shown by empirical evidence that despite a prior vaccination, one can succumb to the same disease. The prior vaccination can be likened to the education of the masses about the prevalence of fake news in the society. We can check on the susceptible, if they are vaccinated or not. Thereby, leading to VSIRS which is a model that we are proposing. One may argue that vaccination would have reduced the susceptible count. We can claim that VSIRS is a specialization of the SIRS model under the condition that the vaccination works as intended for all cases. This is unrealistic in a real world.
+
+The spread of fake news can be analogous to the spread of infectious disease and recovery from a disease in a population. However, it is ideal to make a clarification that every metaphor is flawed in some ways. Infection is likened to the user being influenced by the fake news, while the recovery is likened prior vaccination or campaign to debunk the fake news. The disease can only spread by interpersonal contacts, which is analogous to the neighbours of the nodes can be infected.
+
+### Conclusions
+
+The current push for election integrity in developed economies has created momentum for increased investment in research advancing the state of fake news detection. We have tried to convince the reader that detecting fake news is a multidisciplinary effort that is geared towards solving ill-posed challenges. 
+
+Bayesian modeling is a convenient framework for modeling fake news using Bayes theorem. It is important to note that a number of aspects of fake news, analytics requires a man-in-the-loop and as such the multifaceted nature of news analytics is better assessed through visual analytics.
+
+### Acknowledgments
+
+I would like to thank Dr.Ziyuan Gao and Dr. Eugene Yablonsky from the National University of Singapore and Fraser Valley University, BC respectively for providing technical support during the writing of this manuscript. I would also like to thank Aleksey Nozdryn-Plotnicki for a thorough review of this work that led to a complete rewrite of the article.
+
+In addition, I would also like to thank Dr. Dave Campell and Dr. Mike Irvine for introducing me to Bayesian modeling by suggesting a number of research papers on the subject. However, it is likely that I may have misused the Bayesian concept in my modeling choices despite my good intentions. Furthermore, I am grateful to the advanced reading group under the umbrella of [Learn Data Science](https://www.meetup.com/LearnDataScience/) meetup in Vancouver for the lively intellectual conversations on a number of machine learning topics.
+
+### References
+
+- [[1]]() https://www.bbc.co.uk/news/resources/idt-sh/deep_sea_mining
+- [[2]]() https://www.bbc.com/news/world-us-canada-49100778 
+- [[3]]() https://www.theonion.com/ 
+- [[4]]() http://www.evanmiller.org/deriving-the-reddit-formula.html 
+- [[5]]() http://www.evanmiller.org/inferring-tweet-quality-from-retweets.html 
+- [[6]]() https://en.wikipedia.org/wiki/Expected_utility_hypothesis 
+- [[7]]() Mønsted, B. M., Sapiezynski, P., Ferrara, E., \& Jørgensen, S. L. (2017). Evidence of complex contagion of information in social media: An experiment using Twitter bots. PLoS One, 12(9), [e0184148]. https://doi.org/10.1371/journal.pone.0184148 
+- [[8]]() Cannarella, J., \& Spechler, J.A. (2014). Epidemiological modeling of online social network dynamics. ArXiv, abs/1401.4208.
+- [[9]]() http://people.cs.vt.edu/naren/papers/news-rumor-epi-snakdd13.pdf 
+
+ </section>
+
+                <div class="Article-meta"><a href=/blogs/1.html> Read more Blogs </a> </div>
+
+                <a target="_blank" data-size="large" class="twitter-share-button"
+                  href="https://twitter.com/intent/tweet?url=https://kenluck2001.github.io/blog_post/fake_news_an_exploratory_dive_into_ways_to_identify_misinformation_in_a_network.html&text= Share the blog here">
+                 <img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" alt="Smiley face" height="42" width="42">  </a>
+
+
+            </article>
+        </div>
+
+
+      </div>
+    </div>
+
+    <script  type="text/javascript" >
+        txt = $('.Article-content').text( );     
+        $('.Article-content').html( marked(txt) );
+
+        var md = window.markdownit().use(markdownitFootnote);
+        //md.render(/*...*/) // See examples above
+
+        var result = md.render('# markdown-it rulezz!');
+
+    </script >
+
+
+  </body>
+</html>
