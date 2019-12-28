@@ -229,7 +229,7 @@ for ind in range (100):
 ```
 ##### Kalman Filtering
 
-Kalman filter is the continuous form of the forward algorithm of the Hidden Markov model. The general form of Kalman filter is similar to those in the paper [[WB95]](). This is similar to the formulation in most standard research papers. There are two common formulations of the kalman filter. This can be understood using the following analogies. The first case, I know the present in some form, and want to predict the future. The second case, I know the essence of the immediate past, and want to determine the present. The use case for the first formulation is used for time series prediction. The use case for the second formulation is used for training say a neural neural network without back-propagation thereby working in near online basis [[OC15]]().
+Kalman filter is the continuous form of the forward algorithm of the Hidden Markov model [[Fraser08]](). The general form of Kalman filter is similar to those in the paper [[WB95]](). This is similar to the formulation in most standard research papers. There are two common formulations of the kalman filter. This can be understood using the following analogies. The first case, I know the present in some form, and want to predict the future. The second case, I know the essence of the immediate past, and want to determine the present. The use case for the first formulation is used for time series prediction. The use case for the second formulation is used for training say a neural neural network without back-propagation thereby working in near online basis [[OC15]]().
 
 The paper handles the first case, where we have a set of states and measurements. The state are the major focus, but the next state is not observable from the current state. This can be say the target time series that we are tracking. However, we augment the estimation of the states using the measurements. By capturing dependency between states and measurements. Kalman filter can estimate the next state by using past state and current measurements.
 
@@ -352,7 +352,9 @@ The current implementation uses only Central processing unit (CPU). Future work 
 - [[Liu+16]]() Chenghao Liu et al. “Online ARIMA Algorithms for Time Series Prediction”. In: Proceedings of the Thirtieth AAAI Conference on Artificial Intelligence. 2016, pp. 1867–1873.
 - [[Mal+17]]() Pankaj Malhotra et al. “TimeNet: Pre-trained deep recurrent neural network for time series classification”. In: CoRR abs/1706.08838 (2017). arXiv: 1706.08838. url: http://arxiv.org/abs/1706.08838.
 - [[Odo17]]() Kenneth Odoh. PySmooth: an open source object-oriented library for time series analysis in Python. 2017. url: https://github.com/kenluck2001/pySmooth.
-- [[TL17]]() Taylor S.J. and Letham B. Forecasting at Scale. 2017. url: https://doi.org/10.7287/peerj.preprints.3190v2. </section>
+- [[TL17]]() Taylor S.J. and Letham B. Forecasting at Scale. 2017. url: https://doi.org/10.7287/peerj.preprints.3190v2.
+- [[Fraser08]]() Fraser A. M. 2008. Hidden Markov Models and Dynamical Systems. Society for Industrial and Applied Mathematics, Philadelphia, PA, USA. 
+ </section>
 
                 <div class="Article-meta"><a href=/blogs/1.html> Read more Blogs </a> </div>
 
