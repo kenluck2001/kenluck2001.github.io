@@ -144,9 +144,9 @@ The LSTM have the weights of its parameters initialized to random values. This i
 ### LMU
 LMU makes use of less computational resources to maintain long-range time dependencies by decomposing time history in a $d$, number of ODE where the sliding window is represented by using Legendre polynomials with at most $d-1$ degree. LMU can handle extremely long-time range dependency using fewer internal states to conveniently capture the dynamics of the sequence within long time intervals.
 
-Let us rehash the mathematical formulation of LMU and use this knowledge to find out why the LMU has superior in performance to the LSTM. 
+Let us rehash the mathematical formulation of LMU and use this knowledge to find out why the LMU is superior in performance to the LSTM. 
 
-The cell begins with F(s) as shown in the LMU paper. $\theta$ is a strictly positive scalar value.
+The cell begins with F(s) as shown in the LMU paper. $\theta$ is a strictly positive scalar value and represents the size of the window.
 
 \begin{equation}
 F(s) = e^{-\theta s}
@@ -182,11 +182,11 @@ Run the code block every epoch
 The performance of the LMU can be tuned by setting the window, $\theta$ and the size ($d$) of state vector, $m(t)$. By careful tuning of these parameters, we can make a storage space versus performance trade-off on a chaotic time series. For example, higher values of $d$ can increase the capacity of the cell to retain information that span long time intervals. Conversely, smaller values of $d$ results in the opposite effects. The size of the sliding window, $\theta$ is the having similar effect to the parameter, $d$. Furthermore, $m(t)$ and $\theta$ can be thought of as the memory of the dynamic system.
 
 
-The LMU unit make use of ODE solver. Here is an excellent tutorial on the [ODE](https://jontysinai.github.io/jekyll/update/2019/01/18/understanding-neural-odes.html). ODE is making a resurgent in neural world. We have been using it implicitly in ResNet as it has a structure that is similar to the Euler method for solving ODE by beginning with the input and add gradient residual at each layer.
+The LMU unit make use of ODE solver. Here is an excellent tutorial on the [ODE](https://jontysinai.github.io/jekyll/update/2019/01/18/understanding-neural-odes.html). ODE is making a resurgent in neural world. We have been using it implicitly in ResNet as it has a structure that is similar to the Euler method for solving ODE by beginning with the input and add gradient residuals at each layer.
 
 ### Conclusion
 
-The LMU would be better building block for the creating encode-decoder architecture that would improve sequence-to-sequence modelling tasks. Other structures possible with LSTM can also be used e.g bidirectional LMU. </section>
+The LMU would be a better building block for the creating encode-decoder architecture that would improve sequence-to-sequence modelling tasks. Other structures that are possible with LSTM can also be done with LMU e.g bidirectional LMU. </section>
 
                 <div class="Article-meta"><a href=/blogs/1.html> Read more Blogs </a> </div>
 
