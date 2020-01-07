@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Personal Website [current blog] | Kenneth Odoh's Blog</title>
+    <meta name="author" content="Kenneth Emeka Odoh">
+    <meta name="description" content=" The personal website of Kenneth Emeka Odoh">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <!---<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+    </script> -->
+    <!---<script type="text/javascript"
+     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      TeX: {
+         equationNumbers: {  autoNumber: "AMS"  },
+         extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+      }
+    });
+    </script> -->
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <style>
+      mjx-container[display="block"] {
+        display: block;
+        margin: 1em 0;
+      }
+      </style>
+      <script>
+      MathJax = {
+        //
+        //  Load only TeX input and the contextual menu
+        //
+        loader: {load: ['input/tex', 'ui/menu']},
+        //
+        //  When page is ready, render the document
+        //
+        startup: {pageReady: () => MathJax.startup.document.render()},
+        //
+        //  Use dollar signs for in-line delimiters in addition to the usual ones
+        //
+        tex: {inlineMath: {'[+]': [['$', '$']]}},
+        //
+        //  Override the usual typeset render action with one that generates MathML output
+        //
+        options: {
+          renderActions: {
+            typeset: [150,
+              //
+              //  The function for rendering a document's math elements
+              //
+              (doc) => {
+                const toMML = MathJax.startup.toMML;
+                for (math of doc.math) {
+                  math.typesetRoot = document.createElement('mjx-container');
+                  math.typesetRoot.innerHTML = toMML(math.root);
+                  math.display && math.typesetRoot.setAttribute('display', 'block');
+                }
+              },
+              //
+              //  The function for rendering a single math expression
+              //
+              (math, doc) => {
+                math.typesetRoot = document.createElement('mjx-container');
+                math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
+                math.display && math.typesetRoot.setAttribute('display', 'block');
+              }
+            ]
+          }
+        }
+      };
+      </script>
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js">
+      </script>
+      <!--<script async src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.2/markdown-it-footnote.js">
+      </script>-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js">
+      </script>
+
+
+  </head>
+  <body class="Site">
+    <header class="Site-header">
+      <nav class="Nav">
+        <div class="Nav-home">
+          <a href=/index.html>Kenneth Emeka Odoh</a>
+        </div>
+        <div class="Nav-sections">
+          <a class="Nav-section " href=/index.html >About</a>
+          <a class="Nav-section " href=/projects.html>Projects</a>
+          <a class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a class="Nav-section" href=/publications.html>Publications</a>
+          <a class="Nav-section" href=/news.html>News</a>
+        </div>
+      </nav>
+      <div class="u-separator"></div>
+    </header>
+    <div class="Site-content">
+      <div class="u-container">
+
+        <div class="Page">
+            <article role="main" class="Article">
+                <h1 class="Article-title">  Paper Summary: LMU vs LSTM </h1>
+                <div class="Article-meta">
+                  <time datetime=2020-01-06 18:39:31.509062 class="Article-date">06 Jan, 2020</time>
+                </div>
+
+                <div class="Article-meta">Tag: machine-learning</div>
+
+                <section class="Article-content"> Both HMM and RNN suffer from disappearing transitions and (vanishing \& exploding) gradient problem respectively. LSTM was designed to enhance the ability to retain long time dependency. However, information flow in the network tends to saturate once the time steps exceed 1000. Legendre Memory Unit (LMU) is a revolutionary evolution on the design of RNN that can conveniently handle extremely long range dependency. Let's try to figure out why the LMU exceeds the performance on the LSTM. We proceed by reviewing the paper that introduced LMU.
+
+This is a summary of paper titled [Legendre Memory Units: Continuous-Time Representation in Recurrent Neural Networks](https://papers.nips.cc/paper/9689-legendre-memory-units-continuous-time-representation-in-recurrent-neural-networks.pdf) that was published in [NeurIPS 2019](https://nips.cc/) for the [Advanced Reading Group](https://www.meetup.com/LearnDataScience/events/wwqpgrybccbtb/) in Vancouver.
+
+Information about the paper are as follows:
+- Authors: Aaron R. Voelker, Ivana Kajic, Chris Eliasmith
+- Source code:  [Keras implementation of LMU](https://github.com/abr/neurips2019).
+- Video: [video link](https://youtu.be/8t64QaTdBcU)
+
+We will not rehash the description of LSTM in this blog as Chris Olah has already given the best explanation in his blog post titled [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/). We provide a quick summary in this blog and then focus on understanding LMU.
+
+### LSTM
+LSTM makes use of a mix of gating mechanism and non-linearity to improve on the vanishing and exploding gradient to increase time-range of the default RNNs. Saturation is a make loss of performance in LSTM and several variant of designs have to proposed to minimize the effect of saturation and improve performance in a number of task.
+
+The LSTM have the weights of its parameters initialized to random values. This is problematic as the starting point can have a major impact in the quality of the optimization. The likelihood for saturation increases due to the increased use of squeezing function such as sigmoid, tanh due to the gating effects. This can lead to saturation and affect the long time range dependency.
+
+### LMU
+LMU uses less computation resources to maintain long-range time dependencies by decomposing time history in a $d$, number of ODE where the sliding window is represented by using Legendre polynomial of at most $d-1$ degree. LMU can handle extremely long-time range dependency using fewer internal states to conveniently capture the dynamics of the sequence within long time interval.
+
+
+Let us rehash some mathematical formulation of LMU and use this knowledge to find out why the LMU has superior performance to the LSTM. This architecture has less likely to saturate as the long time-range dependency are preserved in at smaller time steps.
+
+The cell begins with F(s) as shown in the LMU paper. $\theta$ is a strictly positive scalar value.
+
+\begin{equation}
+F(s) = e^{-\theta s}
+\end{equation}
+
+Taking natural log of both sides results in
+
+\begin{equation}
+ln F(s) = ln e^{-\theta s}
+\end{equation}
+
+\begin{equation}
+ln F(s) = -\theta s
+\end{equation}
+
+The paper makes the assumption that s is equivalent to state vector, $m(t) \in R^{d}$. $\hat{m(t)}$ is updated value of state vector, and $m(t)$ is current value of state vector.
+
+Equation 1 of the paper shows $\theta \hat{m(t)} = Am(t) + Bu(t)$. This is a link to Kalman filters as described in my [blog](https://kenluck2001.github.io/blog_post/pysmooth_a_time_series_library_from_first_principles.html).
+
+Ensure that A, B is initialized using Equation 2 in the paper, otherwise, we will not have the desired long range dependency as this initialization scheme is carefully chosen by the authors.
+
+Let us assume a batch of size 1, iteration set to 1 and try to write a simplistic pseudo-code based on my understanding of LMU from the mathematical descriptions alone.
+
+Initialize A, B, m(t)
+Run the code block every epoch
++  for $t$ in $\theta ... n$
+  +  for $\hat{\theta} in  ... \theta + t$
+     - $u(t - \hat{\theta}) = \sum_{i=0}^{d-1} P_{i} \left( \frac{\hat{\theta}}{\theta}\right) m_{i}(t)$   using $P_{i}$ as one of the basis Legendre polynomial from Equation 3 in paper.
+     - $m(t) = \hat{m(t)}$
+     - update $A, B$ until convergence
+
+
+The performance of the LMU can be tuned by setting the window, $\theta$ and the size ($d$) of state vector, $m(t)$. By careful tuning of these parameters, we can make a storage space trade-off versus performance on chaotic time series. For example, higher values of $d$ can increase the capacity of the cell to retain information that span long intervals. Conversely, smaller values of $d$ results in the opposite effects. The size of the sliding window, $\theta$ is the having similar effect to the parameter, $d$. Furthermore, $m(t)$ and $\theta$ can be thought of as the memory of the dynamic system.
+
+
+The LMU unit make use of ODE solver. Here is an excellent tutorial on the [ODE](https://jontysinai.github.io/jekyll/update/2019/01/18/understanding-neural-odes.html). ODE is making a resurgent in neural world. We have been using it implicitly in ResNet as it has a structure that is similar to the Euler method for solving ODE by beginning with the input and add gradient residual at each layer.
+
+### Conclusion
+
+The LMU would be better building block for the creating encode-decoder architecture that would improve sequence-to-sequence modelling tasks. Other structures possible with LSTM can also be used e.g bidirectional LMU. </section>
+
+                <div class="Article-meta"><a href=/blogs/1.html> Read more Blogs </a> </div>
+
+                <a target="_blank" data-size="large" class="twitter-share-button"
+                  href="https://twitter.com/intent/tweet?url=https://kenluck2001.github.io/blog_post/paper_summary_lmu_vs_lstm.html&text= Share the blog here">
+                 <img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" alt="Smiley face" height="42" width="42">  </a>
+
+
+            </article>
+        </div>
+
+
+      </div>
+    </div>
+
+    <script  type="text/javascript" >
+        txt = $('.Article-content').text( );     
+        $('.Article-content').html( marked(txt) );
+
+        var md = window.markdownit().use(markdownitFootnote);
+        //md.render(/*...*/) // See examples above
+
+        var result = md.render('# markdown-it rulezz!');
+
+    </script >
+
+
+  </body>
+</html>
