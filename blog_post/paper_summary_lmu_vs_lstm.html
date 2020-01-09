@@ -173,7 +173,7 @@ Using the mathematical formulation in the paper alone. Let us try to write a sim
 Initialize A, B, m(t)
 Run the code block every epoch
 +  for $t$ in $\theta ... n$
-  +  for $\hat{\theta} in  ... \theta + t$
+  +  for $\hat{\theta}$ in  $t$ ... $t-\theta$  # handle boundaries
      - $u(t - \hat{\theta}) = \sum_{i=0}^{d-1} P_{i} \left( \frac{\hat{\theta}}{\theta}\right) m_{i}(t)$   using $P_{i}$ as one of the basis Legendre polynomial from Equation 3 in paper.
      - $m(t) = \hat{m(t)}$ # update the state vector
      - update $A, B$ until convergence
