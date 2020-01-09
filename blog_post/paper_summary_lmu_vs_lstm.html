@@ -173,10 +173,11 @@ Using the mathematical formulation in the paper alone. Let us try to write a sim
 Initialize A, B, m(t)
 Run the code block every epoch
 +  for $t$ in $\theta ... n$
-  +  for $\hat{\theta}$ in  $t$ ... $t-\theta$  # handle boundaries
+  +  for $\hat{\theta}$ in  $t-\theta$ ... $t$    # handle boundaries
      - $u(t - \hat{\theta}) = \sum_{i=0}^{d-1} P_{i} \left( \frac{\hat{\theta}}{\theta}\right) m_{i}(t)$   using $P_{i}$ as one of the basis Legendre polynomial from Equation 3 in paper.
-     - $m(t) = \hat{m(t)}$ # update the state vector
-     - update $A, B$ until convergence
+  + $\hat{m(t)} = \frac{Am(t)}{\theta} +  \frac{Bu(t)}{\theta}$
+  + $m(t) = \hat{m(t)}$ # update the state vector
+  + update $A, B$ until convergence
 
 
 The performance of the LMU can be tuned by setting the window, $\theta$ and the size ($d$) of state vector, $m(t)$. By careful tuning of these parameters, we can make a storage space versus performance trade-off on a chaotic time series. For example, higher values of $d$ can increase the capacity of the cell to retain information that span long time intervals. Conversely, smaller values of $d$ results in the opposite effects. The size of the sliding window, $\theta$ is the having similar effect to the parameter, $d$. As a result, $m(t)$ and $\theta$ can be thought of as the memory of the dynamic system.
