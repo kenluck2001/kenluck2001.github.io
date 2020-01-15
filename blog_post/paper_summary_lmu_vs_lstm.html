@@ -170,8 +170,8 @@ Ensure that A, B is initialized using Equation 2 in the paper, otherwise, we wil
 
 Using the mathematical formulation in the paper alone. Let us try to write a simplistic pseudo-code to describe the algorithm of LMU in use. With loss of generality, let us assume a batch size of 1 and number of iterations set to 1.
 
-Initialize A, B, m(t)
-Run the code block every epoch
+- Initialize A, B, m(t)
+- Run the code block every epoch
 +  for $t$ in $\theta ... n$
   +  for $\hat{\theta}$ in  $t-\theta$ ... $t$    # handle boundaries
      - $u(t - \hat{\theta}) = \sum_{i=0}^{d-1} P_{i} \left( \frac{\hat{\theta}}{\theta}\right) m_{i}(t)$   using $P_{i}$ as one of the basis Legendre polynomial from Equation 3 in paper.
