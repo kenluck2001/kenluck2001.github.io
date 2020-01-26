@@ -175,6 +175,16 @@ PySmooth is designed as a time series analysis library to support real-time seri
 
 The Matrix Inversion Lemma RLS, version 1 of page 89 in the paper [[WZ91]]() is the version used in the implementation.
 
+- Initialize model at time, $t$, and update as new data arrives at time, $t+1$. During inference, prediction can be done by $y = \theta_{t} * x_t$
+
+- During training time, at later time, $t+1$, we receive $x_{t+1}$, $y_{t+1}$, and estimate $\theta_{t+1}$ in an incremental manner. Using Matrix Inversion Lemma RLS, version 1,
+
+- At time, $t+1$, estimate residual, $\rho_{t+1} = y_{t+1} - x^T_{t+1}\hat{\theta_{t}}$.
+- Using Sherman and Morrison formula to get inverse of coefficient in a form that can be used for future optimized operation.
+$P_{t+1} = P_t \left( \mathbb{I} - \frac{ x_{t+1} \times x^T_{t+1} P_{t} } { 1 + x^T_{t+1} P_{t} x_{t+1} } \right) $
+- Update parameter, $\hat{\theta_{t+1}} = \hat{\theta_{t}} + P_{t+1} x_{t+1} \rho_{t+1}$
+- Repeat the process as new data arrives.
+
 ```
 import numpy as np
 from utils import OnlineLinearRegression
@@ -212,6 +222,43 @@ print ypred
 ##### Online ARIMA
 
 Auto-regressive processes (AR) and moving average processes (MA) were introduced by Yule in paper [[Yul27]](). This is also used to make the time difference model described in this Subsection operate in incremental model as in equation 1.2.1 in page 7 of the paper [[Hami94]](). This is also used as a foundation the ARMA model. Both AR and MA processes in equations 3.3.8 and 3.3.13 respectively make use of the RLS to make the process of performing the ARIMA model in an incremental manner.
+
+
+ARIMA is an important linear model for time series forecasting due to it flexibility. Estimating the parameters in a batch manner which is not suitable for real-time prediction. The combination of MA and AR processes which is fitting regression of the past observation and residual with some biases gives rise to the ARMA process. A transformation is applied to the ARMA process to get an ARIMA process. RLS implementation from Subsection on Recursive Linear Regression was used to make the ARIMA model work in an incremental manner.
+
+The closest work [[Liu+16]]() related to ours make a relaxation of the noise terms in the mathematical formulation. Their model pretended that noise terms don’t exist which is trading off noise for computational efficiency. In our case, we have taken a superior path by modeling both the noise term and performing real-time computational in a computationally efficient manner. We have modeled the noise of a bias terms as part of a regression fitting scheme. The model uses the Sherman and Morrison formula to update the parameters in an incremental manner. Our approach is built to be based on modular routines as such the base model can be reused in other online algorithms. Using the principles of compositionality, we have decomposed the model in a a number of the smaller models and provided a description of the underlying routines.
+
+\begin{equation}
+\label{maprocess}
+Y_t = \mu + \rho_t + \theta_1 \rho_{t-1} + \theta_2 \rho_{t-2} + \theta_3 \rho_{t-3} + ... + \theta_q \rho_{t-q},   \quad       t = 1,...,n   
+\end{equation}
+
+where $Y_t$ is the current data point, $\mu$ is the mean or trend, $\rho$ is the residual error at time, $t$. We are using the history of residual errors to capture the dynamics of the system, $\theta_i$ is the regression coefficients where $0 < i \leq q$. This is the qth-order moving average process.
+
+\begin{equation}
+\label{arprocess}
+Y_t = c + \rho_t + \theta_1 * Y_{t-1} + \theta_2 *  Y_{t-2} + \theta_3 * Y_{t-3} + ... + \theta_q *  Y_{t-q},   \quad       t = 1,...,n   
+\end{equation}
+
+where $Y_t$ is the current data point, $c$ is the bias, $\rho$ is the residual error at time, $t$. We are using the history of past observations to capture the dynamics of the system, $\theta_i$ is the regression coefficients where $0 \leq i$$ \leq q$. This is the qth-order auto-regressive process.
+
+
+
+$$ Y_t = c + \theta_1 * Y_{t-1} + \theta_2 *  Y_{t-2} + \theta_3 * Y_{t-3}  + ... + \theta_p * Y_{t-p} + \rho_t + \alpha_1 * \rho_{t-1} + \alpha_2 * \rho_{t-2} + \alpha_3 * \rho_{t-3} + ... + \alpha_q *  \rho_{t-q},   \quad       t = 1,...,n  $$
+
+
+
+where $Y_t$ is the current data point, $c$ is the bias, $\rho$ is the residual error at time, $t$. We are using the history of past observations to capture the dynamics of the system, $\theta_i$ is the regression coefficients where $0 \leq i$$ \leq p$ on the history data, and $\alpha_i$ is the regression coefficients where $0 \leq i$$ \leq q$ on the history residuals. This is the ARMA process.
+
+ARMA is suitable for modeling the behaviour of noisy dynamic systems. ARMA assumes a linear relationship in a stationary data. ARIMA is improvement of ARMA by introducing a differencing scheme to make possible analysis of non-stationary time series.
+
+\begin{equation}
+\label{arimaprocess}
+ARIMA (p, d, q) = ARMA (p+d, q)
+\end{equation}
+
+where $p$ is the history of data, $d$ is the difference, and $q$ is the history of errors.
+
 
 ```
 import numpy as np
