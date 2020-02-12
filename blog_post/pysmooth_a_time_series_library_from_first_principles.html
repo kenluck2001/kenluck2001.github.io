@@ -13,16 +13,21 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-    <!---<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
+          TeX: {
+             equationNumbers: {  autoNumber: "AMS"  },
+             //extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+             extensions: ["TeX/AMSmath.js", "TeX/AMSsymbol.js"]
+          },
           "HTML-CSS": {
           styles: {
           ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
           },
           tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
           });
-    </script> -->
+    </script> 
     <!---<script type="text/javascript"
      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
@@ -42,6 +47,7 @@
         margin: 1em 0;
       }
       </style>
+<!---
       <script>
       MathJax = {
         //
@@ -230,21 +236,21 @@ The closest work [[Liu+16]]() related to ours make a relaxation of the noise ter
 
 \begin{equation}
 \label{maprocess}
-Y_t = \mu + \rho_t + \theta_1 \rho_{t-1} + \theta_2 \rho_{t-2} + \theta_3 \rho_{t-3} + ... + \theta_q \rho_{t-q},   \quad       t = 1,...,n   
+Y_t = \mu + \rho_t + \theta_1 \rho_{t-1} + \theta_2 \rho_{t-2} + ... + \theta_q \rho_{t-q},   \quad       t = 1,...,n   
 \end{equation}
 
 where $Y_t$ is the current data point, $\mu$ is the mean or trend, $\rho$ is the residual error at time, $t$. We are using the history of residual errors to capture the dynamics of the system, $\theta_i$ is the regression coefficients where $0 < i \leq q$. This is the qth-order moving average process.
 
 \begin{equation}
 \label{arprocess}
-Y_t = c + \rho_t + \theta_1 * Y_{t-1} + \theta_2 *  Y_{t-2} + \theta_3 * Y_{t-3} + ... + \theta_q *  Y_{t-q},   \quad       t = 1,...,n   
+Y_t = c + \rho_t + \theta_1 * Y_{t-1} + \theta_2 *  Y_{t-2} + ... + \theta_q *  Y_{t-q},  \quad  t = 1,...,n   
 \end{equation}
 
 where $Y_t$ is the current data point, $c$ is the bias, $\rho$ is the residual error at time, $t$. We are using the history of past observations to capture the dynamics of the system, $\theta_i$ is the regression coefficients where $0 \leq i$$ \leq q$. This is the qth-order auto-regressive process.
 
 
 
-$$ Y_t = c + \theta_1 * Y_{t-1} + \theta_2 *  Y_{t-2} + \theta_3 * Y_{t-3}  + ... + \theta_p * Y_{t-p} + \rho_t + \alpha_1 * \rho_{t-1} + \alpha_2 * \rho_{t-2} + \alpha_3 * \rho_{t-3} + ... + \alpha_q *  \rho_{t-q},   \quad       t = 1,...,n  $$
+$$ Y_t = c + \theta_1 Y_{t-1} + \theta_2 Y_{t-2}  + ... + \theta_p Y_{t-p} + \rho_t + \alpha_1 \rho_{t-1} + \alpha_2 \rho_{t-2} + ... + \alpha_q \rho_{t-q}, \quad t = 1,...,n  $$
 
 
 

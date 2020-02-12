@@ -13,16 +13,21 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-    <!---<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
+          TeX: {
+             equationNumbers: {  autoNumber: "AMS"  },
+             //extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+             extensions: ["TeX/AMSmath.js", "TeX/AMSsymbol.js"]
+          },
           "HTML-CSS": {
           styles: {
           ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
           },
           tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
           });
-    </script> -->
+    </script> 
     <!---<script type="text/javascript"
      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
@@ -42,6 +47,7 @@
         margin: 1em 0;
       }
       </style>
+<!---
       <script>
       MathJax = {
         //
@@ -210,8 +216,18 @@ Table 1: list of possibilities
 
 It is a common practice to ignore the cases that are not likely in reality, by setting the payoff to 0.
 
+Breakup the equation so it fits in the Browser width
 \begin{equation}
-u(p, q, r) = pqr \times a + pq(1-r) \times b + p(1-q)r \times c + p(1-q)(1-r) \times d + (1-p)qr \times e  + (1-p)q(1-r) \times f  + (1-p)(1-q)r \times g  + (1-p)(1-q)(1-r) \times h
+x = pqr \times a + pq(1-r) \times b + p(1-q)r \times c 
+\end{equation}
+\begin{equation}
+y = p(1-q)(1-r) \times d + (1-p)qr \times e  + (1-p)q(1-r) \times f
+\end{equation}
+\begin{equation}
+z =  (1-p)(1-q)r \times g + (1-p)(1-q)(1-r)\times h
+\end{equation}
+\begin{equation}
+u(p, q, r) = x + y + z
 \end{equation}
 
 where $u(p, q, r)$ is expected utility.
@@ -241,21 +257,27 @@ Rewrite $u(p, q, r)$ in terms of $U$, $D$
 
 In our formulation, we had set $a=1$, $b=1$, $c=1$, $d=1$, $e=1$, $f=1$, $g=0$,and $h=0$.
 
+$$
+u(p, q, r) = p(qr \times a + q(1-r) \times b + (1-q)r \times c + (1-q)(1-r) \times d )) 
+$$
+
 \begin{equation}
-u(p, q, r) = pqr \times a + pq(1-r) \times b + p(1-q)r \times c + p(1-q)(1-r) \times d + (1-p)qr \times e  + (1-p)q(1-r) \times f  + (1-p)(1-q)r \times g  + (1-p)(1-q)(1-r) \times h
+u(p, q, r) = u(p, q, r) + (1-p)(qr \times e  + q(1-r) \times f)
+\end{equation}
+
+Input the values of the probabilities. Use placeholder variable to keep equation within browser width.
+
+$$
+y = \left( \frac{U+1}{U+D+2} e^{-\lambda s} + \frac{U+1}{U+D+2} 1-e^{-\lambda s} + \frac{D+1}{U+D+2} e^{-\lambda s} + \frac{D+1}{U+D+2} 1-e^{-\lambda s} \right)
+$$
+\begin{equation}
+\begin{split}
+u(p, q, r) = \left(\left(\frac{\lambda^{k}e^{-\lambda}}{k!} \right) \times y \right)
+\end{split}
 \end{equation}
 
 \begin{equation}
-u(p, q, r) = pqr \times a + pq(1-r) \times b + p(1-q)r \times c + p(1-q)(1-r) \times d + (1-p)qr \times e  + (1-p)q(1-r) \times f
-\end{equation}
-
-\begin{equation}
-u(p, q, r) = p(qr \times a + q(1-r) \times b + (1-q)r \times c + (1-q)(1-r) \times d ) + (1-p)(qr \times e  + q(1-r) \times f)
-\end{equation}
-
-
-\begin{equation}
-u(p, q, r) = \left(\left(\frac{\lambda^{k}e^{-\lambda}}{k!} \right) \times \left( \frac{U+1}{U+D+2} e^{-\lambda s} + \frac{U+1}{U+D+2} 1-e^{-\lambda s} + \frac{D+1}{U+D+2} e^{-\lambda s} + \frac{D+1}{U+D+2} 1-e^{-\lambda s} \right) \right)+ \left(1 - \frac{\lambda^{k}e^{-\lambda}}{k!}\right) \left(\frac{U+1}{U+D+2}\right)
+u(p, q, r) = u(p, q, r) + \left(1 - \frac{\lambda^{k}e^{-\lambda}}{k!}\right) \left(\frac{U+1}{U+D+2}\right)
 \end{equation}
 
 The equation reduces to the product of the probability and proportion of downvotes. We can say the model makes the claim is a product of the probability of at least k stories are fake news and the proportion of the downvotes. We weigh the probability by the ratio of downvotes. The entire details of the proof can be found [here](/static/attachment/fake_news_proof.pdf).

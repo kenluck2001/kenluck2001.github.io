@@ -13,16 +13,21 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-    <!---<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
+          TeX: {
+             equationNumbers: {  autoNumber: "AMS"  },
+             //extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+             extensions: ["TeX/AMSmath.js", "TeX/AMSsymbol.js"]
+          },
           "HTML-CSS": {
           styles: {
           ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
           },
           tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
           });
-    </script> -->
+    </script> 
     <!---<script type="text/javascript"
      src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
@@ -42,6 +47,7 @@
         margin: 1em 0;
       }
       </style>
+<!---
       <script>
       MathJax = {
         //
