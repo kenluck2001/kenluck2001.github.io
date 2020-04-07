@@ -158,7 +158,7 @@ Anomaly detection algorithms can operate in a number of settings. This should be
 - Online: These algorithms are designed to work in real-time data streams. Items are incrementally loaded into memory. 
 - Static + Online: The model can operate in two stages. The initial parameters are estimated in the static setting. Once the parameters are set, as more data arrives, these parameters are incrementally updated. Our extensions and the original work are of this type.
 
-Our discussion will be incomplete if we don't describe how to maintain a collection of the data in the stream to be processed. Hence, we do a quick review of windows. [Windows](https://www.kdd.org/exploration_files/20-1-Article2.pdf) provides a way to manage data streams. There are a number of window techniques in stream analytics:
+Our discussion will be incomplete if we don't describe how to maintain a collection of the data in the stream to be processed. Hence, we do a quick review of windows. [Windows](https://www.kdd.org/exploration_files/20-1-Article2.pdf) provide a way to manage data streams. There are a number of window techniques in stream analytics:
 - Fixed window: This is using a fixed window to store some past information to allow for processing.
 - Adaptive window (ADWIN): Keep two windows and drop the former if the past distribution deviates from the current distribution.
 - Landmark window: Keep a history of data points that is representative of the distribution of the stream.
