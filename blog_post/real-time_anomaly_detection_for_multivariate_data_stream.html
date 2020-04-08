@@ -408,11 +408,8 @@ def updateInverseCovariance(alpha, beta, invC_t, A_t, z_t):
 The probability density function makes use of ideas from hypothesis testing. We decide on a threshold which is a confidence level which is used to decide on the acceptance and rejection regions.
 1. Use the covariance matrix, $C_{t+1}$ and inverse covariance matrix, ${C_{t+1}}^{-1}$.
 
-2. However, we attempt to increment the mean vector, $\mu$ as new data arrives. It is possible to make a simplification of the Covariance matrix, $C$, which will capture a number of the dynamics of the system.
-
-Let n represent the current count of data, before new data has arrived.
-$\hat{x}$: is the new data
-$\mu_{t+1}$: moving average
+2. However, we attempt to increment the mean vector, $\mu$ as new data arrives. It is possible to make a simplification of the Covariance matrix, $C$, which will capture a number of the dynamics of the system. Let $n$ represent the current count of data, before new data has arrived.
+Also, $\hat{x}$: is the new data, $\mu_{t+1}$: moving average
 
 \begin{equation}
 \mu_{t+1} = \frac{(n * \mu_t) + \hat{x}}{n+1}
