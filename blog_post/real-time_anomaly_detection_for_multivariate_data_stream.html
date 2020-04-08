@@ -128,9 +128,9 @@
 
                 <div class="Article-meta">Tag: machine-learning, signal-processing</div>
 
-                <section class="Article-content"> The paper titled “Probabilistic reasoning for streaming anomaly detection” by MIT CSAIL proposed a framework for performing anomaly detection in an online manner on univariate data. Unfortunately, most of the data in the real world is multivariate in nature. Hence, mandating the need for more research in anomaly detection in multivariate cases. We have been inspired by their work and extend the framework to support multivariate data with some clever optimization to build a scalable system.
+                <section class="Article-content"> The paper titled “Probabilistic reasoning for streaming anomaly detection” from MIT CSAIL proposed a framework for performing online anomaly detection on univariate data. Unfortunately, most of the data in the real world is multivariate in nature. Hence, mandating the need for more research into performing online anomaly detection in multivariate data. We have been inspired by their work and extend their framework to support multivariate data with some clever optimizations to build a scalable system.
 
-One would be tempted to ask why we have chosen this paper [[1]]() for our study. One answer to this question is that to the best of our knowledge, their work provided a simple framework based on basic statistics to perform anomaly detection of a stream in real-time. During my master's thesis, I successfully used a derivation of their work for breaking news detection of an aggregated news stream. Another development that motivated this work is a challenge that I posed during my talk about [time series analysis](https://kenluck2001.github.io/blog_post/pysmooth_a_time_series_library_from_first_principles.html) in Vancouver. I asked the crowd if they can provide suggestions on how to adapt the presented solution to handle multivariate data streams. This is the result of that bet as it is an attempt to complete an unfinished work.
+One would be tempted to ask why we have chosen this paper [[1]]() for our study. One answer to this question is that to the best of our knowledge, their work provided a simple framework based on basic statistics to perform real-time anomaly detection of a stream. Furthermore, during my master's thesis, I successfully used a derivation of their work for breaking news detection of an aggregated news stream. Another development that motivated this work is a challenge that I posed during my talk about [time series analysis](https://kenluck2001.github.io/blog_post/pysmooth_a_time_series_library_from_first_principles.html) in Vancouver. I asked the crowd if they can provide suggestions on how to adapt the presented solution to handle multivariate data streams. This is the result of that bet as it is an attempt to complete an unfinished work.
 
 The blog will begin by introducing the topic of anomaly detection, followed by a discussion of the original paper [[1]](), and describing extensions of the existing work to handle multivariate data streams. The new formulation that we are proposing would depend on building an online version of covariance matrix and as such we have provided an implementation of the online covariance matrix, alongside with an online inverse covariance matrix based on Sherman–Morrison formula. We have provided a set of mathematical representations and source code.
 
@@ -138,13 +138,13 @@ My implementation of the original paper and the enhanced version of our modified
 - Original paper code: https://github.com/kenluck2001/anomaly
 - Blog post code:      https://github.com/kenluck2001/anomalyMulti
 
-Furthermore, we have provided a set of detailed experiments on the proposed algorithms in different realistic scenarios. However, we maintain the statistical framework provided by the original paper [[1]]() as it is already tested. We will not fall into the trap of making this writing into a survey paper. Hence, we will discuss a few interesting developments in space and as such this manuscript is not expected to be exhaustive.  This blog will focus on statistical models and as such we won't discuss neural networks and their variants in any depth as those would fall outside the scope of this blog post. For more information, see the [paper](https://arxiv.org/abs/1901.03407).
+Furthermore, we have provided a set of detailed experiments on the proposed algorithms in different realistic scenarios. However, we maintain the statistical framework provided by the original paper [[1]]() as it is already tested. We will not fall into the trap of making this writing into a survey paper. Hence, we will discuss a few interesting developments in space and as such this manuscript is not expected to be exhaustive. This blog will focus on statistical models and as such we won't discuss neural networks and their variants in any depth as those would fall outside the scope of this blog post. For more information, see the [paper](https://arxiv.org/abs/1901.03407).
 
 Anomaly detection is the task of classifying patterns that depict abnormal behaviour. Therefore, the notion of normal behaviour has to be quantified in an objective manner. This concept can be described by a number of names such as outlier detection, novelty detection, noise detection, and deviation detection. These names are equivalent and would be used interchangeably for the remainder of our monograph. Outliers can arise as a result of human error, equipment error, and faulty systems. Anomaly detection is well-suited for unbalanced data, where the ideal scenario is to predict the behaviour of the minority class. There are a number of applications of anomaly detection in detecting default on loans, fraud detection, and network intrusion detection among others.
 
 There are [different types](http://cucis.ece.northwestern.edu/projects/DMS/publications/AnomalyDetection.pdf) of anomaly which are discussed as follows.
 - Point anomaly: This is where a single instance is classified as an anomaly with respect to the entire data set. This is ideal for univariate data.
-- Contextual Anomaly: when a data instance can be anomalous based on the context of the data. This is ideal for multivariate data. For example, in the snapshot reading of a machine, an attribute of a single reading may seem anomalous but can be normal based on consideration of the entire data.
+- Contextual Anomaly: when a data instance can be anomalous based on the context (attributes and position in the stream) of the data. This is ideal for multivariate data where for example, in the snapshot reading of a machine, an attribute of a single reading may seem anomalous but can be normal based on consideration of the entire data.
 - Collective Anomaly: These are the collection of data that are anomaly as a group, but individually these data points exhibit normal behaviours.
 
 We have summarized a number of approaches for performing anomaly detection. Our categorization follows loosely the groupings described in [paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.109.1943&rep=rep1&type=pdf) is to group existing approaches for anomaly detection
@@ -164,24 +164,24 @@ Our discussion will be incomplete if we don't describe how to maintain a collect
 - Landmark window: Keep a history of data points that is representative of the distribution of the stream.
 - Damped window: This is using a weighting factor on the recent sample and past sample to intensify or dampen the signal. In order to forget the past, increase the weight on the present.
 
-We have decided to work on anomaly detection algorithms that work in an unsupervised manner. The normal behaviour is represented using the PDF of a multivariate normal distribution. Threshold are set as a way to specify the significance level. Online formulation were used in our work to help the algorithm work even when concept drift occurs. Unsupervised learning provided advantages in case where getting data with labels is very challenging or even impossible in some contexts. This fits nicely with a data stream when you don't know what to expect from your test distribution.
+We have decided to work on anomaly detection algorithms that work in an unsupervised manner. The normal behaviour is represented using the PDF of a multivariate normal distribution. Thresholds are set as a way to specify the significance level. Online formulation were used in our work to help the algorithm work even when concept drift occurs. Unsupervised learning provided advantages in cases where getting data with labels can be challenging or even impossible in some contexts. This fits nicely with a data stream when you don't know what to expect from your test distribution.
 
 We will proceed to describe the algorithm in the original paper [[1]]() and then provide extensions in upcoming sections.
 
 ### Background work
-Anomaly detection algorithm can be aimed at identifying any or combination of the signal changes which may include abrupt transient shift, abrupt distributional shift, and gradual distributional shift [[1]]() which is labelled as "A", "B", and "C" respectively.
+Anomaly detection algorithm can be aimed at identifying ooutliers in (any or combination) of the signal changes which may include abrupt transient shift, abrupt distributional shift, and gradual distributional shift [[1]]() which is labelled as "A", "B", and "C" respectively.
 
 ![Signal Changes](/static/images/anomaly/timeseries.png)
 
-Online algorithms are useful for real-time application, as they operate incrementally which is ideal for analyzing the data streams. These algorithms receive input in an incremental manner and makes a decision based on an updated parameter which conveys the current state of the data stream. This philosophy contrasts with offline algorithms that assume the entire data is available in memory. The issue with an offline algorithm is that the data may not fit in memory. The online algorithm should be both time and space efficient.
+Online algorithms are useful for real-time application, as they operate incrementally which is ideal for analyzing the data streams. These algorithms receive input in an incremental manner and makes a decision based on an updated parameter which conveys the current state of the data stream. This philosophy contrasts with offline algorithms that assume the entire data is available in memory. The issue with an offline algorithm is that the data may fit in memory. The online algorithm should be both time and space efficient.
 
 Anomaly detection algorithms may work in diagnosis or accommodation mode [[2]](). The diagnosis method identifies the outlier in the data for further processing of the outlier. The outlier is removed from the data sample so it does not skew the distribution. This is useful when the exact parameters of the distribution are known, so the outlier is excluded from further estimation of the parameters of the distribution [[2]](). The accommodation method identifies the outliers and uses them for estimating the parameters of the statistical model. This is suitable with data streams that account for the effect of concept drift [[3]]().
 
-Exponential Weighted Moving Average (EWMA) is ideal for keeping a set of running moments in the data stream, but it has some limitations that has led the authors to introduce Probabilistic Exponentially Weighted Moving Average (PEWMA). A single slide from my presentation will clear every misconception about the differences between the two algorithms (EWMA and PEWMA) in context.
+Exponential Weighted Moving Average (EWMA) is ideal for keeping a set of running moments in the data stream, but it has some limitations that has led the authors to introduce Probabilistic Exponentially Weighted Moving Average (PEWMA). A single slide from my presentation will clear every misconception between the two algorithms (EWMA and PEWMA) in context.
 
 ![PEWMA vs EMWA](/static/images/anomaly/pewma_emwa.png)
 
-PEWMA [[1]]() algorithm works in accommodation mode. The algorithm allows for concept drift [[3]](), which occurs in data streams by updating the set of parameters that convey the state of the stream. PEWMA [[1]]() suitable as an anomaly detection algorithm that works on abrupt transient shift, where EWMA fails.
+PEWMA [[1]]() algorithm works in the accommodation mode. The algorithm allows for concept drift [[3]](), which occurs in data streams by updating the set of parameters that convey the state of the stream. PEWMA [[1]]() suitable as an anomaly detection algorithm that works on abrupt transient shift, where EWMA fails.
 
 The parameters of the anomaly detection algorithm consist of $X_{t}$ the current data, $\mu_{t}$ the mean of the data, $\hat{X_{t}}$ is the mean of the data, $\hat{\alpha_{t}}$ the current standard deviation, $P_{t}$ the probability density function, $\hat{X_{t+1}}$ the mean of the next data (incremental aggregate), $\hat{\alpha_{t+1}}$ the next standard deviation (incremental aggregates), $T$ the data size, and $t$ a point in $T$. Initialize the process by setting the initial data for training the model $s_{1} = X_{1}$ and $s_{2} = X_{1}^{2}$.
 
@@ -191,7 +191,7 @@ The processed data is fed to the anomaly detection algorithm with the parameters
 
 ##### Hypothesis Testing
 
-Hypothesis is subjective intuition about the problem. This can be guided by current best practice or transferable skills from adjacent domains. These forms of educated guesses have to be empirically verified to allow your preconceived intuitions be checked against reality. Let us look at some examples of hypothesis:
+Hypothesis is subjective intuition about the problem. This can be guided by current best practices or transferable skills from adjacent domains. These forms of educated guesses have to be empirically verified to allow your preconceived intuitions be checked against reality. Let us look at some examples of hypothesis:
 - Will this vaccine work on a new virus?
 - Will It rain today?
 
@@ -255,7 +255,7 @@ if __name__ == '__main__':
 
 The probability of events (score < 60 and score > 90) as captured by the area of the shaded regions.
 
-If the class average is 80 with a standard deviation of 15, it is with minuscule probability that a student scores less than 0 or greater than 120. The event categories these outrageous scores can be said to be an anomaly. The scores used in our examples are threshold. The areas depicting these probabilities can be seen from our chart. 
+If the class average is 80 with a standard deviation of 15, it is with minuscule probability that a student scores less than 0 or greater than 120. The event categories these outrageous scores can be said to be an anomaly. The scores used in our examples are thresholds. The areas depicting these probabilities can be seen from our chart. 
 
 In summary, the rule of thumb for hypothesis testing can be summarized as follows:
 - Identify the Null and Alternative hypothesis.
@@ -263,7 +263,7 @@ In summary, the rule of thumb for hypothesis testing can be summarized as follow
 - Decide to reject based on the significance level.
 
 ### Extension
-Our contribution begins here. We simplify the algorithm by ignoring the details of evolutionary computation in the [paper](http://www.cmap.polytechnique.fr/~nikolaus.hansen/ACECMUaa1p1CMAfES.pdf). The author of the blog post took the premise of evolution as described in the paper to be moving from one generation to the next; as equivalent to moving from one state to another state. This is analogous how online algorithm work with dynamic changes as new data enters into the stream. Cholesky decomposition is used extensively in the algorithms.
+Our contribution begins here. We simplify the algorithm by ignoring the details of evolutionary computation in the [paper](http://www.cmap.polytechnique.fr/~nikolaus.hansen/ACECMUaa1p1CMAfES.pdf). The author of the blog post took the premise of evolution as described in the paper to be moving from one generation to the next; as equivalent to moving from one state to another state. This is analogous how online algorithm work with dynamic changes as new data enters into the stream. Cholesky decomposition is used extensively in the algorithms. The  [paper](http://www.cmap.polytechnique.fr/~nikolaus.hansen/ACECMUaa1p1CMAfES.pdf) provided the basis for the online covariance matrix used in this work.
 
 ##### Online Covariance matrix
 The mathematical formulation can be found here.
@@ -465,7 +465,7 @@ print pred
 ```
 
 ### Experiments
-We have performed the experiment to evaluate the usefulness of our algorithm by creating a simulation with 10000000 vectors with dimensions of 15. Repeated trial shows that our algorithm is not sensitive to initialization seeds and dimensions of the matrix was a deciding factor in the choice of the evaluation metric. More information on the metric will be provided in the Discussion section.
+We have performed the experiment to evaluate the usefulness of our algorithm by creating a simulation with 10000000 vectors with dimensions of 15. Repeated trial shows that our algorithm is not sensitive to initialization seeds and dimensions of the matrix. This requirement was a deciding factor in the choice of the evaluation metric. More information on the metric will be provided in the Discussion section.
 
 This is to find the trade-off between static window and update window. The source code for the experiments can be found [here](https://github.com/kenluck2001/anomalyMulti/blob/master/normal_distribution_charts_with_example.py).
 
