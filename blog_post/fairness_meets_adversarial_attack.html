@@ -128,23 +128,22 @@
 
                 <div class="Article-meta">Tag: machine-learning</div>
 
-                <section class="Article-content"> I am no authority in this field, so I am taking the hacker’s approach; as a result, this article is written as an attempt to provide an intuitive explanation of the connectedness between fairness and adversarial attacks. The concept of fairness and adversarial attacks keeps evolving and as such it is impossible to cover in one blog post.
+                <section class="Article-content"> This article is written as an attempt to provide an intuitive explanation of the connectedness between fairness and adversarial attacks. The concept of fairness and adversarial attacks keeps evolving and as such it is impossible to cover in one blog post.
 
 We will discuss fairness in details and proceed to make a dive into adversarial attacks. We conclude by finding the connection between fairness and adversarial attacks. Following the hacker’s path, it is desirable to learn by connecting the dots between seemingly related concepts. It is a good idea to understand that many aspects of fairness can only be fixed by the legislature. Our goal is to find how both concepts are connected, albeit with analogies, informal proofs and philosophies. 
 
 ### Fairness
 
-
 Machine learning has the potential to worsen social inequalities when misused. This problem can happen due to algorithm bias, data imbalance, and data irregularities. Fairness is an attempt to solve the problem by trying to explain the blind spot in the model as described in [blog](https://jeremykun.com/2015/10/19/one-definition-of-algorithmic-fairness-statistical-parity/). An unacceptable approach to ensuring fairness is to remove racial and demographic-related attributes from the data. While it seems plausible, this information could be redundant in existing features of the data.
 
 Discrimination occurs when a preset metric for fairness varies significantly across different subsets of the population. This is very problematic because the discrimination is due to class membership, rather than individual merits. It can have either a positive or negative context. Positive discrimination is favoritism that is shown to subset of the population e.g affirmative action. While negative discrimination is when a subset of the population is marginalized e.g racism. Conventional wisdom would suggest that providing preferential treatment may guarantee fairness. However, a [paper](https://arxiv.org/pdf/1610.02413.pdf) provides a conflicting proposition that it may even exacerbate the inequality in the society.
 
-There are two major classes of models in machine learning that include discriminative models and generative models. A discriminative classifier is meant to discriminate data points by conditioning the labels on the input, whereas the generative model models the joint distribution between the input and labels.The model has to make a decision on a set of given data. It should be known that a classifier is only fair to every class in the data, given that there is no significant difference in metric for estimating fairness across the classes in the data set.
+There are two major classes of models in machine learning that include discriminative models and generative models. A discriminative classifier is meant to discriminate data points by conditioning the labels on the input, whereas the generative model models the joint distribution between the input and labels.The model has to decide on a set of given data. It should be known that a classifier is only fair to every class in the data, given that there is no significant difference in metric for estimating fairness across the classes in the data set.
 
 At this point, we would like to figure out the connection between uncertainty and fairness.
 Uncertainty modeling is a method of explaining aspects of the unknown unknowns of our model, which is the ability to figure out the information content of the blind spot of a machine learning model. Unfairness can occur despite the good intentions of the developer, as it can be manifesting in the blind spot of our algorithm. Aleatoric and epistemic uncertainty are the two common types of uncertainty in Bayesian statistics. Aleatoric uncertainty occurs due to noise in the observation which could be estimated by modeling the noise distribution. Epistemic uncertainty occurs due to missing data which could be estimated by imposing a prior distribution over the parameters of the model, and monitoring the effect of change as the data is varied. [Aleatoric and epistemic uncertainty](https://arxiv.org/pdf/1703.04977.pdf) were combined to learn noise attenuation, thereby improving the neural model. There is a caveat worth making as the noise might be applied uniformly to all the considered population thereby making our best effort not yielding the intended results. Probabilistic numeric is another form of uncertainty due to computation as described in the [paper](https://arxiv.org/pdf/1506.01326.pdf).
 
-The question on how many samples can be estimated is a tricky proposition. This is because we are more likely to have a fairer model if the data is balanced and similar to the probability distribution in the world, so the ideal fairness will be a perfectly balanced data set with equal proportions of sub-classes. However, if the balanced subsets are not diverse and not similar to the world probability, then fairness may not be at the desirable target. As regards to handling unbalanced data, future advances would make feasible the ability to learn from few examples per class using single-shot learning. There are a few open questions that still needs to be answered with regards to sample size. How many additional data points per sub-population does one need in order to improve fairness of a classifier among the various sub-populations? We would have to borrow ideas from the [paper](https://arxiv.org/pdf/1805.07883.pdf) that places bounds on the sample complexity and then adapted for fairness. A more intuitive question would be to model fairness as a parameter and optimize for it in the loss function as described in [paper](https://arxiv.org/pdf/1803.04383.pdf) where the fairness is defined in the regularization scheme.
+The question on how many samples can be estimated is a tricky proposition. This is because we are more likely to have a fairer model if the data is balanced and similar to the probability distribution in the world, so the ideal fairness will be a perfectly balanced data set with equal proportions of sub-classes. However, if the balanced subsets are not diverse and not similar to the world probability, then fairness may not be at the desirable target. As regards to handling unbalanced data, future advances would make feasible the ability to learn from few examples per class using single-shot learning. There are a few open questions that still needs to be answered with regards to sample size. How many additional data points per sub-population does one need to improve fairness of a classifier among the various sub-populations? We would have to borrow ideas from the [paper](https://arxiv.org/pdf/1805.07883.pdf) that places bounds on the sample complexity and then adapted for fairness. A more intuitive question would be to model fairness as a parameter and optimize for it in the loss function as described in [paper](https://arxiv.org/pdf/1803.04383.pdf) where the fairness is defined in the regularization scheme.
 
 
 #### Evaluation
@@ -206,7 +205,7 @@ Relative Chance, RC is the ratio of the probability of an outcome not occurring 
 
 Table 3: Interpreting the value of Relative chance
 
-Odd is the likelihood that an event would or would not occur. Odds are not exactly the same as probability. For example, odds for 2:1 is equivalent to a probability of $\frac{2}{3}$.
+Odd is the likelihood that an event would or would not occur. Odds are not the same as probability. For example, odds for 2:1 is equivalent to a probability of $\frac{2}{3}$.
 Odd ratio, OR is the ratio of the odds of an outcome in the protected group in comparison to the odd of the same outcome in the unprotected group.
 
 
@@ -227,35 +226,29 @@ Machine learning models can be vulnerable to carefully crafted examples designed
 
 The consideration for handling adversarial examples must be shaped by business needs as defenses against adversarial attacks can lead to performance degradation and could also lead to loss of intellectual property as shown in the work on [stealing the model](https://arxiv.org/pdf/1609.02943.pdf) served as a web service. The trade-off between performance and stability should be factored to reach a well-informed decision.
 
-There are a number of [attack strategies](https://arxiv.org/pdf/1810.00069.pdf) that can be used to stage an [adversarial attack](https://arxiv.org/pdf/1810.00069.pdf). This consists of poisoning attack that leads to contamination of the training set thereby compromising the learning algorithm, evasive attack occurs by modifying the testing examples to confuse the system. The settings have no influence in the training phase of the model, and exploratory attack requires the black box access to the model by gaining more information of the system and identifying patterns in the training data.
+There are several [attack strategies](https://arxiv.org/pdf/1810.00069.pdf) that can be used to stage an [adversarial attack](https://arxiv.org/pdf/1810.00069.pdf). This consists of poisoning attack that leads to contamination of the training set thereby compromising the learning algorithm, evasive attack occurs by modifying the testing examples to confuse the system. The settings do not influence the training phase of the model, and exploratory attack requires the black box access to the model by gaining more information of the system and identifying patterns in the training data.
 
-Adversarial attacks can be categorized into white-box and black-box attacks. In white-box setting, the attacker has knowledge of the parameters of the model. The attack strategy is based on the gradient with respect to the loss function. This is analogous to chosen-plaintext attack in Cryptography. By passing carefully crafted data set and run through the model to get predicted labels. Whereas in black-box setting, the attacker estimates the parameter of the model by observing the behavior of the network on some carefully made inputs. The attack strategy is based on an approximation of the gradient with respect to observed changes in the input.
+Adversarial attacks can be categorized into white-box and black-box attacks. In white-box setting, the attacker knows the parameters of the model. The attack strategy is based on the gradients with respect to the loss function. This is analogous to chosen-plaintext attack in Cryptography. By passing carefully crafted data set and run through the model to get predicted labels. Whereas in black-box setting, the attacker estimates the parameter of the model by observing the behavior of the network on some carefully made inputs. The attack strategy is based on an approximation of the gradient with respect to observed changes in the input.
 
-There are a number of defenses for targeted adversarial attacks. However, there is no universal defense for every adversarial attack. Adversarial defenses can prevent a model from compromising the data in which it was trained on. Defense can include data augmentation with original and perturbed data. The technique of distillation has been proposed to protect from the adversarial attacks with some loss in performance.
+There are several defenses for targeted adversarial attacks. However, there is no universal defense for every adversarial attack. Adversarial defenses can prevent a model from compromising the data in which it was trained on. Defense can include data augmentation with original and perturbed data. The technique of distillation has been proposed to protect from the adversarial attacks with some loss in performance.
 
 
 ### Connecting the dots
-
-
 Fairness can be similar to adversarial attack. Fairness quantities the discrimination which may be intentional or unintentional. Adversarial attacks are usually carefully crafted. However, making the classifier robust to adversarial attacks results in increased gains in addressing edge cases or blind spots in the model. Fairness by design rather than as an afterthought after the building the model. Incorporating fairness in the model can lead to creating more robust models.
 
-The current advances in neural computation are limited in scope for safety-critical systems such as self-driving cars operating at level 5. This motivated the need to ensure neural networks are robust to adversarial examples, while keeping fairness at an acceptable level. A number of remedies which have been suggested in the literature for handling adversarial attacks which comprise of augmentations (with a set of transformations), distillation ( for knowledge transfer between models), and a number of ensemble models to mitigate against adversarial attacks. A known limitation in existing countermeasures for adversarial attacks is the inability to generalize to miscellaneous cases. The adversarial attack could be in the form of corrupting the data by perturbations and thereby biasing the learning algorithm. One possible direction of research is to develop generic countermeasures suitable for computer vision in adversarial settings, which is a step beyond handcrafted [adversarial attacks](https://arxiv.org/pdf/1810.00069.pdf).
+The current advances in neural computation are limited in scope for safety-critical systems such as self-driving cars operating at level 5. This motivated the need to ensure neural networks are robust to adversarial examples, while keeping fairness at an acceptable level. Several remedies which have been suggested in the literature for handling adversarial attacks which comprise of augmentations (with a set of transformations), distillation ( for knowledge transfer between models), and many ensemble models to mitigate against adversarial attacks. A known limitation in existing countermeasures for adversarial attacks is the inability to generalize to miscellaneous cases. The adversarial attack could be in the form of corrupting the data by perturbations and thereby biasing the learning algorithm. One possible direction of research is to develop generic countermeasures suitable for computer vision in adversarial settings, which is a step beyond handcrafted [adversarial attacks](https://arxiv.org/pdf/1810.00069.pdf).
 
 Adversarial attacks can be thought as a classifier not fair in some classes which can include the subset of the data that has the adversarial examples. I think the discrimination is not really against the adversarial examples, but against certain subgroups of the population of which the examples are representative. However, an unverified school of thought can assume that the classifier is discriminating against the adversarial examples.
 
 Hence, the weak relationship between fairness and adversarial attacks.
 
-Fairness should be given a consideration from the data collection stage of the processing pipeline. Trying to get a stratified sample of the population. Proceed in form of active learning to gather more data if a class of data has an unacceptable measure for fairness and rebuild your model.
+Fairness should be considered from the data collection stage of the processing pipeline. Trying to get a stratified sample of the population. Proceed in form of active learning to gather more data if a class of data has an unacceptable measure for fairness and rebuild your model.
 
 ![adversarial attack and fairness](/static/images/adversarial-fairness/fairness-adversarial-attacks.png)
 
-
-
 ### Acknowledgment
 
-I would like to thank Dr. Ziyuan Gao and Dr. Eugene Yablonsky from the National University of Singapore and Fraser Valley University, BC respectively for providing technical support during the writing of this manuscript. I am grateful to the advanced reading group under the umbrella of [Learn Data Science meetup](https://www.meetup.com/LearnDataScience/) in Vancouver for the lively intellectual conversations on a number of machine learning topics.
-
-
+I would like to thank Dr. Ziyuan Gao and Dr. Eugene Yablonsky from the National University of Singapore and Fraser Valley University, BC respectively for providing technical support during the writing of this manuscript. I am grateful to the advanced reading group under the umbrella of [Learn Data Science meetup](https://www.meetup.com/LearnDataScience/) in Vancouver for the lively intellectual conversations on several machine learning topics.
 
 ### References
 Here are some of the materials that gave me a mental model of the problem.
@@ -290,8 +283,7 @@ Algorithm bias
 - https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2886526
 - https://arxiv.org/abs/1902.06705
 - https://arxiv.org/pdf/1712.07107.pdf
-- https://arxiv.org/pdf/1802.05666.pdf
- </section>
+- https://arxiv.org/pdf/1802.05666.pdf </section>
 
                 <div class="Article-meta"><a href=/blogs/1.html> Read more Blogs </a> </div>
 
