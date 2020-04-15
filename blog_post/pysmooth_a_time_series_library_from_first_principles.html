@@ -294,7 +294,7 @@ The discrete Kalman filter follows the implementation that is described in Figur
 
 ![Discrete Kalman Filter](/static/images/pysmooth/discrete.PNG)
 
-In Figure above from paper [[WB95]](), we have time as $k$, state as $x_k \in R^{n}$, measurement as $z_k \in R^{m}$, matrix $A$ with size $n x n$, optional control input as $u_k \in R^{l}$, matrix $B$ with size $n x l$, matrix $H$ with size $m x n$, covariance matrix as $P_k$, Kalman gain as $k_k$, state noise covariance matrix as $Q$, measurement noise covariance matrix as $R$. 
+In Figure above from paper [[WB95]](), we have time as $k$, state as $x_k \in R^{n}$, measurement as $z_k \in R^{m}$, matrix $A$ with size $n \times n$, optional control input as $u_k \in R^{l}$, matrix $B$ with size $n \times l$, matrix $H$ with size $m \times n$, covariance matrix as $P_k$, Kalman gain as $k_k$, state noise covariance matrix as $Q$, measurement noise covariance matrix as $R$. 
 
 Matrix $A$ captures the relationship with a state and a lagged state. Matrix $B$ is optional and capture the connection between the state and control input. Matrix $H$ captures the relationship between the state and measurement. Measurement innovation which is the difference between the current measurement and predicted measurement as $z_k - H\hat{x_k}$. If it is zero, then the agreement between predicted and current measurement is perfect. $K$ is Kalman gain which is used to place weights on the measurement innovation. A lower value of $K$ gives a higher weight on the priori state. Conversely, A higher value of $K$ gives a lower weight on the priori state.
 
@@ -320,7 +320,7 @@ The Extended Kalman filter follows the implementation that is described in Figur
 
 ![Extended Kalman Filter](/static/images/pysmooth/extended.PNG)
 
-In Figure above from paper [[WB95]](), we have time as $k$, state as $x_k \in R^{n}$, measurement as $z_k \in R^{m}$, optional control input as $u_k \in R^{l}$, matrix $H$ with size $m x n$, covariance matrix as $P_k$, Kalman gain as $k_k$, matrices $A, W, H, V$ are Jacobian, and $f$ is a differentiable function.
+In Figure above from paper [[WB95]](), we have time as $k$, state as $x_k \in R^{n}$, measurement as $z_k \in R^{m}$, optional control input as $u_k \in R^{l}$, matrix $H$ with size $m \times n$, covariance matrix as $P_k$, Kalman gain as $k_k$, matrices $A, W, H, V$ are Jacobian, and $f$ is a differentiable function.
 
 Matrix $H$ captures the relationship between the state and measurement. Measurement innovation which is the difference between the current measurement and predicted measurement as $z_k - h(\hat{x_k},0)$. If it is zero, then the agreement between predicted and current measurement is perfect. $K$ is Kalman gain which is used to place weights on the measurement innovation. A lower value of $K$ gives a higher weight on the priori state. Conversely, A higher value of $K$ gives a lower weight on the priori state.
 
