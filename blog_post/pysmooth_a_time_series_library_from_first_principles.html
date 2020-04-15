@@ -152,22 +152,21 @@ Popular time series analysis projects like Facebook's prophet [[TL17]]() allows 
 A time series problem can be formulated as a curve fitting procedure which captures the time dependence on the stream. Every time series can be decomposed into trend, seasonality and holidays [[HP90]](). The ARIMA models which was developed by Box and Jenkins [[BJ90]]() have been utilized in linear time series modelling. However, the average user would have it difficult to get the appropriate value for order of difference, auto-regressive component, and seasonality difference. Muth [[Mut60]]() laid the foundation for exponential smoothing by showing that it provides optimal estimates using random walk with some noise. Further works were done to provide a statistical framework for exponential smoothing leading to the creation of linear models [[BJ76]](), [[Rob82]](). Unfortunately, this does to apply to nonlinear models. Yule postulated a formulation of time series as a realization of a stochastic process [[Yul27]]().
 
 Kalman filter is a recursive algorithm for incrementally recomputing forecast based on past data [[Kal60]](). This is ideal for one-step prediction, of course, it is not so difficult to extend to the case of multi-steps prediction. There are theoretical estimations of the multi-step look-ahead forecast error [[GK92]]() with bounded guarantees. Due to the popularity of linear models, there is a movement towards solving nonlinear models by linearizing a nonlinear model into a linear model [[FZ98]]() with accuracy to higher orders such as Extended Kalman filter which is a linearization by Taylor series.
-[(1)]()
+
 \begin{equation}
 \label{add}
 Y_t = V_t + S_t + H_t + \xi_t,   \quad     t = 1,...,n    
 \end{equation}
 
-where $V_t$ is the trend in the data, $S_t$ is seasonality in the data, $H_t$ is the holiday in the data, and $\xi_t$ is error. The trend, $V_t$, is a varying component, and seasonality, $S_t$, is the cyclic component and the holiday component helps in modeling discontinuous time series as seen in Equation [(1)]().
+where $V_t$ is the trend in the data, $S_t$ is seasonality in the data, $H_t$ is the holiday in the data, and $\xi_t$ is error. The trend, $V_t$, is a varying component, and seasonality, $S_t$, is the cyclic component and the holiday component helps in modeling discontinuous time series as seen in Equation \ref{mult}.
 
 The time series can be multiplicative in nature
-[(2)]()
 \begin{equation}
 \label{mult}
 Y_t = V_t * S_t * H_t * \xi_t,   \quad       t = 1,...,n   
 \end{equation}
 
-From this Equation [(2)](), we can take logs and ignoring scalar multiplier thereby giving rise to Equation [(1)]().
+From this Equation \ref{mult}, we can take logs and ignoring scalar multiplier thereby giving rise to Equation \ref{add}.
 
 Neural networks have been used for time series applications [[PP14], [Mal+17], [Dor96], [LB98]]() as a consequence of the universal approximation theorem [[Cyb89], [Hor91]](). Recurrent neural network (RNN) [[JM99]]() and Long short-term memory (LSTM) [[HS97]]() are class types of neural network suited for time series due to the sequence prediction.
 
@@ -207,7 +206,14 @@ print olr.getB( ) # bias vector
 ```
 ##### Time Difference
 
-The RLS routine described in this Subsection is used for mapping input to output in equation 2.1 and 2.2 of the paper [[WB95]]().
+The RLS routine described in this Subsection is used for mapping input to output in Equation 2.1 and 2.2 of the paper [[WB95]]().The mathematical representation of the time difference model is shown in in Equation \ref{time_diff}.
+
+\begin{equation}
+\label{time_diff}
+y_t = \theta_1 * y_{t-1} + \theta_2 *  y_{t-2} + \theta_3 * y_{t-3} + ... + \theta_p *  y_{t-p},   \quad       t = 1,...,n   
+\end{equation}
+
+where $y_t$ is the current value at time, $n$ is the number of samples, $t$, and $\theta_i$ is the weights of current at offset, $i$ where $i > 0$ and $i \leq p$ where are fitting a regression on the current data at time $t$ and a history of $p$ data points. This is also known as pth-order difference equation.
 
 ```
 import numpy as np
@@ -226,10 +232,9 @@ print ypred
 
 ##### Online ARIMA
 
-Auto-regressive processes (AR) and moving average processes (MA) were introduced by Yule in paper [[Yul27]](). This is also used to make the time difference model described in this Subsection operate in incremental model as in equation 1.2.1 in page 7 of the paper [[Hami94]](). This is also used as a foundation the ARMA model. Both AR and MA processes in equations 3.3.8 and 3.3.13 respectively make use of the RLS to make the process of performing the ARIMA model in an incremental manner.
+Auto-regressive processes (AR) and moving average processes (MA) were introduced by Yule in paper [[Yul27]](). This is also used to make the time difference model described in this Subsection operate in incremental model as in equation 1.2.1 in page 7 of the paper [[Hami94]](). Both AR and MA processes in Equations \ref{maprocess} and \ref{arprocess} respectively make use of the RLS to make the process of performing the ARIMA model in an incremental manner.
 
-
-ARIMA is an important linear model for time series forecasting due to it flexibility. Estimating the parameters in a batch manner which is not suitable for real-time prediction. The combination of MA and AR processes which is fitting regression of the past observation and residual with some biases gives rise to the ARMA process. A transformation is applied to the ARMA process to get an ARIMA process. RLS implementation from Subsection on Recursive Linear Regression was used to make the ARIMA model work in an incremental manner.
+ARIMA is an important linear model for time series forecasting due to it flexibility. Estimating the parameters in a batch manner is not suitable for real-time prediction. The combination of MA and AR processes which is fitting regression of the past observation and residual with some biases gives rise to the ARMA process as shown in Equation \ref{armaprocess}. A transformation is applied to the ARMA process to get an ARIMA process as shown in Equation \ref{arimaprocess}. RLS implementation from Subsection on Recursive Linear Regression was used to make the ARIMA model work in an incremental manner.
 
 The closest work [[Liu+16]]() related to ours make a relaxation of the noise terms in the mathematical formulation. Their model pretended that noise terms don’t exist which is trading off noise for computational efficiency. In our case, we have taken a superior path by modeling both the noise term and performing real-time computational in a computationally efficient manner. We have modeled the noise of a bias terms as part of a regression fitting scheme. The model uses the Sherman and Morrison formula to update the parameters in an incremental manner. Our approach is built to be based on modular routines as such the base model can be reused in other online algorithms. Using the principles of compositionality, we have decomposed the model in a a number of the smaller models and provided a description of the underlying routines.
 
@@ -247,11 +252,10 @@ Y_t = c + \rho_t + \theta_1 * Y_{t-1} + \theta_2 *  Y_{t-2} + ... + \theta_q *  
 
 where $Y_t$ is the current data point, $c$ is the bias, $\rho$ is the residual error at time, $t$. We are using the history of past observations to capture the dynamics of the system, $\theta_i$ is the regression coefficients where $0 \leq i$$ \leq q$. This is the qth-order auto-regressive process.
 
-
-
-$$ Y_t = c + \theta_1 Y_{t-1} + \theta_2 Y_{t-2}  + ... + \theta_p Y_{t-p} + \rho_t + \alpha_1 \rho_{t-1} + \alpha_2 \rho_{t-2} + ... + \alpha_q \rho_{t-q}, \quad t = 1,...,n  $$
-
-
+\begin{equation}
+\label{armaprocess}
+Y_t = c + \theta_1 Y_{t-1} + \theta_2 Y_{t-2}  + ... + \theta_p Y_{t-p} + \rho_t + \alpha_1 \rho_{t-1} + \alpha_2 \rho_{t-2} + ... + \alpha_q \rho_{t-q}, \quad t = 1,...,n
+\end{equation}
 
 where $Y_t$ is the current data point, $c$ is the bias, $\rho$ is the residual error at time, $t$. We are using the history of past observations to capture the dynamics of the system, $\theta_i$ is the regression coefficients where $0 \leq i$$ \leq p$ on the history data, and $\alpha_i$ is the regression coefficients where $0 \leq i$$ \leq q$ on the history residuals. This is the ARMA process.
 
@@ -288,6 +292,12 @@ The paper handles the first case, where we have a set of states and measurements
 ##### Discrete Kalman Filters 
 The discrete Kalman filter follows the implementation that is described in Figure 1-2 on page 5 \& 6 of paper [[WB95]](). This captures the linear relationships in the data. Our estimations fluctuates around the means and covariance. The filter is likely to reach convergence as the data increases, thereby improving filter performance. On the contrary, in the presence of nonlinear relationship, the error rate increases in the posterior estimates, thereby leading to sub-optimal filter performance (under-fitting).
 
+![Discrete Kalman Filter](/static/images/pysmooth/discrete.PNG)
+
+In Figure above from paper [[WB95]](), we have time as $k$, state as $x_k \in R^{n}$, measurement as $z_k \in R^{m}$, matrix $A$ with size $n x n$, optional control input as $u_k \in R^{l}$, matrix $B$ with size $n x l$, matrix $H$ with size $m x n$, covariance matrix as $P_k$, Kalman gain as $k_k$, state noise covariance matrix as $Q$, measurement noise covariance matrix as $R$. 
+
+Matrix $A$ captures the relationship with a state and a lagged state. Matrix $B$ is optional and capture the connection between the state and control input. Matrix $H$ captures the relationship between the state and measurement. Measurement innovation which is the difference between the current measurement and predicted measurement as $z_k - H\hat{x_k}$. If it is zero, then the agreement between predicted and current measurement is perfect. $K$ is Kalman gain which is used to place weights on the measurement innovation. A lower value of $K$ gives a higher weight on the priori state. Conversely, A higher value of $K$ gives a lower weight on the priori state.
+
 ```
 import numpy as np
 from DiscreteKalmanFilter import DiscreteKalmanFilter
@@ -308,6 +318,12 @@ for ind in range (100):
 
 The Extended Kalman filter follows the implementation that is described in Figure 1-2 on page  8, 9, 10 \& 11 in the paper [[WB95]](). More details on the workings of Extended Kalman filters can be found in tutorial [[Ter08]](). This captures the nonlinear relationship in the data. The approximation using limited order of Taylor series (linearizing nonlinear equation using Taylor series to 1st order) can lead to errors in the posterior estimates, thereby leading to sub-optimal filter performance. The filter makes use of Jacobians and hessians, thereby mandating the need for differentiable non-linear function with increased computation cost. This has the same computational complexity as Unscented kalman filter.
 
+![Extended Kalman Filter](/static/images/pysmooth/extended.PNG)
+
+In Figure above from paper [[WB95]](), we have time as $k$, state as $x_k \in R^{n}$, measurement as $z_k \in R^{m}$, optional control input as $u_k \in R^{l}$, matrix $H$ with size $m x n$, covariance matrix as $P_k$, Kalman gain as $k_k$, matrices $A, W, H, V$ are Jacobian, and $f$ is a differentiable function.
+
+Matrix $H$ captures the relationship between the state and measurement. Measurement innovation which is the difference between the current measurement and predicted measurement as $z_k - h(\hat{x_k},0)$. If it is zero, then the agreement between predicted and current measurement is perfect. $K$ is Kalman gain which is used to place weights on the measurement innovation. A lower value of $K$ gives a higher weight on the priori state. Conversely, A higher value of $K$ gives a lower weight on the priori state.
+
 ```
 import numpy as np
 from ExtendedKalmanFilter import ExtendedKalmanFilter
@@ -326,6 +342,10 @@ for ind in range (100):
 ```
 ##### Unscented Kalman Filters 
 The unscented kalman filter follows the implementation that is described in Algorithm 3.1 in the paper [[WM00]](). For a thorough understanding of unscented transformation, then see the paper [[Jul02]](). This captures the nonlinear relationship in the data. The approximation using a better order of Taylor series (linearizing nonlinear equation using Taylor series to 3rd order) thereby leading to better filter performance. This filter makes use of better sampling to capture more representative characteristics of the model by using sigma points. Sigma points are extra data points that are chosen within the region surrounding the original data. This accounts for variability by capturing the likely position that data could be given some perturbations. Sampling these points provides richer information of the distribution of the data as it is more ergodic. The filter does not make use of Jacobians and hessians, thereby allowing the use of differentiable and non-differentiable non-linear function with increased computation cost. This has the same computational complexity as Extended Kalman filter.
+
+![Unscented Kalman Filter](/static/images/pysmooth/unscented.PNG)
+
+In Figure above from [[Jul02]](), The actual sampling is done using MCMC and take as the  ground truth for the real distribution of the states and measurements. Extended Kalman filter does not properly capture the probability distribution of the underlying process. Unscented Kalman filter makes use of sigma points to capture more information about the underlying dynamic of the process.
 
 ```
 import numpy as np
