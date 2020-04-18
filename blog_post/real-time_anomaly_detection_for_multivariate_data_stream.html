@@ -314,7 +314,7 @@ def updateCovariance(alpha, beta, C_t, A_t, z_t):
     """
     v_t = np.dot(A_t, z_t.T)
     C_tplus1 = (alpha * C_t)  + (beta * np.matmul(v_t, v_t.T))
-    print "v_t: {}, C_tplus1: {}".format(v_t.shape, C_tplus1.shape)
+    print ("v_t: {}, C_tplus1: {}".format(v_t.shape, C_tplus1.shape))
     return C_tplus1
     
 def updateCholeskyFactor(alpha, beta, A_t, z_t):
@@ -330,7 +330,7 @@ def updateCholeskyFactor(alpha, beta, A_t, z_t):
     y = math.sqrt(alpha) * (math.sqrt(1 + w) - 1) * np.dot(v_t, z_t) / norm_z
     A_tplus1 = x + y
 
-    print "A_t: {}, A_tplus1: {}".format(A_t.shape, A_tplus1.shape)
+    print ("A_t: {}, A_tplus1: {}".format(A_t.shape, A_tplus1.shape))
     return A_tplus1
 ```
 
@@ -389,16 +389,16 @@ def updateInverseCovariance(alpha, beta, invC_t, A_t, z_t):
     @param: invC_t is old inverse covariance matrix, z_t as new data vector
     @return: invC_tplus1 is updated inverse covariance matrix
     """
-    print "A_t: {}, z_t: {}".format(A_t.shape, z_t.shape)
+    print ("A_t: {}, z_t: {}".format(A_t.shape, z_t.shape))
     v_t = np.dot(A_t, z_t.T)
     hat_vt = (beta * v_t) / alpha
 
-    print "invC_t: {}, hat_vt: {}, v_t: {}, invC_t: {}".format(invC_t.shape, hat_vt.shape, v_t.shape, invC_t.shape)
+    print ("invC_t: {}, hat_vt: {}, v_t: {}, invC_t: {}".format(invC_t.shape, hat_vt.shape, v_t.shape, invC_t.shape))
     
     y = multi_dot([invC_t, hat_vt, v_t.T, invC_t]) / (1 + multi_dot([hat_vt.T, invC_t, v_t]))
     
     invC_tplus1 = (invC_t - y) / alpha
-    print "invC_tplus1: {}".format(invC_tplus1.shape)
+    print ("invC_tplus1: {}".format(invC_tplus1.shape))
     return invC_tplus1
 ```
 
@@ -450,14 +450,14 @@ anom.init(X)
 z_t0 = np.random.rand(1,15) # new data
 anom.update(z_t0)
 z_t1 = np.random.rand(1,15) # next new data
-print "score: {}".format(anom.predict(z_t1))
+print ("score: {}".format(anom.predict(z_t1)))
 Z = np.random.rand(1000,15)
 
 # Bulk predict
 anom = probabilisticMultiEWMA()
 anom.init(X)
 pred = anom.bulkPredict(Z)
-print pred
+print (pred)
 ```
 
 ### Experiments
