@@ -148,7 +148,7 @@ html {
     font-feature-settings: "onum", "kern", common-ligatures contextual;
     font-variant-numeric: oldstyle-nums;
     line-height: 1.5;
-    font-family: Lato, Helvetica Neue, sans-serif;
+    font-family: ReithSans, Lato, Helvetica Neue, sans-serif;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
