@@ -28,17 +28,6 @@
           tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
           });
     </script> 
-    <!---<script type="text/javascript"
-     src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-    </script>
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      TeX: {
-         equationNumbers: {  autoNumber: "AMS"  },
-         extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
-      }
-    });
-    </script> -->
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       <style>
@@ -47,55 +36,9 @@
         margin: 1em 0;
       }
       </style>
-<!---
-      <script>
-      MathJax = {
-        //
-        //  Load only TeX input and the contextual menu
-        //
-        loader: {load: ['input/tex', 'ui/menu']},
-        //
-        //  When page is ready, render the document
-        //
-        startup: {pageReady: () => MathJax.startup.document.render()},
-        //
-        //  Use dollar signs for in-line delimiters in addition to the usual ones
-        //
-        tex: {inlineMath: {'[+]': [['$', '$']]}},
-        //
-        //  Override the usual typeset render action with one that generates MathML output
-        //
-        options: {
-          renderActions: {
-            typeset: [150,
-              //
-              //  The function for rendering a document's math elements
-              //
-              (doc) => {
-                const toMML = MathJax.startup.toMML;
-                for (math of doc.math) {
-                  math.typesetRoot = document.createElement('mjx-container');
-                  math.typesetRoot.innerHTML = toMML(math.root);
-                  math.display && math.typesetRoot.setAttribute('display', 'block');
-                }
-              },
-              //
-              //  The function for rendering a single math expression
-              //
-              (math, doc) => {
-                math.typesetRoot = document.createElement('mjx-container');
-                math.typesetRoot.innerHTML = MathJax.startup.toMML(math.root);
-                math.display && math.typesetRoot.setAttribute('display', 'block');
-              }
-            ]
-          }
-        }
-      };
-      </script>
+
       <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js">
       </script>
-      <!--<script async src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it-footnote/3.0.2/markdown-it-footnote.js">
-      </script>-->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js">
       </script>
 
