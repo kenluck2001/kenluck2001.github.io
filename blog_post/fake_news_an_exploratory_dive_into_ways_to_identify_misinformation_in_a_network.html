@@ -42,6 +42,11 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js">
       </script>
 
+      <!---<script type="text/javascript" src="/static/js/jquery-1.5.1.min.js"></script>-->
+      <!---<script type="text/javascript" src="/static/js/showdown.js"></script>-->  
+      <!---<script type="text/javascript" src="/static/js/pdf.js"></script>-->
+      <!---<script type="text/javascript" src="/static/js/pdf-ui.js"></script>-->
+
   </head>
   <body class="Site">
     <header class="Site-header">
@@ -69,9 +74,19 @@
                   <time datetime=2019-12-03 17:59:55.169774 class="Article-date">03 Dec, 2019</time>
                 </div>
 
-                <div class="Article-meta">Tag: bayesian-statistics, machine-learning</div>
+                <table>
+                  <tr>
+                    <div class="Article-meta">Tag: bayesian-statistics, machine-learning</div>
+                  </tr>
+                  <tr>
+                    <td class="text-muted"> View as: </td>
+                    <td> <a class="generate" href="#/pdf/"><img  data-toggle="tooltip" title="Click to download file. Note is not working properly." src=/static/images/pdf_icon.svg style="width: 28px; height: 25px;" alt="pdf here"/></a> </td>
+                    <td class="text-muted"> [Alpha version]</td>
+                    <td> <p class="download"> <a id="file" target="_blank" ></a> </p> </td>
+                  </tr>
+                </table>
 
-                <section class="Article-content"> Fake news is a false piece of information that was purposely created to deceive a person. The effect on a single individual can be devastating, however, modern trends show that actors are deploying fake news on a large scale to influence a group of users. Identifying fake news by manual inspection is a daunting task because several fake news takes the form of a half-truth, which means they have some forms of reality, but the events in the message may have been deceptively modified to fool an individual. The credibility of fake news can vary from outright insanity to a likely real. A crafty attacker will stick to creating news that has the semblance of reality as it is likely to yield the greatest utility. A piece of typical fake news can take the form of innuendos, rumors, and gossip among others. It is important to note that unpleasant news that is true cannot be categorized as fake news. In this blog post, we will work to understand the fake news from both perspectives (attacker, victim). As part of setting the stage for this research, we would pretend to be the attacker and simulate their reasoning. 
+                <section id="text" class="Article-content"> Fake news is a false piece of information that was purposely created to deceive a person. The effect on a single individual can be devastating, however, modern trends show that actors are deploying fake news on a large scale to influence a group of users. Identifying fake news by manual inspection is a daunting task because several fake news takes the form of a half-truth, which means they have some forms of reality, but the events in the message may have been deceptively modified to fool an individual. The credibility of fake news can vary from outright insanity to a likely real. A crafty attacker will stick to creating news that has the semblance of reality as it is likely to yield the greatest utility. A piece of typical fake news can take the form of innuendos, rumors, and gossip among others. It is important to note that unpleasant news that is true cannot be categorized as fake news. In this blog post, we will work to understand the fake news from both perspectives (attacker, victim). As part of setting the stage for this research, we would pretend to be the attacker and simulate their reasoning. 
 
 Fake news is a subjective term that has various meanings to different people. For example, a political operative sees fake news as anything that makes them lose an election. We will stay apolitical for the remainder of this blog post. Fake news is a news item that is designed to deceive the user. Some motivation may be hilarious or with malicious intent. It can take the form of a misinformation campaign, news with doctored artifacts, half-truth, and extreme sensationalism among others. Fake news can also be weaponized to serve geopolitical interests. There is a case during the Cold War where the US used the pretext of deep-sea mining to hunt for a lost Soviet submarine [[1]](). This is another classical example of fake news coming to life.
 
@@ -364,11 +379,27 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             </article>
         </div>
 
-
       </div>
     </div>
 
+
+        <footer class="footer">
+            <div class="Footer">
+                <p class="text-muted">Icon made by Freepik from www.flaticon.com</p>
+                <p class="text-muted">&copy; 2019 Copyright: Kenneth Odoh</p>
+            </div>
+        </footer>
+
+
+      <script type="text/javascript" src="/static/js/jquery-1.5.1.min.js"></script>
+      <script type="text/javascript" src="/static/js/showdown.js"></script>
+      <script type="text/javascript" src="/static/js/pdf.js"></script>
+      <script type="text/javascript" src="/static/js/pdf-ui.js"></script>
+
+      <script type="text/javascript" src="/static/js/html2pdf.bundle.min.js"></script>
+
     <script  type="text/javascript" >
+
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );
 

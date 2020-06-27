@@ -42,6 +42,11 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js">
       </script>
 
+      <!---<script type="text/javascript" src="/static/js/jquery-1.5.1.min.js"></script>-->
+      <!---<script type="text/javascript" src="/static/js/showdown.js"></script>-->  
+      <!---<script type="text/javascript" src="/static/js/pdf.js"></script>-->
+      <!---<script type="text/javascript" src="/static/js/pdf-ui.js"></script>-->
+
   </head>
   <body class="Site">
     <header class="Site-header">
@@ -69,9 +74,19 @@
                   <time datetime=2019-11-17 15:22:54.561914 class="Article-date">17 Nov, 2019</time>
                 </div>
 
-                <div class="Article-meta">Tag: machine-learning</div>
+                <table>
+                  <tr>
+                    <div class="Article-meta">Tag: machine-learning</div>
+                  </tr>
+                  <tr>
+                    <td class="text-muted"> View as: </td>
+                    <td> <a class="generate" href="#/pdf/"><img  data-toggle="tooltip" title="Click to download file. Note is not working properly." src=/static/images/pdf_icon.svg style="width: 28px; height: 25px;" alt="pdf here"/></a> </td>
+                    <td class="text-muted"> [Alpha version]</td>
+                    <td> <p class="download"> <a id="file" target="_blank" ></a> </p> </td>
+                  </tr>
+                </table>
 
-                <section class="Article-content"> This blog post is the culmination of several technical talks given at the Python Conference (Singapore) in 2018 and a meetup session held in Vancouver titled “Tracking the Tracker: Time Series Analysis in Python from first principles”. The slides and video recordings can be found in [slides](https://www.slideshare.net/kenluck2001/tracking-the-tracker-time-series-analysis-in-python-from-first-principles-101506045), [video_1](https://youtu.be/jGiHxHt1q6A), and [video_2](https://youtu.be/cTeTGHI6vBU). Python programming language is widely used for scientific computation due to the proliferation of third-party packages such as NumPy [[04]](), Scipy [[J+01]](), pandas [[12]]() among others. The availability of extensive documentation for these packages and many built-in package managers (pip [[08]]() and easy\_install [[04]]()) for stress-free installation of these libraries have given rise to wider adoption of Python programming in diverse domains.
+                <section id="text" class="Article-content"> This blog post is the culmination of several technical talks given at the Python Conference (Singapore) in 2018 and a meetup session held in Vancouver titled “Tracking the Tracker: Time Series Analysis in Python from first principles”. The slides and video recordings can be found in [slides](https://www.slideshare.net/kenluck2001/tracking-the-tracker-time-series-analysis-in-python-from-first-principles-101506045), [video_1](https://youtu.be/jGiHxHt1q6A), and [video_2](https://youtu.be/cTeTGHI6vBU). Python programming language is widely used for scientific computation due to the proliferation of third-party packages such as NumPy [[04]](), Scipy [[J+01]](), pandas [[12]]() among others. The availability of extensive documentation for these packages and many built-in package managers (pip [[08]]() and easy\_install [[04]]()) for stress-free installation of these libraries have given rise to wider adoption of Python programming in diverse domains.
 
 Time series analysis is a ubiquitous problem that occurs in many interdisciplinary domains such as finance, social sciences, and engineering. There is an inherent need for an easy to use time-series library that serves the need of multiple users. PySmooth was released as an open-source library to promote mass adoption with little restriction on usage, thereby ensuring that the source code is accessible to practitioners, students, and researchers. Why go through the stress of writing a new software library, when there are existing alternatives in the wild? This is not exactly the case as our approach is unique because to the best of our knowledge the majority of existing time series analysis libraries tend to lack a state-space formulation. However, PySmooth is unique in solving the general time series problem by reducing to a state-space formulation.
 
@@ -393,11 +408,27 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             </article>
         </div>
 
-
       </div>
     </div>
 
+
+        <footer class="footer">
+            <div class="Footer">
+                <p class="text-muted">Icon made by Freepik from www.flaticon.com</p>
+                <p class="text-muted">&copy; 2019 Copyright: Kenneth Odoh</p>
+            </div>
+        </footer>
+
+
+      <script type="text/javascript" src="/static/js/jquery-1.5.1.min.js"></script>
+      <script type="text/javascript" src="/static/js/showdown.js"></script>
+      <script type="text/javascript" src="/static/js/pdf.js"></script>
+      <script type="text/javascript" src="/static/js/pdf-ui.js"></script>
+
+      <script type="text/javascript" src="/static/js/html2pdf.bundle.min.js"></script>
+
     <script  type="text/javascript" >
+
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );
 
