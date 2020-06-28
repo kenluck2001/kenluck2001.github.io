@@ -42,11 +42,6 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js">
       </script>
 
-      <!---<script type="text/javascript" src="/static/js/jquery-1.5.1.min.js"></script>-->
-      <!---<script type="text/javascript" src="/static/js/showdown.js"></script>-->  
-      <!---<script type="text/javascript" src="/static/js/pdf.js"></script>-->
-      <!---<script type="text/javascript" src="/static/js/pdf-ui.js"></script>-->
-
   </head>
   <body class="Site">
     <header class="Site-header">
@@ -74,17 +69,7 @@
                   <time datetime=2020-01-06 18:39:31.509062 class="Article-date">06 Jan, 2020</time>
                 </div>
 
-                <table>
-                  <tr>
-                    <div class="Article-meta">Tag: machine-learning</div>
-                  </tr>
-                  <tr>
-                    <td class="text-muted"> View as: </td>
-                    <td> <a class="generate" href="#/pdf/"><img  data-toggle="tooltip" title="Click to download file. Note is not working properly." src=/static/images/pdf_icon.svg style="width: 28px; height: 25px;" alt="pdf here"/></a> </td>
-                    <td class="text-muted"> [Alpha version]</td>
-                    <td> <p class="download"> <a id="file" target="_blank" ></a> </p> </td>
-                  </tr>
-                </table>
+                <div class="Article-meta">Tag: machine-learning</div>
 
                 <section id="text" class="Article-content"> Both HMM and RNN suffer from disappearing transitions and (vanishing \& exploding) gradient problems respectively. LSTM was designed to maintain long time-range dependency on a sequencing task. However, information flow in the network tends to saturate once the number of time steps exceeds a few thousand. Legendre Memory Unit (LMU) is a revolutionary evolution on the design of RNN that can conveniently handle extremely long-range dependency. Let's try to figure out why the LMU exceeds the performance of the LSTM in this blog. We proceed by reviewing the paper that introduced LMU.
 
@@ -152,6 +137,15 @@ The LMU unit makes use of ODE solver. Here is an excellent tutorial on the [ODE]
 
 The LMU would serve as a better building block for creating encode-decoder architecture that would improve sequence-to-sequence modeling tasks. Other structures that are possible with LSTM can also be done with LMU e.g. bidirectional LMU. </section>
 
+                <table>
+                  <tr>
+                    <td class="text-muted"> View as: </td>
+                    <td> <a class="generate" href="#/pdf/"><img  data-toggle="tooltip" title="Click to download file. Note is not working properly." src=/static/images/pdf_icon.svg style="width: 28px; height: 25px;" alt="pdf here"/></a> </td>
+                    <td class="text-muted"> [Alpha version]</td>
+                    <td> <p class="download"> <a id="file" target="_blank" ></a> </p> </td>
+                  </tr>
+                </table>
+
                 <div class="Article-meta">
 Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a target="_blank" href=/publications.html#talks>talks</a>, and <a target="_blank" href=/publications.html#publications>publications</a>.
                 </div>
@@ -166,7 +160,6 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
 
       </div>
     </div>
-
 
         <footer class="footer">
             <div class="Footer">
