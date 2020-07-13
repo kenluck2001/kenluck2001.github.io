@@ -69,8 +69,12 @@
                   <time datetime=2019-11-17 15:22:54.561914 class="Article-date">17 Nov, 2019</time>
                 </div>
 
-                <div class="Article-meta">Tag: machine-learning</div>
+                <div class="Article-meta">Tag: machine-learning</div> 
 
+
+                <!--<div class="Article-meta">Tags:
+                
+                </div>-->
                 <section id="text" class="Article-content"> This blog post is the culmination of several technical talks given at the Python Conference (Singapore) in 2018 and a meetup session held in Vancouver titled “Tracking the Tracker: Time Series Analysis in Python from first principles”. The slides and video recordings can be found in [slides](https://www.slideshare.net/kenluck2001/tracking-the-tracker-time-series-analysis-in-python-from-first-principles-101506045), [video_1](https://youtu.be/jGiHxHt1q6A), and [video_2](https://youtu.be/cTeTGHI6vBU). Python programming language is widely used for scientific computation due to the proliferation of third-party packages such as NumPy [[04]](), Scipy [[J+01]](), pandas [[12]]() among others. The availability of extensive documentation for these packages and many built-in package managers (pip [[08]]() and easy\_install [[04]]()) for stress-free installation of these libraries have given rise to wider adoption of Python programming in diverse domains.
 
 Time series analysis is a ubiquitous problem that occurs in many interdisciplinary domains such as finance, social sciences, and engineering. There is an inherent need for an easy to use time-series library that serves the need of multiple users. PySmooth was released as an open-source library to promote mass adoption with little restriction on usage, thereby ensuring that the source code is accessible to practitioners, students, and researchers. Why go through the stress of writing a new software library, when there are existing alternatives in the wild? This is not exactly the case as our approach is unique because to the best of our knowledge the majority of existing time series analysis libraries tend to lack a state-space formulation. However, PySmooth is unique in solving the general time series problem by reducing to a state-space formulation.
@@ -390,6 +394,27 @@ BibTeX Citation
                   </tr>
                 </table>
 
+                <hr class="line"/>
+                <div style="display: flex; justify-content: center;">
+                    <table>
+                      <tr>
+                        <td> <a class="left" id="left-5" data-min-index="0" data-max-index="8" href=/blog_post/fake_news_an_exploratory_dive_into_ways_to_identify_misinformation_in_a_network.html><img id="left-0" data-toggle="tooltip" title="Click to previous page." src=/static/images/left.png style="width: 48px; height: 50px;" alt="previous here"/></a> </td>
+
+                        <td> <div class="squares">
+                              <div class="icon1">
+                                 <!--<p class="text-muted">4/8</p>-->
+                                 <p class="text-muted">5/8</p>
+                              </div>
+                            </div> 
+                        </td>
+                        
+                        <td> <a class="right" id="right-3" data-min-index="0" data-max-index="8" href=/blog_post/organizing_a_technical_meetup.html><img id="right-1" data-toggle="tooltip" title="Click to next page." src=/static/images/right.png style="width: 48px; height: 50px;" alt="next here"/></a> </td>
+                      </tr>
+                    </table>
+                </div>
+                <hr class="line"/>
+
+
                 <div class="Article-meta">
 Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a target="_blank" href=/publications.html#talks>talks</a>, and <a target="_blank" href=/publications.html#publications>publications</a>.
                 </div>
@@ -421,6 +446,83 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
       <script type="text/javascript" src="/static/js/html2pdf.bundle.min.js"></script>
 
     <script  type="text/javascript" >
+
+        function animatePaginator(selector) {
+            var i = 0;
+            $(selector).css('opacity', '1.0');
+            setInterval(function () {
+                i++;
+                if ((i%2)==1)
+                {
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '0.5');
+                        $(this).fadeIn("slow");
+                    });
+                }else{
+                    //$(selector).css('opacity', '1.0');
+
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '1.0');
+                        $(this).fadeIn("slow");
+                    });
+                }
+                i = i % 2
+            }, 5000);
+        }
+
+        function disablePaginator(selector) {
+            $(selector).css('visibility','hidden')
+            $(selector).parent().removeAttr("href");
+        }
+
+
+        Array.range = function(a, b, step){
+            var A = [];
+            if(typeof a == 'number'){
+                A[0] = a;
+                step = step || 1;
+                while(a+step <= b){
+                    A[A.length]= a+= step;
+                }
+            }
+            else {
+                var s = 'abcdefghijklmnopqrstuvwxyz';
+                if(a === a.toUpperCase()){
+                    b = b.toUpperCase();
+                    s = s.toUpperCase();
+                }
+                s = s.substring(s.indexOf(a), s.indexOf(b)+ 1);
+                A = s.split('');        
+            }
+            return A;
+        }
+
+        var min_index = $(".left").attr('data-min-index')
+        var max_index = $(".left").attr('data-max-index')
+
+
+        var selectorlist = ['#left', '#right'];
+        var indexlist = [min_index, max_index]
+
+        var div;
+        var ind;
+
+        // disable pagination
+        selector = "#left-" + (parseInt(max_index)+1).toString()
+        disablePaginator(selector) 
+
+        selector = "#right-" + min_index  
+        disablePaginator(selector) 
+
+
+        // animate pagination
+        for (div of selectorlist) {
+            for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                var selector = div+"-"+ind
+                animatePaginator(selector) 
+            } 
+
+        } 
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );

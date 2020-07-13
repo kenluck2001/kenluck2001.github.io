@@ -69,8 +69,12 @@
                   <time datetime=2019-12-03 17:59:55.169774 class="Article-date">03 Dec, 2019</time>
                 </div>
 
-                <div class="Article-meta">Tag: bayesian-statistics, machine-learning</div>
+                <div class="Article-meta">Tag: bayesian-statistics, machine-learning</div> 
 
+
+                <!--<div class="Article-meta">Tags:
+                
+                </div>-->
                 <section id="text" class="Article-content"> Fake news is a false piece of information that was purposely created to deceive a person. The effect on a single individual can be devastating, however, modern trends show that actors are deploying fake news on a large scale to influence a group of users. Identifying fake news by manual inspection is a daunting task because several fake news takes the form of a half-truth, which means they have some forms of reality, but the events in the message may have been deceptively modified to fool an individual. The credibility of fake news can vary from outright insanity to a likely real. A crafty attacker will stick to creating news that has the semblance of reality as it is likely to yield the greatest utility. A piece of typical fake news can take the form of innuendos, rumors, and gossip among others. It is important to note that unpleasant news that is true cannot be categorized as fake news. In this blog post, we will work to understand the fake news from both perspectives (attacker, victim). As part of setting the stage for this research, we would pretend to be the attacker and simulate their reasoning. 
 
 Fake news is a subjective term that has various meanings to different people. For example, a political operative sees fake news as anything that makes them lose an election. We will stay apolitical for the remainder of this blog post. Fake news is a news item that is designed to deceive the user. Some motivation may be hilarious or with malicious intent. It can take the form of a misinformation campaign, news with doctored artifacts, half-truth, and extreme sensationalism among others. Fake news can also be weaponized to serve geopolitical interests. There is a case during the Cold War where the US used the pretext of deep-sea mining to hunt for a lost Soviet submarine [[1]](). This is another classical example of fake news coming to life.
@@ -361,6 +365,27 @@ BibTeX Citation
                   </tr>
                 </table>
 
+                <hr class="line"/>
+                <div style="display: flex; justify-content: center;">
+                    <table>
+                      <tr>
+                        <td> <a class="left" id="left-6" data-min-index="0" data-max-index="8" href=/blog_post/review_of_neurips_%28aabi%29_workshop.html><img id="left-0" data-toggle="tooltip" title="Click to previous page." src=/static/images/left.png style="width: 48px; height: 50px;" alt="previous here"/></a> </td>
+
+                        <td> <div class="squares">
+                              <div class="icon1">
+                                 <!--<p class="text-muted">5/8</p>-->
+                                 <p class="text-muted">4/8</p>
+                              </div>
+                            </div> 
+                        </td>
+                        
+                        <td> <a class="right" id="right-4" data-min-index="0" data-max-index="8" href=/blog_post/pysmooth_a_time_series_library_from_first_principles.html><img id="right-1" data-toggle="tooltip" title="Click to next page." src=/static/images/right.png style="width: 48px; height: 50px;" alt="next here"/></a> </td>
+                      </tr>
+                    </table>
+                </div>
+                <hr class="line"/>
+
+
                 <div class="Article-meta">
 Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a target="_blank" href=/publications.html#talks>talks</a>, and <a target="_blank" href=/publications.html#publications>publications</a>.
                 </div>
@@ -392,6 +417,83 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
       <script type="text/javascript" src="/static/js/html2pdf.bundle.min.js"></script>
 
     <script  type="text/javascript" >
+
+        function animatePaginator(selector) {
+            var i = 0;
+            $(selector).css('opacity', '1.0');
+            setInterval(function () {
+                i++;
+                if ((i%2)==1)
+                {
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '0.5');
+                        $(this).fadeIn("slow");
+                    });
+                }else{
+                    //$(selector).css('opacity', '1.0');
+
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '1.0');
+                        $(this).fadeIn("slow");
+                    });
+                }
+                i = i % 2
+            }, 5000);
+        }
+
+        function disablePaginator(selector) {
+            $(selector).css('visibility','hidden')
+            $(selector).parent().removeAttr("href");
+        }
+
+
+        Array.range = function(a, b, step){
+            var A = [];
+            if(typeof a == 'number'){
+                A[0] = a;
+                step = step || 1;
+                while(a+step <= b){
+                    A[A.length]= a+= step;
+                }
+            }
+            else {
+                var s = 'abcdefghijklmnopqrstuvwxyz';
+                if(a === a.toUpperCase()){
+                    b = b.toUpperCase();
+                    s = s.toUpperCase();
+                }
+                s = s.substring(s.indexOf(a), s.indexOf(b)+ 1);
+                A = s.split('');        
+            }
+            return A;
+        }
+
+        var min_index = $(".left").attr('data-min-index')
+        var max_index = $(".left").attr('data-max-index')
+
+
+        var selectorlist = ['#left', '#right'];
+        var indexlist = [min_index, max_index]
+
+        var div;
+        var ind;
+
+        // disable pagination
+        selector = "#left-" + (parseInt(max_index)+1).toString()
+        disablePaginator(selector) 
+
+        selector = "#right-" + min_index  
+        disablePaginator(selector) 
+
+
+        // animate pagination
+        for (div of selectorlist) {
+            for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                var selector = div+"-"+ind
+                animatePaginator(selector) 
+            } 
+
+        } 
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );
