@@ -71,6 +71,10 @@
 
                 <div class="Article-meta">Tag: general</div> 
 
+
+                <!--<div class="Article-meta">Tags:
+                
+                </div>-->
                 <section id="text" class="Article-content"> A meetup is a gathering of people with similar interests. This can take the form of a mini-conference, workshop, classroom-style lecture, and public discussion. It can have several names such as study group, reading group, hacking group among others. My experiences are with technical meetups related to Computer science. It is not clear to me how some of my insights may apply to other kinds of gatherings.
 
 
@@ -209,44 +213,32 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             return A;
         }
 
-        var ua = window.navigator.userAgent;
-        var isIE = /MSIE|Trident/.test(ua);
-
-        if ( isIE ) {
-            //IE specific code goes here
-            $(".left").hide()
-            $(".right").hide()
-        }
-        else{
-            var min_index = $(".left").attr('data-min-index')
-            var max_index = $(".left").attr('data-max-index')
+        var min_index = $(".left").attr('data-min-index')
+        var max_index = $(".left").attr('data-max-index')
 
 
-            var selectorlist = ['#left', '#right'];
-            var indexlist = [min_index, max_index]
+        var selectorlist = ['#left', '#right'];
+        var indexlist = [min_index, max_index]
 
-            var div;
-            var ind;
+        var div;
+        var ind;
 
-            // disable pagination
-            selector = "#left-" + (parseInt(max_index)+1).toString()
-            disablePaginator(selector) 
+        // disable pagination
+        selector = "#left-" + (parseInt(max_index)+1).toString()
+        disablePaginator(selector) 
 
-            selector = "#right-" + min_index  
-            disablePaginator(selector) 
+        selector = "#right-" + min_index  
+        disablePaginator(selector) 
 
 
-            // animate pagination
-            for (div of selectorlist) {
-                for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
-                    var selector = div+"-"+ind
-                    animatePaginator(selector) 
-                } 
-
+        // animate pagination
+        for (div of selectorlist) {
+            for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                var selector = div+"-"+ind
+                animatePaginator(selector) 
             } 
 
-        }
-
+        } 
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );

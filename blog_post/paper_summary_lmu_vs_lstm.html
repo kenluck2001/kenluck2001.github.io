@@ -71,6 +71,10 @@
 
                 <div class="Article-meta">Tag: machine-learning</div> 
 
+
+                <!--<div class="Article-meta">Tags:
+                
+                </div>-->
                 <section id="text" class="Article-content"> Both HMM and RNN suffer from disappearing transitions and (vanishing \& exploding) gradient problems respectively. LSTM was designed to maintain long time-range dependency on a sequencing task. However, information flow in the network tends to saturate once the number of time steps exceeds a few thousand. Legendre Memory Unit (LMU) is a revolutionary evolution on the design of RNN that can conveniently handle extremely long-range dependency. Let's try to figure out why the LMU exceeds the performance of the LSTM in this blog. We proceed by reviewing the paper that introduced LMU.
 
 This is a summary of the paper titled [Legendre Memory Units: Continuous-Time Representation in Recurrent Neural Networks](https://papers.nips.cc/paper/9689-legendre-memory-units-continuous-time-representation-in-recurrent-neural-networks.pdf) that was published in [NeurIPS 2019](https://nips.cc/). This was written for the [Advanced Reading Group](https://www.meetup.com/LearnDataScience/events/wwqpgrybccbtb/) in Vancouver.
@@ -249,44 +253,32 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             return A;
         }
 
-        var ua = window.navigator.userAgent;
-        var isIE = /MSIE|Trident/.test(ua);
-
-        if ( isIE ) {
-            //IE specific code goes here
-            $(".left").hide()
-            $(".right").hide()
-        }
-        else{
-            var min_index = $(".left").attr('data-min-index')
-            var max_index = $(".left").attr('data-max-index')
+        var min_index = $(".left").attr('data-min-index')
+        var max_index = $(".left").attr('data-max-index')
 
 
-            var selectorlist = ['#left', '#right'];
-            var indexlist = [min_index, max_index]
+        var selectorlist = ['#left', '#right'];
+        var indexlist = [min_index, max_index]
 
-            var div;
-            var ind;
+        var div;
+        var ind;
 
-            // disable pagination
-            selector = "#left-" + (parseInt(max_index)+1).toString()
-            disablePaginator(selector) 
+        // disable pagination
+        selector = "#left-" + (parseInt(max_index)+1).toString()
+        disablePaginator(selector) 
 
-            selector = "#right-" + min_index  
-            disablePaginator(selector) 
+        selector = "#right-" + min_index  
+        disablePaginator(selector) 
 
 
-            // animate pagination
-            for (div of selectorlist) {
-                for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
-                    var selector = div+"-"+ind
-                    animatePaginator(selector) 
-                } 
-
+        // animate pagination
+        for (div of selectorlist) {
+            for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                var selector = div+"-"+ind
+                animatePaginator(selector) 
             } 
 
-        }
-
+        } 
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );

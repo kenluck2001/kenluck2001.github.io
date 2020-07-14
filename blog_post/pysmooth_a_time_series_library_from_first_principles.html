@@ -71,6 +71,10 @@
 
                 <div class="Article-meta">Tag: machine-learning</div> 
 
+
+                <!--<div class="Article-meta">Tags:
+                
+                </div>-->
                 <section id="text" class="Article-content"> This blog post is the culmination of several technical talks given at the Python Conference (Singapore) in 2018 and a meetup session held in Vancouver titled “Tracking the Tracker: Time Series Analysis in Python from first principles”. The slides and video recordings can be found in [slides](https://www.slideshare.net/kenluck2001/tracking-the-tracker-time-series-analysis-in-python-from-first-principles-101506045), [video_1](https://youtu.be/jGiHxHt1q6A), and [video_2](https://youtu.be/cTeTGHI6vBU). Python programming language is widely used for scientific computation due to the proliferation of third-party packages such as NumPy [[04]](), Scipy [[J+01]](), pandas [[12]]() among others. The availability of extensive documentation for these packages and many built-in package managers (pip [[08]]() and easy\_install [[04]]()) for stress-free installation of these libraries have given rise to wider adoption of Python programming in diverse domains.
 
 Time series analysis is a ubiquitous problem that occurs in many interdisciplinary domains such as finance, social sciences, and engineering. There is an inherent need for an easy to use time-series library that serves the need of multiple users. PySmooth was released as an open-source library to promote mass adoption with little restriction on usage, thereby ensuring that the source code is accessible to practitioners, students, and researchers. Why go through the stress of writing a new software library, when there are existing alternatives in the wild? This is not exactly the case as our approach is unique because to the best of our knowledge the majority of existing time series analysis libraries tend to lack a state-space formulation. However, PySmooth is unique in solving the general time series problem by reducing to a state-space formulation.
@@ -493,44 +497,32 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             return A;
         }
 
-        var ua = window.navigator.userAgent;
-        var isIE = /MSIE|Trident/.test(ua);
-
-        if ( isIE ) {
-            //IE specific code goes here
-            $(".left").hide()
-            $(".right").hide()
-        }
-        else{
-            var min_index = $(".left").attr('data-min-index')
-            var max_index = $(".left").attr('data-max-index')
+        var min_index = $(".left").attr('data-min-index')
+        var max_index = $(".left").attr('data-max-index')
 
 
-            var selectorlist = ['#left', '#right'];
-            var indexlist = [min_index, max_index]
+        var selectorlist = ['#left', '#right'];
+        var indexlist = [min_index, max_index]
 
-            var div;
-            var ind;
+        var div;
+        var ind;
 
-            // disable pagination
-            selector = "#left-" + (parseInt(max_index)+1).toString()
-            disablePaginator(selector) 
+        // disable pagination
+        selector = "#left-" + (parseInt(max_index)+1).toString()
+        disablePaginator(selector) 
 
-            selector = "#right-" + min_index  
-            disablePaginator(selector) 
+        selector = "#right-" + min_index  
+        disablePaginator(selector) 
 
 
-            // animate pagination
-            for (div of selectorlist) {
-                for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
-                    var selector = div+"-"+ind
-                    animatePaginator(selector) 
-                } 
-
+        // animate pagination
+        for (div of selectorlist) {
+            for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                var selector = div+"-"+ind
+                animatePaginator(selector) 
             } 
 
-        }
-
+        } 
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );
