@@ -71,10 +71,6 @@
 
                 <div class="Article-meta">Tag: machine-learning</div> 
 
-
-                <!--<div class="Article-meta">Tags:
-                
-                </div>-->
                 <section id="text" class="Article-content"> This article is written as an attempt to provide an intuitive explanation of the connectedness between fairness and adversarial attacks. The concept of fairness and adversarial attacks keeps evolving and as such it is impossible to cover in one blog post.
 
 We will discuss fairness in details and proceed to make a dive into adversarial attacks. We conclude by finding the connection between fairness and adversarial attacks. Following the hacker’s path, it is desirable to learn by connecting the dots between seemingly related concepts. It is a good idea to understand that many aspects of fairness can only be fixed by the legislature. Our goal is to find how both concepts are connected, albeit with analogies, informal proofs and philosophies. 
@@ -344,32 +340,44 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             return A;
         }
 
-        var min_index = $(".left").attr('data-min-index')
-        var max_index = $(".left").attr('data-max-index')
+        var ua = window.navigator.userAgent;
+        var isIE = /MSIE|Trident/.test(ua);
+
+        if ( isIE ) {
+            //IE specific code goes here
+            $(".left").hide()
+            $(".right").hide()
+        }
+        else{
+            var min_index = $(".left").attr('data-min-index')
+            var max_index = $(".left").attr('data-max-index')
 
 
-        var selectorlist = ['#left', '#right'];
-        var indexlist = [min_index, max_index]
+            var selectorlist = ['#left', '#right'];
+            var indexlist = [min_index, max_index]
 
-        var div;
-        var ind;
+            var div;
+            var ind;
 
-        // disable pagination
-        selector = "#left-" + (parseInt(max_index)+1).toString()
-        disablePaginator(selector) 
+            // disable pagination
+            selector = "#left-" + (parseInt(max_index)+1).toString()
+            disablePaginator(selector) 
 
-        selector = "#right-" + min_index  
-        disablePaginator(selector) 
+            selector = "#right-" + min_index  
+            disablePaginator(selector) 
 
 
-        // animate pagination
-        for (div of selectorlist) {
-            for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
-                var selector = div+"-"+ind
-                animatePaginator(selector) 
+            // animate pagination
+            for (div of selectorlist) {
+                for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                    var selector = div+"-"+ind
+                    animatePaginator(selector) 
+                } 
+
             } 
 
-        } 
+        }
+
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );

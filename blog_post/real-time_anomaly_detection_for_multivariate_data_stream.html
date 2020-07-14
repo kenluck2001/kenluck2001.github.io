@@ -71,10 +71,6 @@
 
                 <div class="Article-meta">Tag: machine-learning, signal-processing</div> 
 
-
-                <!--<div class="Article-meta">Tags:
-                
-                </div>-->
                 <section id="text" class="Article-content"> The paper titled “Probabilistic reasoning for streaming anomaly detection” from MIT CSAIL proposed a framework for performing online anomaly detection on univariate data. Unfortunately, most of the data in the real world are multivariate. Hence, mandating the need for more research into performing online anomaly detection in multivariate data. We have been inspired by their work and extend their framework to support multivariate data with some clever optimizations to build a scalable system.
 
 One would be tempted to ask why we have chosen this paper [[1]]() for our study. One answer to this question is that to the best of our knowledge, their work provided a simple framework based on basic statistics to perform real-time anomaly detection of a stream. Furthermore, during my master's thesis, I successfully used a derivation of their work for breaking news detection of an aggregated news stream. Another development that motivated this work is a challenge that I posed during my talk about [time series analysis](https://kenluck2001.github.io/blog_post/pysmooth_a_time_series_library_from_first_principles.html) in Vancouver. I asked the crowd if they can provide suggestions on how to adapt the presented solution to handle multivariate data streams. This is the result of that bet as it is an attempt to complete unfinished work.
@@ -601,32 +597,44 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             return A;
         }
 
-        var min_index = $(".left").attr('data-min-index')
-        var max_index = $(".left").attr('data-max-index')
+        var ua = window.navigator.userAgent;
+        var isIE = /MSIE|Trident/.test(ua);
+
+        if ( isIE ) {
+            //IE specific code goes here
+            $(".left").hide()
+            $(".right").hide()
+        }
+        else{
+            var min_index = $(".left").attr('data-min-index')
+            var max_index = $(".left").attr('data-max-index')
 
 
-        var selectorlist = ['#left', '#right'];
-        var indexlist = [min_index, max_index]
+            var selectorlist = ['#left', '#right'];
+            var indexlist = [min_index, max_index]
 
-        var div;
-        var ind;
+            var div;
+            var ind;
 
-        // disable pagination
-        selector = "#left-" + (parseInt(max_index)+1).toString()
-        disablePaginator(selector) 
+            // disable pagination
+            selector = "#left-" + (parseInt(max_index)+1).toString()
+            disablePaginator(selector) 
 
-        selector = "#right-" + min_index  
-        disablePaginator(selector) 
+            selector = "#right-" + min_index  
+            disablePaginator(selector) 
 
 
-        // animate pagination
-        for (div of selectorlist) {
-            for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
-                var selector = div+"-"+ind
-                animatePaginator(selector) 
+            // animate pagination
+            for (div of selectorlist) {
+                for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                    var selector = div+"-"+ind
+                    animatePaginator(selector) 
+                } 
+
             } 
 
-        } 
+        }
+
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );
