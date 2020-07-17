@@ -503,35 +503,35 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             $(".left").hide()
             $(".right").hide()
         }
-        else{
-            var min_index = $(".left").attr('data-min-index')
-            var max_index = $(".left").attr('data-max-index')
+
+        var min_index = $(".left").attr('data-min-index')
+        var max_index = $(".left").attr('data-max-index')
 
 
-            var selectorlist = ['#left', '#right'];
-            var indexlist = [min_index, max_index]
+        var selectorlist = ['#left', '#right'];
+        var indexlist = [min_index, max_index]
 
-            var div;
-            var ind;
+        var div;
+        var ind;
 
-            // disable pagination
-            selector = "#left-" + (parseInt(max_index)+1).toString()
-            disablePaginator(selector) 
+        // disable pagination
+        selector = "#left-" + (parseInt(max_index)+1).toString()
+        disablePaginator(selector) 
 
-            selector = "#right-" + min_index  
-            disablePaginator(selector) 
+        selector = "#right-" + min_index  
+        disablePaginator(selector) 
 
 
-            // animate pagination
-            for (div of selectorlist) {
+        // animate pagination
+        for (div of selectorlist) {
                 for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
                     var selector = div+"-"+ind
                     animatePaginator(selector) 
                 } 
 
-            } 
+        } 
 
-        }
+
 
 
         txt = $('.Article-content').text( );     
