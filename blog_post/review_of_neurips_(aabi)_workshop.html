@@ -291,6 +291,12 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
                 var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
                 $(this).attr("href", newUrl); // Set herf value
 
+                var cID = $(this).attr("id"); // Get current url
+                $("#"+cID).click(function() {
+                    localStorage.setItem("tag", cID);
+                    //alert(cID)
+                }); 
+
             });
 
         }
