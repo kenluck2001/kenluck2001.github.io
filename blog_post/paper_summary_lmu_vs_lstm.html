@@ -299,7 +299,6 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             $('#tag').find('a').each(function() {
                 var oldUrl = $(this).attr("href"); // Get current url
                 var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
-                alert (newUrl)
                 $(this).attr("href", newUrl); // Set herf value
 
             });
