@@ -53,7 +53,7 @@
         <div class="Nav-sections">
           <a class="Nav-section " href=/index.html >About</a>
           <a class="Nav-section " href=/projects.html>Projects</a>
-          <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
           <a class="Nav-section" href=/publications.html>Publications</a>
           <a class="Nav-section" href=/news.html>News</a>
         </div>
@@ -70,15 +70,9 @@
                   <time datetime=2020-04-07 06:47:41.464543 class="Article-date">07 Apr, 2020</time>
                 </div>
 
-                <!--<div class="Article-meta">Tag: machine-learning, signal-processing</div> -->
-                <div id="tag" class="Article-meta">Tags:
-                    
-                    
-                        <a href=/blogs/machine-learning/1.html>machine-learning</a>
-                    
-                        <a href=/blogs/%20signal-processing/1.html> signal-processing</a>
-                    
-                </div>
+                <div class="Article-meta">Tag: machine-learning, signal-processing</div> 
+
+
                 <section id="text" class="Article-content"> The paper titled “Probabilistic reasoning for streaming anomaly detection” from MIT CSAIL proposed a framework for performing online anomaly detection on univariate data. Unfortunately, most of the data in the real world are multivariate. Hence, mandating the need for more research into performing online anomaly detection in multivariate data. We have been inspired by their work and extend their framework to support multivariate data with some clever optimizations to build a scalable system.
 
 One would be tempted to ask why we have chosen this paper [[1]]() for our study. One answer to this question is that to the best of our knowledge, their work provided a simple framework based on basic statistics to perform real-time anomaly detection of a stream. Furthermore, during my master's thesis, I successfully used a derivation of their work for breaking news detection of an aggregated news stream. Another development that motivated this work is a challenge that I posed during my talk about [time series analysis](https://kenluck2001.github.io/blog_post/pysmooth_a_time_series_library_from_first_principles.html) in Vancouver. I asked the crowd if they can provide suggestions on how to adapt the presented solution to handle multivariate data streams. This is the result of that bet as it is an attempt to complete unfinished work.
@@ -605,9 +599,6 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             return A;
         }
 
-        var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
-
-
         var ua = window.navigator.userAgent;
         var isIE = /MSIE|Trident/.test(ua);
 
@@ -645,21 +636,7 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
         } 
 
 
-        if( isMobile.any() )
-        {
-            $('#tag').find('a').each(function() {
-                var oldUrl = $(this).attr("href"); // Get current url
-                var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
-                alert (newUrl)
-                $(this).attr("href", newUrl); // Set herf value
 
-            });
-
-        }
-
-        $("#blog").click(function() {
-            localStorage.setItem("tag", "");
-        }); 
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );
