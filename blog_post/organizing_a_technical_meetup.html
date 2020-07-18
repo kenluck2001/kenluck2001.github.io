@@ -53,7 +53,7 @@
         <div class="Nav-sections">
           <a class="Nav-section " href=/index.html >About</a>
           <a class="Nav-section " href=/projects.html>Projects</a>
-          <a class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
           <a class="Nav-section" href=/publications.html>Publications</a>
           <a class="Nav-section" href=/news.html>News</a>
         </div>
@@ -70,9 +70,13 @@
                   <time datetime=2019-11-17 15:16:23.486859 class="Article-date">17 Nov, 2019</time>
                 </div>
 
-                <div class="Article-meta">Tag: general</div> 
-
-
+                <!--<div class="Article-meta">Tag: general</div> -->
+                <div id="tag" class="Article-meta">Tags:
+                    
+                    
+                        <a href=/blogs/general/1.html>general</a>
+                    
+                </div>
                 <section id="text" class="Article-content"> A meetup is a gathering of people with similar interests. This can take the form of a mini-conference, workshop, classroom-style lecture, and public discussion. It can have several names such as study group, reading group, hacking group among others. My experiences are with technical meetups related to Computer science. It is not clear to me how some of my insights may apply to other kinds of gatherings.
 
 
@@ -211,6 +215,9 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             return A;
         }
 
+        var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
+
+
         var ua = window.navigator.userAgent;
         var isIE = /MSIE|Trident/.test(ua);
 
@@ -248,7 +255,21 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
         } 
 
 
+        if( isMobile.any() )
+        {
+            $('#tag').find('a').each(function() {
+                var oldUrl = $(this).attr("href"); // Get current url
+                var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
+                alert (newUrl)
+                $(this).attr("href", newUrl); // Set herf value
 
+            });
+
+        }
+
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );

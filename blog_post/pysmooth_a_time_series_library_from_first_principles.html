@@ -53,7 +53,7 @@
         <div class="Nav-sections">
           <a class="Nav-section " href=/index.html >About</a>
           <a class="Nav-section " href=/projects.html>Projects</a>
-          <a class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
           <a class="Nav-section" href=/publications.html>Publications</a>
           <a class="Nav-section" href=/news.html>News</a>
         </div>
@@ -70,9 +70,13 @@
                   <time datetime=2019-11-17 15:22:54.561914 class="Article-date">17 Nov, 2019</time>
                 </div>
 
-                <div class="Article-meta">Tag: machine-learning</div> 
-
-
+                <!--<div class="Article-meta">Tag: machine-learning</div> -->
+                <div id="tag" class="Article-meta">Tags:
+                    
+                    
+                        <a href=/blogs/machine-learning/1.html>machine-learning</a>
+                    
+                </div>
                 <section id="text" class="Article-content"> This blog post is the culmination of several technical talks given at the Python Conference (Singapore) in 2018 and a meetup session held in Vancouver titled “Tracking the Tracker: Time Series Analysis in Python from first principles”. The slides and video recordings can be found in [slides](https://www.slideshare.net/kenluck2001/tracking-the-tracker-time-series-analysis-in-python-from-first-principles-101506045), [video_1](https://youtu.be/jGiHxHt1q6A), and [video_2](https://youtu.be/cTeTGHI6vBU). Python programming language is widely used for scientific computation due to the proliferation of third-party packages such as NumPy [[04]](), Scipy [[J+01]](), pandas [[12]]() among others. The availability of extensive documentation for these packages and many built-in package managers (pip [[08]]() and easy\_install [[04]]()) for stress-free installation of these libraries have given rise to wider adoption of Python programming in diverse domains.
 
 Time series analysis is a ubiquitous problem that occurs in many interdisciplinary domains such as finance, social sciences, and engineering. There is an inherent need for an easy to use time-series library that serves the need of multiple users. PySmooth was released as an open-source library to promote mass adoption with little restriction on usage, thereby ensuring that the source code is accessible to practitioners, students, and researchers. Why go through the stress of writing a new software library, when there are existing alternatives in the wild? This is not exactly the case as our approach is unique because to the best of our knowledge the majority of existing time series analysis libraries tend to lack a state-space formulation. However, PySmooth is unique in solving the general time series problem by reducing to a state-space formulation.
@@ -495,6 +499,9 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             return A;
         }
 
+        var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
+
+
         var ua = window.navigator.userAgent;
         var isIE = /MSIE|Trident/.test(ua);
 
@@ -532,7 +539,21 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
         } 
 
 
+        if( isMobile.any() )
+        {
+            $('#tag').find('a').each(function() {
+                var oldUrl = $(this).attr("href"); // Get current url
+                var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
+                alert (newUrl)
+                $(this).attr("href", newUrl); // Set herf value
 
+            });
+
+        }
+
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );

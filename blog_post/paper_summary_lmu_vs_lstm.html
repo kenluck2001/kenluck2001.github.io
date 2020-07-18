@@ -53,7 +53,7 @@
         <div class="Nav-sections">
           <a class="Nav-section " href=/index.html >About</a>
           <a class="Nav-section " href=/projects.html>Projects</a>
-          <a class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
           <a class="Nav-section" href=/publications.html>Publications</a>
           <a class="Nav-section" href=/news.html>News</a>
         </div>
@@ -70,9 +70,13 @@
                   <time datetime=2020-01-06 18:39:31.509062 class="Article-date">06 Jan, 2020</time>
                 </div>
 
-                <div class="Article-meta">Tag: machine-learning</div> 
-
-
+                <!--<div class="Article-meta">Tag: machine-learning</div> -->
+                <div id="tag" class="Article-meta">Tags:
+                    
+                    
+                        <a href=/blogs/machine-learning/1.html>machine-learning</a>
+                    
+                </div>
                 <section id="text" class="Article-content"> Both HMM and RNN suffer from disappearing transitions and (vanishing \& exploding) gradient problems respectively. LSTM was designed to maintain long time-range dependency on a sequencing task. However, information flow in the network tends to saturate once the number of time steps exceeds a few thousand. Legendre Memory Unit (LMU) is a revolutionary evolution on the design of RNN that can conveniently handle extremely long-range dependency. Let's try to figure out why the LMU exceeds the performance of the LSTM in this blog. We proceed by reviewing the paper that introduced LMU.
 
 This is a summary of the paper titled [Legendre Memory Units: Continuous-Time Representation in Recurrent Neural Networks](https://papers.nips.cc/paper/9689-legendre-memory-units-continuous-time-representation-in-recurrent-neural-networks.pdf) that was published in [NeurIPS 2019](https://nips.cc/). This was written for the [Advanced Reading Group](https://www.meetup.com/LearnDataScience/events/wwqpgrybccbtb/) in Vancouver.
@@ -251,6 +255,9 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             return A;
         }
 
+        var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
+
+
         var ua = window.navigator.userAgent;
         var isIE = /MSIE|Trident/.test(ua);
 
@@ -288,7 +295,21 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
         } 
 
 
+        if( isMobile.any() )
+        {
+            $('#tag').find('a').each(function() {
+                var oldUrl = $(this).attr("href"); // Get current url
+                var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
+                alert (newUrl)
+                $(this).attr("href", newUrl); // Set herf value
 
+            });
+
+        }
+
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );
