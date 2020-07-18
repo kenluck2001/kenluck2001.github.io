@@ -171,7 +171,7 @@
 
                 //alert (localStorage.getItem("tag") )
 
-                if (tag || tag != "NO SELECTION")
+                if (tag && tag != "NO SELECTION")
                 {
                     window.location.href =  Flask.url_for("showpostsbytags", {"tag": tag, "page":1 })
                 }
@@ -205,7 +205,14 @@
 
             if( isMobile.any() )
             {
-                window.location.href = Flask.url_for("showpostsmobile", {"page":1 }); //https://kenluck2001.github.io/blogs_mob/1
+                var tag = localStorage.getItem("tag")
+                if (tag && tag != "NO SELECTION")
+                {
+                    window.location.href =  Flask.url_for("showpostsmobilebytags", {"tag": tag, "page":1 })
+
+                }else{
+                    window.location.href = Flask.url_for("showpostsmobile", {"page":1 }); //https://kenluck2001.github.io/blogs_mob/1
+                }
             }
 
         }
