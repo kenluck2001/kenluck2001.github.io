@@ -73,7 +73,8 @@
                 <!--<div class="Article-meta">Tag: general</div> -->
                 <div id="tag" class="Article-meta">Tags:
                     
-                    <a href=/blogs/general/1.html>general</a>
+                    <!--<a id=data-tag-general href=/blogs/general/1.html>general</a> -->
+                        <a id=general href=/blogs/general/1.html>general</a> 
                     
                 </div>
                 <section id="text" class="Article-content"> Open-source software is a set of software projects with a permissive license that can allow anyone to modify and customize the code. While the license may enforce copyright or copyleft. This will fall outside the scope of the writing.
@@ -276,6 +277,14 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
 
         } 
 
+        // set the search token
+        $('#tag').find('a').each(function() {
+            var cID = $(this).attr("id"); // Get current url
+            $("#"+cID).click(function() {
+                localStorage.setItem("tag", cID);
+                //alert(cID)
+            }); 
+        });
 
         if( isMobile.any() )
         {

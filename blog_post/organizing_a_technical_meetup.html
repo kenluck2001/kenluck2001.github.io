@@ -73,7 +73,8 @@
                 <!--<div class="Article-meta">Tag: general</div> -->
                 <div id="tag" class="Article-meta">Tags:
                     
-                    <a href=/blogs/general/1.html>general</a>
+                    <!--<a id=data-tag-general href=/blogs/general/1.html>general</a> -->
+                        <a id=general href=/blogs/general/1.html>general</a> 
                     
                 </div>
                 <section id="text" class="Article-content"> A meetup is a gathering of people with similar interests. This can take the form of a mini-conference, workshop, classroom-style lecture, and public discussion. It can have several names such as study group, reading group, hacking group among others. My experiences are with technical meetups related to Computer science. It is not clear to me how some of my insights may apply to other kinds of gatherings.
@@ -253,6 +254,14 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
 
         } 
 
+        // set the search token
+        $('#tag').find('a').each(function() {
+            var cID = $(this).attr("id"); // Get current url
+            $("#"+cID).click(function() {
+                localStorage.setItem("tag", cID);
+                //alert(cID)
+            }); 
+        });
 
         if( isMobile.any() )
         {

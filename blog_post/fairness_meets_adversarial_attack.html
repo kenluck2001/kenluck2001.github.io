@@ -73,7 +73,8 @@
                 <!--<div class="Article-meta">Tag: machine-learning</div> -->
                 <div id="tag" class="Article-meta">Tags:
                     
-                    <a href=/blogs/machine-learning/1.html>machine-learning</a>
+                    <!--<a id=data-tag-machine-learning href=/blogs/machine-learning/1.html>machine-learning</a> -->
+                        <a id=machine-learning href=/blogs/machine-learning/1.html>machine-learning</a> 
                     
                 </div>
                 <section id="text" class="Article-content"> This article is written as an attempt to provide an intuitive explanation of the connectedness between fairness and adversarial attacks. The concept of fairness and adversarial attacks keeps evolving and as such it is impossible to cover in one blog post.
@@ -384,6 +385,14 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
 
         } 
 
+        // set the search token
+        $('#tag').find('a').each(function() {
+            var cID = $(this).attr("id"); // Get current url
+            $("#"+cID).click(function() {
+                localStorage.setItem("tag", cID);
+                //alert(cID)
+            }); 
+        });
 
         if( isMobile.any() )
         {

@@ -73,8 +73,10 @@
                 <!--<div class="Article-meta">Tag: machine-learning, signal-processing</div> -->
                 <div id="tag" class="Article-meta">Tags:
                     
-                    <a href=/blogs/machine-learning/1.html>machine-learning</a>
-                    <a href=/blogs/signal-processing/1.html> signal-processing</a>
+                    <!--<a id=data-tag-machine-learning href=/blogs/machine-learning/1.html>machine-learning</a> -->
+                        <a id=machine-learning href=/blogs/machine-learning/1.html>machine-learning</a> 
+                    <!--<a id=data-tag-signal-processing href=/blogs/signal-processing/1.html> signal-processing</a> -->
+                        <a id=signal-processing href=/blogs/signal-processing/1.html> signal-processing</a> 
                     
                 </div>
                 <section id="text" class="Article-content"> The paper titled “Probabilistic reasoning for streaming anomaly detection” from MIT CSAIL proposed a framework for performing online anomaly detection on univariate data. Unfortunately, most of the data in the real world are multivariate. Hence, mandating the need for more research into performing online anomaly detection in multivariate data. We have been inspired by their work and extend their framework to support multivariate data with some clever optimizations to build a scalable system.
@@ -642,6 +644,14 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
 
         } 
 
+        // set the search token
+        $('#tag').find('a').each(function() {
+            var cID = $(this).attr("id"); // Get current url
+            $("#"+cID).click(function() {
+                localStorage.setItem("tag", cID);
+                //alert(cID)
+            }); 
+        });
 
         if( isMobile.any() )
         {

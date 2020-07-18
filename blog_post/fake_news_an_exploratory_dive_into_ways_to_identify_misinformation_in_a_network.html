@@ -73,8 +73,10 @@
                 <!--<div class="Article-meta">Tag: bayesian-statistics, machine-learning</div> -->
                 <div id="tag" class="Article-meta">Tags:
                     
-                    <a href=/blogs/bayesian-statistics/1.html>bayesian-statistics</a>
-                    <a href=/blogs/machine-learning/1.html> machine-learning</a>
+                    <!--<a id=data-tag-bayesian-statistics href=/blogs/bayesian-statistics/1.html>bayesian-statistics</a> -->
+                        <a id=bayesian-statistics href=/blogs/bayesian-statistics/1.html>bayesian-statistics</a> 
+                    <!--<a id=data-tag-machine-learning href=/blogs/machine-learning/1.html> machine-learning</a> -->
+                        <a id=machine-learning href=/blogs/machine-learning/1.html> machine-learning</a> 
                     
                 </div>
                 <section id="text" class="Article-content"> Fake news is a false piece of information that was purposely created to deceive a person. The effect on a single individual can be devastating, however, modern trends show that actors are deploying fake news on a large scale to influence a group of users. Identifying fake news by manual inspection is a daunting task because several fake news takes the form of a half-truth, which means they have some forms of reality, but the events in the message may have been deceptively modified to fool an individual. The credibility of fake news can vary from outright insanity to a likely real. A crafty attacker will stick to creating news that has the semblance of reality as it is likely to yield the greatest utility. A piece of typical fake news can take the form of innuendos, rumors, and gossip among others. It is important to note that unpleasant news that is true cannot be categorized as fake news. In this blog post, we will work to understand the fake news from both perspectives (attacker, victim). As part of setting the stage for this research, we would pretend to be the attacker and simulate their reasoning. 
@@ -509,6 +511,14 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
 
         } 
 
+        // set the search token
+        $('#tag').find('a').each(function() {
+            var cID = $(this).attr("id"); // Get current url
+            $("#"+cID).click(function() {
+                localStorage.setItem("tag", cID);
+                //alert(cID)
+            }); 
+        });
 
         if( isMobile.any() )
         {

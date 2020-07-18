@@ -73,7 +73,8 @@
                 <!--<div class="Article-meta">Tag: machine-learning</div> -->
                 <div id="tag" class="Article-meta">Tags:
                     
-                    <a href=/blogs/machine-learning/1.html>machine-learning</a>
+                    <!--<a id=data-tag-machine-learning href=/blogs/machine-learning/1.html>machine-learning</a> -->
+                        <a id=machine-learning href=/blogs/machine-learning/1.html>machine-learning</a> 
                     
                 </div>
                 <section id="text" class="Article-content"> This blog post is the culmination of several technical talks given at the Python Conference (Singapore) in 2018 and a meetup session held in Vancouver titled “Tracking the Tracker: Time Series Analysis in Python from first principles”. The slides and video recordings can be found in [slides](https://www.slideshare.net/kenluck2001/tracking-the-tracker-time-series-analysis-in-python-from-first-principles-101506045), [video_1](https://youtu.be/jGiHxHt1q6A), and [video_2](https://youtu.be/cTeTGHI6vBU). Python programming language is widely used for scientific computation due to the proliferation of third-party packages such as NumPy [[04]](), Scipy [[J+01]](), pandas [[12]]() among others. The availability of extensive documentation for these packages and many built-in package managers (pip [[08]]() and easy\_install [[04]]()) for stress-free installation of these libraries have given rise to wider adoption of Python programming in diverse domains.
@@ -537,6 +538,14 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
 
         } 
 
+        // set the search token
+        $('#tag').find('a').each(function() {
+            var cID = $(this).attr("id"); // Get current url
+            $("#"+cID).click(function() {
+                localStorage.setItem("tag", cID);
+                //alert(cID)
+            }); 
+        });
 
         if( isMobile.any() )
         {
