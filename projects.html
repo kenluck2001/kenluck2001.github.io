@@ -20,7 +20,7 @@
     <div class="Nav-sections">
       <a class="Nav-section " href=/index.html >About</a>
       <a class="Nav-section Nav-section--active" href=/projects.html>Projects</a>
-      <a class="Nav-section " href=/blogs/1.html>Blogs</a>
+      <a id="blog" class="Nav-section " href=/blogs/1.html>Blogs</a>
       <a class="Nav-section" href=/publications.html>Publications</a>
       <a class="Nav-section" href=/news.html>News</a>
     </div>
@@ -55,6 +55,12 @@
 
       </div>
     </div>
+
+    <script  type="text/javascript" >
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
+    </script >
 
   </body>
 </html>

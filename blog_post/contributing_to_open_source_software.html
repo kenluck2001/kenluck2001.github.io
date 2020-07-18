@@ -53,7 +53,7 @@
         <div class="Nav-sections">
           <a class="Nav-section " href=/index.html >About</a>
           <a class="Nav-section " href=/projects.html>Projects</a>
-          <a class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
           <a class="Nav-section" href=/publications.html>Publications</a>
           <a class="Nav-section" href=/news.html>News</a>
         </div>
@@ -70,9 +70,12 @@
                   <time datetime=2019-10-05 16:38:31.719389 class="Article-date">05 Oct, 2019</time>
                 </div>
 
-                <div class="Article-meta">Tag: general</div> 
-
-
+                <!--<div class="Article-meta">Tag: general</div> -->
+                <div id="tag" class="Article-meta">Tags:
+                    
+                    <a href=/blogs/general/1.html>general</a>
+                    
+                </div>
                 <section id="text" class="Article-content"> Open-source software is a set of software projects with a permissive license that can allow anyone to modify and customize the code. While the license may enforce copyright or copyleft. This will fall outside the scope of the writing.
 
 Joining an open-source project can be overwhelming as the effort at onboarding is not as straightforward as in a traditional brick and mortar software shop. 
@@ -234,6 +237,9 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
             return A;
         }
 
+        var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
+
+
         var ua = window.navigator.userAgent;
         var isIE = /MSIE|Trident/.test(ua);
 
@@ -271,7 +277,21 @@ Continue reading more of our <a href=/blogs/1.html>blog posts</a>, technical <a 
         } 
 
 
+        if( isMobile.any() )
+        {
+            $('#tag').find('a').each(function() {
+                var oldUrl = $(this).attr("href"); // Get current url
+                var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
+                alert (newUrl)
+                $(this).attr("href", newUrl); // Set herf value
 
+            });
+
+        }
+
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
 
         txt = $('.Article-content').text( );     
         $('.Article-content').html( marked(txt) );

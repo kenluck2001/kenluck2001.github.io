@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <script src="/jsglue.js" type="text/javascript"></script>
     <title>Personal Website [list of blogs] | Kenneth Odoh's Blog</title>
     <meta name="author" content="Kenneth Emeka Odoh">
     <meta name="description" content=" The personal website of Kenneth Emeka Odoh">
@@ -24,13 +25,11 @@
       <a href=/index.html>Kenneth Emeka Odoh</a>
     </div>
     <div class="Nav-sections">
-      <a class="Nav-section " href=/index.html >About</a>
-      <a class="Nav-section " href=/projects.html>Projects</a>
-      <a class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+      <a class="Nav-section" href=/index.html >About</a>
+      <a class="Nav-section" href=/projects.html>Projects</a>
+      <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
       <a class="Nav-section" href=/publications.html>Publications</a>
       <a class="Nav-section" href=/news.html>News</a>
-
-      <!--<a class="Nav-section"><img  data-toggle="tooltip" title="Click to download file. Note is not working properly." src=/static/images/search.svg style="width: 32px; height: 32px;" alt="search"></a>-->
 
       <a class="Nav-section"><img id="search"  data-toggle="tooltip" title="Click to download file. Note is not working properly." src=/static/images/search.svg style="width: 32px; height: 32px;" alt="search"></a>
     </div>
@@ -39,10 +38,12 @@
       <a class="Nav-section">
          <div id="dropdown_bar">
             <select id="faceted">
-                <option value="volvo"><a href="volvo">volvo</a></option>
-                <option value="saab"><a href="saab">saab</a></option>
-                <option value="opel"><a href="opel">opel</a></option>
-                <option value="audi"><a href="audi">audi</a></option>
+                <option value="NO SELECTION" selected>NO SELECTION</option>
+                <option value="machine-learning">machine-learning</option>
+                <option value="bayesian-statistics">bayesian-statistics</option>
+                <option value="general">general</option>
+                <option value="signal-processing">signal-processing</option>
+                
             </select>
 
          </div>
@@ -137,7 +138,7 @@
             
                 &lt;&lt; Newer posts &nbsp;| 
                 
-                &nbsp; <a href="/blogs/2.html"> Older posts &gt;&gt;</a>
+                &nbsp; <a class="pagenav" href="/blogs/2.html"> Older posts &gt;&gt;</a>
                 
             
 
@@ -158,8 +159,6 @@
                 <p class="text-muted">&copy; 2019 Copyright: Kenneth Odoh</p>
             </div>
         </footer>
-
-
 
       </div>
     </div>
@@ -198,29 +197,49 @@
 
             $("#faceted").change(function(){
                 tag = $("#faceted option:selected").text()
-                localStorage.setItem("tag", tag);
+                localStorage.setItem("tag", tag.trim());
 
-                alert (localStorage.getItem("tag") )
+                //alert (localStorage.getItem("tag") )
 
-                //window.location.href =  "/safe/"+this.value;  http://127.0.0.1:5000/safe/saab
-
-                //window.location.href =  this.value;
-
+                if (tag || tag != "NO SELECTION")
+                {
+                    window.location.href =  Flask.url_for("showpostsbytags", {"tag": tag, "page":1 })
+                }
+                else{
+                    window.location.href =  Flask.url_for("showposts", {"page":1 })
+                }
+                    
             }); 
-            
+
+
+            // pagination on the tags
+            $(".pagenav").click(function() {
+                var oldUrl = $(this).attr("href"); // Get current url
+                var tag = localStorage.getItem("tag")
+
+                if (tag)
+                {
+                    if (tag != "NO SELECTION"){
+                        var newUrl = oldUrl.replace("/blogs", "/blogs/"+tag); // Create new url
+                        $(this).attr("href", newUrl); // Set herf value
+                    }
+                }else{
+                    $(this).attr("href", oldUrl); // Set herf value
+                }
+            });
+
+
+            $("#blog").click(function() {
+                localStorage.setItem("tag", "");
+            }); 
 
             if( isMobile.any() )
             {
-                window.location.href = "https://kenluck2001.github.io/blogs_mob/1";
+                window.location.href = Flask.url_for("showpostsmobile", {"page":1 }); //https://kenluck2001.github.io/blogs_mob/1
             }
 
         }
-
-
-
     </script >
-
-
 
   </body>
 </html>
