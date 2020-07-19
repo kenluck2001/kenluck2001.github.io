@@ -39,10 +39,14 @@
          <div id="dropdown_bar">
             <select id="faceted">
                 <option value="NO SELECTION" selected>NO SELECTION</option>
-                <option value="machine-learning">machine-learning</option>
-                <option value="bayesian-statistics">bayesian-statistics</option>
-                <option value="general">general</option>
-                <option value="signal-processing">signal-processing</option>
+                <!--<option value="machine-learning">machine-learning</option> -->
+                    <option value="machine-learning">MACHINE LEARNING</option> 
+                <!--<option value="bayesian-statistics">bayesian-statistics</option> -->
+                    <option value="bayesian-statistics">BAYESIAN STATISTICS</option> 
+                <!--<option value="general">general</option> -->
+                    <option value="general">GENERAL</option> 
+                <!--<option value="signal-processing">signal-processing</option> -->
+                    <option value="signal-processing">SIGNAL PROCESSING</option> 
                 
             </select>
 
@@ -165,7 +169,8 @@
             }
 
             $("#faceted").change(function(){
-                tag = $("#faceted option:selected").text()
+                //tag = $("#faceted option:selected").text()
+                tag = $("#faceted option:selected").val()
                 localStorage.setItem("tag", tag.trim());
 
                 //alert (localStorage.getItem("tag") )
