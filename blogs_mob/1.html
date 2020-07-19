@@ -15,7 +15,7 @@
 
     <link rel="stylesheet" type="text/css" href="/static/pagination.css">
 
-
+<script type="text/javascript" src="/static/js/jquery-1.5.1.min.js"></script>
 
   </head>
   <body class="Site">
@@ -121,7 +121,27 @@
         </footer>
       </div>
     </div>
+    <script  type="text/javascript" >
 
+        // pagination on the tags
+        $(".pagenav").click(function() {
+            var oldUrl = $(this).attr("href"); // Get current url
+            var tag = localStorage.getItem("tag")
+
+            if (tag)
+            {
+                if (tag != "NO SELECTION"){
+                    var newUrl = oldUrl.replace("/blogs_mob", "/blogs_mob/"+tag); // Create new url
+                    $(this).attr("href", newUrl); // Set herf value
+                }
+            }else{
+                $(this).attr("href", oldUrl); // Set herf value
+            }
+        });
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
+    </script >
   </body>
 </html>
 
