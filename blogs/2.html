@@ -216,6 +216,17 @@
                     
             }); 
 
+            $("select option").each(function(){
+                tag = localStorage.getItem("tag")
+                if (tag){
+                    if ($(this).val() == tag)
+                    {
+                        $(this).attr("selected","selected");
+                    }else{
+                        $(this).removeAttr("selected");
+                    }
+                }
+            });
 
             // pagination on the tags
             $(".pagenav").click(function() {
