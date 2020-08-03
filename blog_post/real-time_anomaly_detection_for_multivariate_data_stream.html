@@ -248,11 +248,11 @@ A_{t+1} = \sqrt{\alpha} * A_t + \frac{\sqrt{\alpha}}{\Big\|z_t \Big\|^2} * \left
 
 5. There are difficulties with setting the values of $\alpha$ and $\beta$ respectively. $\alpha + \beta = 1$ as an explicit form of exponential moving average. The author chose to set the values of $\alpha$, $\beta$ using the statistics of the data stream.
 
-The parameters are set as $\alpha = Ca^2$, $\beta = 1 - Ca^2$ and $n$ is the size of the original data in the static settings.
-Where $Ca = \sqrt{1 - C_{cov}}$ and $C_{cov} = \frac{2}{{n^2}+6}$.
+The parameters are set as $\alpha = {C_{a}}^2$, $\beta = 1 - {C_{a}}^2$ and $n$ is the size of the original data in the static settings.
+Where ${C_{a}} = \sqrt{1 - C_{cov}}$ and $C_{cov} = \frac{2}{{n^2}+6}$.
 
 \begin{equation}
-A_{t+1} = Ca * A_t + \frac{Ca}{\Big\|z_t \Big\|^2} * \left( \sqrt{1 + \frac{(1 - Ca^2) * \Big\|z_t \Big\|^2}{Ca^2}} - 1 \right) * v_t * z_t
+A_{t+1} = {C_{a}} * A_t + \frac{{C_{a}}}{\Big\|z_t \Big\|^2} * \left( \sqrt{1 + \frac{(1 - {C_{a}}^2) * \Big\|z_t \Big\|^2}{{C_{a}}^2}} - 1 \right) * v_t * z_t
 \end{equation}
 
 The Implementation can be found here    
