@@ -91,7 +91,7 @@ We will not rehash the description of LSTM in this blog as Chris Olah has alread
 ### LSTM
 LSTM makes use of a mix of gating mechanisms and non-linearity to improve on the vanishing and exploding gradient problems that occur in default RNNs. Saturation leads to loss of performance in LSTM, and as a result, several variants of LSTM has been proposed to minimize the effect of saturation.
 
-The likelihood of saturation also increases due to the increased use of squeezing functions such as sigmoid, tanh for their gating effects. This can lead to saturation which can affect the ability to capture long time-range dependency in a sequence. 
+The likelihood of saturation also increases due to the increased use of squeezing functions such as sigmoid, tanh for their gating effects. This configuration can lead to saturation which can affect the ability to capture long time-range dependency in a sequence. 
 
 The LSTM has the weights of its parameters initialized to random values. This is problematic as the starting point can have a major impact on the quality of the optimization.
 
