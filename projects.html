@@ -6,7 +6,7 @@
     <meta name="author" content="Kenneth Emeka Odoh">
     <meta name="description" content=" The personal website of Kenneth Emeka Odoh">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
     <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/style.css">
 
@@ -20,7 +20,7 @@
     <div class="Nav-sections">
       <a class="Nav-section " href=/index.html >About</a>
       <a class="Nav-section Nav-section--active" href=/projects.html>Projects</a>
-      <a class="Nav-section " href=/blogs/1.html>Blogs</a>
+      <a id="blog" class="Nav-section " href=/blogs/1.html>Blogs</a>
       <a class="Nav-section" href=/publications.html>Publications</a>
       <a class="Nav-section" href=/news.html>News</a>
     </div>
@@ -29,16 +29,23 @@
 </header>
     <div class="Site-content">
       <div class="u-container">
+        <p> Also check out my well-written <a href=/blogs/1.html>blog posts</a>, technical <a target="_blank" href=/publications.html#talks>talks</a> and <a target="_blank" href=/publications.html#publications>publications</a>.</p>
 
-        <p> Here is a select list of open source projects </p>
+        <p> Here is a select list of open source projects: </p>
 
-        <p> <a target="_blank" href="https://github.com/kenluck2001/2DGameFrameWork"> <b>2DGameFrameWork</b></a>: This was full-fledged game engine for 2D first person shooter game, 2012.</p>
+        <p> Made open source contributions to the <a target="_blank" href="https://www.sympy.org/fr/index.html"><b>Sympy</b></a> and Nvidia <a target="_blank" href="https://github.com/rapidsai/cuml"><b>cuML</b></a>  projects.</p>
+
+        <p>
+<a target="_blank" href="https://github.com/kenluck2001/anomaly"> <b>Anomaly</b></a> | <a target="_blank" href="https://github.com/kenluck2001/anomalyMulti"> <b>anomalyMulti</b></a>: I have written a modular library for real-time anomaly detection for univariate and multivariate data streams, 2017 - 2020.</p>
 
         <p> <a target="_blank" href="https://github.com/kenluck2001/pySmooth"> <b>pySmooth</b></a>: A unique time series library in Python that consists of Kalman filters (discrete, extended, and unscented), online ARIMA (novel idea as a personal invention), and time difference model, 2017.</p>
 
-        <p> <a target="_blank" href="https://github.com/kenluck2001/anomaly"> <b>Anomaly</b></a>: I have written a small library for real-time anomaly detection using a redis store to ensure persistence of summary parameters between sliding windows, 2017.</p>
+        <p> <a target="_blank" href="https://github.com/kenluck2001/2DGameFrameWork"> <b>2DGameFrameWork</b></a>: This was full-fledged game engine for 2D first person shooter game, 2012.</p>
 
-        <p> Many of my open projects can be found on my <a target="_blank" href="https://github.com/kenluck2001">github</a>.</p>
+        <p> Many of my open projects can be found on my <a target="_blank" href="https://github.com/kenluck2001"><b>Github</a></b> and <a target="_blank" href="https://gist.github.com/kenluck2001"><b>Gist</b></a>.</p>
+
+
+
 
         <footer class="footer">
           <div class="Footer">
@@ -46,9 +53,14 @@
           </div>
         </footer>
 
-
       </div>
     </div>
+
+    <script  type="text/javascript" >
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
+    </script >
 
   </body>
 </html>

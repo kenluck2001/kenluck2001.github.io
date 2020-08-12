@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Personal Website [current blog] | Kenneth Odoh's Blog</title>
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="author" content="Kenneth Emeka Odoh">
+    <meta name="description" content=" The personal website of Kenneth Emeka Odoh">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: {
+             equationNumbers: {  autoNumber: "AMS"  },
+             //extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+             extensions: ["TeX/AMSmath.js", "TeX/AMSsymbol.js"]
+          },
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+    </script> 
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      <style>
+      mjx-container[display="block"] {
+        display: block;
+        margin: 1em 0;
+      }
+      </style>
+
+      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js">
+      </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js">
+      </script>
+
+  </head>
+  <body class="Site">
+    <header class="Site-header">
+      <nav class="Nav">
+        <div class="Nav-home">
+          <a href=/index.html>Kenneth Emeka Odoh</a>
+        </div>
+        <div class="Nav-sections">
+          <a class="Nav-section " href=/index.html >About</a>
+          <a class="Nav-section " href=/projects.html>Projects</a>
+          <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a class="Nav-section" href=/publications.html>Publications</a>
+          <a class="Nav-section" href=/news.html>News</a>
+        </div>
+      </nav>
+      <div class="u-separator"></div>
+    </header>
+    <div class="Site-content">
+      <div class="u-container">
+
+        <div class="Page">
+            <article role="main" class="Article">
+                <h1 class="Article-title"> Review of NeurIPS (AABI) Workshop </h1>
+                <div class="Article-meta">
+                  <time datetime=2019-12-16 19:05:07.129511 class="Article-date">16 Dec, 2019</time>
+                </div>
+
+                <!--<div class="Article-meta">Tag: bayesian-statistics, machine-learning</div> -->
+                <div id="tag" class="Article-meta">Tags:
+                    
+                    <!--<a id=data-tag-bayesian-statistics href=/blogs/bayesian-statistics/1.html>bayesian-statistics</a> -->
+                        <a id=bayesian-statistics href=/blogs/bayesian-statistics/1.html>bayesian-statistics</a> 
+                    <!--<a id=data-tag-machine-learning href=/blogs/machine-learning/1.html> machine-learning</a> -->
+                        <a id=machine-learning href=/blogs/machine-learning/1.html> machine-learning</a> 
+                    
+                </div>
+                <section id="text" class="Article-content"> I attended the [Symposium on Approximate Bayesian Inference](http://approximateinference.org/), [Black in AI](https://blackinai.github.io/), and several poster sessions within the 2 days that I spent at [NeurIPS](https://nips.cc/), 2019 in Vancouver. During the event, I focused on the Bayesian workshop as it tends to emphasize the fundamentals, rather than bleeding-edge results. This is in line with my goals of understanding how things work on a deeper level; as such knowledge is likely to stand the test of time. [Black in AI](https://blackinai.github.io/) workshop was very informative as it was a refresher on subjects that I was already familiar with and as such we won't write more about the summary of the event. 
+
+Unfortunately, I did not attend a number of the presentations in the main NeurIPS conference due to information overload. My case is not yet hopeless, because our reading groups in Vancouver will eventually read the set of interesting papers from the conference in the coming months. Conference is the de facto venue for disseminating the latest knowledge in the field. By rational principles, for a work to be considered as the state of the art, then it must answer this question without any ambiguity. Are improvements in the performance metrics due to the novelty of the method or the preprocessing steps or even random effects or sheer luck? 
+
+Subsequently, I attended the Symposium in Approximate Bayesian Inference session without any formal training in mathematics or initial prep for the workshop. This was done on purpose, to calibrate my understanding of Bayesian statistics and engage with researchers during the poster sessions. Fortunately, it appeared that the contents of some talks were already familiar to me. There was a keynote that had some Kalman filters which were part of a [well-received talk](https://kenluck2001.github.io/blog_post/pysmooth_a_time_series_library_from_first_principles.html) that I gave in Vancouver. The concepts are similar to the many papers that we had read in our advanced reading group. However, there were lots of acronyms which I think makes simple things appear to be complicated.
+
+Furthermore, I observed that there is a growing effort to unify the Bayesian world with the neural network world. One of the reasons is that it is easier to perform uncertainty quantification when your model has some form of Gaussian processes. A few talks were trying to draw this connection. One of the clearest of such attempts was the Neural Tangent's talk. The premise of the talk was based on answering the question. Can GP be used as a building block for Bayesian deep learning? Neural Tangent's library is an easy-to-use library for creating finite-width and infinite width neural networks. It provided a way to analyze the training dynamics of the neural network. This library can learn on small datasets based on its Bayesian origins. I heard the term "infinite-width neural network" for the first time in this conference, while the details are not yet clear to me. I found the description in a [paper](https://openreview.net/pdf?id=SkGT6sRcFX) that was released in ICLR 2019. Surprisingly, I also found out that there was a  universal misunderstanding of “noise” in the workshop. Some refer to noise as variance, bias, overfitting, and underfitting. There is a need for the field to unify the conventions. I can live with having one more acronym to memorize. Okay now, let us proceed to discuss the main themes of the workshop.
+
+The symposium was focused on the following topics: robustness, a better understanding of generalization, difficulty of quantifying mutual information, and efficient computation. A number of the talks focused on performing Bayesian computation even in the face of model misspecification, model collapse, and increased variance. One talk attempts to improve the vanilla OMC. The resulting method is named [Robust OMC](https://arxiv.org/pdf/1904.00670.pdf). Original OMC can fail when the likelihood is flat. The method favors conditioning on summary statistics rather than a single variable and the use of a single point to represent an area where the likelihood is nearly constant. ROMC provides a way of sampling while preventing model collapse by fixing weights through the stabilization of the matrices. Weights are unstable by default. Robustness is achieved by using a variable to switch off faulty weights in a scheme that is similar to dropout. Consequently, another talk focused on the formulation of a robust estimate of the likelihood by using [pseudo-likelihood](https://arxiv.org/abs/1909.13339) based on maximum mean discrepancy which is resilient to issues that may arise due to misspecification of the model. 
+
+There was a talk that provided a way to reduce the cost of Bayesian computation by using clever parallelism. Sample efficiency is a measure of the discrepancy between observed and simulated data. This necessitates the creation of a principled sequential Bayesian experimental design to select optimal simulation locations that maximize sample efficiency. The work allows the running of several experiments to select these locations at once. The work made of [batch simulation](https://arxiv.org/abs/1910.06121) to reduce the time for Bayesian inference. Another way of enhancing the robustness of models by Introducing sparsity in the approximation of Gaussian processes by using [inducing points](https://arxiv.org/abs/1910.10596). These inducing points lead to a more scalable algorithm as no neural network or data argumentation is required. Analogous to pre-training and transfer learning in the neural network field to improve performance. There are attempts to replicate the same feat in the Bayesian world. The work about creating [probabilistic map](https://openreview.net/pdf?id=BJgnty2NYr) for robotic by incrementally updating the model by finding the correspondence between model and data as a form of transfer learning.  
+
+There was a paper on a variant of [Kalman filter](https://openreview.net/forum?id=HkxNKk2VKS) that made use of 2-passes instead of the traditional 1-pass. Many two passes algorithms tend to reproduce noise in the process in the backward pass by using Brownian Tree which the author claims have a better ability to capture the dynamics of the system. There were talks on performing backpropagation through time (BPTT) where the choice of k for backprop is adaptive, and they also provided theoretical guarantees that can learn under concept drift.
+
+The best talk for me at the Symposium was the use of normalizing flow for progressive image rendering. This provides a principled way to achieve multiple scales of decompressing images with varying quality. The details are not yet clear to me, but I intended to read more about the [work](https://arxiv.org/pdf/1905.07376.pdf). This work has clear commercial applications and serves as a great work.
+
+
+There was a talk that connects the reinforcement learning with information theory. There are known issues with current reinforcement learning algorithms that include:
+- It is likely to get two different solutions based on slight perturbation.
+- Need for the detailed reward scheme
+- Long training times
+- Lacking a diversity-seeking exploration for the reward function
+
+The talk proposed a distribution-matching formulation of reinforcement learning that makes use of maximizing entropy over distribution. We track different possibilities from a state before committing probability mass to that area. Choosing a policy to maximize Q values can tend to get stuck and leads to suboptimal solutions. However, tracking all the states using the RL with maximum entropy and don’t commit to a probability mass until you are sure it is optimal. It is essentially matching the distribution of states instead of rewards. Optimal actions lead to an optimal future. Inference can be understood as to which action was taken, given that the future was optimal. More information can be found in this [work](https://arxiv.org/pdf/1805.00909.pdf).
+
+### Words of Wisdom
+The recurring themes in the workshop are:
+- MCMC wins on the bias, Variational inference (VI) wins on variance and amortization. It is better to run MCMC without waiting for convergence as good results can be obtained even before convergence.
+
+- VI gives quicker convergence, but the results may not be very good. VB (Variational Bayes) fails to capture the heteroscedastic noise and uses homoskedastic noise to fit the data.
+
+- Reparametrization tricks were used in virtually every poster. I think it is probably the most useful technique in Bayesian literature as it allows for performing differentiation on a process. Making it easier to perform gradient descent for optimization.
+
+- Stratonovich SDE (stochastic differential equation) can be simulated cheaper.
+
+- The adjoint sensitivity method is a cheaper way of solving ODE. It can be combined with reverse mode auto-diff for time-efficient and constant memory.
+
+- The mixture of Gaussian processes is highly non-Gaussians.
+
+It is well-known that our perception of reality can be relativistic and as such, this is not an official summary of the symposium, but my recollection of the unfolding of events.
+
+### Conclusions
+
+I saw a poster on the saliency map which focused on current problems with the interpretability of the map. I met the author to ask how they could contrast their work with interpreting the attention map. We concluded that ablation style intervention is a way to understand the underlying process in the network. Can the answer lie in causality?
+
+I was excited to have a selfie with the legendary Professor Christopher Manning from Stanford University and Jeff Dean from Google. It was a memorable day for me.
+
+The entire [proceedings](https://openreview.net/group?id=approximateinference.org/AABI/2019/Symposium) can be found here.  </section>
+
+                <table>
+                  <tr>
+                    <td class="text-muted"> View as: </td>
+                    <td> <a class="generate" href="#/pdf/"><img  data-toggle="tooltip" title="Click to download file. Note is not working properly." src=/static/images/pdf_icon.svg style="width: 28px; height: 25px;" alt="pdf here"/></a> </td>
+                    <td class="text-muted"> [Alpha version]</td>
+                    <td> <p class="download"> <a id="file" target="_blank" ></a> </p> </td>
+                  </tr>
+                </table>
+
+                <hr class="line"/>
+                <div style="display: flex; justify-content: center;">
+                    <table>
+                      <tr>
+                        <td> <a class="left" id="left-7" data-min-index="0" data-max-index="8" href=/blog_post/paper_summary_lmu_vs_lstm.html><img id="left-0" data-toggle="tooltip" title="Click to previous page." src=/static/images/left.png style="width: 48px; height: 50px;" alt="previous here"/></a> </td>
+
+                        <td> <div class="squares">
+                              <div class="icon1">
+                                 <!--<p class="text-muted">6/8</p>-->
+                                 <p class="text-muted">3/8</p>
+                              </div>
+                            </div> 
+                        </td>
+                        
+                        <td> <a class="right" id="right-5" data-min-index="0" data-max-index="8" href=/blog_post/fake_news_an_exploratory_dive_into_ways_to_identify_misinformation_in_a_network.html><img id="right-1" data-toggle="tooltip" title="Click to next page." src=/static/images/right.png style="width: 48px; height: 50px;" alt="next here"/></a> </td>
+                      </tr>
+                    </table>
+                </div>
+                <hr class="line"/>
+
+
+                <div class="Article-meta">
+Read more of our <a href=/blogs/1.html><b>blog posts</b></a>, technical <a target="_blank" href=/publications.html#talks><b>talks</b></a>, and <a target="_blank" href=/publications.html#publications><b>publications</b></a>.
+                </div>
+
+                <div class="Footer">
+                <p> Please feel free to <b>donate</b> by clicking <a target="_blank" data-toggle="tooltip" title="Click to make a donation here" href="https://checkout.square.site/pay/a5a1bb5a14e941baae84556f133744cd"><img src=/static/images/donate.png style="width: 40px; height: 40px;" alt="donate here"/></a>using Square Checkout.</p>
+                </div>
+
+                <a target="_blank" data-size="large" class="twitter-share-button"
+                  href="https://twitter.com/intent/tweet?url=https://kenluck2001.github.io/blog_post/review_of_neurips_%28aabi%29_workshop.html&text= Share the blog here">
+                 <img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" alt="Smiley face" height="42" width="42">  </a>
+
+
+            </article>
+        </div>
+
+      </div>
+    </div>
+
+        <footer class="footer">
+            <div class="Footer">
+                <p class="text-muted">Icon made by Freepik from www.flaticon.com</p>
+                <p class="text-muted">&copy; 2019 Copyright: Kenneth Odoh</p>
+            </div>
+        </footer>
+
+
+      <script type="text/javascript" src="/static/js/jquery-1.5.1.min.js"></script>
+      <script type="text/javascript" src="/static/js/showdown.js"></script>
+      <script type="text/javascript" src="/static/js/pdf.js"></script>
+      <script type="text/javascript" src="/static/js/pdf-ui.js"></script>
+
+      <script type="text/javascript" src="/static/js/html2pdf.bundle.min.js"></script>
+
+    <script  type="text/javascript" >
+
+        function animatePaginator(selector) {
+            var i = 0;
+            $(selector).css('opacity', '1.0');
+            setInterval(function () {
+                i++;
+                if ((i%2)==1)
+                {
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '0.5');
+                        $(this).fadeIn("slow");
+                    });
+                }else{
+                    //$(selector).css('opacity', '1.0');
+
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '1.0');
+                        $(this).fadeIn("slow");
+                    });
+                }
+                i = i % 2
+            }, 5000);
+        }
+
+        function disablePaginator(selector) {
+            $(selector).css('visibility','hidden')
+            $(selector).parent().removeAttr("href");
+        }
+
+
+        Array.range = function(a, b, step){
+            var A = [];
+            if(typeof a == 'number'){
+                A[0] = a;
+                step = step || 1;
+                while(a+step <= b){
+                    A[A.length]= a+= step;
+                }
+            }
+            else {
+                var s = 'abcdefghijklmnopqrstuvwxyz';
+                if(a === a.toUpperCase()){
+                    b = b.toUpperCase();
+                    s = s.toUpperCase();
+                }
+                s = s.substring(s.indexOf(a), s.indexOf(b)+ 1);
+                A = s.split('');        
+            }
+            return A;
+        }
+
+        var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
+
+
+        var ua = window.navigator.userAgent;
+        var isIE = /MSIE|Trident/.test(ua);
+
+        if ( isIE ) {
+            //IE specific code goes here
+            $(".left").hide()
+            $(".right").hide()
+        }
+
+        var min_index = $(".left").attr('data-min-index')
+        var max_index = $(".left").attr('data-max-index')
+
+
+        var selectorlist = ['#left', '#right'];
+        var indexlist = [min_index, max_index]
+
+        var div;
+        var ind;
+
+        // disable pagination
+        selector = "#left-" + (parseInt(max_index)+1).toString()
+        disablePaginator(selector) 
+
+        selector = "#right-" + min_index  
+        disablePaginator(selector) 
+
+
+        // animate pagination
+        for (div of selectorlist) {
+                for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                    var selector = div+"-"+ind
+                    animatePaginator(selector) 
+                } 
+
+        } 
+
+        // set the search token
+        $('#tag').find('a').each(function() {
+            var cID = $(this).attr("id"); // Get current url
+            $("#"+cID).click(function() {
+                localStorage.setItem("tag", cID);
+                //alert(cID)
+            }); 
+        });
+
+        if( isMobile.any() )
+        {
+            $('#tag').find('a').each(function() {
+                var oldUrl = $(this).attr("href"); // Get current url
+                var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
+                $(this).attr("href", newUrl); // Set herf value
+            });
+
+        }
+
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
+
+        txt = $('.Article-content').text( );     
+        $('.Article-content').html( marked(txt) );
+
+        var md = window.markdownit().use(markdownitFootnote);
+        //md.render(/*...*/) // See examples above
+
+        var result = md.render('# markdown-it rulezz!');
+
+    </script >
+
+
+  </body>
+</html>
