@@ -24,7 +24,8 @@
           },
           "HTML-CSS": {
           styles: {
-          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}},
+          linebreaks: { automatic: true, width: "container" }
           },
           tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
           });
@@ -470,6 +471,8 @@ The success of the experiments has given us the confidence that we would have si
 
 There is no generic anomaly detection that works for every possible task. It has to be tuned for your purpose. The underlying assumption in this work is that the features that are used capture significant information about the underlying dynamic of the system. Future work can include extending the multivariate to be production-ready.
 
+Spoiler alert: Some of the contents here are lifted verbatim from my master's thesis.
+
 ### Acknowledgements
 I would like to thank my mentor, Dr. Ziyuan Gao from the National University of Singapore for providing technical support during the writing of this manuscript.
 
@@ -526,6 +529,7 @@ BibTeX Citation
                     <div class="Article-meta">
 Read more of our <a href=/blogs/1.html><b>blog posts</b></a>, technical <a target="_blank" href=/publications.html#talks><b>talks</b></a>, and <a target="_blank" href=/publications.html#publications><b>publications</b></a>.
                     </div>
+
                 </div>   
 
 
