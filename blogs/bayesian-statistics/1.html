@@ -95,7 +95,7 @@
                       <div class="Entry-description">Fake news is a false piece of information that was purposely created to deceive a person.  The effect on a single individual can be devastating, however, modern trends show that actors are deploying fake news on a large scale to influence a group of users</div>
                       
                       <small>
-                        <span class="WordCount">(Reading: 83 minutes)</span>
+                        <span class="WordCount">(Reading: 82 minutes)</span>
                       </small>
                       </div>
                   </div>
@@ -157,7 +157,9 @@
             $("#dropdown_bar").toggle()
         });
 
-        window.onload = function() { 
+        //window.onload = function() { 
+        window.onloadstart = function() { 
+
 
             var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
 
