@@ -15,12 +15,12 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
     <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
           TeX: {
              equationNumbers: {  autoNumber: "AMS"  },
-             //extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
-             extensions: ["TeX/AMSmath.js", "TeX/AMSsymbol.js"]
           },
           "HTML-CSS": {
           styles: {
@@ -31,7 +31,6 @@
           });
     </script> 
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       <style>
       mjx-container[display="block"] {
         display: block;
@@ -39,9 +38,6 @@
       }
       </style>
 
-      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js">
-      </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js">
       </script>
 
   </head>
@@ -388,15 +384,6 @@ BibTeX Citation
 }
 ``` </section>
 
-                <table>
-                  <tr>
-                    <td class="text-muted"> View as: </td>
-                    <td> <a class="generate" href="#/pdf/"><img  data-toggle="tooltip" title="Click to download file. Note is not working properly." src=/static/images/pdf_icon.svg style="width: 28px; height: 25px;" alt="pdf here"/></a> </td>
-                    <td class="text-muted"> [Alpha version]</td>
-                    <td> <p class="download"> <a id="file" target="_blank" ></a> </p> </td>
-                  </tr>
-                </table>
-
                 <hr class="line"/>
                 <div style="display: flex; justify-content: center;">
                     <table>
@@ -449,11 +436,6 @@ Read more of our <a href=/blogs/1.html><b>blog posts</b></a>, technical <a targe
 
 
       <script type="text/javascript" src="/static/js/jquery-1.5.1.min.js"></script>
-      <script type="text/javascript" src="/static/js/showdown.js"></script>
-      <script type="text/javascript" src="/static/js/pdf.js"></script>
-      <script type="text/javascript" src="/static/js/pdf-ui.js"></script>
-
-      <script type="text/javascript" src="/static/js/html2pdf.bundle.min.js"></script>
 
     <script  type="text/javascript" >
 
@@ -570,12 +552,7 @@ Read more of our <a href=/blogs/1.html><b>blog posts</b></a>, technical <a targe
         }); 
 
         txt = $('.Article-content').text( );     
-        $('.Article-content').html( marked(txt) );
-
-        var md = window.markdownit().use(markdownitFootnote);
-        //md.render(/*...*/) // See examples above
-
-        var result = md.render('# markdown-it rulezz!');
+        $('.Article-content').html( marked.parse(txt) );
 
     </script >
 
