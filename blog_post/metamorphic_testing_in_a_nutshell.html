@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Personal Website [current blog] | Kenneth Odoh's Blog</title>
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="author" content="Kenneth Emeka Odoh">
+    <meta name="description" content=" The personal website of Kenneth Emeka Odoh">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
+    <!--
+    <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    -->
+
+    <script defer src="/static/js/backup/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="/static/js/backup/jquery-3.3.1.min.js" ></script>
+    <script src="/static/js/backup/marked.min.js"></script>
+    <script type="text/javascript" src="/static/js/backup/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: {
+             equationNumbers: {  autoNumber: "AMS"  },
+          },
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}},
+          linebreaks: { automatic: true, width: "container" }
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+    </script> 
+
+    <style>
+      mjx-container[display="block"] {
+        display: block;
+        margin: 1em 0;
+      }
+    </style>
+
+  </head>
+  <body class="Site">
+    <header class="Site-header">
+      <nav class="Nav">
+        <div class="Nav-home">
+          <a href=/index.html>Kenneth Emeka Odoh</a>
+        </div>
+        <div class="Nav-sections">
+          <a class="Nav-section " href=/index.html >About</a>
+          <a class="Nav-section " href=/projects.html>Projects</a>
+          <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a class="Nav-section" href=/publications.html>Publications</a>
+          <a class="Nav-section" href=/news.html>News</a>
+        </div>
+      </nav>
+      <div class="u-separator"></div>
+    </header>
+    <div class="Site-content">
+      <div class="u-container">
+
+        <div class="Page">
+            <article role="main" class="Article">
+                <h1 class="Article-title"> Metamorphic Testing in a Nutshell </h1>
+                <div class="Article-meta">
+                  <time datetime=2021-12-23 15:06:26.248868 class="Article-date">23 Dec, 2021</time>
+                </div>
+
+                <!--<div class="Article-meta">Tag: None</div> -->
+                <div id="tag" class="Article-meta">Tags:
+                    
+                    <!--<a id=data-tag-software-testing href=/blogs/software-testing/1.html>software-testing</a> -->
+                        <a id=software-testing href=/blogs/software-testing/1.html>software-testing</a> 
+                    
+                </div>
+                <section id="text" class="Article-content"> “Building the product right versus building the right product” is a popular cliche used to describe the product-market fit.  Software testing focuses on solving "building the product right". There are analogies in the mathematical world where every claim is validated by proof. The level of rigor required in mathematics is that the proof must handle every case to be acceptable. In the world of software testing, nothing stops us from considering every case, no matter how trivial. However, the issue lies in identifying every possibility which may be exponential in some cases.
+
+Traditional testing requires crafting a few examples (input/output pair) and checking that the output matches our expectations (ground truth) [[1]](). There are situations where obtaining test examples is difficult. Traditional testing suffers from the oracle problem or insufficient coverage in some cases. Hence, impacting the applicability of traditional testing in those areas. Handling these issues would require metamorphic testing.
+
+### Verification versus Validation
+There is usually an upfront cost incurred in writing tests for the application. These cost has led some managers to be skeptical about investing in testing. There is a preponderance of the evidence about the testing value provides to an organization. However, the level of testing can vary across organizations. Some school of thought believes test-driven development is the only way to go, whereas others object and consider testing as an afterthought. Rather than focus on both extremes, my take is that the programmer should write enough tests to give confidence that new features can be added without breaking existing functionalities.
+
+ When done rightly, the benefits of a testing culture is as follows:
+A reduced duration for troubleshooting bugs.
+A quality mentality that spread among team members in the organization. 
+Anecdotal evidence suggests that Software engineers who create new features while writing tests tend to have lower technical debts in their source code.
+
+Software testing can take the following form:
+- **Verification** is a series of checks on the source code, design documents, and architecture to ensure the quality of the software via reviews and inspection. This entails checking if the software matches its planned requirements.
+- **Validation** is checking if the software meets the needs of the customer.
+
+In a game-theoretic sense, we can have a set of testers and a set of programmers which may overlap and act in good faith. The programmers and testers are actors in our fictitious game. Let us restate our goals in the following phrases.
+- The goal of a programmer is to write code that can pass the test.
+- A tester aims to write the test that can fail and reveal problems.
+
+One may be tempted to ask the following questions.
+- Is there any value in a passing test? 
+- If so, what information derives from a passing test [2]?
+One may think that passing tests are useless. However, a passing test assures us that the code path is working as intended, but it tells us nothing about its behavior in any untested code path. Hence, stressing the need for higher test coverage. Metamorphic testing comes to the rescue.
+
+### What is Metamorphic Testing?
+Metamorphic testing (MT) reduces the need for an oracle by using the relationship between two or more inputs (derived from the original input) and their expected outputs.  These relations are more general can help increase test coverage. The relations are also known as metamorphic relations (MR). However,  if any metamorphic relation is violated, then a bug has been detected. MT helps in test case generation and result verification [[2]](). MT can provide a framework for robust testing of edge cases and failure modes.
+
+Metamorphic testing is a widely used methodology in various forms. However, only recently did academics formalize it. Metamorphic testing can help test a program when the expected output (oracle) is unavailable. However, we require a proxy for this measure if the ground truth is absent. There are numerous applications of metamorphic testing in machine learning [[4]](), compiler development [[7]](), and bioinformatics [[6]]().
+
+Metamorphic testing verifies the output of a test case based on slight perturbation of the input while retaining the same information. These are typical problems that inherently lack ground truth for traditional testing. These include:
+- Testing the effectiveness of a text-to-speech (TTS) processor.
+- Is the result from a search query correct?  
+Hence, we will provide examples of metamorphic relations in this blog.
+
+A possible metamorphic relation in graph-theoretic problems is the use of symmetry. Let us assume an undirected graph that we know every node has a bidirectional link with the same weight. We can be sure that
+\begin{equation}
+Dist (G, a, z) = Dist(G, z, a)
+\end{equation}
+where $Dist (G, x, y)$ is the distance between node, $x$ and node, $y$ in a graph, $G$.
+Similarly, finding the minimum of two values should be independent of the order
+\begin{equation}
+min(a, b) = min (b,a)
+\end{equation}
+
+More examples of metamorphic testing
++ Comparing diffs of binary
++ Verifying the shortest path algorithm
+  - In a single-source shortest path, it can be checked that every node is relaxed, given that we have the cost of the node.
++ Checking the order of execution, e.g. happen-before relations in Distributed System
++ Automated log analysis
+
+Here is an example of traditional testing.
+```
+def example1():
+    p=5
+    assert(p==5)
+```
+Notice that we have hit only a point in the problem space, which is in contrast to generative testing, which is the basis for property-based testing.
+Metamorphic testing is related to Property-based testing as it is a generative testing paradigm.
+```
+def example2()
+    p=random_point()
+    assert(p>5)
+```
+The benefit of generative testing is higher coverage. However, we trade specificity for generality [[1]]().
+
+The challenges of using generative testing:
++Finding appropriate properties.
++Specific versus General tradeoff.
+    - Specific has more information, while general can work across multiple use cases, but has minimal information
+
+### Possible Use cases
+
+- In a Neural network, if you have done some convolutions, you may check if the translational matrices obey the properties of a typical translation matrix.
+- In tabulation, if you are dealing with human ages, it is possible to check if ages are between 0 and 115 as humans have a limited lifespan which is a universal feature of humans. In some applications, you may want to cross-check if the humans have passed the age of reasoning to use the application.
+- If you have the knowledge of the call graph of processes on a browser, it is possible to predict the loading order of the page and use it to identify bugs.
+- Checking time bounds violations in distributed systems.
+- Investigating logs of an application for identifying bugs.
+- Creating a parser for CSS style files to identify usability bugs by checking printer-safe, color-blind safe color codes in the CSS files. This can identify accessibility bugs.
+- Checking UI placement (snapshot testing).
+- Validating a clustering algorithm without ground truth. Deciding on the optimal number of clusters can be challenging and ill-posed. Formulate adequacy criteria based on the structure of the data. A solution may look unintuitive, but it is an idea for a specific use case. See more information in the paper [[4]]().
+
+### Advantages of MT 
+Here are some advantages of MT[[2]]():
+- Simple
+- Easy to implement
+- Easy to automate
+- Low cost
+
+
+### Case studies in information retrieval
+Here are examples of metamorphic relations in evaluating the usefulness of a search engine [[3, 5]]().
+
+- Equivalence: A repeated search query should return the same element, independent of ordering. For example, a query "houses in Vancouver" should have similar output to "Vancouver houses".
+
+- Equality: If sorted by relevance, a search query will return the same result for the same query. For example, if I search in the search engine twice within a short time. The results should be identical.
+
+- Subset: A subset of a query should have fewer results than the original query. For example, a query "houses in British Columbia" should return more results than a query "houses in Vancouver". This is because Vancouver is a city in the province of British Columbia.
+
+- Disjoint: Any Irrelevant response should not be returned. In the query "houses in Vancouver", we should not see any houses from Saskatchewan in the search result.
+
+- Complete: A universe is a union of every composing set. For example, a query "houses in British Columbia" will be a combination of houses in every city in the province of British Columbia.
+
+- Difference: A query "houses in British Columbia, not Vancouver" should not show any result for houses listed in Vancouver.
+
+##### Misconceptions around MT Relations 
+There are things that can impact how MT is used in practice.
+- Not every necessary property is MR e.g -1 <= sin(x) <= 1 as sine is not an MT even though violating the bound show's errors.
+- MR targets multiple inputs and their expected output.
+- Not all MRs separate into input-only and output-only sub-relations.
+- Not all MRs are equality relations.
+- MR can work with or without oracle.
+
+
+### Applying metamorphic testing in practice
+- Figure out how inputs are modified to effect a predictable pattern in the output.
+- Don’t assert, instead warn due to sufficiency versus necessary constraints.
+- Metamorphic testing should not replace standard testing (unit testing, interaction testing). MT is meant to augment existing test suites by increasing test coverage.
+
+
+### Conclusions
+Metamorphic testing should serve as a secondary testing paradigm in your toolset. It is reasonable to see metamorphic testing as sanity checks based on the property of the (input/output) problems. One rule of thumb for applying metamorphic testing is to study successful case studies in the industry and adapt to your specific needs. Finally, creating metamorphic relations is a combination of both art and science.
+
+Note: opening quote is attributed to Boehm.
+
+### References
+- [[1]]() Blog, https://www.hillelwayne.com/post/metamorphic-testing/
+- [[2]]() Chen, T.Y., Kuo, K., Liu, H., Poon P., Towey, D., Tse T.H., and Zhou Z.Q. (2018). Metamorphic Testing: A Review of Challenges and Opportunities. ACM Computing Survey.
+- [[3]]() Segura, S., Parejo, J.A., Troya, J., & Ruiz-Cortés, A. (2018). Metamorphic Testing of RESTful Web APIs. IEEE Transactions on Software Engineering, 44, 1083-1099.
+- [[4]]() Xie, X, Zhang, Z., Chen, T.Y., Liu, Y., Poon, P., and Xu, B. (2018). METTLE: a METamorphic testing approach to assessing and validating unsupervised machine LEarning systems.
+- [[5]]() Zhou, Z., Xiang, S., and Chen, T.Y. (2016). Metamorphic Testing for Software Quality Assessment: A Study of Search Engines. IEEE Transaction Software Engineering
+- [[6]]() Chen, T.Y., Ho, J.W., Liu, H. , and Xie, X. (2009). An innovative approach for testing bioinformatics programs using metamorphic testing. BMC Bioinformatics.
+- [[7]]() Donaldson, A.F. and Evrard, H., Lascu, A., and Thomson, P. (2017). Automated Testing of Graphics Shader Compilers. Proceeding of ACM Programming Languages.
+
+
+
+
+
+ </section>
+
+                <hr class="line"/>
+                <div style="display: flex; justify-content: center;">
+                    <table>
+                      <tr>
+                        <td> <a class="left" id="left-10" data-min-index="0" data-max-index="9" href=/blog_post/metamorphic_testing_in_a_nutshell.html><img id="left-0" data-toggle="tooltip" title="Click to previous page." src=/static/images/left.png style="width: 48px; height: 50px;" alt="previous here"/></a> </td>
+
+                        <td> <div class="squares">
+                              <div class="icon1">
+                                 <!--<p class="text-muted">9/9</p>-->
+                                 <p class="text-muted">1/9</p>
+                              </div>
+                            </div> 
+                        </td>
+                        
+                        <td> <a class="right" id="right-8" data-min-index="0" data-max-index="9" href=/blog_post/real-time_anomaly_detection_for_multivariate_data_stream.html><img id="right-1" data-toggle="tooltip" title="Click to next page." src=/static/images/right.png style="width: 48px; height: 50px;" alt="next here"/></a> </td>
+                      </tr>
+                    </table>
+                </div>
+                <hr class="line"/>
+
+                <div style="display: flex; justify-content: center;">
+                    <div class="Article-meta">
+Read more of our <a href=/blogs/1.html><b>blog posts</b></a>, technical <a target="_blank" href=/publications.html#talks><b>talks</b></a>, and <a target="_blank" href=/publications.html#publications><b>publications</b></a>.
+                    </div>
+
+                </div>   
+
+
+                <div class="Footer">
+                <p> Please feel free to <b>donate</b> by clicking <a target="_blank" data-toggle="tooltip" title="Click to make a donation here" href="https://checkout.square.site/pay/a5a1bb5a14e941baae84556f133744cd"><img src=/static/images/donate.png style="width: 40px; height: 40px;" alt="donate here"/></a>using Square Checkout.</p>
+                </div>
+
+                <a target="_blank" data-size="large" class="twitter-share-button"
+                  href="https://twitter.com/intent/tweet?url=https://kenluck2001.github.io/blog_post/metamorphic_testing_in_a_nutshell.html&text= Share the blog here">
+                 <img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" alt="Smiley face" height="42" width="42">  </a>
+
+
+            </article>
+        </div>
+
+      </div>
+    </div>
+
+        <footer class="footer">
+            <div class="Footer">
+                <p class="text-muted">Icon made by Freepik from www.flaticon.com</p>
+                <p class="text-muted">&copy; 2019 Copyright: Kenneth Odoh</p>
+            </div>
+        </footer>
+
+    <script  type="text/javascript" >
+
+        function animatePaginator(selector) {
+            var i = 0;
+            $(selector).css('opacity', '1.0');
+            setInterval(function () {
+                i++;
+                if ((i%2)==1)
+                {
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '0.5');
+                        $(this).fadeIn("slow");
+                    });
+                }else{
+                    //$(selector).css('opacity', '1.0');
+
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '1.0');
+                        $(this).fadeIn("slow");
+                    });
+                }
+                i = i % 2
+            }, 5000);
+        }
+
+        function disablePaginator(selector) {
+            $(selector).css('visibility','hidden')
+            $(selector).parent().removeAttr("href");
+        }
+
+
+        Array.range = function(a, b, step){
+            var A = [];
+            if(typeof a == 'number'){
+                A[0] = a;
+                step = step || 1;
+                while(a+step <= b){
+                    A[A.length]= a+= step;
+                }
+            }
+            else {
+                var s = 'abcdefghijklmnopqrstuvwxyz';
+                if(a === a.toUpperCase()){
+                    b = b.toUpperCase();
+                    s = s.toUpperCase();
+                }
+                s = s.substring(s.indexOf(a), s.indexOf(b)+ 1);
+                A = s.split('');        
+            }
+            return A;
+        }
+
+        var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
+
+
+        var ua = window.navigator.userAgent;
+        var isIE = /MSIE|Trident/.test(ua);
+
+        if ( isIE ) {
+            //IE specific code goes here
+            $(".left").hide()
+            $(".right").hide()
+        }
+
+        var min_index = $(".left").attr('data-min-index')
+        var max_index = $(".left").attr('data-max-index')
+
+
+        var selectorlist = ['#left', '#right'];
+        var indexlist = [min_index, max_index]
+
+        var div;
+        var ind;
+
+        // disable pagination
+        selector = "#left-" + (parseInt(max_index)+1).toString()
+        disablePaginator(selector) 
+
+        selector = "#right-" + min_index  
+        disablePaginator(selector) 
+
+
+        // animate pagination
+        for (div of selectorlist) {
+                for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                    var selector = div+"-"+ind
+                    animatePaginator(selector) 
+                } 
+
+        } 
+
+        // set the search token
+        $('#tag').find('a').each(function() {
+            var cID = $(this).attr("id"); // Get current url
+            $("#"+cID).click(function() {
+                localStorage.setItem("tag", cID);
+                //alert(cID)
+            }); 
+        });
+
+        if( isMobile.any() )
+        {
+            $('#tag').find('a').each(function() {
+                var oldUrl = $(this).attr("href"); // Get current url
+                var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
+                $(this).attr("href", newUrl); // Set herf value
+            });
+
+        }
+
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
+
+        txt = $('.Article-content').text( );     
+        $('.Article-content').html( marked.parse(txt) );
+
+    </script >
+
+
+  </body>
+</html>
