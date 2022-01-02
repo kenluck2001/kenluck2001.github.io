@@ -19,18 +19,6 @@
 </url>
 
 <url>
-  <loc>https://kenluck2001.github.io/metadata.html</loc>
-</url>
-
-<url>
-  <loc>https://kenluck2001.github.io/archive.html</loc>
-</url>
-
-<url>
-  <loc>https://kenluck2001.github.io/sitemap.xml</loc>
-</url>
-
-<url>
   <loc>https://kenluck2001.github.io/index.html</loc>
 </url>
 
@@ -83,6 +71,21 @@
 <url>
   <loc>https://kenluck2001.github.io/blog_post/contributing_to_open_source_software.html</loc>
   <lastmod>2019-10-05T16:38:31Z</lastmod>
+</url>
+
+<url>
+  <loc>https://kenluck2001.github.io/blogs/1.html</loc>
+  <lastmod>2022-01-02T12:31:30Z</lastmod>
+</url>
+
+<url>
+  <loc>https://kenluck2001.github.io/blogs/2.html</loc>
+  <lastmod>2022-01-02T12:31:30Z</lastmod>
+</url>
+
+<url>
+  <loc>https://kenluck2001.github.io/blogs/3.html</loc>
+  <lastmod>2022-01-02T12:31:30Z</lastmod>
 </url>
 
 
