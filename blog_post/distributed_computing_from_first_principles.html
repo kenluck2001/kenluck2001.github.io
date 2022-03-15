@@ -95,7 +95,7 @@ A few years ago, I was lacking low-level knowledge of how to build a large-scale
 As I started researching, I noticed a troubling trend in Distributed Systems research where the best works in the field are performed in top research labs, advanced technical schools, and by seasoned open source contributors. Unfortunately, this status quo is unacceptable. Hence, I am motivated to invest in this research with the aim is to distill this knowledge to a wider audience. Our focus is delivering scientific content without diluting the content and maintaining world-class rigor. We are poised to create disruptive change by sharing knowledge hidden within plain sight. One axiom from the [Zen of Python](https://www.python.org/dev/peps/pep-0020/) posits that  "practically beats purity", so rather than pontificate on the state of art Distributed algorithm, we have taken the approach of solidifying the fundamentals. There is wide applicability of Distributed Computing.
 
 ##### **Notes:**
-+ This work is based on non-proprietary content that is unrelated to my employer. This is part of my hobby and I used only publicly-sourced information. The blog summarizes the first phase of my two-phased research on low-level distributed systems. The second phase of my research will be covered in my upcoming textbook (ADD LINK).
++ This work is based on non-proprietary content that is unrelated to my employer. This is part of my hobby and I used only publicly-sourced information. The blog summarizes the first phase of my two-phased research on low-level distributed systems. The second phase of my research will be covered in my [upcoming textbook](https://kenluck2001.github.io/blog_post/authoring_a_new_book_on_distributed_computing.html).
  
 + Every source code is the original work of the author.
 
@@ -752,7 +752,7 @@ else
 
 + Made use of mpi, so we don't have to consider the low-level socket networking stack and their quicks, between IPV4, IPV6.
 
-+ Our implementations in this blog make use of crash-stop failure assumption, however, our planned initiative (ADD LINK) has some consideration of Byzantine failure.
++ Our implementations in this blog make use of crash-stop failure assumption, however, our [planned initiative](https://kenluck2001.github.io/blog_post/authoring_a_new_book_on_distributed_computing.html) has some consideration of Byzantine failure.
 
 + Our implementation of distributed systems creates a set of processes for the client. This may not be standard in the Paxos algorithm. We abstract it in our source code for ease of use.
 
@@ -1007,7 +1007,7 @@ We have used the Lamport clock to make a distributed hashmap where every node ha
 # **Future Work**
 
 <a name="future-work"></a>
-We will discuss BFT, PBFT as future work in the upcoming textbook (ADD LINK).
+We will discuss BFT, PBFT as future work in the [upcoming textbook](https://kenluck2001.github.io/blog_post/authoring_a_new_book_on_distributed_computing.html).
 
 # **Acknowledgments**
 
@@ -1025,7 +1025,7 @@ It is possible that some references may have been left out. Please notify the au
 # **Conclusion**
 
 <a name="conclusion"></a>
-We have saved the best for the last. Some topics are missing in this blog and would show up in my new initiative (ADD LINK). You must have noticed recurring themes in the blog where we make abstractions. For example, our leader election uses a failure detector. Decomposing systems into components allows one to focus on a part of a problem at the time. People call it adding one more layer of indirection, it helps to reason about systems, but avoid leaky abstractions at all costs. "Most problems in Computer science can be solved with another level of abstraction".
+We have saved the best for the last. Some topics are missing in this blog and would show up in my [new initiative](https://kenluck2001.github.io/blog_post/authoring_a_new_book_on_distributed_computing.html). You must have noticed recurring themes in the blog where we make abstractions. For example, our leader election uses a failure detector. Decomposing systems into components allows one to focus on a part of a problem at the time. People call it adding one more layer of indirection, it helps to reason about systems, but avoid leaky abstractions at all costs. "Most problems in Computer science can be solved with another level of abstraction".
 
 
 # **References**
@@ -1056,11 +1056,7 @@ BibTeX Citation
   year = {2022},
   note = {https://kenluck2001.github.io/blog_post/distributed_computing_from_first_principles.html}
 }
-```
-
-
-
- </section>
+``` </section>
 
                 <hr class="line"/>
                 <div style="display: flex; justify-content: center;">
