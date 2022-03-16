@@ -90,9 +90,9 @@
                 <section id="text" class="Article-content"> Have you ever wondered how a typical Distributed system works under the hood? Are you looking for a pedagogical guide with complete implementations and tricks of the trade? Look no further and read my writing on the topic. We have implemented several foundational algorithms in Distributed Computing. After completing the first phase of this research, it became apparent that I have not ruled out the possibility of working full-time on these topics.
 **This blog is still under construction.**
 
-A few years ago, I was lacking low-level knowledge of how to build a large-scale Distributed system without using third-party packages. This motivated me to research this topic from first principles and became a better Software Engineer. My initial foray into Distributed systems began in a Distributed System meetup that I eventually became the organizer in Vancouver. The study group made use of materials from the distributed system graduate program at KTH Sweden. Our goal was mainly to get intuition and theoretical knowledge on the subject. Luckily, I took the step further when I took the parallel programming specialization program in Coursera, where I saw OpenMPI and knew it was the missing link in my dive into implementing low-level distributed systems. 
+A few years ago, I was deficient in low-level knowledge of how to build a large-scale Distributed system without utilizing third-party packages. This motivated me to research this topic from first principles and I subsequently became a better Software Engineer in the process. My initial foray into Distributed systems began due to my participation in a Distributed System meetup, where I eventually became the organizer in Vancouver. The study group made use of materials from the Distributed System course at KTH Sweden. Our goal was mainly to get intuition and theoretical knowledge on the subject. Luckily, I took the step further when I took the [Parallel, Concurrent, and Distributed Programming in Java Specialization](https://www.coursera.org/specializations/pcdp) in (Coursera)[https://www.coursera.org/], where I saw  [OpenMPI](https://en.wikipedia.org/wiki/Open_MPI) mentioned and knew it was the missing link in my dive into implementing low-level distributed algorithms. 
 
-As I started researching, I noticed a troubling trend in Distributed Systems research where the best works in the field are performed in top research labs, advanced technical schools, and by seasoned open source contributors. Unfortunately, this status quo is unacceptable. Hence, I am motivated to invest in this research with the aim is to distill this knowledge to a wider audience. Our focus is delivering scientific content without diluting the content and maintaining world-class rigor. We are poised to create disruptive change by sharing knowledge hidden within plain sight. One axiom from the [Zen of Python](https://www.python.org/dev/peps/pep-0020/) posits that  "practically beats purity", so rather than pontificate on the state of art Distributed algorithm, we have taken the approach of solidifying the fundamentals. There is wide applicability of Distributed Computing.
+As I started researching, I noticed a troubling trend in Distributed Systems research where the best works in the field are performed in top research labs, advanced technical schools, and by seasoned open source contributors. Unfortunately, this status quo is unacceptable. Hence, I am motivated to invest in this research with the aim to distill this knowledge to a wider audience. Our focus is delivering scientific content without diluting the content and maintaining world-class rigor. We are poised to create disruptive change by sharing knowledge hidden within plain sight. One axiom from the [Zen of Python](https://www.python.org/dev/peps/pep-0020/) posits that  "practically beats purity", so rather than pontificate on the state of art Distributed algorithm, we have taken the approach of solidifying the fundamentals. There is wide applicability of Distributed Computing in the industry.
 
 ##### **Notes:**
 + This work is based on non-proprietary content that is unrelated to my employer. This is part of my hobby and I used only publicly-sourced information. The blog summarizes the first phase of my two-phased research on low-level distributed systems. The second phase of my research will be covered in my [upcoming textbook](https://kenluck2001.github.io/blog_post/authoring_a_new_book_on_distributed_computing.html).
@@ -102,7 +102,7 @@ As I started researching, I noticed a troubling trend in Distributed Systems res
 + Unlike other intellectual works, some of our references will be secondary sources. This is taken to keep our references within a reasonable scope.
 
 
-**Full disclosure:** I had implemented portions of the KTH Distributed system course that ran on [Edx](https://www.edx.org/) taught by Professor Haridi. I am grateful as it was my first exposure to Distributed computing and would include some of his slides (Paxos, sequence Paxos) in this blog with full attribution.
+**Full disclosure:** I had implemented portions of the KTH Distributed system course that ran on [Edx](https://www.edx.org/) taught by Professor Haridi. I am grateful as it was my first exposure to Distributed computing. I would also include some of his slides (Paxos, sequence Paxos) in this blog with full attribution.
 
 ##### Terminologies
 + Quorum: a set of the majority of correct processes
@@ -128,7 +128,7 @@ As I started researching, I noticed a troubling trend in Distributed Systems res
   - [Failure detector](#failure-detector)
   - [Leader election](#leader-election)
   - [Raft](#raft)
-  - [Implementation Philosophy for Source Code](#implementation-philosophy)
+  - [Implementation Philosophy for Source Code](#implementation)
   - [Anti-entropy (CRDT, Merkle tree)](#anti-entropy)
   - [Case studies](#case-studies)
     + [Distributed shared primitives](#distributed-shared-primitive)
@@ -170,15 +170,15 @@ Here is my list of implemented Distributed algorithms with [associated source co
 
 A number of my implementations can be tracked in my [playground](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/playground) as you can follow my thought process during incremental development. Some of the implementations there show many of my incorrect assumptions leading to a bad solution in some cases. However, the [implementations](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/blog) referenced directly in this blog is verified by the author. 
 
-We had settled for MPI as the underlying libraries provide low-level functionality instead of Remote Procedural Call as it blurs message-passing paradigm by passing arguments as messages, even though they are conceptually similar, the MPI is structured in a concise way for implementing our Distributed algorithms. Hence, all implementations would strictly use [OpenMPI](https://en.wikipedia.org/wiki/Open_MPI) in [C](https://en.wikipedia.org/wiki/ANSI_C).  Event-based programming based on message passing can serve as a great abstraction for building distributed systems. Hence, we are using this approach for all of our implementations.
+We had settled for MPI as the underlying library to provide low-level functionality instead of Remote Procedural Call as it blurs message-passing paradigm by passing arguments as messages, even though they are conceptually similar, the MPI is structured in a concise way for implementing our Distributed algorithms. Hence, all implementations would strictly use [OpenMPI](https://en.wikipedia.org/wiki/Open_MPI) in [C](https://en.wikipedia.org/wiki/ANSI_C). Event-based programming based on message passing can serve as a great abstraction for building distributed systems. Hence, we are using this approach for all of our implementations.
 
-For sake of pedagogy, we have ignored tracing and invariant proofs, while these are important in Distributed systems scholarship, we anticipate the users will learn by doing and not get bogged down by mathematics. We abandoned the idea of splitting the content across several blogs because I am not a fan of fragmented content. It is better to have a comprehensive resource in one place.
+For sake of pedagogy, we have ignored tracing and invariant proofs, while these are important in Distributed systems scholarship, we anticipate that the users will learn by doing and not get bogged down by mathematics. We abandoned the idea of splitting this content across several blogs because I am not a fan of fragmented content. It is better to have a comprehensive resource in one place.
 
 
 # **Network programming**
 
 <a name="network-programming"></a>
-The socket is the basic file for networking. Let us recap the Unix philosophy that everything is a file. Socket() returns a descriptor. Sending a message over a network becomes analogous to writing to a file stream while receiving the message is comparable to reading a file stream. However, we are doing over a network as a channel.
+The socket is the basic file for networking. Let us recap the Unix philosophy that everything is a file. Socket() returns a descriptor. Sending a message over a network becomes analogous to writing to a file stream while receiving the message is comparable to reading a file stream. However, we are doing work over a network as a channel.
 
 There are two basic socket, [[4]]() 
 + Stream socket (SOCK_STREAM)
@@ -192,7 +192,7 @@ When communication between nodes on Distributed systems, there is a need for a c
 + Perfect link
 + Logged perfect link
 
-They have specific characteristics that are unique to each of them.
+They have specific characteristics that are unique to each of them (links).
 
 For more information on the subject, please read the following:
 
@@ -218,10 +218,10 @@ int main()
 }
 ```
 process/thread is a core foundation of building distributed computing [[6, 7]]()
-+ Processes are units of distribution.
++ Processes are units of work distribution.
 + Threads: unit of concurrency
 
-There are significant challenges with parallel programming which include sharing, coordination, deadlock, lock granularity [[6, 7]]().
+There are significant challenges with parallel programming which include data sharing, coordination, deadlock, lock granularity, and others [[6, 7]]().
 
 It is possible to have multiple threads in a process. Here is some benefit which includes [[6, 7]]():
 + Memory/resource efficiency due to sharing
@@ -240,7 +240,7 @@ Java has the popular fork-join framework is based on the divide and conquer para
 
 When using threads or processes, it is ideal to find the optimal number of threads or processes to prevent reduced performance due to degradation increased load due to process isolation, and communication cost for sharing information between processes.
 
-Promises and a differed call is a popular form of parallelism where we just make a differed call while performing a function and offloading another task that is disjoint to be done in parallel and join on the result from the main thread.
+[Promises and futures](https://en.wikipedia.org/wiki/Futures_and_promises) are a popular form of parallelism where we just make a differed call while performing a function and offloading another task that is disjoint to be done in parallel and join on the result from the main thread.
 
 Guaranteeing reproducibility can be a desirable goal. Quasi-randomness may be reasonable in some contexts. The parallel program can have the following characteristics to address this behavior [[6]]():
 Functional determinism: same input gives same output on same output for the same function.
@@ -748,8 +748,7 @@ else
 
 ## Implementation Philosophy for Source Code 
 
-<a name="implementation-philosophy"></a>
-
+<a name="implementation"></a>
 + Made use of mpi, so we don't have to consider the low-level socket networking stack and their quicks, between IPV4, IPV6.
 
 + Our implementations in this blog make use of crash-stop failure assumption, however, our [planned initiative](https://kenluck2001.github.io/blog_post/authoring_a_new_book_on_distributed_computing.html) has some consideration of Byzantine failure.
@@ -1018,7 +1017,7 @@ I would like to thank Prof Vivek Sarkar whose specialization program that I took
 
 I would like to thank Anselm Eickhoff and Charles Krempeaux who were responsive to my questions about CRDT.
 
-I would also like to thank Harrington Joseph who suggested that I focused in gaining low-level understanding of parallel programming.
+I would also like to thank Harrington Joseph who suggested that I focused on gaining a low-level understanding of parallel programming.
 
 It is possible that some references may have been left out. Please notify the author with concerns about missing references. I would gladly add the suggested reference.
 
