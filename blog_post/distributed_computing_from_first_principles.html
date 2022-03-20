@@ -90,16 +90,16 @@
                 <section id="text" class="Article-content"> Have you ever wondered how a typical Distributed system works under the hood? Are you looking for a pedagogical guide with complete implementations and tricks of the trade? Look no further and read my writing on the topic. We have implemented several foundational algorithms in Distributed Computing. After completing the first phase of this research, it became apparent that I have not ruled out the possibility of working full-time on these topics.
 **This blog is still under construction.**
 
-A few years ago, I was deficient in low-level knowledge of how to build a large-scale Distributed system without utilizing third-party packages. This motivated me to research this topic from first principles and I subsequently became a better Software Engineer in the process. My initial foray into Distributed systems began due to my participation in a Distributed System meetup, where I eventually became the organizer in Vancouver. The study group made use of materials from the Distributed System course at KTH Sweden. Our goal was mainly to get intuition and theoretical knowledge on the subject. Luckily, I took the step further when I took the [Parallel, Concurrent, and Distributed Programming in Java Specialization](https://www.coursera.org/specializations/pcdp) in (Coursera)[https://www.coursera.org/], where I saw  [OpenMPI](https://en.wikipedia.org/wiki/Open_MPI) mentioned and knew it was the missing link in my dive into implementing low-level distributed algorithms. 
+A few years ago, I was deficient in the low-level knowledge needed to build a large-scale Distributed system without utilizing third-party packages. This motivated me to research this topic from first principles and I subsequently became a better Software Engineer in the process. My initial foray into Distributed systems began due to my participation in a Distributed System meetup, where I eventually became the organizer in Vancouver. Our study group utilized materials from the Distributed Systems course at [KTH](https://www.kth.se/en) Sweden. Our goal was mainly to gain intuition and theoretical knowledge on the subject. Luckily, I took the step further when I took the [Parallel, Concurrent, and Distributed Programming in Java Specialization](https://www.coursera.org/specializations/pcdp) in [Coursera](https://www.coursera.org/), where I saw  [OpenMPI](https://en.wikipedia.org/wiki/Open_MPI) mentioned and knew it was the missing link in my dive into implementing low-level Distributed algorithms. 
 
-As I started researching, I noticed a troubling trend in Distributed Systems research where the best works in the field are performed in top research labs, advanced technical schools, and by seasoned open source contributors. Unfortunately, this status quo is unacceptable. Hence, I am motivated to invest in this research with the aim to distill this knowledge to a wider audience. Our focus is delivering scientific content without diluting the content and maintaining world-class rigor. We are poised to create disruptive change by sharing knowledge hidden within plain sight. One axiom from the [Zen of Python](https://www.python.org/dev/peps/pep-0020/) posits that  "practically beats purity", so rather than pontificate on the state of art Distributed algorithm, we have taken the approach of solidifying the fundamentals. There is wide applicability of Distributed Computing in the industry.
+As I started researching, I noticed a troubling trend in Distributed Systems research where the best works in the field are performed in top research labs, advanced technical schools, and by seasoned open source contributors. Unfortunately, this status quo is unacceptable. Hence, I am motivated to invest in this research to distill this knowledge to a wider audience. Our focus is delivering scientific content without diluting the content and maintaining world-class rigor. We are poised to create disruptive change by sharing knowledge hidden within plain sight. One axiom from the [Zen of Python](https://www.python.org/dev/peps/pep-0020/) posits that "practically beats purity", so rather than pontificate on the state of art Distributed algorithm, we have taken the approach of solidifying the fundamentals. There is wide applicability of Distributed Computing in the industry.
 
 ##### **Notes:**
-+ This work is based on non-proprietary content that is unrelated to my employer. This is part of my hobby and I used only publicly-sourced information. The blog summarizes the first phase of my two-phased research on low-level distributed systems. The second phase of my research will be covered in my [upcoming textbook](https://kenluck2001.github.io/blog_post/authoring_a_new_book_on_distributed_computing.html).
++ This work is based on non-proprietary content that is unrelated to my employer. This is part of my hobby and I used only publicly-sourced information. The blog summarizes the first phase of my two-phased research on low-level Distributed systems. The second phase of my research will be covered in my [upcoming textbook](https://kenluck2001.github.io/blog_post/authoring_a_new_book_on_distributed_computing.html).
  
 + Every source code is the original work of the author.
 
-+ Unlike other intellectual works, some of our references will be secondary sources. This is taken to keep our references within a reasonable scope.
++ Unlike other intellectual works, some of our references will be secondary sources. This decision is taken to keep our references within a reasonable scope.
 
 
 **Full disclosure:** I had implemented portions of the KTH Distributed system course that ran on [Edx](https://www.edx.org/) taught by Professor Haridi. I am grateful as it was my first exposure to Distributed computing. I would also include some of his slides (Paxos, sequence Paxos) in this blog with full attribution.
@@ -168,9 +168,9 @@ Here is my list of implemented Distributed algorithms with [associated source co
 | 8   | Distributed hashmap             |[lamport1-majority-voting8.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/blog/lamport1-majority-voting8.c)      |
 
 
-A number of my implementations can be tracked in my [playground](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/playground) as you can follow my thought process during incremental development. Some of the implementations there show many of my incorrect assumptions leading to a bad solution in some cases. However, the [implementations](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/blog) referenced directly in this blog is verified by the author. 
+A number of my implementations can be tracked in my [playground](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/playground) where you can follow my thought process during incremental development. Some of the implementations in [playground](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/playground) have bad solutions due to incorrect assumptions. However, the [implementations](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/blog) referenced directly in this blog is verified by the author and relatively free of obvious errors. 
 
-We had settled for MPI as the underlying library to provide low-level functionality instead of Remote Procedural Call as it blurs message-passing paradigm by passing arguments as messages, even though they are conceptually similar, the MPI is structured in a concise way for implementing our Distributed algorithms. Hence, all implementations would strictly use [OpenMPI](https://en.wikipedia.org/wiki/Open_MPI) in [C](https://en.wikipedia.org/wiki/ANSI_C). Event-based programming based on message passing can serve as a great abstraction for building distributed systems. Hence, we are using this approach for all of our implementations.
+We had settled for MPI as the underlying library to provide low-level functionality instead of Remote Procedural Call as it blurs message-passing paradigm by passing arguments as messages, even though they are conceptually similar, the MPI is structured in a concise way for implementing our Distributed algorithms. Hence, all implementations would strictly use [OpenMPI](https://en.wikipedia.org/wiki/Open_MPI) in [C](https://en.wikipedia.org/wiki/ANSI_C). Event-based programming based on message passing can serve as a great abstraction for building Distributed systems. Hence, we are using this approach for all of our implementations.
 
 For sake of pedagogy, we have ignored tracing and invariant proofs, while these are important in Distributed systems scholarship, we anticipate that the users will learn by doing and not get bogged down by mathematics. We abandoned the idea of splitting this content across several blogs because I am not a fan of fragmented content. It is better to have a comprehensive resource in one place.
 
@@ -186,7 +186,7 @@ There are two basic socket, [[4]]()
 
 Most local networks will use an internal IP address, while the Internet-facing gateways make use of an external IP address with NAT doing the conversion from Internet IP to internal IP.
 
-When communication between nodes on Distributed systems, there is a need for a channel to connect the node to allow for message transfer. Here are kinds of channels [[2]]()  in use in Distributed systems which include:
+When communicating between nodes on Distributed systems, there is a need for a channel to provide a medium for message transfer between nodes. Here are kinds of channels [[2]]()  in use in Distributed systems which include:
 + Fair loss link
 + Stubborn link
 + Perfect link
@@ -217,7 +217,7 @@ int main()
     fork();
 }
 ```
-process/thread is a core foundation of building distributed computing [[6, 7]]()
+process/thread is a core foundation of building Distributed computing [[6, 7]]()
 + Processes are units of work distribution.
 + Threads: unit of concurrency
 
@@ -267,7 +267,7 @@ For fork-join programs, the edge can be
 
 ideal parallelism, $ip = work/span$, for a sequential program, the ideal parallelism is 1. The requires having a computation graph [[6]]().
 
-Unfortunately, we don't always have a computation graph, we can use Amdahl's law which is basically that computation of a threaded program is restricted by sequential computation in the collection of processes [[6, 7]]().
+Unfortunately, we don't always have a computation graph, we can use [Amdahl's law](https://en.wikipedia.org/wiki/Amdahl%27s_law) which is that computation of a threaded program is restricted by sequential computation in the collection of processes [[6, 7]]().
 
 There are also alternatives like share-nothing architecture (using message passing paradigm) e.g actor, distributed actor which makes use of message passing. There are also non-blocking approaches using getAndAdd() and compareAndSet [[6]]().
 
@@ -287,8 +287,8 @@ Fine-tuning control of computer programs by mutual exclusion and Synchronization
 
 mutual exclusion: two or more event does not happen at the same time. e.g event, A precedes event, B.
 
-Synchronization is guaranteeing the order of access of multiple threads to a shared resource. Synchronization outside a computer can be verified in real life by a clock. However, doing computer synchronization without a clock is a challenge as there are also problems accuracy of clocks due to drifts. It is possible to do using computational graphs, especially in a parallel program. It is easy to know the order of execution within a process, but it is challenging to ascertain the order of execution in a threaded program.
-Synchronization is possible by communicating between processes to signal or instruct the other party to wait until a condition is read. There is a traditional synchronization problem poised in the literature that has wide applicability. They include producer-consumer with multiple variants, reader-writer problem, starvation problem (bounded wait on semaphore), dining philosopher problem [[3, 5, 6]]().
+Synchronization is guaranteeing the order of access of multiple threads to a shared resource. Synchronization outside a computer can be verified in real life by a clock. However, doing computer synchronization without a clock is a challenge as there are also issues with the accuracy of clocks due to drifts. It is possible to do using computational graphs, especially in a parallel program. It is easy to know the order of execution within a process, but it is challenging to ascertain the order of execution in a threaded program.
+Synchronization is achievable by signaling or instructing the other party to wait until a condition is reached. There is a traditional synchronization problem poised in the literature that has wide applicability. They include producer-consumer with multiple variants, reader-writer problem, starvation problem (bounded wait on semaphore), dining philosopher problem [[3, 5, 6]]().
 
 The barrier is a construct that can build many threads and releases every blocked thread on receipt of the last on [[5]](). This is commonly known as a phaser in Java. There are widely used in MPI for creating collective operations. It can also be used for pipelining [[3, 5, 6]]().
 
@@ -308,7 +308,7 @@ One way to solve the issue is allowing a single init process that creates the se
 # **OpenMPI**
 
 <a name="openmpi"></a>
-This is the implementation of a message-passing paradigm for the exchange of information between processes. OpenMPI [[8, 9, 10, 11]]() is used in rendering farms, high-performance computing, and Scientific computing. For example, Curie, a French supercomputer makes extensive use of MPI. One of the best materials to learn MPI on the Internet is on [Coding Game](https://www.codingame.com/playgrounds/349/introduction-to-mpi/introduction-to-distributed-computing).
+This is the implementation of a message-passing paradigm for the exchange of information between processes. OpenMPI [[8, 9, 10, 11]]() is used in rendering farms, high-performance computing, and Scientific computing. For example, [Curie](http://www-hpc.cea.fr/en/complexe/tgcc-curie.htm), a French supercomputer makes extensive use of MPI. One of the best materials to learn MPI on the Internet is on [Coding Game](https://www.codingame.com/playgrounds/349/introduction-to-mpi/introduction-to-distributed-computing).
 
 The number of processes (size) is set at the point of the setup of the MPI communicator. However, it is possible to make adjustments using clever process group management.
 Every process has a rank (0, size-1).
@@ -344,7 +344,7 @@ MPI allows for remote memory access (RMA). Here are some commands which includes
 
 Unlike the two-sided communication model which requires a sender and receiver where the sender transfers data to the receiver. However, in a one-sided communication model, a process can directly access another process memory space address. Only one process can communicate directly without data transfer with minimum CPU intervention. There is a caveat where the ordering of RMA cannot be safely guaranteed [[10, 11]]().
 
-in our implementation of distributed shared primitive, we made extensive use of one-sided communication. RMA is non-blocking, but we are using it in a blocking mode by using locks. Maybe doing an epoch with MPI_Win_fence may be better in our logic. Otherwise, we may lose some of the non-blocking advantages. MPI_Compare_and_swap may be a better alternative [[10, 11]]().
+in our implementation of Distributed shared primitive, we made extensive use of one-sided communication. RMA is non-blocking, but we are using it in a blocking mode by using locks. Maybe doing an epoch with MPI_Win_fence may be better in our logic. Otherwise, we may lose some of the non-blocking advantages. MPI_Compare_and_swap may be a better alternative [[10, 11]]().
 
 If you make a one-sided communication in place of the default two-sided communication, then how do you receive ACKS (receipt)?
 
@@ -367,8 +367,8 @@ Hints, MPI_Win_fence is a collective using ideas from barriers.
 
 ### Benefits
 
-+ It can help to reduce synchronization
-+ It minimizes data movement (exclude buffering)
++ It can help to reduce synchronization.
++ It minimizes data movement (exclude buffering).
 
 # **Distributed Systems**
 
@@ -381,9 +381,9 @@ The benefits of using the Distributed system can include:
 + Scalability
 + Load distribution 
 
-There is a misconception that because we have a distributed system, then it must be scalable. This is not always the case, however, horizontal scaling when communication cost is low and the task is parallelizable and can be distributed, then performance gains are possible. The challenges can include partial failures (network/node failure) and concurrency.
+There is a misconception that because we have a Distributed system, then it must be scalable. This is not always the case, however, horizontal scaling when communication cost is low and the task is parallelizable and can be distributed, then performance gains are possible. The challenges can include partial failures (network/node failure) and concurrency.
 
-The ideal distributed system is to provide maximum throughput with acceptable latency.
+The ideal Distributed system is to provide maximum throughput with acceptable latency.
 
 [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem) (only 2 can be satisfied) is an acronym used for reasoning about kinds of a Distributed system.
 + C: consistency (the last read was the previous write)
@@ -393,14 +393,14 @@ The ideal distributed system is to provide maximum throughput with acceptable la
 Distributed Systems can be AP (availability, partition tolerance) or CP (consistency, partition tolerance). The centralized system is AC  (availability, consistency) because it does not tolerate network failures.
 
 Peter Deutsh made the list of [fallacies of Distributed computing](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing). These are assumptions that you are likely to make as building multiple layers of abstraction and forging how some lower-level details interact with the network.
-+ reliable network (network have some failure, always plan for retries and acks)
-+ no latency (do consider the transportation time for packets in the network)
-+ infinite bandwidth (bandwidth of the network is limited, so chunk the packet size as appropriate)
-+ secure network (do consider the security of your network, bit private or private network)
-+ fixed network topology
-+ existing administrator (there is no one as administrator, the system must be reasonably self-healing)
-+ zero transport cost (similar to "no latency", always expect some delays due to transport )
-+ homogenous network (expect that network partitions may exit)
++ Reliable network (network have some failure, always plan for retries and acks)
++ No latency (do consider the transportation time for packets in the network)
++ Infinite bandwidth (bandwidth of the network is limited, so chunk the packet size as appropriate)
++ Secure network (do consider the security of your network, bit private or private network)
++ Fixed network topology
++ Existing administrator (there is no one as administrator, the system must be reasonably self-healing)
++ Zero transport cost (similar to "no latency", always expect some delays due to transport )
++ Homogenous network (expect that network partitions may exit)
 
 When building Distributed Software, don't fall for these assumptions.
 
@@ -408,15 +408,15 @@ Consensus is reached when every node decides the same value. The decided value m
 
 The reasoning around Distributed computation can be challenging, hence the need for simplifying models. One of them is specifying the failure assumption which can have multiple modes for process failure [[1]]().
 
-+ crash-stop (stop sending / receiving)
-+ omissions (leaving out information after the event)
-+ crash-recovery (process fails and restart, and load states from backup)
-+ byzantine / arbitrary (unspecified state / messages)
-+ correct (properly working process sending and receiving messages)
++ Crash-stop (stop sending / receiving)
++ Omissions (leaving out information after the event)
++ Crash-recovery (process fails and restart, and load states from backup)
++ Byzantine / arbitrary (unspecified state / messages)
++ Correct (properly working process sending and receiving messages)
 
 We have adopted the crash-stop model in our work because it is very simple.
 
-To achieve fault tolerance, distributed systems will have to deal with failure. By a combination of the following techniques: retrying lost packets, replicating data for availability, and replacing (changing the leader that fails). Fault tolerance is the ability to sustain operation in the face of failure.
+To achieve fault tolerance, Distributed systems will have to deal with failure. By a combination of the following techniques: retrying lost packets, replicating data for availability, and replacing (changing the leader that fails). Fault tolerance is the ability to sustain operation in the face of failure.
 
 One common use case for Distributed systems is Sharding. In DB, it is the process of splitting a database table into multiple subsets of the table. Sharding (partitioning, replication) is organizing data into chunks that may overlap to increase availability.
 replication: duplicating of data across nodes.
@@ -427,14 +427,14 @@ replication: duplicating of data across nodes.
 NoSQL tends to be better amendable to Distributed concepts such as key-value stores and document stores [[1, 7]](). Several database architectures can allow for the availability of data across nodes can be achieved by replication (master-slave, master-master, buddy replication).
 
 A replicated state machine is a way to guarantee availability in the presence of failure by mirroring the data across nodes. It has the following properties [[1]]():
-+ every replica executes every operation
-+ start state is the same as the final state
++ Every replica executes every operation
++ Start state is the same as the final state
 
 Nodes in a Distributed system can be in the following roles [[2]]():
-+ coordination: managing several nodes e.g leader in a Raft algorithm.
-+ cooperation: participant working to solve a task.
-+ dissemination: replicate data to other nodes.
-+ consensus: verifying quorum has been reached on deciding on proposed values.
++ Coordination: managing several nodes e.g leader in a Raft algorithm.
++ Cooperation: participant working to solve a task.
++ Dissemination: replicate data to other nodes.
++ Consensus: verifying quorum has been reached on deciding on proposed values.
 
 A prerequisite for an understanding of Distributed systems is a deep understanding of network and parallel programming. We will provide a superficial treatment on both topics in the coming sections.
 
@@ -501,12 +501,12 @@ The algorithm does the following [[1, 2]]():
 + At consensus, every node has the same value.
 
 The following concurrency properties include [[1, 2, 7]]():
-+ liveness: a majority must reliable communicate.
-+ safety: only proposer to suggest values.
++ Liveness: a majority must reliable communicate.
++ Safety: only proposer to suggest values.
 
 The main characteristics of the algorithm are [[1, 2, 7]]():
-+ abortable consensus (multiple rounds may be necessary for convergence)
-+ agreement requires a quorum
++ Abortable consensus (multiple rounds may be necessary for convergence)
++ Agreement requires a quorum
 
 There are roles that systems can take in Paxos. They include:
 + Client
@@ -525,12 +525,12 @@ The algorithm does the following [[1, 2, 7]]():
 + Accepted value from proposer is sent learner to be decided
 
 #### properties [[1, 2, 7]]()
-+ validity (only proposed value can be decided)
-+ uniform agreement (no two processes decides different values)
-+ integrity (each process can decide at most one value)
-+ termination (every correct process eventually decides a value)
++ Validity (only proposed value can be decided)
++ Uniform agreement (no two processes decides different values)
++ Integrity (each process can decide at most one value)
++ Termination (every correct process eventually decides a value)
 
-There are multiple variations of single value Paxos which include: fast Paxos, egalitarian Paxos, flexible Paxos [database internals].
+There are multiple variations of single value Paxos which include: fast Paxos, egalitarian Paxos, flexible Paxos [[2]]().
 
 ### Sequence Paxos
 
@@ -565,15 +565,15 @@ consensus & atomic broadcast is solvable with a failure detector in an asynchron
 
 For a failure detector to be useful, it must meet the requirements with varying certainty [[1, 2, 7]]()
 + completeness: (when do crash nodes get detected?)
-  - every crashed process is eventually detected by every correct process (liveness).
+  - Every crashed process is eventually detected by every correct process (liveness).
 + accuracy: (when do alive nodes get suspected?)
-  - no correct process is ever suspected (safety).
+  - No correct process is ever suspected (safety).
 
 These requirements can be strong or weak
 
 We optimized for completeness instead of accuracy in our implementations. In our use case, it is possible to suspect a healthy process especially when there is intermittent network failure and update its state to alive. We assumed that all processes are healthy at the state, it may be desirable to assume all processes are dead. It depends on what is desirable in your use case, false positive or false negative. If you are thinking of adding a timeout outside the loop of the busy-wait on reads, then you need to estimate the timeout with reference to the first message received. If you are not guaranteed to reach the first message, then we are not having a quorum in the first place.
 
-To create a failure detector optimized for accuracy, we will take steps to prevent suspecting a failed process. It can be great to increment timeout if a node does not respond to pings, rather than suspect them as failed, give a benefit of the doubt, and increase timeout with the hope that bad communication may be the culprit, rather than process failure. IIf we keep incrementing the timeout on a per-node basis, then we can learn the behavior of the network with time and adjust for fault connections.
+To create a failure detector optimized for accuracy, we will take steps to prevent suspecting a healthy process. It can be great to increment timeout if a node does not respond to pings, rather than suspect them as failed, give a benefit of the doubt, and increase timeout with the hope that bad communication may be the culprit, rather than process failure. IIf we keep incrementing the timeout on a per-node basis, then we can learn the behavior of the network with time and adjust for fault connections.
 
 Failure detectors can be improved by increasing the scope of errors that can be identified. We have a minimal subset of failures targeted in our implementation. It is desirable to use domain knowledge of the failures to expect and customize your failure detector for those kinds of situations.
 
@@ -673,7 +673,7 @@ void checkLeader (data recv, int num_procs, int leader, MPI_Request requests [],
 Note:
 Remember to reset both counters for both functions at the end of leader election
 
-Add the required barriers to make the example work as expected. Look my a number of my Paxos implementation on how to create proper atomic primitives.
+Add the required barriers to make the example work as expected. Look at my implementations of Paxos on how to create proper atomic primitives.
 ```
 
 ## Raft
@@ -689,13 +689,17 @@ There are roles in the Raft algorithm
 + Follower: a participant that is not engaged in the election.
 
 Possible problems:
-+ multiple leaders
-+ no leaders
-+ missing log entries
-+ divergent log
++ Multiple leaders
++ No leaders
++ Missing log entries
++ Divergent log
 
+Can an election choose multiple leaders [[7]]()? yes
 Can an election fail to choose a leader [[7]]()? yes
+
 In our implementation of leader election, we did clever delay management and logic to reduce the chance of it happening in practice.
+
+If both the answers to both questions are true, then divergent logs are likely.
 
 Raft is so similar to leader election and sequence Paxos. Fortunately, we have implemented both, so it is very trivial to implement a Raft algorithm using a combination of both implementations. We will provide pseudocode that is similar to real source code
 
@@ -753,7 +757,7 @@ else
 
 + Our implementations in this blog make use of crash-stop failure assumption, however, our [planned initiative](https://kenluck2001.github.io/blog_post/authoring_a_new_book_on_distributed_computing.html) has some consideration of Byzantine failure.
 
-+ Our implementation of distributed systems creates a set of processes for the client. This may not be standard in the Paxos algorithm. We abstract it in our source code for ease of use.
++ Our implementation of Distributed systems creates a set of processes for the client. This may not be standard in the Paxos algorithm. We abstract it in our source code for ease of use.
 
 + Our philosophy has been to think locally and act globally. We do computations on the node and communicate with other nodes by messaging.
 
@@ -765,7 +769,7 @@ else
 
 + Organizing the processes into groups with custom communicators. This allows for targeted synchronization for grouped processes without impacting the whole processes in the application. This logic allows for precise control of a group of processes.
 
-+ When trying to create an array of atomic counters. It is desirable to make use of an array of shared pointers, rather than an array of shared values.
++ When trying to create an array of atomic counters. It is desirable to utilize an array of shared pointers, rather than an array of shared values.
 
 + We can cancel pending requests and tune the criteria for quorum based on business needs. This would impact how reliance on the Distributed Systems.
 
@@ -784,7 +788,7 @@ Deadlock can happen in mismatch message order between send and receive especiall
 
 + Livelock is possible too in a non-blocking case when we pull in a busy wait manner. As we exit from the end of the loop when we have received the expected number of messages. It can be sensible to keep track of the number of exchanged messages to force an exit from the endless loop.
 
-+ There are problems with passing pointers across nodes. This is because we don't have a universal shared memory. Always keep pointers local as a lack of distributed memory makes indirection on a pointer useless.
++ There are problems with passing pointers across nodes. This is because we don't have a universal shared memory. Always keep pointers local as a lack of Distributed memory makes indirection on a pointer useless.
 
 ### Random Sample of Source Codes
 
@@ -844,9 +848,9 @@ CRDT: CRDT is an anti-entropy mechanism. Riak pioneered the use of CRDT [[2, 12]
 
 Remote syncing (replication) across multiple devices can be challenging to achieve.
 Mathematically, it is a partially ordered monoid forming a lattice. It has to be commutative and idempotent.
-+ eventual consistency
-+ preserve ordering of the data
-+ local-first application
++ Eventual consistency
++ Preserve ordering of the data
++ Local-first application
 
 Here are some kinds of CRDT which include: map (LWW-mAP), set (G-set), and others [[2, 12]]().
 
@@ -870,7 +874,7 @@ My understanding of how the Merkle tree works are that it can help to identify c
 How conflict is resolved?
 There is always a possibility that there may be a mismatch due to latency issues.
 Strong consistency: every node is locked until every node is updated to a new value
-eventual consistency: This is a tradeoff in achieving consistency where every node is updated at a future time to the same value. updates are momentarily postponed and get applied as a future where the current read was the last write.
+Eventual consistency: This is a tradeoff in achieving consistency where every node is updated at a future time to the same value. updates are momentarily postponed and get applied as a future where the current read was the last write.
 
 ## Case studies
 
@@ -884,19 +888,25 @@ map-reduce is a functional programming paradigm
 
 ```
 input key-value pair
-        |  map, f
+        |  
+        | map, f
         |
+       \/
     intermediate key-value pairs
         |  
         |
+        |
+       \/
     grouping
         |  
         |
+        |
+       \/
      reduce
 ```
 Spark
 key-value pair
- -resilient distributed dataset (grouping)
+ -resilient Distributed dataset (grouping)
 
 lazy evaluation (caching
  -reducing computation grouping)
@@ -921,11 +931,11 @@ The author encourages the user to implement map-reduce using the description pro
 the shared variable is protected with a lock to protect a critical section
 and compare and swap can be used to update the critical section in a non-blocking manner.
 
-I am not sure of how compare-and-swap works in mpi, my implementation of distributed shared primitive would be enhanced without blocking, which is more in line with our non-blocking approach in the code philosophy.
+I am not sure of how compare-and-swap works in mpi, my implementation of Distributed shared primitive would be enhanced without blocking, which is more in line with our non-blocking approach in the code philosophy.
 
 if you adjust the resilience of your algorithm to enhance fault tolerance within the limit provided by quorum, then remember to cancel every outstanding request to prevent livelocks.
 
-All of our approaches to building a distributed shared primitive are influenced by the [work](https://stackoverflow.com/questions/4948788/creating-a-counter-that-stays-synchronized-across-mpi-processes). One of our variations of a shared variable across processes made use of one-sided communication to pass messages between processes and always select the maximum.
+All of our approaches to building a Distributed shared primitive are influenced by the [work](https://stackoverflow.com/questions/4948788/creating-a-counter-that-stays-synchronized-across-mpi-processes). One of our variations of a shared variable across processes made use of one-sided communication to pass messages between processes and always select the maximum.
 This works in a form of quasi-atomics and only works because our application makes use of the monotonic increasing property as an invariant. See example of commented use in [sequence-paxos3.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/playground/sequence-paxos3.c).
 
 ```
@@ -963,7 +973,7 @@ int reset_var(struct mpi_counter_t *count, int valuein) {
 ### Distributed Hashmap 
 
 <a name="distributed-hashmap"></a>
-We have used the Lamport clock to make a distributed hashmap where every node has a local map (key-value pair) and in agreement, every node has the same key value key based on quorum.
+We have used the Lamport clock to make a Distributed hashmap where every node has a local map (key-value pair) and in agreement, every node has the same key value key based on quorum.
 
 
 # **Practical considerations**
@@ -980,8 +990,8 @@ We have used the Lamport clock to make a distributed hashmap where every node ha
 
 + Modularizing the source code and performing the unit test. Read more about the characteristics of [concurrency bugs](https://danluu.com/concurrency-bugs/) and inspire the tests to be written.
 + Identify invariants as relations and use [metamorphic testing](https://kenluck2001.github.io/blog_post/metamorphic_testing_in_a_nutshell.html) to test with higher coverage.
-+ Add assert on bad conditions violations within the source code and scope within a condition flag that can be passed as a command-line argument to toggle the assertion as at when needed. 
-+ Perform experiment in a testbed using a cluster of VMs in a LAN managed with a DevOps tool such as Vagrant, see [hints](https://github.com/mrahtz/mpi-vagrant).
++ Add assert on bad conditions violations within the source code and scope within a condition flag that can be passed as a command-line argument to toggle the assertion when needed. 
++ experiment on a testbed using a cluster of VMs in a LAN managed with a DevOps tool such as Vagrant, see [hints](https://github.com/mrahtz/mpi-vagrant).
 
 # **Evaluation metrics**
 
@@ -998,7 +1008,7 @@ We have used the Lamport clock to make a distributed hashmap where every node ha
 # **Exercises for the readers**
 
 <a name="exercises"></a>
-- Write tests for the distributed algorithm discussed in the blog. We will give the user the task OF implementing tests as an exercise.
+- Write tests for the Distributed algorithm discussed in the blog. We will give the user the task OF implementing tests as an exercise.
 - Implement telemetry for experimentation on characteristics of any algorithm
 - Set up a testbed with a [simulated LAN with vagrant VM](https://github.com/mrahtz/mpi-vagrant) for running mpi cluster.
 - implement network shaping using VM to test out different performances in varying network bandwidth.
@@ -1011,15 +1021,15 @@ We will discuss BFT, PBFT as future work in the [upcoming textbook](https://kenl
 # **Acknowledgments**
 
 <a name="acknowledgments"></a>
-I would like to thank professor Haridi of the Reliable Distributed Algorithms (Part 1 and Part 2) which was offered in the Edx platform a few years ago. I was not technically prepared to complete the course at the time, but I audit it after it ended.
+I would like to thank professor Haridi of the Reliable Distributed Algorithms (Part 1 and Part 2) which was offered in the Edx platform a few years ago. I was not technically prepared to complete the course at the time, but I audited it after it ended.
 
-I would like to thank Prof Vivek Sarkar whose specialization program that I took from Coursera was named [Parallel, Concurrent, and Distributed Programming in Java Specialization](https://www.coursera.org/specializations/pcdp). He explain parallel programming and introduced me to OpenMpi, which resurrected my stalled research on Distributed systems leading to this blog.
+I would like to thank Prof Vivek Sarkar whose specialization program that I took from  [Coursera](https://www.coursera.org/) was named [Parallel, Concurrent, and Distributed Programming in Java Specialization](https://www.coursera.org/specializations/pcdp). He explain parallel programming and introduced me to OpenMpi, which resurrected my stalled research on Distributed systems leading to this blog.
 
 I would like to thank Anselm Eickhoff and Charles Krempeaux who were responsive to my questions about CRDT.
 
 I would also like to thank Harrington Joseph who suggested that I focused on gaining a low-level understanding of parallel programming.
 
-It is possible that some references may have been left out. Please notify the author with concerns about missing references. I would gladly add the suggested reference.
+Some references may have been left out. Please notify the author with concerns about missing references. I would gladly add the suggested reference.
 
 # **Conclusion**
 
@@ -1055,11 +1065,7 @@ BibTeX Citation
   year = {2022},
   note = {https://kenluck2001.github.io/blog_post/distributed_computing_from_first_principles.html}
 }
-```
-
-
-
- </section>
+``` </section>
 
                 <hr class="line"/>
                 <div style="display: flex; justify-content: center;">
