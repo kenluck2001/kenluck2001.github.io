@@ -530,6 +530,15 @@ The algorithm does the following [[1, 2, 7]]():
 + Integrity (each process can decide at most one value)
 + Termination (every correct process eventually decides a value)
 
+The version of single value Paxos algorithm implemented in this blog is shown below.
+
+The ininitialization value for the initial states of each node in the Single value Paxos.
+![initialization for single value Paxos](/static/images/distributed-systems/paxos1.png)
+
+This is the sequence (interaction) diagram showing the messages sent between different roles in the network for Single value Paxos.
+![single paxos algorithm](/static/images/distributed-systems/paxos2.png)
+
+
 There are multiple variations of single value Paxos which include: fast Paxos, egalitarian Paxos, flexible Paxos [[2]]().
 
 ### Sequence Paxos
@@ -542,6 +551,18 @@ The algorithm does the following [[1, 2, 7]]():
 Consensus: an agreement in the common ordering of events across processes
 
 make a log of decided values as repeated runs of single-Paxos algorithms
+
+The version of sequence Paxos algorithm implemented in this blog is shown below.
+
+The ininitialization value for the initial states of each node in the sequence Paxos
+![initialization for sequence Paxos](/static/images/distributed-systems/sequence-paxos1.png)
+
+This is the sequence (interaction) diagram showing the messages sent between different roles in the network for sequence Paxos Paxos
+![sequence paxos algorithm](/static/images/distributed-systems/sequence-paxos2.png)
+
+Show the algorithm tweaks to keep the prefix invariants
+![sequence paxos algorithm extensions](/static/images/distributed-systems/sequence-paxos3.png)
+
 
 ## Failure detector
 
