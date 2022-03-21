@@ -145,7 +145,7 @@ As I started researching, I noticed a troubling trend in Distributed Systems res
 # **Algorithm Implementations**
 
 <a name="algorithm-implementations"></a>
-My source code was tested with the following specification which includes:
+My source code was tested with the following specification:
 
 | Setup      | Version    |
 | :---        |          ---: |
@@ -168,9 +168,9 @@ Here is my list of implemented Distributed algorithms with [associated source co
 | 8   | Distributed hashmap             |[lamport1-majority-voting8.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/blog/lamport1-majority-voting8.c)      |
 
 
-A number of my implementations can be tracked in my [playground](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/playground) where you can follow my thought process during incremental development. Some of the implementations in [playground](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/playground) have bad solutions due to incorrect assumptions. However, the [implementations](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/blog) referenced directly in this blog is verified by the author and relatively free of obvious errors. 
+Some of my implementations are tracked in my [playground](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/playground) where you can follow my thought process during incremental development. Some of the implementations in [playground](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/playground) have faulty solutions due to incorrect assumptions. However, the [implementations](https://github.com/kenluck2001/DistributedSystemReseach/tree/master/blog) referenced directly in this blog is verified by the author and relatively free of obvious errors. 
 
-We had settled for MPI as the underlying library to provide low-level functionality instead of Remote Procedural Call as it blurs message-passing paradigm by passing arguments as messages, even though they are conceptually similar, the MPI is structured in a concise way for implementing our Distributed algorithms. Hence, all implementations would strictly use [OpenMPI](https://en.wikipedia.org/wiki/Open_MPI) in [C](https://en.wikipedia.org/wiki/ANSI_C). Event-based programming based on message passing can serve as a great abstraction for building Distributed systems. Hence, we are using this approach for all of our implementations.
+We had settled for OpenMPI as the underlying library to provide low-level functionality. The choice is better than using Remote Procedural Call which blurs the message-passing paradigm by passing arguments as messages, even though they are conceptually similar, the MPI provides a structured way for implementing our Distributed algorithms. Hence, all implementations would strictly use [OpenMPI](https://en.wikipedia.org/wiki/Open_MPI) in [C](https://en.wikipedia.org/wiki/ANSI_C). Event-based programming based on message passing can serve as a great abstraction for building Distributed systems. Hence, we are using this approach for all of our implementations.
 
 For sake of pedagogy, we have ignored tracing and invariant proofs, while these are important in Distributed systems scholarship, we anticipate that the users will learn by doing and not get bogged down by mathematics. We abandoned the idea of splitting this content across several blogs because I am not a fan of fragmented content. It is better to have a comprehensive resource in one place.
 
@@ -248,8 +248,7 @@ Structural determinism: any repeat of the parallel program yields the same compu
 
 Let's say that your process is handling permutation-invariant data e.g unsorted data, we only need functional dependency and not structural determinism. This can provide clever shortcuts to optimize your program.
 
-
-[ADD CHART FOR COMPUTATIONAL GRAPH]
+![computation graph](/static/images/distributed-systems/computation-graph.png)
 
 + Each node is a sequential/ sub computation step
 + Each edge is an ordering constraint
@@ -376,6 +375,8 @@ Hints, MPI_Win_fence is a collective using ideas from barriers.
 
 Distributed System [[6, 7]]() is a set of nodes (devices) that are connected by a link and operate as a single system. Each device works locally independently but appears like a unified global device providing the "single view illusion" e.g Internet, edge computing, mobile, sensor network.
 
+![distributed system diagram](/static/images/distributed-systems/distributed-system-diagram.png)
+
 The benefits of using the Distributed system can include: 
 + Faulty tolerance (reliability)
 + Scalability
@@ -392,7 +393,7 @@ The ideal Distributed system is to provide maximum throughput with acceptable la
 
 Distributed Systems can be AP (availability, partition tolerance) or CP (consistency, partition tolerance). The centralized system is AC  (availability, consistency) because it does not tolerate network failures.
 
-Peter Deutsh made the list of [fallacies of Distributed computing](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing). These are assumptions that you are likely to make as building multiple layers of abstraction and forging how some lower-level details interact with the network.
+Peter Deutsh made the list of [fallacies of Distributed computing](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing). 
 + Reliable network (network have some failure, always plan for retries and acks)
 + No latency (do consider the transportation time for packets in the network)
 + Infinite bandwidth (bandwidth of the network is limited, so chunk the packet size as appropriate)
@@ -421,7 +422,8 @@ To achieve fault tolerance, Distributed systems will have to deal with failure. 
 One common use case for Distributed systems is Sharding. In DB, it is the process of splitting a database table into multiple subsets of the table. Sharding (partitioning, replication) is organizing data into chunks that may overlap to increase availability.
 replication: duplicating of data across nodes.
 
-[Add diagram]
+
+![sharding](/static/images/distributed-systems/sharding.png)
 
 
 NoSQL tends to be better amendable to Distributed concepts such as key-value stores and document stores [[1, 7]](). Several database architectures can allow for the availability of data across nodes can be achieved by replication (master-slave, master-master, buddy replication).
@@ -434,9 +436,9 @@ Nodes in a Distributed system can be in the following roles [[2]]():
 + Coordination: managing several nodes e.g leader in a Raft algorithm.
 + Cooperation: participant working to solve a task.
 + Dissemination: replicate data to other nodes.
-+ Consensus: verifying quorum has been reached on deciding on proposed values.
++ Consensus: verifying quorum and deciding on proposed values.
 
-A prerequisite for an understanding of Distributed systems is a deep understanding of network and parallel programming. We will provide a superficial treatment on both topics in the coming sections.
+The prerequisites for understanding Distributed systems is a deep understanding of network and parallel programming. We will provide a superficial treatment on both topics in the coming sections.
 
 
 ## Theoretical foundations
@@ -455,7 +457,7 @@ This describes the necessary conditions for consensus to be achieved. The follow
 + Termination (quit the algorithm after the decision has been made)
 
 This is shown when consensus is impossible in an asynchronous, synchronous, and partially synchronous system [[1, 2, 7]]().
-+ Consensus is impossible in an asynchronous system if there is a single failure.
++ Consensus cannot be solved in an asynchronous system if there is a single failure.
 + Consensus cannot be solved in a synchronous system if N-1 nodes fail.
 + Consensus is solvable with up to N/2 crashes.
 
@@ -524,22 +526,21 @@ The algorithm does the following [[1, 2, 7]]():
 + Proposers accept votes from a quorum of acceptor
 + Accepted value from proposer is sent learner to be decided
 
-#### properties [[1, 2, 7]]()
+#### Properties of Paxos algorithm [[1, 2, 7]]()
 + Validity (only proposed value can be decided)
 + Uniform agreement (no two processes decides different values)
 + Integrity (each process can decide at most one value)
 + Termination (every correct process eventually decides a value)
 
-The version of single value Paxos algorithm implemented in this blog is shown below.
+The version of the single value Paxos algorithm implemented in this blog is shown below.
 
-The ininitialization value for the initial states of each node in the Single value Paxos.
+The initial states of each node in the Single value Paxos.
 ![initialization for single value Paxos](/static/images/distributed-systems/paxos1.png)
 
 This is the sequence (interaction) diagram showing the messages sent between different roles in the network for Single value Paxos.
 ![single paxos algorithm](/static/images/distributed-systems/paxos2.png)
 
-
-There are multiple variations of single value Paxos which include: fast Paxos, egalitarian Paxos, flexible Paxos [[2]]().
+There are multiple variations of single value Paxos including fast Paxos, egalitarian Paxos, flexible Paxos [[2]]().
 
 ### Sequence Paxos
 
@@ -552,24 +553,24 @@ Consensus: an agreement in the common ordering of events across processes
 
 make a log of decided values as repeated runs of single-Paxos algorithms
 
-The version of sequence Paxos algorithm implemented in this blog is shown below.
+The version of the sequence Paxos algorithm implemented in this blog is here.
 
-The ininitialization value for the initial states of each node in the sequence Paxos
+The initial states of each node in the sequence Paxos
 ![initialization for sequence Paxos](/static/images/distributed-systems/sequence-paxos1.png)
 
 This is the sequence (interaction) diagram showing the messages sent between different roles in the network for sequence Paxos Paxos
-![sequence paxos algorithm](/static/images/distributed-systems/sequence-paxos2.png)
+![sequence Paxos algorithm](/static/images/distributed-systems/sequence-paxos2.png)
 
 Show the algorithm tweaks to keep the prefix invariants
-![sequence paxos algorithm extensions](/static/images/distributed-systems/sequence-paxos3.png)
+![sequence Paxos algorithm extensions](/static/images/distributed-systems/sequence-paxos3.png)
 
 
 ## Failure detector
 
 <a name="failure-detector"></a>
-A failure detector is a mechanism for identifying faults in an asynchronous system. Giving rise to a new classification that is called "Timed Asynchronous system".
+A failure detector is a mechanism for identifying faults in an asynchronous system leading to a new classification called "Timed Asynchronous system".
 
-Timed Asynchronous system has the following properties which include [[1]]():
+Timed Asynchronous system has the following properties include [[1]]():
 + No time-bound on message delivery
 + No time-bound on compute time
 + The clock has known drift rates
@@ -616,6 +617,10 @@ The choice of delay has a significant impact on leader election.
 The rule of thumb on deciding duration
 + if the value is set too low, then the second candidate begins election before the first election triggered by the first candidate.
 + if too high, then it will take too long for the election to start after the old leader has died. The new candidate starts an election.
+
+Here is a diagram showing how leader election works
+
+![leader election algorithm](/static/images/distributed-systems/leader-election.png)
 
 A variation using ballots for a leadership election to choose a leader from a set of candidates;
 
@@ -880,11 +885,6 @@ Ancilliary structure: These are data structures can we can use to verify if the 
 
 audit proof: verify a single chunk exists in a tree
 consistency proof: compares the version of the same tree
-
-[add diagram]
-
-[add an example here]
-
 
 consistency verification
 + data verification
