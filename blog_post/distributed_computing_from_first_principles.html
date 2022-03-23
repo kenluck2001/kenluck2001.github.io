@@ -175,7 +175,7 @@ We had settled for OpenMPI as the underlying library to provide low-level functi
 For sake of pedagogy, we have ignored tracing and invariant proofs, while these are important in Distributed systems scholarship, we anticipate that the users will learn by doing and not get bogged down by mathematics. We abandoned the idea of splitting this content across several blogs because I am not a fan of fragmented content. It is better to have a comprehensive resource in one place.
 
 
-# **Network programming**
+# **Network Programming**
 
 <a name="network-programming"></a>
 The socket is the basic file for networking. Let us recap the Unix philosophy that everything is a file. Socket() returns a descriptor. Sending a message over a network becomes analogous to writing to a file stream while receiving the message is comparable to reading a file stream. However, we are doing work over a network as a channel.
@@ -330,7 +330,7 @@ collective operation
 + gather a single process assemblies data from different processes in a buffer e.g MPI_Gather. MPI_AllGather is to gather and scatter the results from every process.
 There are synchronization primitives like locks, barrier
 
-## One-sided communication
+## One-sided Communication
 
 MPI allows for remote memory access (RMA). Here are some commands which includes:
 
@@ -358,7 +358,7 @@ MPI_Win_fence    // end of epoch
 Is using a fence, better than using locks on the level of concurrency granularity?
 Hints, MPI_Win_fence is a collective using ideas from barriers.
 
-### Best practices
+### Best Practices
 
 + No user-defined operation in MPI_Accumulate.
 + Ensure local completion before accessing the buffer in an epoch.
@@ -441,7 +441,7 @@ Nodes in a Distributed system can be in the following roles [[2]]():
 The prerequisites for understanding Distributed systems is a deep understanding of network and parallel programming. We will provide a superficial treatment on both topics in the coming sections.
 
 
-## Theoretical foundations
+## Theoretical Foundations
 
 <a name="theoretical-foundations"></a>
 
@@ -473,7 +473,7 @@ Let our maps to a real-world Distributed system [[1, 2, 7]]().
 Two general problems imply that it is impossible to reach a consensus in asynchronous when there is a faulty link [[1, 2, 7]]().
 
 
-## Logical clocks
+## Logical Clocks
 
 <a name="logical-clocks"></a>
 
@@ -518,7 +518,7 @@ There are roles that systems can take in Paxos. They include:
 
 We will discuss single value Paxos and sequence Paxos in the next subsections.
 
-### Single valued Paxos
+### Single Valued Paxos
 
 The algorithm does the following [[1, 2, 7]]():
 + The client sends the message to the proposer
@@ -565,7 +565,7 @@ Show the algorithm tweaks to keep the prefix invariants
 ![sequence Paxos algorithm extensions](/static/images/distributed-systems/sequence-paxos3.png)
 
 
-## Failure detector
+## Failure Detector
 
 <a name="failure-detector"></a>
 A failure detector is a mechanism for identifying faults in an asynchronous system leading to a new classification called "Timed Asynchronous system".
@@ -600,7 +600,7 @@ To create a failure detector optimized for accuracy, we will take steps to preve
 Failure detectors can be improved by increasing the scope of errors that can be identified. We have a minimal subset of failures targeted in our implementation. It is desirable to use domain knowledge of the failures to expect and customize your failure detector for those kinds of situations.
 
 
-## Leader election
+## Leader Election
 
 <a name="leader-election"></a>
 There are possible coordination issues with having multiple proposers. However, having a single proposer is easier to manage and has fewer contentions. Hence, the need to designate the leader who serves as a coordinator. Our leadership election makes use of a failure detector behind the hood [[1, 2, 7]]().
@@ -856,7 +856,7 @@ every process has access to the array variable that decides if a process is heal
   - This is a simplified version of our adaptation of the bully algorithm where the first candidate becomes the node to call an election and choose itself. The rationale is that if the client can start an election, then it is alive.
 
 
-## Anti-entropy techniques
+## Anti-entropy Techniques
 
 <a name="anti-entropy"></a>
 
@@ -885,9 +885,9 @@ Ancilliary structure: These are data structures can we can use to verify if the 
 audit proof: verify a single chunk exists in a tree
 consistency proof: compares the version of the same tree
 
-consistency verification
-+ data verification
-+ data synchronization
+Consistency verification
++ Data verification
++ Data synchronization
 
 My understanding of how the Merkle tree works are that it can help to identify conflicts. One approach will be to send the hash of the data as metadata that can be used to audit the received message. Once there is a match, then we are sure the message was not corrupted. However, if the hash is a mismatch, there is a mismatch. When the data is hierarchical-like or sub-items, then it may be possible to request sub-items from neighbors to reduce transaction costs. The puzzle is that I see work that claims that the Merkle tree can do conflict resolution in itself. However, my intuition is it is only possible to do so by identifying the conflict and seeking retries. Let me know of such scientific papers that do automatic conflict resolution from Merkle trees.
 
@@ -896,7 +896,7 @@ There is always a possibility that there may be a mismatch due to latency issues
 Strong consistency: every node is locked until every node is updated to a new value
 Eventual consistency: This is a tradeoff in achieving consistency where every node is updated at a future time to the same value. updates are momentarily postponed and get applied as a future where the current read was the last write.
 
-## Case studies
+## Case Studies
 
 <a name="case-studies"></a>
 ### Map-reduce
@@ -937,7 +937,7 @@ One possible way to approach it is considering the problem in two cases
 + Case 1: rank 0 has all data and every other node is empty
   - split the data in chunks
   - mpi-scatter to send to every process (or even mpi_send). An advanced user may send to a group of users to handle intermediate nodes where secondary reduction may be performed on a subset of nodes.
-  -Do computation between a subset of the node and set the result of the computation to a non-overlapping set to aggregate the result.
+  - Do computation between a subset of the node and set the result of the computation to a non-overlapping set to aggregate the result.
 
 + Case 2: every node already.
   - skip the mpi scatter phase in case 1.
@@ -945,7 +945,7 @@ One possible way to approach it is considering the problem in two cases
 
 The author encourages the user to implement map-reduce using the description provided in this section. 
 
-### Distributed shared primitive 
+### Distributed Shared Primitive 
 
 <a name="distributed-shared-primitive"></a>
 the shared variable is protected with a lock to protect a critical section
@@ -996,7 +996,7 @@ int reset_var(struct mpi_counter_t *count, int valuein) {
 We have used the Lamport clock to make a Distributed hashmap where every node has a local map (key-value pair) and in agreement, every node has the same key value key based on quorum.
 
 
-# **Practical considerations**
+# **Practical Considerations**
 
 <a name="practical-considerations"></a>
 + Who can partake in a leadership election? It is possible to designation nodes with permissions levels. One may decide if only nodes with write permissions or read permissions can partake in the election.
@@ -1013,7 +1013,7 @@ We have used the Lamport clock to make a Distributed hashmap where every node ha
 + Add assert on bad conditions violations within the source code and scope within a condition flag that can be passed as a command-line argument to toggle the assertion when needed. 
 + experiment on a testbed using a cluster of VMs in a LAN managed with a DevOps tool such as Vagrant, see [hints](https://github.com/mrahtz/mpi-vagrant).
 
-# **Evaluation metrics**
+# **Evaluation Metrics**
 
 <a name="evaluation-metrics"></a>
 + message complexity
@@ -1025,7 +1025,7 @@ We have used the Lamport clock to make a Distributed hashmap where every node ha
   - the time between send(m) and deliver(m) is at most one unit.
 
 
-# **Exercises for the readers**
+# **Exercises for the Readers**
 
 <a name="exercises"></a>
 - Write tests for the Distributed algorithm discussed in the blog. We will give the user the task OF implementing tests as an exercise.
