@@ -819,42 +819,41 @@ Deadlock can happen in mismatch message order between send and receive especiall
 ### Random Sample of Source Codes
 
 + [lamport1-majority-voting5.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/playground/lamport1-majority-voting5.c)
-A single node sends a message to every other node and receives acknowledgments from them.
+  - A single node sends a message to every other node and receives acknowledgments from them.
 
 + [lamport1-majority-voting6.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/playground/lamport1-majority-voting6.c)
-similar to lamport1-majority-voting5.c
-Use as a base for key-value pair.
+  - Similar to lamport1-majority-voting5.c
+  - Use as a base for key-value pair.
 
 + [lamport1-majority-voting7.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/playground/lamport1-majority-voting7.c)
-- hashmap with fault tolerance
-- reduce the number of messages to quorum.
+  - Hashmap with fault tolerance
+  - Reduce the number of messages to quorum.
 
 + [lamport1-majority-voting8.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/playground/lamport1-majority-voting8.c)
-implemented key-value map
+  - implemented key-value map
 
 + [single-paxos3.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/blog/single-paxos3.c)
-working single value Paxos
-
-We have an enum of client, proposer, acceptor, learner
-A missing feature that is easy to add is to propagate the decided value to every healthy node. It is very trivial and hence left out of the implementation.
+  - Working single value Paxos
+  - We have an enum of client, proposer, acceptor, learner
+  - A missing feature that is easy to add is to propagate the decided value to every healthy node. It is very trivial and hence left out of the implementation.
 
 + [single-paxos5.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/playground/single-paxos5.c)
-limitations for using mode as an opp for MPI_Accumulate.
-it fails because the mode allocates itself too much memory leading to an overflow.
+  - Limitations for using mode as an opp for MPI_Accumulate.
+  - It fails because the mode allocates itself too much memory leading to an overflow.
 
 + [sequence-paxos.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/playground/sequence-paxos.c)
-introduced reset_var method has been used to reset values on a custom shared primitive
+  - Introduced reset_var method has been used to reset values on a custom shared primitive
 
 + [failure-detector2.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/blog/failure-detector2.c)
-This implementation ignores the use of sleep which seems to block every process (this claim has to be verified). Instead, we are using busy waits that can only impact a thread rather than every thread on the stack.
-sleep gives compilation error even though I am not in strict mode. Blocking every process is not desirable for my use case, busy-wait does useless work, but is a better compromise for my use-case.
+  - This implementation ignores the use of sleep which seems to block every process (this claim has to be verified). Instead, we are using busy waits that can only impact a thread rather than every thread on the stack.
+  - Sleep gives compilation error even though I am not in strict mode. Blocking every process is not desirable for my use case, busy-wait does useless work, but is a better compromise for my use-case.
 
 + [failure-detector.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/playground/failure-detector.c)
-every thread state in the array is set to 0 which denotes a healthy process. If a process is suspected to be dead, we set it to 1. However, if it comes back up or experiences network delays, we reset to 0.
+  - Every thread state in the array is set to 0 which denotes a healthy process. If a process is suspected to be dead, we set it to 1. However, if it comes back up or experiences network delays, we reset to 0.
 every process has access to the array variable that decides if a process is healthy.
 
 + [leader-election2.c](https://github.com/kenluck2001/DistributedSystemReseach/blob/master/blog/leader-election2.c)
-This is a simplified version of our adaptation of the bully algorithm where the first candidate becomes the node to call an election and choose itself. The rationale is that if the client can start an election, then it is alive.
+  - This is a simplified version of our adaptation of the bully algorithm where the first candidate becomes the node to call an election and choose itself. The rationale is that if the client can start an election, then it is alive.
 
 
 ## Anti-entropy techniques
