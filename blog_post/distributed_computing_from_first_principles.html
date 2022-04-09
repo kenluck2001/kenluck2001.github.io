@@ -5,7 +5,7 @@
     <title>Distributed Computing From First Principles</title>
     <meta name="author" content="Kenneth Emeka Odoh"/>
     <meta name="description" content="
-                                      Have you ever wondered how a typical Distributed system works under the hood? Are you looking for a pedagogical guide with complete implementations and tricks of the trade? Look no further and read my writing on the topic
+                                      Have you ever wondered how a typical distributed system works under the hood? Are you looking for a pedagogical guide with complete implementations and tricks of the trade? Look no further and read my writing on the topic
                                       "/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Distributed Computing From First Principles" />
     <meta property="og:description" content="
-                                              Have you ever wondered how a typical Distributed system works under the hood? Are you looking for a pedagogical guide with complete implementations and tricks of the trade? Look no further and read my writing on the topic
+                                              Have you ever wondered how a typical distributed system works under the hood? Are you looking for a pedagogical guide with complete implementations and tricks of the trade? Look no further and read my writing on the topic
                                               " />
 
     <script defer src="/static/js/backup/all.js"></script>
@@ -87,12 +87,12 @@
                         <a id=Leader-Election href=/blogs/Leader-Election/1.html> Leader-Election</a> 
                     
                 </div>
-                <section id="text" class="Article-content"> Have you ever wondered how a typical Distributed system works under the hood? Are you looking for a pedagogical guide with complete implementations and tricks of the trade? Look no further and read my writing on the topic. We have implemented several foundational algorithms in Distributed Computing. After completing the first phase of this research, it became apparent that I have not ruled out the possibility of working full-time on these topics.
+                <section id="text" class="Article-content"> Have you ever wondered how a typical distributed system works under the hood? Are you looking for a pedagogical guide with complete implementations and tricks of the trade? Look no further and read my writing on the topic. We have implemented several foundational algorithms in distributed Computing. After completing the first phase of this research, it became apparent that I have not ruled out the possibility of working full-time on these topics.
 **This blog is still under construction.**
 
-A few years ago, I was deficient in the low-level knowledge needed to build a large-scale Distributed system without utilizing third-party packages. This motivated me to research this topic from first principles and I subsequently became a better Software Engineer in the process. My initial foray into Distributed systems began due to my participation in a Distributed System meetup, where I eventually became the organizer in Vancouver. Our study group utilized materials from the Distributed Systems course at [KTH](https://www.kth.se/en) Sweden. Our goal was mainly to gain intuition and theoretical knowledge on the subject. Luckily, I took the step further when I took the [Parallel, Concurrent, and Distributed Programming in Java Specialization](https://www.coursera.org/specializations/pcdp) in [Coursera](https://www.coursera.org/), where I saw  [OpenMPI](https://en.wikipedia.org/wiki/Open_MPI) mentioned and knew it was the missing link in my dive into implementing low-level Distributed algorithms. 
+A few years ago, I was deficient in the low-level knowledge needed to build a large-scale distributed system without utilizing third-party packages. This motivated me to research this topic from first principles and I subsequently became a better Software Engineer in the process. My initial foray into distributed systems began due to my participation in a Distributed System meetup, where I eventually became the organizer in Vancouver. Our study group utilized materials from the Distributed Systems course at [KTH](https://www.kth.se/en) Sweden. Our goal was mainly to gain intuition and theoretical knowledge on the subject. Luckily, I took the step further when I took the [Parallel, Concurrent, and Distributed Programming in Java Specialization](https://www.coursera.org/specializations/pcdp) in [Coursera](https://www.coursera.org/), where I saw  [OpenMPI](https://en.wikipedia.org/wiki/Open_MPI) mentioned and knew it was the missing link in my dive into implementing low-level distributed algorithms. 
 
-As I started researching, I noticed a troubling trend in Distributed Systems research where the best works in the field are performed in top research labs, advanced technical schools, and by seasoned open source contributors. Unfortunately, this status quo is unacceptable. Hence, I am motivated to invest in this research to distill this knowledge to a wider audience. Our focus is delivering scientific content without diluting the content and maintaining world-class rigor. We are poised to create disruptive change by sharing knowledge hidden within plain sight. One axiom from the [Zen of Python](https://www.python.org/dev/peps/pep-0020/) posits that "practically beats purity", so rather than pontificate on the state of art Distributed algorithm, we have taken the approach of solidifying the fundamentals. There is wide applicability of Distributed Computing in the industry.
+As I started researching, I noticed a troubling trend in Distributed Systems research where the best works in the field are performed in top research labs, advanced technical schools, and by seasoned open source contributors. Unfortunately, this status quo is unacceptable. Hence, I am motivated to invest in this research to distill this knowledge to a wider audience. Our focus is delivering scientific content without diluting the content and maintaining world-class rigor. We are poised to create disruptive change by sharing knowledge hidden within plain sight. One axiom from the [Zen of Python](https://www.python.org/dev/peps/pep-0020/) posits that "practically beats purity", so rather than pontificate on the state of art distributed algorithm, we have taken the approach of solidifying the fundamentals. There is wide applicability of Distributed Computing in the industry.
 
 ##### **Notes:**
 + This work is based on non-proprietary content that is unrelated to my employer. This is part of my hobby and I used only publicly-sourced information. The blog summarizes the first phase of my two-phased research on low-level Distributed systems. The second phase of my research will be covered in my [upcoming textbook](https://kenluck2001.github.io/blog_post/authoring_a_new_book_on_distributed_computing.html).
@@ -797,7 +797,7 @@ else
 
 + When trying to create an array of atomic counters. It is desirable to utilize an array of shared pointers, rather than an array of shared values.
 
-+ We can cancel pending requests and tune the criteria for quorum based on business needs. This would impact how reliance on the Distributed Systems.
++ We can cancel pending requests and tune the criteria for quorum based on business needs. This would impact how resilience on the Distributed Systems.
 
 + We use pooling on receiving the message and checking each tag, rather than waiting on specific tags to make code modular. With my quest to go low level, rather than use C++, I tried objected-oriented design in C to enhance modularity but abandoned the [idea](https://stackoverflow.com/questions/351733/how-would-one-write-object-oriented-code-in-c) due to loss of type safety.
 
@@ -814,7 +814,7 @@ Deadlock can happen in mismatch message order between send and receive especiall
 
 + Livelock is possible too in a non-blocking case when we pull in a busy wait manner. As we exit from the end of the loop when we have received the expected number of messages. It can be sensible to keep track of the number of exchanged messages to force an exit from the endless loop.
 
-+ There are problems with passing pointers across nodes. This is because we don't have a universal shared memory. Always keep pointers local as a lack of Distributed memory makes indirection on a pointer useless.
++ There are problems with passing pointers across nodes. This is because we don't have a universal shared memory. Always keep pointers local as a lack of distributed memory makes indirection on a pointer useless.
 
 ### Random Sample of Source Codes
 
@@ -863,7 +863,7 @@ every process has access to the array variable that decides if a process is heal
 Entropy is a measure of discordance between multiple states across nodes.
 Sometimes even after running your consensus algorithm and terminating, some nodes may be off-sync. There are ways to mitigate these issues and force the agreement. I loosely see it as "secondary consensus" after the "primary consensus" has failed or eventual consistency taking a long time for updates to be effected.
 
-This can be the secret source of why some Distributed software would work better than others. We will focus on open content and provide the general framework for reasoning about it.
+This can be the secret source of why some distributed software would work better than others. We will focus on open content and provide the general framework for reasoning about it.
 
 One basic way to achieve it is to have a background process to check for off-sync and trigger retries to get missing data or use error correction techniques to repair the missing data and achieve conflict resolution. The easiest conflict resolution is to request data from neighbors and update the current node on retries. There are examples such as read repair and hinted backoff.
 
@@ -951,7 +951,7 @@ The author encourages the user to implement map-reduce using the description pro
 the shared variable is protected with a lock to protect a critical section
 and compare and swap can be used to update the critical section in a non-blocking manner.
 
-I am not sure of how compare-and-swap works in mpi, my implementation of Distributed shared primitive would be enhanced without blocking, which is more in line with our non-blocking approach in the code philosophy.
+I am not sure of how compare-and-swap works in mpi, my implementation of distributed shared primitive would be enhanced without blocking, which is more in line with our non-blocking approach in the code philosophy.
 
 if you adjust the resilience of your algorithm to enhance fault tolerance within the limit provided by quorum, then remember to cancel every outstanding request to prevent livelocks.
 
@@ -993,7 +993,7 @@ int reset_var(struct mpi_counter_t *count, int valuein) {
 ### Distributed Hashmap 
 
 <a name="distributed-hashmap"></a>
-We have used the Lamport clock to make a Distributed hashmap where every node has a local map (key-value pair) and in agreement, every node has the same key value key based on quorum.
+We have used the Lamport clock to make a distributed hashmap where every node has a local map (key-value pair) and in agreement, every node has the same key value key based on quorum.
 
 
 # **Practical Considerations**
@@ -1043,7 +1043,7 @@ We will discuss BFT, PBFT as future work in the [upcoming textbook](https://kenl
 <a name="acknowledgments"></a>
 I would like to thank professor Haridi of the Reliable Distributed Algorithms (Part 1 and Part 2) which was offered in the Edx platform a few years ago. I was not technically prepared to complete the course at the time, but I audited it after it ended.
 
-I would like to thank Prof Vivek Sarkar whose specialization program that I took from  [Coursera](https://www.coursera.org/) was named [Parallel, Concurrent, and Distributed Programming in Java Specialization](https://www.coursera.org/specializations/pcdp). He explain parallel programming and introduced me to OpenMpi, which resurrected my stalled research on Distributed systems leading to this blog.
+I would like to thank Prof Vivek Sarkar whose specialization program that I took from  [Coursera](https://www.coursera.org/) was named [Parallel, Concurrent, and Distributed Programming in Java Specialization](https://www.coursera.org/specializations/pcdp). He explain parallel programming and introduced me to OpenMpi, which resurrected my stalled research on distributed systems leading to this blog.
 
 I would like to thank Anselm Eickhoff and Charles Krempeaux who were responsive to my questions about CRDT.
 
