@@ -2,25 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Personal Website [current blog] | Kenneth Odoh's Blog</title>
-    <meta http-equiv="x-ua-compatible" content="IE=edge">
-    <meta name="author" content="Kenneth Emeka Odoh">
-    <meta name="description" content=" The personal website of Kenneth Emeka Odoh">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fairness meets Adversarial attack</title>
+    <meta name="author" content="Kenneth Emeka Odoh"/>
+    <meta name="description" content="
+                                      This article is written as an attempt to provide an intuitive explanation of the connectedness between fairness and adversarial attacks.  The concept of fairness and adversarial attacks keeps evolving and as such it is impossible to cover in one blog post
+                                      "/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/style.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
+    <meta name="keywords" content="vancouver, value, trade, note, machine learning, fairness, adversarial"/>
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Fairness meets Adversarial attack" />
+    <meta property="og:description" content="
+                                              This article is written as an attempt to provide an intuitive explanation of the connectedness between fairness and adversarial attacks.  The concept of fairness and adversarial attacks keeps evolving and as such it is impossible to cover in one blog post
+                                              " />
+
+    <script defer src="/static/js/backup/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="/static/js/backup/jquery-3.3.1.min.js" ></script>
+    <script src="/static/js/backup/marked.min.js"></script>
+    <script type="text/javascript" src="/static/js/backup/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+
     <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
           TeX: {
              equationNumbers: {  autoNumber: "AMS"  },
-             //extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
-             extensions: ["TeX/AMSmath.js", "TeX/AMSsymbol.js"]
           },
           "HTML-CSS": {
           styles: {
@@ -31,18 +38,12 @@
           });
     </script> 
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-      <style>
+    <style>
       mjx-container[display="block"] {
         display: block;
         margin: 1em 0;
       }
-      </style>
-
-      <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/startup.js">
-      </script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.js">
-      </script>
+    </style>
 
   </head>
   <body class="Site">
@@ -80,27 +81,27 @@
                 </div>
                 <section id="text" class="Article-content"> This article is written as an attempt to provide an intuitive explanation of the connectedness between fairness and adversarial attacks. The concept of fairness and adversarial attacks keeps evolving and as such it is impossible to cover in one blog post.
 
-We will discuss fairness in details and proceed to make a dive into adversarial attacks. We conclude by finding the connection between fairness and adversarial attacks. Following the hacker’s path, it is desirable to learn by connecting the dots between seemingly related concepts. It is a good idea to understand that many aspects of fairness can only be fixed by the legislature. Our goal is to find how both concepts are connected, albeit with analogies, informal proofs and philosophies. 
+**Note: This should not be taken as a serious scientific endeavor. Work is shown here for information retrieval purposes only.**
+
+We will discuss fairness in detail and proceed to take a dive into adversarial attacks and conclude by finding the connection between fairness and adversarial attacks. Following the hacker’s path, it is desirable to learn by connecting the dots between seemingly related concepts. It is a good idea to understand that many aspects of fairness can only be fixed by the legislature. Our goal is to find how both concepts are connected, albeit with analogies, informal proofs, and philosophies. 
 
 ### Fairness
 
-Machine learning has the potential to worsen social inequalities when misused. This problem can happen due to algorithm bias, data imbalance, and data irregularities. Fairness is an attempt to solve the problem by trying to explain the blind spot in the model as described in [blog](https://jeremykun.com/2015/10/19/one-definition-of-algorithmic-fairness-statistical-parity/). An unacceptable approach to ensuring fairness is to remove racial and demographic-related attributes from the data. While it seems plausible, this information could be redundant in existing features of the data.
+Real world data may be biased in ways that can be difficult to anticipate. For example, most resumes are biased towards successful accomplishments, whereas the real world is plagued with ups and downs. Society reinforces this bias by rewarding success and penalizing failure. Machine learning has the potential to worsen social inequalities when misused. This problem can happen due to algorithm bias, data imbalance, and data irregularities. Fairness is an attempt to solve the problem by trying to explain the blind spot in the model as described in [blog](https://jeremykun.com/2015/10/19/one-definition-of-algorithmic-fairness-statistical-parity/). An unacceptable approach to ensuring fairness is to remove racial and demographic-related attributes from the data. While it seems plausible, this information could be redundant in existing features of the data.
 
-Discrimination occurs when a preset metric for fairness varies significantly across different subsets of the population. This is very problematic because the discrimination is due to class membership, rather than individual merits. It can have either a positive or negative context. Positive discrimination is favoritism that is shown to subset of the population e.g affirmative action. While negative discrimination is when a subset of the population is marginalized e.g racism. Conventional wisdom would suggest that providing preferential treatment may guarantee fairness. However, a [paper](https://arxiv.org/pdf/1610.02413.pdf) provides a conflicting proposition that it may even exacerbate the inequality in the society.
+Discrimination occurs when a preset metric for fairness varies significantly across different subsets of the population. This is very problematic because the discrimination is due to class membership, rather than individual merits. It can have either a positive or negative context. Positive discrimination is favoritism that is shown to a subset of the population e.g affirmative action. While negative discrimination is when a subset of the population is marginalized e.g racism. Conventional wisdom would suggest that providing preferential treatment may guarantee fairness. However, a [paper](https://arxiv.org/pdf/1610.02413.pdf) provides a conflicting proposition that it may even exacerbate the inequality in the society.
 
-There are two major classes of models in machine learning that include discriminative models and generative models. A discriminative classifier is meant to discriminate data points by conditioning the labels on the input, whereas the generative model models the joint distribution between the input and labels.The model has to decide on a set of given data. It should be known that a classifier is only fair to every class in the data, given that there is no significant difference in metric for estimating fairness across the classes in the data set.
+There are two major classes of models in machine learning that include discriminative models and generative models. A discriminative classifier is meant to discriminate data points by conditioning the labels on the input, whereas the generative model models the joint distribution between the input and labels. The model has to decide on a set of given data. It should be known that a classifier is only fair to every class in the data, given that there is no significant difference in metric for estimating fairness across the classes in the data set.
 
-At this point, we would like to figure out the connection between uncertainty and fairness.
-Uncertainty modeling is a method of explaining aspects of the unknown unknowns of our model, which is the ability to figure out the information content of the blind spot of a machine learning model. Unfairness can occur despite the good intentions of the developer, as it can be manifesting in the blind spot of our algorithm. Aleatoric and epistemic uncertainty are the two common types of uncertainty in Bayesian statistics. Aleatoric uncertainty occurs due to noise in the observation which could be estimated by modeling the noise distribution. Epistemic uncertainty occurs due to missing data which could be estimated by imposing a prior distribution over the parameters of the model, and monitoring the effect of change as the data is varied. [Aleatoric and epistemic uncertainty](https://arxiv.org/pdf/1703.04977.pdf) were combined to learn noise attenuation, thereby improving the neural model. There is a caveat worth making as the noise might be applied uniformly to all the considered population thereby making our best effort not yielding the intended results. Probabilistic numeric is another form of uncertainty due to computation as described in the [paper](https://arxiv.org/pdf/1506.01326.pdf).
+At this point, we would like to figure out the connection between uncertainty and fairness. Uncertainty modeling is a method of explaining aspects of the unknown unknowns of our model, which is the ability to figure out the information content of the blind spot of a machine learning model. Unfairness can occur despite the good intentions of the developer, as it can be manifesting in the blind spot of our algorithm. Aleatoric and epistemic uncertainty are the two common types of uncertainty in Bayesian statistics. Aleatoric uncertainty occurs due to noise in the observation which could be estimated by modeling the noise distribution. Epistemic uncertainty occurs due to missing data which could be estimated by imposing a prior distribution over the parameters of the model, and monitoring the effect of change as the data is varied. [Aleatoric and epistemic uncertainty](https://arxiv.org/pdf/1703.04977.pdf) were combined to learn noise attenuation, thereby improving the neural model. There is a caveat worth making as the noise might be applied uniformly to all the considered population thereby making our best effort not yielding the intended results. Probabilistic numeric is another form of uncertainty due to computation as described in the [paper](https://arxiv.org/pdf/1506.01326.pdf).
 
-The question on how many samples can be estimated is a tricky proposition. This is because we are more likely to have a fairer model if the data is balanced and similar to the probability distribution in the world, so the ideal fairness will be a perfectly balanced data set with equal proportions of sub-classes. However, if the balanced subsets are not diverse and not similar to the world probability, then fairness may not be at the desirable target. As regards to handling unbalanced data, future advances would make feasible the ability to learn from few examples per class using single-shot learning. There are a few open questions that still needs to be answered with regards to sample size. How many additional data points per sub-population does one need to improve fairness of a classifier among the various sub-populations? We would have to borrow ideas from the [paper](https://arxiv.org/pdf/1805.07883.pdf) that places bounds on the sample complexity and then adapted for fairness. A more intuitive question would be to model fairness as a parameter and optimize for it in the loss function as described in [paper](https://arxiv.org/pdf/1803.04383.pdf) where the fairness is defined in the regularization scheme.
-
+The question of how many samples can be estimated is a tricky proposition. This is because we are more likely to have a fairer model if the data is balanced and similar to the probability distribution in the world, so the ideal fairness will be a perfectly balanced data set with equal proportions of sub-classes. However, if the balanced subsets are not diverse and not similar to the world probability, then fairness may not be at the desired target. As regards handling unbalanced data, future advances would make feasible the ability to learn from a few examples per class using single-shot learning. There are a few open questions that still need to be answered with regards to sample size. How many additional data points per sub-population does one need to improve the fairness of a classifier among the various sub-populations? We would have to borrow ideas from the [paper](https://arxiv.org/pdf/1805.07883.pdf) that places bounds on the sample complexity and then adapt for fairness. A more intuitive question would be to model fairness as a parameter and optimize for it in the loss function as described in [paper](https://arxiv.org/pdf/1803.04383.pdf) where the fairness is defined in the regularization scheme.
 
 #### Evaluation
 The scope of fairness can be at the individual level or group level. This provides a realistic way to estimate fairness in a population.
 
 ##### Individual level metric
-Consistency score is used in literature for measuring relationship between object in cluster analysis. It can also be used for estimating fairness in our context.
+Consistency score is used in literature for measuring the relationship between an object in cluster analysis. It can also be used for estimating fairness in our context.
 
 [Consistency score](http://www.francescobonchi.com/KDD2016_Tutorial_Part1&2_web.pdf), $\text{C}$, is a measure that determines if similar objects in the population share similar outcomes. This measures fairness at an individual level.
 
@@ -109,10 +110,10 @@ $$
 $$
 where $\text{knn}(y_{i})$ is the k nearest neighbors of $y_{i}$
 
-The metric uses a nearest neighbor to each instance of the population and obtains a summation of absolute error between each instance and its nearest neighbors. This has the limitation of setting the number of nearest neighbors as a hyper-parameter. This makes the metric very subjective to the  value of nearest neighbors that was chosen. [KNN](http://www.cs.haifa.ac.il/~rita/ml_course/lectures/KNN.pdf) gives us the ability to capture the characteristics of multi-modal distributions. The rule of thumb for choosing the $K$ in KNN is the $K$ should be large enough to minimize the error and small enough to to capture locality information.
+The metric uses the nearest neighbor to each instance of the population and obtains a summation of absolute error between each instance and its nearest neighbors. This has the limitation of setting the number of nearest neighbors as a hyper-parameter. This makes the metric very subjective to the value of the nearest neighbors that were chosen. [KNN](http://www.cs.haifa.ac.il/~rita/ml_course/lectures/KNN.pdf) gives us the ability to capture the characteristics of multi-modal distributions. The rule of thumb for choosing the $K$ in KNN is the $K$ should be large enough to minimize the error and small enough to capture locality information.
 
 ##### Group-level metric
-The measure of discrimination in comparison between protected group and unprotected group. This involves quantifying fairness at the level of their membership in different subsets of the population. This gives the average or global measure of the effect.
+The measure of discrimination in comparison between the protected group and unprotected group. This involves quantifying fairness at the level of their membership in different subsets of the population. This gives the average or global measure of the effect.
 
 | group      | denied | granted     |     |
 | :---        |    :----:   |    :----:     |   ---:        |
@@ -130,9 +131,7 @@ Risk ratio or relative risk, $\mathrm{RR} = \frac{ p_{1} }{ p_{2} }$
 Relative chance, $\mathrm{RC} = \frac{ 1-p_{1} }{ 1-p_{2} }$
 Odds ratio = $\frac{ RR }{ RC }$
 
-
-Risk difference can be used to estimate the difference between the probability of an outcome between the protected and unprotected group of the population. For example in our table, the proportion of the protected population getting denied should be similar to the proportion of proportion of the unprotected subset of the population. This can be extended to population with multiple classes, by comparing the proportion of a class of the population to the absolute value of the average of the proportions per class.
-
+Risk difference can be used to estimate the difference between the probability of an outcome between the protected and unprotected group of the population. For example in our table, the proportion of the protected population getting denied should be similar to the proportion of the unprotected subset of the population. This can be extended to the population with multiple classes, by comparing the proportion of a class of the population to the absolute value of the average of the proportions per class.
 
 Risk ratio, RR is the ratio of the probability of an outcome in the protected group in comparison to the probability of the same outcome in the unprotected group.
 
@@ -140,22 +139,21 @@ Risk ratio, RR is the ratio of the probability of an outcome in the protected gr
 |----------|-------------:|
 |RR=1 |  no discrimination between the protected and unprotected group in the population. |
 |RR<1 |  protected group is negatively discriminated (punished) against in the population.  |
-|RR>1 |  protected group is positively discriminated (favoured) against in the population. |
+|RR>1 |  protected group is positively discriminated (favored) against in the population. |
 
 Table 2: Interpreting the value of Risk ratio.
 
-Relative Chance, RC is the ratio of the probability of an outcome not occurring in the protected group in comparison to the probability of the same outcome not occuring in the unprotected group.
-
+Relative Chance, RC is the ratio of the probability of an outcome not occurring in the protected group in comparison to the probability of the same outcome not occurring in the unprotected group.
 
 | Score  |      Interpretation      |  
 |----------|-------------:|
 |RC=1 |  no discrimination between the protected and unprotected group in the population. |
-|RC<1 |  protected group is positively discriminated (favoured) against in the population.  |
+|RC<1 |  protected group is positively discriminated (favored) against in the population.  |
 |RC>1 |  protected group is negatively discriminated (punished) against in the population. |
 
 Table 3: Interpreting the value of Relative chance
 
-Odd is the likelihood that an event would or would not occur. Odds are not the same as probability. For example, odds for 2:1 is equivalent to a probability of $\frac{2}{3}$.
+Odd is the likelihood that an event would or would not occur. Odds are not the same as probability. For example, odds for 2:1 are equivalent to a probability of $\frac{2}{3}$.
 Odd ratio, OR is the ratio of the odds of an outcome in the protected group in comparison to the odd of the same outcome in the unprotected group.
 
 
@@ -163,34 +161,31 @@ Odd ratio, OR is the ratio of the odds of an outcome in the protected group in c
 |----------|-------------:|
 |OR=1 |  no discrimination between the protected and unprotected group in the population. |
 |OR<1 |  protected group is negatively discriminated (punished) against in the population.  |
-|OR>1 |  protected group is positively discriminated (favoured) against in the population. |
+|OR>1 |  protected group is positively discriminated (favored) against in the population. |
 
 Table 4: Interpreting the value of Odd ratio.
 
 There are metrics like area under a curve (AUC) and F-score among others. However, these metrics would need to be tuned by altering the thresholds to guarantee certain target values for fairness across different subgroups.
 
-
 ### Adversarial attacks
 
 Machine learning models can be vulnerable to carefully crafted examples designed to fool it. The art of designing countermeasures to enhance the robustness of the model. One school of thought is to treat adversarial attacks as a security threat, while another school of thought is to treat adversarial attacks as a means of improving the robustness of the model.
 
-The consideration for handling adversarial examples must be shaped by business needs as defenses against adversarial attacks can lead to performance degradation and could also lead to loss of intellectual property as shown in the work on [stealing the model](https://arxiv.org/pdf/1609.02943.pdf) served as a web service. The trade-off between performance and stability should be factored to reach a well-informed decision.
+The consideration for handling adversarial examples must be shaped by business needs as defenses against adversarial attacks can lead to performance degradation and could also lead to loss of intellectual property as shown in the work on [stealing the model](https://arxiv.org/pdf/1609.02943.pdf) served as a web service. The trade-off between performance and stability should be factored in to reach a well-informed decision.
 
-There are several [attack strategies](https://arxiv.org/pdf/1810.00069.pdf) that can be used to stage an [adversarial attack](https://arxiv.org/pdf/1810.00069.pdf). This consists of poisoning attack that leads to contamination of the training set thereby compromising the learning algorithm, evasive attack occurs by modifying the testing examples to confuse the system. The settings do not influence the training phase of the model, and exploratory attack requires the black box access to the model by gaining more information of the system and identifying patterns in the training data.
+There are several [attack strategies](https://arxiv.org/pdf/1810.00069.pdf) that can be used to stage an [adversarial attack](https://arxiv.org/pdf/1810.00069.pdf). This consists of a poisoning attack that leads to contamination of the training set thereby compromising the learning algorithm, evasive attack occurs by modifying the testing examples to confuse the system. The settings do not influence the training phase of the model, and an exploratory attack requires black-box access to the model by gaining more information about the system and identifying patterns in the training data.
 
-Adversarial attacks can be categorized into white-box and black-box attacks. In white-box setting, the attacker knows the parameters of the model. The attack strategy is based on the gradients with respect to the loss function. This is analogous to chosen-plaintext attack in Cryptography. By passing carefully crafted data set and run through the model to get predicted labels. Whereas in black-box setting, the attacker estimates the parameter of the model by observing the behavior of the network on some carefully made inputs. The attack strategy is based on an approximation of the gradient with respect to observed changes in the input.
+Adversarial attacks can be categorized into white-box and black-box attacks. In the white-box setting, the attacker knows the parameters of the model. The attack strategy is based on the gradients with respect to the loss function. This is analogous to a chosen-plaintext attack in Cryptography. By carefully passing crafted data set and run through the model to get predicted labels. Whereas in the black-box setting, the attacker estimates the parameter of the model by observing the behavior of the network on some carefully made inputs. The attack strategy is based on an approximation of the gradient with respect to observed changes in the input.
 
-There are several defenses for targeted adversarial attacks. However, there is no universal defense for every adversarial attack. Adversarial defenses can prevent a model from compromising the data in which it was trained on. Defense can include data augmentation with original and perturbed data. The technique of distillation has been proposed to protect from the adversarial attacks with some loss in performance.
+There are several defenses for targeted adversarial attacks. However, there is no universal defense for every adversarial attack. Adversarial defenses can prevent a model from compromising the data on which it was trained. Defense can include data augmentation with original and perturbed data. The technique of distillation has been proposed to protect from adversarial attacks with some loss in performance.
 
 
 ### Connecting the dots
-Fairness can be similar to adversarial attack. Fairness quantities the discrimination which may be intentional or unintentional. Adversarial attacks are usually carefully crafted. However, making the classifier robust to adversarial attacks results in increased gains in addressing edge cases or blind spots in the model. Fairness by design rather than as an afterthought after the building the model. Incorporating fairness in the model can lead to creating more robust models.
+Fairness can be similar to an adversarial attack. Fairness quantities the discrimination which may be intentional or unintentional. Adversarial attacks are usually carefully crafted. However, making the classifier robust to adversarial attacks results in increased gains in addressing edge cases or blind spots in the model. Fairness by design rather than as an afterthought after building the model. Incorporating fairness in the model can lead to creating more robust models.
 
-The current advances in neural computation are limited in scope for safety-critical systems such as self-driving cars operating at level 5. This motivated the need to ensure neural networks are robust to adversarial examples, while keeping fairness at an acceptable level. Several remedies which have been suggested in the literature for handling adversarial attacks which comprise of augmentations (with a set of transformations), distillation ( for knowledge transfer between models), and many ensemble models to mitigate against adversarial attacks. A known limitation in existing countermeasures for adversarial attacks is the inability to generalize to miscellaneous cases. The adversarial attack could be in the form of corrupting the data by perturbations and thereby biasing the learning algorithm. One possible direction of research is to develop generic countermeasures suitable for computer vision in adversarial settings, which is a step beyond handcrafted [adversarial attacks](https://arxiv.org/pdf/1810.00069.pdf).
+The current advances in the neural computation are limited in scope for safety-critical systems such as self-driving cars operating at level 5. This motivated the need to ensure neural networks are robust to adversarial examples while keeping fairness at an acceptable level. Several remedies have been suggested in the literature for handling adversarial attacks which comprise augmentations (with a set of transformations), distillation ( for knowledge transfer between models), and many ensemble models to mitigate against adversarial attacks. A known limitation in existing countermeasures for adversarial attacks is the inability to generalize to miscellaneous scenarios. The adversarial attack could be in the form of corrupting the data by perturbations and thereby biasing the learning algorithm. One possible direction of research is to develop generic countermeasures suitable for computer vision in adversarial settings, which is a step beyond handcrafted [adversarial attacks](https://arxiv.org/pdf/1810.00069.pdf).
 
-Adversarial attacks can be thought as a classifier not fair in some classes which can include the subset of the data that has the adversarial examples. I think the discrimination is not really against the adversarial examples, but against certain subgroups of the population of which the examples are representative. However, an unverified school of thought can assume that the classifier is discriminating against the adversarial examples.
-
-Hence, the weak relationship between fairness and adversarial attacks.
+Adversarial attacks can be thought of as a classifier not fair in some classes which can include the subset of the data that has the adversarial examples. I think the discrimination is not really against the adversarial examples, but against certain subgroups of the population of which the examples are representative. However, an unverified school of thought can assume that the classifier is biased against the adversarial examples. Hence, the weak relationship between fairness and adversarial attacks.
 
 Fairness should be considered from the data collection stage of the processing pipeline. Trying to get a stratified sample of the population. Proceed in form of active learning to gather more data if a class of data has an unacceptable measure for fairness and rebuild your model.
 
@@ -200,11 +195,10 @@ Fairness should be considered from the data collection stage of the processing p
 
 I would like to thank Dr. Ziyuan Gao and Dr. Eugene Yablonsky from the National University of Singapore and Fraser Valley University, BC respectively for providing technical support during the writing of this manuscript. I am grateful to the advanced reading group under the umbrella of [Learn Data Science meetup](https://www.meetup.com/LearnDataScience/) in Vancouver for the lively intellectual conversations on several machine learning topics.
 
-### References
+### Recommended Readings
 Here are some of the materials that gave me a mental model of the problem.
 
-Tutorial
-
+##### Tutorial
 - https://www.slideshare.net/KrishnaramKenthapadi/fairnessaware-machine-learning-practical-challenges-and-lessons-learned-wsdm-2019-tutorial
 - http://www.francescobonchi.com/KDD2016_Tutorial_Part1&2_web.pdf
 - https://www.youtube.com/watch?v=jIXIuYdnyyk
@@ -212,53 +206,38 @@ Tutorial
 - https://drive.google.com/file/d/1Zseg5dEBFL1Z2emoDFL8TDsnrLvzC2kF/view
 - https://drive.google.com/file/d/1rUQkVS0NzSH3IEqZDsczSxBbhYHbjamN/view
 
-Paper
-
+##### Paper
 - https://5harad.com/papers/fair-ml.pdf
 - https://5harad.com/papers/fairness.pdf
 - https://5harad.com/papers/threshold-test.pdf
 - http://delivery.acm.org/10.1145/3290000/3287589/p329-Friedler.pdf?ip=174.6.67.20&id=3287589&acc=OPEN&key=4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E4D4702B0C3E38B35%2E6D218144511F3437&__acm__=1551158038_937b36cc03df8cdc9f386f13c9ba662c
+- http://www.jmlr.org/papers/volume18/17-514/17-514.pdf
 
-
-News articles
-
+##### News articles
 - https://www.nytimes.com/2017/12/20/upshot/algorithms-bail-criminal-justice-system.html
 - https://www.washingtonpost.com/news/monkey-cage/wp/2016/10/17/can-an-algorithm-be-racist-our-analysis-is-more-cautious-than-propublicas/?utm_term=.ad9d95b2cd5e
 
-Stability
-- http://www.jmlr.org/papers/volume18/17-514/17-514.pdf
-
-Algorithm bias
-
+##### Algorithm bias
 - https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2886526
 - https://arxiv.org/abs/1902.06705
 - https://arxiv.org/pdf/1712.07107.pdf
 - https://arxiv.org/pdf/1802.05666.pdf </section>
 
-                <table>
-                  <tr>
-                    <td class="text-muted"> View as: </td>
-                    <td> <a class="generate" href="#/pdf/"><img  data-toggle="tooltip" title="Click to download file. Note is not working properly." src=/static/images/pdf_icon.svg style="width: 28px; height: 25px;" alt="pdf here"/></a> </td>
-                    <td class="text-muted"> [Alpha version]</td>
-                    <td> <p class="download"> <a id="file" target="_blank" ></a> </p> </td>
-                  </tr>
-                </table>
-
                 <hr class="line"/>
                 <div style="display: flex; justify-content: center;">
                     <table>
                       <tr>
-                        <td> <a class="left" id="left-3" data-min-index="0" data-max-index="8" href=/blog_post/organizing_a_technical_meetup.html><img id="left-0" data-toggle="tooltip" title="Click to previous page." src=/static/images/left.png style="width: 48px; height: 50px;" alt="previous here"/></a> </td>
+                        <td> <a class="left" id="left-3" data-min-index="0" data-max-index="11" href=/blog_post/organizing_a_technical_meetup.html><img id="left-0" data-toggle="tooltip" title="Click to previous page." src=/static/images/left.png style="width: 48px; height: 50px;" alt="previous here"/></a> </td>
 
                         <td> <div class="squares">
                               <div class="icon1">
-                                 <!--<p class="text-muted">2/8</p>-->
-                                 <p class="text-muted">7/8</p>
+                                 <!--<p class="text-muted">2/11</p>-->
+                                 <p class="text-muted">10/11</p>
                               </div>
                             </div> 
                         </td>
                         
-                        <td> <a class="right" id="right-1" data-min-index="0" data-max-index="8" href=/blog_post/contributing_to_open_source_software.html><img id="right-1" data-toggle="tooltip" title="Click to next page." src=/static/images/right.png style="width: 48px; height: 50px;" alt="next here"/></a> </td>
+                        <td> <a class="right" id="right-1" data-min-index="0" data-max-index="11" href=/blog_post/contributing_to_open_source_software.html><img id="right-1" data-toggle="tooltip" title="Click to next page." src=/static/images/right.png style="width: 48px; height: 50px;" alt="next here"/></a> </td>
                       </tr>
                     </table>
                 </div>
@@ -293,14 +272,6 @@ Read more of our <a href=/blogs/1.html><b>blog posts</b></a>, technical <a targe
                 <p class="text-muted">&copy; 2019 Copyright: Kenneth Odoh</p>
             </div>
         </footer>
-
-
-      <script type="text/javascript" src="/static/js/jquery-1.5.1.min.js"></script>
-      <script type="text/javascript" src="/static/js/showdown.js"></script>
-      <script type="text/javascript" src="/static/js/pdf.js"></script>
-      <script type="text/javascript" src="/static/js/pdf-ui.js"></script>
-
-      <script type="text/javascript" src="/static/js/html2pdf.bundle.min.js"></script>
 
     <script  type="text/javascript" >
 
@@ -417,12 +388,7 @@ Read more of our <a href=/blogs/1.html><b>blog posts</b></a>, technical <a targe
         }); 
 
         txt = $('.Article-content').text( );     
-        $('.Article-content').html( marked(txt) );
-
-        var md = window.markdownit().use(markdownitFootnote);
-        //md.render(/*...*/) // See examples above
-
-        var result = md.render('# markdown-it rulezz!');
+        $('.Article-content').html( marked.parse(txt) );
 
     </script >
 

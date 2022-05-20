@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="/jsglue.js" type="text/javascript"></script>
+    <title>Personal Website [list of blogs] | Kenneth Odoh's Blog</title>
+    <meta name="author" content="Kenneth Emeka Odoh">
+    <meta name="description" content="This is the blog section of the personal homepage of Kenneth Emeka Odoh which displays my scientific writings in the fields of Distributed Systems, Cryptography, Machine Learning, and Computational Statistics.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
+
+    <meta name="keywords" content="software testing, metamorphic testing, machine learning, signal processing, bayesian statistics, meetups, reading groups">
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Personal Homepage [list of blogs] | Kenneth Odoh's Blog" />
+    <meta property="og:description" content="This is the blog section of the personal homepage of Kenneth Emeka Odoh which displays my scientific writings in the fields of Distributed Systems, Cryptography, Machine Learning, and Computational Statistics." />
+
+    <script defer src="/static/js/backup/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+
+
+    <link rel="stylesheet" type="text/css" href="/static/pagination.css">
+
+<script type="text/javascript" src="/static/js/jquery-1.5.1.min.js"></script>
+
+  </head>
+  <body class="Site">
+<header class="Site-header">
+  <nav class="Nav">
+    <div class="Nav-home">
+      <a href=/index.html>Kenneth Emeka Odoh</a>
+    </div>
+    <div class="Nav-sections">
+      <a class="Nav-section" href=/index.html >About</a>
+      <a class="Nav-section" href=/projects.html>Projects</a>
+      <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+      <a class="Nav-section" href=/publications.html>Publications</a>
+      <a class="Nav-section" href=/news.html>News</a>
+
+      <a class="Nav-section"><img id="search"  data-toggle="tooltip" title="Click to download file. Note is not working properly." src=/static/images/search.svg style="width: 32px; height: 32px;" alt="search"></a>
+    </div>
+
+    <div class="Nav-home">
+      <a class="Nav-section">
+         <div id="dropdown_bar">
+            <select id="faceted">
+                <option value="NO SELECTION" selected>NO SELECTION</option>
+                <!--<option value="machine-learning">machine-learning</option> -->
+                    <option value="machine-learning">MACHINE LEARNING</option> 
+                <!--<option value="bayesian-statistics">bayesian-statistics</option> -->
+                    <option value="bayesian-statistics">BAYESIAN STATISTICS</option> 
+                <!--<option value="general">general</option> -->
+                    <option value="general">GENERAL</option> 
+                <!--<option value="signal-processing">signal-processing</option> -->
+                    <option value="signal-processing">SIGNAL PROCESSING</option> 
+                
+            </select>
+
+         </div>
+      </a>
+    </div>
+
+  </nav>
+
+<!-- Selection triggers http://127.0.0.1:5000/blogs/volvo -->
+
+
+  <div class="u-separator"></div>
+</header>
+    <div class="Site-content">
+      <div class="u-container">
+        
+          
+        
+
+        
+              
+
+                <div class="Entry">
+                  <time datetime=2022-03-14 18:36:27.614434 class="Entry-date">14 Mar, 2022</time>
+                  <div class="Entry-detail">
+                      <div class="Entry-title"><a href=/blog_post/distributed_computing_from_first_principles.html>Distributed Computing From First Principles</a>
+                      
+                      <div class="Entry-description">Have you ever wondered how a typical distributed system works under the hood? Are you looking for a pedagogical guide with complete implementations and tricks of the trade? Look no further and read my writing on the topic.</div>
+                      
+                      <small>
+                        <span class="WordCount">(Reading: 172 minutes)</span>
+                      </small>
+                      </div>
+                  </div>
+                </div>
+              
+
+        <!-- <p> <a href="/blogs_mob/1.html"> View Mobile Version</a> </p> -->
+
+            <div class="Footer">
+                <p> Please feel free to <b>donate</b> by clicking <a target="_blank" data-toggle="tooltip" title="Click to make a donation here" href="https://checkout.square.site/pay/a5a1bb5a14e941baae84556f133744cd"><img src=/static/images/donate.png style="width: 40px; height: 40px;" alt="donate here"/></a>using Square Checkout. Every blog content is free and released under <a target="_blank" href=/static/license.txt>MIT License</a>.</p>
+            </div>
+
+        <div style="display: flex; justify-content: center;">
+            
+                &lt;&lt; Newer posts &nbsp;| 
+                
+                Older posts &gt;&gt;
+                
+            
+
+        
+            <small>
+                <span class="WordCount">&nbsp; Page: 1 / 1 | Total: (1 / 1 ) </span>
+            </small>
+        
+
+        </div>
+
+        
+
+
+        <footer class="footer">
+            <div class="Footer">
+                <p class="text-muted">Icon made by Freepik from www.flaticon.com</p>
+                <p class="text-muted">&copy; 2019 Copyright: Kenneth Odoh</p>
+            </div>
+        </footer>
+
+      </div>
+    </div>
+
+
+    <script  type="text/javascript" >
+
+        function supports_html5_storage(){ 
+            try { 
+                return 'localStorage' in window && window['localStorage'] !== null && typeof(Storage) !== void(0); 
+            } 
+            catch(e) 
+            { 
+                return false; 
+            }
+        }
+
+        // create faceted search selection char
+        $("#dropdown_bar").toggle()
+
+        $("#search").click(function(){
+            $("#dropdown_bar").toggle()
+        });
+
+        window.onload = function() { 
+
+
+            var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
+
+
+
+
+            // disable faceted search when localstorage is not enabled
+            if (supports_html5_storage()==false){
+                $("#search").hide()
+            }
+
+            $("#faceted").change(function(){
+                //tag = $("#faceted option:selected").text()
+                tag = $("#faceted option:selected").val()
+                localStorage.setItem("tag", tag.trim());
+
+                //alert (localStorage.getItem("tag") )
+
+                if (tag && tag != "NO SELECTION")
+                {
+                    window.location.href =  Flask.url_for("showpostsbytags", {"tag": tag, "page":1 })
+                }
+                else{
+                    window.location.href =  Flask.url_for("showposts", {"page":1 })
+                }
+                    
+            }); 
+
+            $("select option").each(function(){
+                tag = localStorage.getItem("tag")
+                if (tag){
+                    if ($(this).val() == tag)
+                    {
+                        $(this).attr("selected","selected");
+                    }else{
+                        $(this).removeAttr("selected");
+                    }
+                }
+            });
+
+            // pagination on the tags
+            $(".pagenav").click(function() {
+                var oldUrl = $(this).attr("href"); // Get current url
+                var tag = localStorage.getItem("tag")
+
+                if (tag)
+                {
+                    if (tag != "NO SELECTION"){
+                        var newUrl = oldUrl.replace("/blogs", "/blogs/"+tag); // Create new url
+                        $(this).attr("href", newUrl); // Set herf value
+                    }
+                }else{
+                    $(this).attr("href", oldUrl); // Set herf value
+                }
+            });
+
+
+            $("#blog").click(function() {
+                localStorage.setItem("tag", "");
+            }); 
+
+            
+            if( isMobile.any() )
+            {
+                var tag = localStorage.getItem("tag")
+                if (tag && tag != "NO SELECTION")
+                {
+                    window.location.href =  Flask.url_for("showpostsmobilebytags", {"tag": tag, "page":1 })
+
+                }else{
+                    window.location.href = Flask.url_for("showpostsmobile", {"page":1 }); //https://kenluck2001.github.io/blogs_mob/1
+                }
+            }
+
+        }
+    </script >
+
+  </body>
+</html>
+
+
+
