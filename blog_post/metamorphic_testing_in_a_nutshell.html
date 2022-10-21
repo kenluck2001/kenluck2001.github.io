@@ -5,16 +5,16 @@
     <title>Metamorphic Testing in a Nutshell</title>
     <meta name="author" content="Kenneth Emeka Odoh"/>
     <meta name="description" content="
-                                      “Building the product right versus building the right product” is a popular cliche used to describe the product-market fit.   Software testing focuses on solving &#34;building the product right&#34;
+                                      “Building the product right versus building the right product” is a popular cliché used to describe the product-market fit.  Software testing focuses on &#34;building the right product&#34;
                                       "/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
 
-    <meta name="keywords" content="series, trade, call, software testing, metamorphic testing, nutshell"/>
+    <meta name="keywords" content="series, trade, software testing, metamorphic testing, nutshell"/>
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Metamorphic Testing in a Nutshell" />
     <meta property="og:description" content="
-                                              “Building the product right versus building the right product” is a popular cliche used to describe the product-market fit.   Software testing focuses on solving &#34;building the product right&#34;
+                                              “Building the product right versus building the right product” is a popular cliché used to describe the product-market fit.  Software testing focuses on &#34;building the right product&#34;
                                               " />
 
     <script defer src="/static/js/backup/all.js"></script>
@@ -79,16 +79,16 @@
                         <a id=software-testing href=/blogs/software-testing/1.html>software-testing</a> 
                     
                 </div>
-                <section id="text" class="Article-content"> “Building the product right versus building the right product” is a popular cliche used to describe the product-market fit.  Software testing focuses on solving "building the product right". There are analogies in the mathematical world where every claim is validated by proof. The level of rigor required in mathematics is that the proof must handle every case to be acceptable. In the world of software testing, nothing stops us from considering every case, no matter how trivial. However, the issue lies in identifying every possibility which may be exponential in some cases.
+                <section id="text" class="Article-content"> “Building the product right versus building the right product” is a popular cliché used to describe the product-market fit. Software testing focuses on "building the right product". There are analogies in the mathematical world, where every claim is validated by proof. The level of rigour required in mathematics is that the proof must handle every case to be acceptable. In the world of software testing, nothing stops us from considering every case, no matter how trivial. However, the difficulty lies in identifying every possibility, which can be exponential in some cases.
 
-Traditional testing requires crafting a few examples (input/output pair) and checking that the output matches our expectations (ground truth) [[1]](). There are situations where obtaining test examples is difficult. Traditional testing suffers from the oracle problem or insufficient coverage in some cases. Hence, impacting the applicability of traditional testing in those areas. Handling these issues would require metamorphic testing.
+Traditional testing requires crafting a few examples (input/output pair) and checking that the output matches our expectations (ground truth) [[1]](). There are situations where obtaining test examples is difficult. Traditional testing suffers from the Oracle problem, or insufficient coverage in some cases. Hence, impacting the applicability of traditional testing in those areas. Handling these issues would require metamorphic testing.
 
 ### Verification versus Validation
-There is usually an upfront cost incurred in writing tests for the application. These cost has led some managers to be skeptical about investing in testing. There is a preponderance of the evidence about the testing value provides to an organization. However, the level of testing can vary across organizations. Some school of thought believes test-driven development is the only way to go, whereas others object and consider testing as an afterthought. Rather than focus on both extremes, my take is that the programmer should write enough tests to give confidence that new features can be added without breaking existing functionalities.
+There is usually an upfront cost for writing tests for the application. Due to these costs, some managers have been hesitant to invest in testing. There is a preponderance of evidence about the value that testing provides to an organization. However, the level of testing can vary across organizations. Testing is considered an afterthought by some schools of thought, while test-driven development is considered the only way to go by others. Rather than focus on both extremes, my take is that the programmer should write enough tests to give confidence that added features can be added without breaking existing functionalities.
 
- When done rightly, the benefits of a testing culture is as follows:
-- A reduced duration for troubleshooting bugs.
-- A quality mentality that spread among team members in the organization. 
+ When done rightly, the benefits of a testing culture include the following:
+- A reduction in the time spent troubleshooting bugs.
+- A quality mentality that spreads among team members in the organization.
 
 Anecdotal evidence suggests that Software engineers who create new features while writing tests tend to have lower technical debts in their source code.
 
@@ -98,28 +98,28 @@ Software testing can take the following form:
 
 In a game-theoretic sense, we can have a set of testers and a set of programmers which may overlap and act in good faith. The programmers and testers are actors in our fictitious game. Let us restate our goals in the following phrases.
 - The goal of a programmer is to write code that can pass the test.
-- A tester aims to write the test that can fail and reveal problems.
+- Testers write tests that can fail and reveal problems.
 
 One may be tempted to ask the following questions.
-- Is there any value in a passing test? 
+- Is there any value in a passing test?
 - If so, what information derives from a passing test [2]?
-One may think that passing tests are useless. However, a passing test assures us that the code path is working as intended, but it tells us nothing about its behavior in any untested code path. Hence, stressing the need for higher test coverage. Metamorphic testing comes to the rescue.
+One may think that passing tests is useless. However, a passing test assures us that the code path is working as intended, but it tells us nothing about its behaviour in any untested code path. Hence, stressing the need for higher test coverage. Metamorphic testing comes to the rescue.
 
 ### What is Metamorphic Testing?
-Metamorphic testing (MT) reduces the need for an oracle by using the relationship between two or more inputs (derived from the original input) and their expected outputs.  These relations are more general can help increase test coverage. The relations are also known as metamorphic relations (MR). However,  if any metamorphic relation is violated, then a bug has been detected. MT helps in test case generation and result verification [[2]](). MT can provide a framework for robust testing of edge cases and failure modes.
+Metamorphic testing (MT) reduces the need for an Oracle by using the relationship between two or more inputs (derived from the original input) and their expected outputs. These relationships are more general and can help increase test coverage. They are also known as metamorphic relations (MR). However, if any metamorphic relation is violated, then a bug has been detected. MT helps in test case generation and result verification [[2]](). MT can provide a framework for robust testing of edge cases and failure modes.
 
 Metamorphic testing is a widely used methodology in various forms. However, only recently did academics formalize it. Metamorphic testing can help test a program when the expected output (oracle) is unavailable. However, we require a proxy for this measure if the ground truth is absent. There are numerous applications of metamorphic testing in machine learning [[4]](), compiler development [[7]](), and bioinformatics [[6]]().
 
-Metamorphic testing verifies the output of a test case based on slight perturbation of the input while retaining the same information. These are typical problems that inherently lack ground truth for traditional testing. These include:
+Metamorphic testing verifies the output of a test case based on slight perturbation of the input while retaining the same information. These are typical problems that are inherently lacking ground truth for traditional testing. These include:
 - Testing the effectiveness of a text-to-speech (TTS) processor.
 - Is the result from a search query correct?  
 Hence, we will provide examples of metamorphic relations in this blog.
 
-A possible metamorphic relation in graph-theoretic problems is the use of symmetry. Let us assume an undirected graph that we know every node has a bidirectional link with the same weight. We can be sure that
+A possible metamorphic relation in graph-theoretic problems is the use of symmetry. Assume that we have an undirected graph in which every node has a bidirectional link with the same weight. We can be sure that
 \begin{equation}
 Dist (G, a, z) = Dist(G, z, a)
 \end{equation}
-where $Dist (G, x, y)$ is the distance between node, $x$ and node, $y$ in a graph, $G$.
+Where $Dist (G, x, y)$ is the distance between node, $x$ and node, $y$ in a graph, $G$.
 Similarly, finding the minimum of two values should be independent of the order
 \begin{equation}
 min(a, b) = min (b,a)
@@ -138,8 +138,8 @@ def example1():
     p=5
     assert(p==5)
 ```
-Notice that we have hit only a point in the problem space, which is in contrast to generative testing, which is the basis for property-based testing.
-Metamorphic testing is related to Property-based testing as it is a generative testing paradigm.
+Notice that we have only examined a point in the problem space, which is in contrast to generative testing, which is the basis for property-based testing.
+Metamorphic testing is related to Property-based testing, as it is a generative testing paradigm.
 ```
 def example2()
     p=random_point()
@@ -155,15 +155,15 @@ The challenges of using generative testing:
 ### Possible Use cases
 
 - In a Neural network, if you have done some convolutions, you may check if the translational matrices obey the properties of a typical translation matrix.
-- In tabulation, if you are dealing with human ages, it is possible to check if ages are between 0 and 115 as humans have a limited lifespan which is a universal feature of humans. In some applications, you may want to cross-check if the humans have passed the age of reasoning to use the application.
-- If you have the knowledge of the call graph of processes on a browser, it is possible to predict the loading order of the page and use it to identify bugs.
+- In tabulation, if you are dealing with human ages, it is possible to check if ages are between 0 and 115 as humans have a limited lifespan which is a universal feature of humans. In some applications, you may want to verify whether the user has reached the acceptable age to use the application.
+- If you know the call graph of processes on a browser, it is possible to predict the loading order of the page and use it to identify bugs.
 - Checking time bounds violations in distributed systems.
-- Investigating logs of an application for identifying bugs.
-- Creating a parser for CSS style files to identify usability bugs by checking printer-safe, color-blind safe color codes in the CSS files. This can identify accessibility bugs.
+- Investigating logs of an application to detect bugs.
+- Creating a parser for CSS style files to identify usability bugs by checking printer-safe, colour-blind (safe colour) codes in the CSS files. This can identify accessibility bugs.
 - Checking UI placement (snapshot testing).
 - Validating a clustering algorithm without ground truth. Deciding on the optimal number of clusters can be challenging and ill-posed. Formulate adequacy criteria based on the structure of the data. A solution may look unintuitive, but it is an idea for a specific use case. See more information in the paper [[4]]().
 
-### Advantages of MT 
+### Advantages of MT
 Here are some advantages of MT[[2]]():
 - Simple
 - Easy to implement
@@ -174,34 +174,34 @@ Here are some advantages of MT[[2]]():
 ### Case studies in information retrieval
 Here are examples of metamorphic relations in evaluating the usefulness of a search engine [[3, 5]]().
 
-- Equivalence: A repeated search query should return the same element, independent of ordering. For example, a query "houses in Vancouver" should have similar output to "Vancouver houses".
+- Equivalence: A repeated search query should return the same element, independent of ordering. For example, a query "houses in Vancouver" should yield results similar to "Vancouver houses".
 
 - Equality: If sorted by relevance, a search query will return the same result for the same query. For example, if I search in the search engine twice within a short time. The results should be identical.
 
 - Subset: A subset of a query should have fewer results than the original query. For example, a query "houses in British Columbia" should return more results than a query "houses in Vancouver". This is because Vancouver is a city in the province of British Columbia.
 
-- Disjoint: Any Irrelevant response should not be returned. In the query "houses in Vancouver", we should not see any houses from Saskatchewan in the search result.
+Disjoint: Irrelevant responses should not be returned. In the query "houses in Vancouver", we should not see any houses from Saskatchewan in the search result.
 
-- Complete: A universe is a union of every composing set. For example, a query "houses in British Columbia" will be a combination of houses in every city in the province of British Columbia.
+- Complete: A universe is the union of all of its components. For example, a query "houses in British Columbia" will display a combination of houses in every city in the province of British Columbia.
 
-- Difference: A query "houses in British Columbia, not Vancouver" should not show any result for houses listed in Vancouver.
+- Difference: A query "houses in British Columbia, not Vancouver" should not return any results for houses listed in Vancouver.
 
-##### Misconceptions around MT Relations 
+##### Misconceptions around MT Relations
 There are things that can impact how MT is used in practice.
-- Not every necessary property is MR e.g -1 <= sin(x) <= 1 as sine is not an MT even though violating the bound show's errors.
+Even though violating the bound results in errors, not all necessary properties are MR, e.g. -1 *= sin(x) *= 1 even though sine is not an MT.
 - MR targets multiple inputs and their expected output.
 - Not all MRs separate into input-only and output-only sub-relations.
 - Not all MRs are equality relations.
-- MR can work with or without oracle.
+- MR can work with or without Oracle.
 
 
 ### Applying metamorphic testing in practice
 - Figure out how inputs are modified to effect a predictable pattern in the output.
-- Don’t assert, instead warn due to sufficiency versus necessary constraints.
+- Due to sufficiency versus necessary constraints, do not assert but rather warn.
 - Metamorphic testing should not replace standard testing (unit testing, interaction testing). MT is meant to augment existing test suites by increasing test coverage.
 
 ### Conclusions
-Metamorphic testing should serve as a secondary testing paradigm in your toolset. It is reasonable to see metamorphic testing as sanity checks based on the property of the (input/output) problems. One rule of thumb for applying metamorphic testing is to study successful case studies in the industry and adapt to your specific needs. Finally, creating metamorphic relations is a combination of both art and science.
+Metamorphic testing should serve as a secondary testing paradigm in your tool set. It is reasonable to see metamorphic testing as sanity checks based on the property of the (input/output) problems. One rule of thumb for applying metamorphic testing is to study successful case studies in the industry and adapt to your specific needs. Finally, creating Metamorphic relations is a combination of both art and science.
 
 Note: opening quote is attributed to Boehm.
 
@@ -224,9 +224,6 @@ BibTeX Citation
   note = {https://kenluck2001.github.io/blog_post/metamorphic_testing_in_a_nutshell.html}
 }
 ```
-
-
-
  </section>
 
                 <hr class="line"/>

@@ -5,7 +5,7 @@
     <title> Paper Summary: LMU vs LSTM</title>
     <meta name="author" content="Kenneth Emeka Odoh"/>
     <meta name="description" content="
-                                      Both HMM and RNN suffer from disappearing transitions and (vanishing \&amp; exploding) gradient problems respectively.  LSTM was designed to maintain long time-range dependency on a sequencing task
+                                      Both HMM and RNN suffer from disappearing transitions and (vanishing \&amp; exploding) gradient problems, respectively.  LSTM was designed to maintain long time-range dependency on a sequencing task
                                       "/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content=" Paper Summary: LMU vs LSTM" />
     <meta property="og:description" content="
-                                              Both HMM and RNN suffer from disappearing transitions and (vanishing \&amp; exploding) gradient problems respectively.  LSTM was designed to maintain long time-range dependency on a sequencing task
+                                              Both HMM and RNN suffer from disappearing transitions and (vanishing \&amp; exploding) gradient problems, respectively.  LSTM was designed to maintain long time-range dependency on a sequencing task
                                               " />
 
     <script defer src="/static/js/backup/all.js"></script>
@@ -79,7 +79,7 @@
                         <a id=machine-learning href=/blogs/machine-learning/1.html>machine-learning</a> 
                     
                 </div>
-                <section id="text" class="Article-content"> Both HMM and RNN suffer from disappearing transitions and (vanishing \& exploding) gradient problems respectively. LSTM was designed to maintain long time-range dependency on a sequencing task. However, information flow in the network tends to saturate once the number of time steps exceeds a few thousand. Legendre Memory Unit (LMU) is a revolutionary evolution on the design of RNN that can conveniently handle extremely long-range dependency. Let's try to figure out why the LMU exceeds the performance of the LSTM in this blog. We proceed by reviewing the paper that introduced LMU.
+                <section id="text" class="Article-content"> Both HMM and RNN suffer from disappearing transitions and (vanishing \& exploding) gradient problems, respectively. LSTM was designed to maintain long time-range dependency on a sequencing task. However, information flow in the network tends to saturate once the number of time steps exceeds a few thousand. Legendre Memory Unit (LMU) is a revolutionary evolution in RNN design capable of handling extremely long-range dependency. Let's try to figure out why the LMU exceeds the performance of the LSTM in this blog. We proceed by reviewing the paper that introduced LMU.
 
 This is a summary of the paper titled [Legendre Memory Units: Continuous-Time Representation in Recurrent Neural Networks](https://papers.nips.cc/paper/9689-legendre-memory-units-continuous-time-representation-in-recurrent-neural-networks.pdf) that was published in [NeurIPS 2019](https://nips.cc/). This was written for the [Advanced Reading Group](https://www.meetup.com/LearnDataScience/events/wwqpgrybccbmc/) in Vancouver.
 
@@ -91,16 +91,16 @@ Information about the paper are as follows:
 We will not rehash the description of LSTM in this blog as Chris Olah has already given an excellent explanation in his blog post titled [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/). We provide a quick summary of this blog and then focus on understanding LMU.
 
 ### LSTM
-LSTM makes use of a mix of gating mechanisms and non-linearity to improve on the vanishing and exploding gradient problems that occur in default RNNs. Saturation leads to loss of performance in LSTM, and as a result, several variants of LSTM has been proposed to minimize the effect of saturation.
+LSTM makes use of a mix of gating mechanisms and non-linearity to improve on the vanishing and exploding gradient problems that occur in default RNNs. Saturation leads to loss of performance in LSTM, and as a result, several variants of LSTM have been proposed to minimize the effect of saturation.
 
-The likelihood of saturation also increases due to the increased use of squeezing functions such as sigmoid, tanh for their gating effects. This configuration can lead to saturation which can affect the ability to capture long time-range dependency in a sequence. 
+The likelihood of saturation also increases due to the increased use of squeezing functions such as sigmoid, tanh for their gating effects. This configuration can lead to saturation, which can affect the ability to capture long time-range dependency in a sequence.
 
 The LSTM has the weights of its parameters initialized to random values. This is problematic as the starting point can have a major impact on the quality of the optimization.
 
 ### LMU
-LMU makes use of less computational resources to maintain long-range time dependencies by decomposing time history in a $d$, number of ODE where the sliding window is represented by using Legendre polynomials with at most $d-1$ degree. LMU can handle extremely long-time range dependency using fewer internal states to conveniently capture the dynamics of the sequence within long time intervals.
+LMU makes use of less computational resources to maintain long-range time dependencies by decomposing time history in a $d$, number of ODE where the sliding window is represented by using Legendre polynomials with at most $d-1$ degree. LMU can handle extremely long-time range dependency using fewer internal states that can capture the dynamics of the sequence within long time intervals.
 
-Let us rehash the mathematical formulation of LMU and use this knowledge to find out why the LMU is superior in performance to the LSTM. 
+Let us rehash the mathematical formulation of LMU and use this knowledge to find out why the LMU is superior in performance to the LSTM.
 
 The cell begins with F(s) as shown in the LMU paper. $\theta$ is a strictly positive scalar value and represents the size of the window.
 
@@ -118,13 +118,13 @@ ln F(s) = ln e^{-\theta s}
 ln F(s) = -\theta s
 \end{equation}
 
-The paper makes the assumption that $s$ is equivalent to state vector, $m(t) \in R^{d}$. $\hat{m(t)}$ is updated value of state vector, and $m(t)$ is current value of state vector.
+The paper assumes that $s$ is equivalent to state vector, $m(t) \in R^{d}$. $\hat{m(t)}$ is updated value of state vector, and $m(t)$ is the current value of state vector.
 
-Equation 1 of the paper shows $\theta \hat{m(t)} = Am(t) + Bu(t)$. This is a common formulation in dynamic system modeling and hence a link to my [blog](https://kenluck2001.github.io/blog_post/pysmooth_a_time_series_library_from_first_principles.html) that discusses Kalman filters.
+Equation 1 of the paper shows $\theta \hat{m(t)} = Am(t) + Bu(t)$. This is a common formulation in dynamic system modelling and hence a link to my [blog](https://kenluck2001.github.io/blog_post/pysmooth_a_time_series_library_from_first_principles.html) that discusses Kalman filters.
 
-Ensure that A, B is initialized using Equation 2 in the paper, otherwise, we will not have the desired long-range dependency as this initialization scheme is carefully chosen by the authors. The mathematical origins of the scheme are based on Pade's approximation and Legendre polynomials. This results in an architecture that is less likely to saturate as the long time-range dependency is preserved even with smaller time steps.
+Ensure that A, B is initialized using Equation 2 in the paper, otherwise, we will not have the desired long-range dependency as this initialization scheme is carefully chosen by the authors. The mathematical origins of the scheme are based on Pade's approximation and Legendre polynomials. This results in an architecture that is less likely to saturate, as the long time-range dependency is preserved even with smaller time steps.
 
-Using the mathematical formulation in the paper alone. Let us try to write a simplistic pseudo-code to describe the algorithm of LMU in use. With the loss of generality, let us assume a batch size of 1 and the number of iterations set to 1.
+Using the mathematical formulation in the paper alone. Let us try to write a simplistic pseudocode to describe the LMU algorithm in use. With the loss of generality, let us assume a batch size of 1 and the number of iterations set to 1.
 
 - Initialize A, B, m(t)
 - Run the code block every epoch
@@ -136,14 +136,14 @@ Using the mathematical formulation in the paper alone. Let us try to write a sim
   + update $A, B$ until convergence
 
 
-The performance of the LMU can be tuned by setting the window, $\theta$ and the size ($d$) of the state vector, $m(t)$. By careful tuning of these parameters, we can make a storage space versus performance trade-off on a chaotic time series. For example, higher values of $d$ can increase the capacity of the cell to retain information that spans long time intervals. Conversely, smaller values of $d$ results in the opposite effects. The size of the sliding window, $\theta$ is having a similar effect to the parameter, $d$. As a result, $m(t)$ and $\theta$ can be thought of as the memory of the dynamic system.
+The performance of the LMU can be tuned by setting the window, $\theta$ and the size ($d$) of the state vector, $m(t)$. By careful tuning of these parameters, we can make a storage space versus performance trade-off on a chaotic time series. For example, higher values of $d$ can increase the capacity of the cell to retain information that spans long time intervals. By contrast, smaller values of $d$ have the opposite effect. The size of the sliding window, $\theta$ is having a similar effect to the parameter, $d$. As a result, $m(t)$ and $\theta$ can be thought of as the memory of the dynamic system.
 
 
-The LMU unit makes use of ODE solver. Here is an excellent tutorial on the [ODE](https://jontysinai.github.io/jekyll/update/2019/01/18/understanding-neural-odes.html). ODE is making a resurgent in the neural world. We have been using it implicitly in ResNet; as it has a structure that is similar to the Euler method for solving ODE by beginning with the input and add gradient residuals at each layer.
+The LMU unit incorporates an ODE solver. Here is an excellent tutorial on the [ODE](https://jontysinai.github.io/jekyll/update/2019/01/18/understanding-neural-odes.html). The ODE is making a comeback in the neural world. In ResNet, it is implicitly used because it has a structure that is similar to the Euler method for solving ODE. This is because we start with the input, then add gradient residuals at each layer.
 
 ### Conclusion
 
-The LMU would serve as a better building block for creating encode-decoder architecture that would improve sequence-to-sequence modeling tasks. Other structures that are possible with LSTM can also be done with LMU e.g. bidirectional LMU. </section>
+The LMU would serve as a better building block for creating an encode-decoder architecture that would improve sequence-to-sequence modelling tasks. Other structures that are possible with LSTM can also be done with LMU e.g. bidirectional LMU. </section>
 
                 <hr class="line"/>
                 <div style="display: flex; justify-content: center;">
