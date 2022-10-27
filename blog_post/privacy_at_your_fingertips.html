@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Privacy at your Fingertips</title>
+    <meta name="author" content="Kenneth Emeka Odoh"/>
+    <meta name="description" content="
+                                      Differential Privacy is a mathematical framework that provides a way to prevent an analyst from querying a data store to uncover information about an individual from a group of individuals in a database
+                                      "/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
+
+    <meta name="keywords" content="differential privacy,  privacy,  probability,  anonymization,  statistics, privacy, fingertips"/>
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Privacy at your Fingertips" />
+    <meta property="og:description" content="
+                                              Differential Privacy is a mathematical framework that provides a way to prevent an analyst from querying a data store to uncover information about an individual from a group of individuals in a database
+                                              " />
+
+    <script defer src="/static/js/backup/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="/static/js/backup/jquery-3.3.1.min.js" ></script>
+    <script src="/static/js/backup/marked.min.js"></script>
+    <script type="text/javascript" src="/static/js/backup/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: {
+             equationNumbers: {  autoNumber: "AMS"  },
+          },
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}},
+          linebreaks: { automatic: true, width: "container" }
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+    </script> 
+
+    <style>
+      mjx-container[display="block"] {
+        display: block;
+        margin: 1em 0;
+      }
+    </style>
+
+  </head>
+  <body class="Site">
+    <header class="Site-header">
+      <nav class="Nav">
+        <div class="Nav-home">
+          <a href=/index.html>Kenneth Emeka Odoh</a>
+        </div>
+        <div class="Nav-sections">
+          <a class="Nav-section " href=/index.html >About</a>
+          <a class="Nav-section " href=/projects.html>Projects</a>
+          <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a class="Nav-section" href=/publications.html>Publications</a>
+          <a class="Nav-section" href=/news.html>News</a>
+        </div>
+      </nav>
+      <div class="u-separator"></div>
+    </header>
+    <div class="Site-content">
+      <div class="u-container">
+
+        <div class="Page">
+            <article role="main" class="Article">
+                <h1 class="Article-title"> Privacy at your Fingertips </h1>
+                <div class="Article-meta">
+                  <time datetime=2022-10-27 12:40:54.763232 class="Article-date">27 Oct, 2022</time>
+                </div>
+
+                <!--<div class="Article-meta">Tag: None</div> -->
+                <div id="tag" class="Article-meta">Tags:
+                    
+                    <!--<a id=data-tag-differentialprivacy href=/blogs/differentialprivacy/1.html>differential privacy</a> -->
+                        <a id=differentialprivacy href=/blogs/differentialprivacy/1.html>differential privacy</a> 
+                    <!--<a id=data-tag-privacy href=/blogs/privacy/1.html> privacy</a> -->
+                        <a id=privacy href=/blogs/privacy/1.html> privacy</a> 
+                    <!--<a id=data-tag-probability href=/blogs/probability/1.html> probability</a> -->
+                        <a id=probability href=/blogs/probability/1.html> probability</a> 
+                    <!--<a id=data-tag-anonymization href=/blogs/anonymization/1.html> anonymization</a> -->
+                        <a id=anonymization href=/blogs/anonymization/1.html> anonymization</a> 
+                    <!--<a id=data-tag-statistics href=/blogs/statistics/1.html> statistics</a> -->
+                        <a id=statistics href=/blogs/statistics/1.html> statistics</a> 
+                    
+                </div>
+                <section id="text" class="Article-content"> Differential Privacy is a mathematical framework that provides a way to prevent an analyst from querying a data store to uncover information about an individual from a group of individuals in a database. Differential privacy is a way that prevents an analyst querying a data store from identifying individual records in a database by carefully adding noise to the data while preserving the global statistical properties of the database. We can get aggregate information without sacrificing an individual record. 
+
+There are basic anonymization techniques such as removing the field may be shortsighted and useless if there is multicollinearity, as the existing field may have the same information. Even if we get some level of privacy by removing the identifiable field, we still have a problem where we cannot objectively quantify the level of privacy guaranteed. Unfortunately, in this context, privacy can be challenged to be enhanced as it is an informal way to reason about privacy losses. There are several privacy-aware methods such as [zero-knowledge proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [homomorphic encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption), and [secure multi-party computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation) which are outside the scope of this work. We present a few case studies to show the applications of differential privacy in frequency estimation and negative databases.
+
+Differential Privacy comes to our rescue. It provides a framework for adding structured noise into the data while at the same time preserving the statistical properties of the data. The use of Differential privacy provides a principled framework for determining how much is required to achieve a target level of privacy. There are alternative notions of privacy based on adding noise. They include:
+
++ Putterfish privacy [[7]](): This framework allows non-privacy experts to integrate their domain expertise into privacy definitions, which are tailored to their specific needs. It has foundations in Bayesian statistics. It makes use of quantification of the attacker's belief before and after seeing the data. This is analogous to the attacker advantage discussed in the section on the mathematical foundation for the "vanilla" differential privacy mechanism.`
++ Differential identifiability [[8]](): This mechanism aims to prevent the user from specifying $\xi$ which can be error-prone as there is a lack of guidance where inappropriate values may impact the privacy guarantees that can be achieved. This work can be augmented with ideas from the paper [[6]]() on figuring reasonable privacy bounds on ($\xi, \delta$) which can prevent privacy violations in real-world applications.
+
+Privacy losses can be subtle and hard to detect. Hence,  it is reasonable that differential privacy should be combined with engineering safeguards to enhance the privacy of the data. For example, an individual avoids oversharing by withholding the name of his employer on social media (LinkedIn). The individual may inadvertently reveal his employer if a large group of individuals in a firm becomes friends on social media. An individual can use this hint to deduce her employer. However, if your list of friends is randomized and friendship is not announced, then this information can be preserved. Hence, achieving a form of privacy. Any correlation may not give precise information but may reduce the guessing space leading to privacy leaks. For example, an individual can be identified by using a combination of zip code, sex, and birthday. The information alone may not appear serious, but an attacker can build a profile and connect information, especially in the era this era of security incidents where a future breach may make previously anonymized data re-identifiable.
+
+Privacy protections are predominant in the jurisprudence of several countries. For example, the [4th amendment](https://constitution.congress.gov/constitution/amendment-4/) in the United States Constitution, protects citizens from unnecessary searches by the government. [Section 37](https://www.constituteproject.org/constitution/Nigeria_1999.pdf) of the Nigerian constitution guarantees citizens the right to privacy. [Section 8](https://www.canada.ca/content/dam/pch/documents/services/download-order-charter-bill/canadian-charter-rights-freedoms-eng.pdf) of the Canadian Charter of Rights and Freedom protects Canadians from arbitrary search by the authorities. Software engineers stand to financially benefit from the increased privacy regulations that will be enacted, both now and in the future. Some of these rules have nationalist interests, like where data can reside. There are some regulations such as:
+
++ [HIPAA](https://www.hhs.gov/hipaa/index.html) (health insurance portability and accountability act)
++ [GDPR](https://gdpr-info.eu/) (General data protection regulation)
+
+These laws are designed to protect privacy. A key element of this regulation is the emphasis on anonymizing data before it is released publicly. In spite of the innocent intent of the firm releasing the data, privacy attacks ([2]()) are common, which can be used for re-identification, tracing, or reconstruction by combining existing public information.
+
+Software engineers adopt a privacy-first approach to obey these regulations. Privacy by design should not be an afterthought, but a fundamental requirement for building applications that meets the trust of users. As expected, Governments will evolve these regulations and their actualization will become more stringent. We have a cat-and-mouse game in play.  This is where methods that are based on solid theoretical underpinning like differential privacy, and homomorphic encryption among others would become ubiquitous. Firms will get tired of paying fines for privacy violations and would rather invest this money in Software engineers, leading to more employment opportunities.
+
+We will remain apolitical for the remainder of this manuscript because I write through the lens of intellectual charity, which in my opinion yields the greatest impact on humanity. This is no part of the work that proposes policy positions, and no attempt was made to shape public perception of a politically-charged topic. My goal is to reveal the beauty of mathematics, even though I see myself as a "street-fighting mathematician" who is less formal and jump steps when writing proofs.
+
+Differential privacy has its roots in Cryptography and Theoretical Computer Science. However, I would like to contrast differential privacy with encryption/decryption (Cryptography). Both are simpler, as differential privacy processing includes an encoder (randomizer) where we add noise and a decoder (analyzer) where we remove some of the noise before performing the statistical calculation. In my opinion, differential privacy encodings are lossy transformations, as we cannot recover the exact original data at the decoder stage. On the contrary, in encryption/decryption (Cryptography), when we decrypt, we recover the exact message that was encrypted. Hence, it is a lossless transformation. Note that we did not consider homomorphic encryption in this analogy, for it is outside the scope of our work.
+
+Differential privacy can be configured in the following settings:
+
++ Local: Data is randomized on the client before sending off to the server. Local privacy provides stronger privacy guarantees.
+
++ Central: Data is collected and randomized on the server. Central privacy is easier to abuse in a centralized setting as we trust the server is impartial.
+
+# Mathematical Foundations
+
+The architecture of differential privacy [[1]]()
+
+![Differential privacy architecture](/static/images/privacy/diffprivarch.png)
+
+The architecture may be formalized into these phases, which take the form of a pipeline:
+
++ Randomizer (encoder): takes input from the client device and obtains an intermediary transformed output that is sent as input to the shuffler phase. This is essentially adding noise to the input.
+
++ Shuffler: This is optional in many applications. However, it takes transformed input from the randomizer and does permutation. In some application such as internet traffic, this may prevent privacy attack when the order is used to re-identify and tied a request to an individual (caveat as we assume DNS and other routers does save identifying metadata). Adding even more noise to the data at this stage.
+
++ Analyzer: this phase performs statistical computation on the input from a randomizer or shuffler based on application. This is where we get insight into the overall data. Carefully remove some noise and make meaningful computation that is needed by the application.
+
+Once, you can transform any two elements of the data, $d, \hat{d}$ using the randomizer, $A$. Every pair of elements, $(d, \hat{d})$, if we have a higher degree of privacy then most element pairs would look similar thereby making it hard to distinguish. With higher privacy, $Pr(A(d) = y)$ have similar values to $Pr(A(\hat{d}) = y)$. The perfect privacy is when $\xi = 0$, usually most of the statistical properties are lost, so it is useless for most purposes. No privacy is achieved when $\xi = \infty$. The order of the numerator or denominator does not matter, hence the sign is unimportant $ \pm \xi $.
+
++ $A: D \rightarrow Y$ (randomizer)
+
++ ($d, \hat{d}) \in D$ (data) and $y \in Y$ (label)
+
++ $Pr$: probability
+
+
+$-\xi \le \ln (\frac{Pr(A(d) = y)}{Pr(A(\hat{d}) = y)}) \le \xi$
+
+
+Specifying the level of privacy involves setting bound ($\xi, \delta$) [[3]](). This is how we set the level of privacy that we are using for our application.
+
+$\xi$ is the measure that any two pairs of elements $(d, \hat{d})$ in the data store are similar. This is closely related to the concept of semantic cryptography. The privacy guarantees are higher if $\xi$ is closer to 0. Hence, every element in the data store looks the same. This implies that the amount of information that can be gleaned from a single element does not give us information about the remaining data in the data store. Typically, when every item looks the same, then you have maximum privacy. However, in such a situation, we are unable to embed any useful information in these data. Therefore, we aim to achieve a reasonable level of privacy suitable for the application.
+
+$\delta$ is a measure that represents the loss of information in relation to other items in the database. Smaller values of $\delta$ minimize this loss. This is better described in terms of advantage to the attack, see multiple cases in examples of probabilistic games in the book [[4]]().
+
+$(Pr_{post}(\hat{X}) - Pr_{pre}(\hat{X})) \le \delta$
+
+
+The attacker has some information about $X$ which is $\hat{X}$, we want to know how $X$ changes with this newly acquired information from the attacker's perspective. $\delta$ can be referred to as the attacker's advantage based on the latest information about the data.
+
+# Case Studies
+
+In this section, we will look at a few ways differential privacy can be used in industry. The choice is based on applications that are interesting to the author of the blog. We begin by providing a principled way for individuals to set the privacy bounds ($\xi, \delta$) to prevent privacy violations, which renders our privacy mechanism ineffective. This is followed by a differentially private counting mechanism to estimate the frequency. Finally, we discussed a negative database which is a differential private database mechanism that prevents arbitrary inspection of data.
+
+### Setting Appropriate Values of ($\xi, \delta$) on Application-Specific Case
+
+The paper [[6]]() released by [Cybernetica AS](https://cyber.ee/) has provided a framework for setting the values of ($\xi, \delta$) is critical as it can impact the privacy guarantees of the privacy mechanism by computing $\xi$ in relation to $\delta$ which is defined in terms of adversarial attacker advantage with regard to guessing properties of the data. The challenge of setting the appropriate values is critical. Setting wrong values for the privacy bounds would severely impact privacy theoretical guarantees for privacy bounds.
+
+Their work presents a formulation of presenting the attacker's goal as a boolean expression over the attributes of the data, where each dimension must be pairwise independent. The method described in the paper provides multivariate data, we specify the set of dimensions with a probability, $p$, or a combination of these dimensions. The combinations can be AND-events or OR-events. We provide bounds that an attacker cannot correctly guess the combination of the dimensions. Hence, we add the appropriate amount of noise, $\xi$, defined in terms of a proscribed relative guessing advantage $\delta$.
+
+$\xi = \ln \frac{(\frac{p}{1-p}) (\frac{1}{\delta+p} - 1)}{R}$
+
+ where $R$ is a scaling value, see paper for exact calculation.
+
+$\xi$ does not have an upper bound and specifying a lower bound is not straightforward. Care must be taken that these bounds are defined in a way that is not affected by scaling. Otherwise, the privacy mechanism is futile. A realistic way to decide the value of $\xi$ based on the prior probability before seeing the data in relation to the posterior probability after seeing the data.
+
+### Frequency Estimation using Differential Privacy
+
+The paper [[5]]() released by [Apple](https://www.apple.com/) was so influential in my study of privacy that I took the time to derive the formulas in the paper. This information, which I believe the authors omitted due to space constraints.
+
+Their algorithm has a server and client mechanism. The client does computation locally and sends intermediary results to the server. The amount of data sent to the server from the client can have an impact on communication costs. The computation done on the server and client can impact the computation cost. The amount of noise added to the client during the encoding phase can have an impact on the amount of privacy afford and accuracy achieved.
+
+There is a tradeoff between privacy and the accuracy of the computation.
+
+The paper consists of two cases for frequency estimation:
+
++ Compute histogram from a known distribution of words.
+
+    -   This is to count the frequency of a term from a known dictionary of terms.
+
++ Compute a histogram from an unknown dictionary of words.
+
+    -   This is to count the frequency of a term from an unknown dictionary of terms.
+
+The core of the algorithms makes use of hash functions, and Hadamard transforms.
+
+Count sketch Algorithm: find frequent data with a near-precise count in a data stream. The client-side algorithm ensures that the privacy mechanism is $\xi$-differentially private.
+
+The data structure on the server to save the privatized data from the client is $M$ ($k x m$) where $m$ is the size of transmitted data from the client to the server, and $k$ is the number of hash functions.
+
+Server-side algorithm averages count to each $k$ hash function. The hash function should be a set of $k$ 3-wise independent hash functions.
+
+#### K-wise independent hash function family
+
+The privacy algorithm in the paper requires a 3-wise independent hash function to work properly. [Polynomial hash function](https://www.cs.purdue.edu/homes/hmaji/teaching/Fall%202017/lectures/12.pdf) can provide this property.
+
+$H(x) = a_{0} + a_{1}x + a_{2}x^2 + ... + a_{k-1}x^{k-1}$
+
+where $H(x)$ is a polynomial of $degree \le k$
+
+My approach was to generate a random matrix and extract the vector on a row-by-row basis to feed into the hash function, $H(x)$.
+
+```
+
+const hashCode = (s) => {
+    let h = 0;
+    let str = s.toLowerCase();
+    let n = str.length;
+    for(let i = 0; i < n; i++)
+    {
+        var char = str.charCodeAt(i) - 97 + 1;
+        h = h + (char * Math.pow(26, (n - i - 1)));
+    }
+    return h;
+
+}
+
+const hash = (d, k, m) => {
+    let degree = 3; // 3-wise independent hash function
+    let dval = hashCode(d);
+    let rmatrix = sylvester.Matrix.Random(k, degree - 1);
+    let rindex = random(1, k);
+    let rvector = rmatrix.row(rindex);
+    let hequation = range(0, k-1, 1).map(function(x) { return Math.pow(dval, x) });
+    let hequationVec = $V(hequation);
+    let hashval = Math.round(hequationVec.dot(rvector)) % m;
+    return hashval;
+}
+
+```
+
+#### Hadamard Transforms
+
+Hadamard transforms help to reduce the variance of estimates at the analyzer stage. The Hadamard count sketch algorithm is an improvement over the basic count sketch algorithm with a dense vector instead of a sparse matrix. For more information on Hadamard transformations, consult the following text:
+
+Hadamard Transforms by Sos Agaian, Hakob Sarukhanyan, Karen Egiazarian, Jaakko Astola. SPIE, 2011.
+
+It is desirable to have a shared hash functions family for sampling the hash function for both the client and server. One approach is to create a family of hash functions on the server and sent it to the client. However, if we are considering communication cost, we have different hash function families with similar distribution and avoid sending huge matrices over the network.
+
+```
+
+const hadamard = (l) => {
+    var H = $M([
+      [1, 1],
+      [1, -1]
+    ]);
+
+    for (let i = 1; i < Math.log2(l); i++) {
+        var posy = H.augment(H).transpose()
+        var negy = H.augment(H.x(-1)).transpose()
+        var hmat = posy.augment(negy)
+        H = hmat;
+    }
+    return H;
+}
+
+```
+
+#### implementation
+
+During this research, I implemented the following algorithms from the paper [[5]](). They include:
+
++ A_{client-HCMS} in Algorithm 5.
+
++ Hadamard count mean sketch HCMS in Algorithm 6.
+
++ A_{server} in Algorithm 4.
+
++ Compute Sketch matrix is known as Sketch-HCMS in Algorithm 7.
+
+An unsuccessful attempt to replicate the paper titled [Learning with privacy at scale](https://docs-assets.developer.apple.com/ml-research/papers/learning-with-privacy-at-scale.pdf). My failure was due to coding issues in the analyzer logic. Some of the root causes can be traced to the linear algebra library that I misunderstood and used, with a mix-up between zero-indexed and one-indexed for vector and matrix structure. I have run out of time for debugging given my extreme work schedule and my goal to finish all of my professional tasks before vacation.
+
+Source code: https://github.com/kenluck2001/diffprivacy
+
+### Negative Databases
+
+When a user tries to save an item, it stores the complements of the item in the negative database. Thus, the data store contains the complement of items not in the database. By representing a database by its complement, it is saving every item that is not in the database.
+
+Interactively querying a database can provide information about the stored data. This is exactly what databases are designed to accomplish. It is constructed to serve several information-seeking needs. The challenge is how to get aggregate data without exposing the individual privacy of the rows.
+
+One variant of this negative database that appeared of interest to me is the one based on the boolean SAT problem proposed by the paper [[9]](), which proposes a representation of the data in hard-to-reverse engineering to the actual data based on a 3-SAT problem which is mathematically difficult as NP-hard. There are alternatives such as encryption of the entire database, while it provides privacy, it makes search almost impossible. Furthermore, a data query restriction policy on a traditional database is unlikely to prevent a determined disgruntled individual with nefarious intentions from arbitrarily inspecting the data.
+
+# Acknowledgement
+
+- Thanks to Krystal Maughan for recommending resources to help resolve my confusion in some Cryptographic-related concepts.
+
+- Thanks to the Polyglot reading group for reading privacy papers that got me interested in the subject.
+
+- Thanks to Professor Raija Tuohi for teaching me Cryptography and Probability during my undergraduate days.
+
+- Thanks to the Applied Cryptography reading group that I organized, where 7Gate Academy was generous with providing me a meeting space in their office during off-work hours. The amount of interesting conversation that happened in those sessions was equivalent to studying Cryptography at a Graduate school level.
+
+# Conclusion
+
+There is a misconception that differential privacy would prevent re-identification attacks. According to the threat model, if the user only has access to the transformed data, then privacy can be ensured. However, secondary information can still help re-identify the data. This threat model is very realistic and sufficient for most real-world cases.
+
+Any errors in this manuscript are mine.
+
+# References
+
+- [[1]]() Victor Balcer, Albert Cheu. Separating Local {\&} Shuffled Differential Privacy via Histograms, http://arxiv.org/abs/1911.06879, 2019.
+
+- [[2]]() Cynthia Dwork, Adam Smith, Thomas Steinke, and Jonathan Ullman. 2017. “Exposed! A Survey of Attacks on Private Data.” Annual Review of Statistics and Its Application (2017).
+
+- [[3]]() https://www.johndcook.com/blog/2017/09/20/adding-laplace-or-gaussian-noise-to-database/
+
+- [[4]]() A Graduate Course in Applied Cryptography by Dan Boneh and Victor Shoup. http://toc.cryptobook.us/
+
+- [[5]]() https://docs-assets.developer.apple.com/ml-research/papers/learning-with-privacy-at-scale.pdf
+
+- [[6]]() Peeter Laud, Alisa Pankova. Interpreting Epsilon of Differential Privacy in Terms of Advantage in Guessing or Approximating Sensitive Attributes, https://arxiv.org/abs/1911.12777
+
+- [[7]]() Daniel Kifer, Ashwin Machanavajjhala. Pufferfish: A framework for mathematical privacy definitions, ACM Transactions on Database Systems, Volume 39 Issue 1, pp 1–36, 2014.
+
+- [[8]]() Jaewoo Lee, Chris Clifton. Differential identifiability. In Proceedings of the 18th ACM SIGKDD international conference on Knowledge discovery and data mining  Pages 1041–1049, 2012
+
+- [[9]]() Fernando Esponda, Elena S. Ackley, Paul Helman, Haixia Jia, and Stephanie Forrest. Protecting Data Privacy Through Hard-to-Reverse Negative Databases. In Proceedings of the International Conference on Information Security, 2006
+
+Footnote:
+
+[Privacy-aware DNS](https://dnsprivacy.org/ietf_dns_privacy_tutorial/), [Oblivious HTTP](https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html) can provide privacy on the Internet.
+
+This work was hastily put together, and it may be rewritten in the near future for more clarity.
+
+ </section>
+
+                <hr class="line"/>
+                <div style="display: flex; justify-content: center;">
+                    <table>
+                      <tr>
+                        <td> <a class="left" id="left-13" data-min-index="0" data-max-index="12" href=/blog_post/privacy_at_your_fingertips.html><img id="left-0" data-toggle="tooltip" title="Click to previous page." src=/static/images/left.png style="width: 48px; height: 50px;" alt="previous here"/></a> </td>
+
+                        <td> <div class="squares">
+                              <div class="icon1">
+                                 <!--<p class="text-muted">12/12</p>-->
+                                 <p class="text-muted">1/12</p>
+                              </div>
+                            </div> 
+                        </td>
+                        
+                        <td> <a class="right" id="right-11" data-min-index="0" data-max-index="12" href=/blog_post/authoring_a_new_book_on_distributed_computing.html><img id="right-1" data-toggle="tooltip" title="Click to next page." src=/static/images/right.png style="width: 48px; height: 50px;" alt="next here"/></a> </td>
+                      </tr>
+                    </table>
+                </div>
+                <hr class="line"/>
+
+                <div style="display: flex; justify-content: center;">
+                    <div class="Article-meta">
+Read more of our <a href=/blogs/1.html><b>blog posts</b></a>, technical <a target="_blank" href=/publications.html#talks><b>talks</b></a>, and <a target="_blank" href=/publications.html#publications><b>publications</b></a>.
+                    </div>
+
+                </div>   
+
+
+                <div class="Footer">
+                <p> Please feel free to <b>donate</b> by clicking <a target="_blank" data-toggle="tooltip" title="Click to make a donation here" href="https://checkout.square.site/pay/a5a1bb5a14e941baae84556f133744cd"><img src=/static/images/donate.png style="width: 40px; height: 40px;" alt="donate here"/></a>using Square Checkout.</p>
+                </div>
+
+                <a target="_blank" data-size="large" class="twitter-share-button"
+                  href="https://twitter.com/intent/tweet?url=https://kenluck2001.github.io/blog_post/privacy_at_your_fingertips.html&text= Share the blog here">
+                 <img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" alt="Smiley face" height="42" width="42">  </a>
+
+
+            </article>
+        </div>
+
+      </div>
+    </div>
+
+        <footer class="footer">
+            <div class="Footer">
+                <p class="text-muted">Icon made by Freepik from www.flaticon.com</p>
+                <p class="text-muted">&copy; 2019 Copyright: Kenneth Odoh</p>
+            </div>
+        </footer>
+
+    <script  type="text/javascript" >
+
+        function animatePaginator(selector) {
+            var i = 0;
+            $(selector).css('opacity', '1.0');
+            setInterval(function () {
+                i++;
+                if ((i%2)==1)
+                {
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '0.5');
+                        $(this).fadeIn("slow");
+                    });
+                }else{
+                    //$(selector).css('opacity', '1.0');
+
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '1.0');
+                        $(this).fadeIn("slow");
+                    });
+                }
+                i = i % 2
+            }, 5000);
+        }
+
+        function disablePaginator(selector) {
+            $(selector).css('visibility','hidden')
+            $(selector).parent().removeAttr("href");
+        }
+
+
+        Array.range = function(a, b, step){
+            var A = [];
+            if(typeof a == 'number'){
+                A[0] = a;
+                step = step || 1;
+                while(a+step <= b){
+                    A[A.length]= a+= step;
+                }
+            }
+            else {
+                var s = 'abcdefghijklmnopqrstuvwxyz';
+                if(a === a.toUpperCase()){
+                    b = b.toUpperCase();
+                    s = s.toUpperCase();
+                }
+                s = s.substring(s.indexOf(a), s.indexOf(b)+ 1);
+                A = s.split('');        
+            }
+            return A;
+        }
+
+        var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
+
+
+        var ua = window.navigator.userAgent;
+        var isIE = /MSIE|Trident/.test(ua);
+
+        if ( isIE ) {
+            //IE specific code goes here
+            $(".left").hide()
+            $(".right").hide()
+        }
+
+        var min_index = $(".left").attr('data-min-index')
+        var max_index = $(".left").attr('data-max-index')
+
+
+        var selectorlist = ['#left', '#right'];
+        var indexlist = [min_index, max_index]
+
+        var div;
+        var ind;
+
+        // disable pagination
+        selector = "#left-" + (parseInt(max_index)+1).toString()
+        disablePaginator(selector) 
+
+        selector = "#right-" + min_index  
+        disablePaginator(selector) 
+
+
+        // animate pagination
+        for (div of selectorlist) {
+                for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                    var selector = div+"-"+ind
+                    animatePaginator(selector) 
+                } 
+
+        } 
+
+        // set the search token
+        $('#tag').find('a').each(function() {
+            var cID = $(this).attr("id"); // Get current url
+            $("#"+cID).click(function() {
+                localStorage.setItem("tag", cID);
+                //alert(cID)
+            }); 
+        });
+
+        if( isMobile.any() )
+        {
+            $('#tag').find('a').each(function() {
+                var oldUrl = $(this).attr("href"); // Get current url
+                var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
+                $(this).attr("href", newUrl); // Set herf value
+            });
+
+        }
+
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
+
+        txt = $('.Article-content').text( );     
+        $('.Article-content').html( marked.parse(txt) );
+
+    </script >
+
+
+  </body>
+</html>
