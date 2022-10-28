@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
 
-    <meta name="keywords" content="differential privacy,  privacy,  probability,  anonymization,  statistics, privacy, fingertips"/>
+    <meta name="keywords" content="right, map, differential privacy,  privacy,  probability,  anonymization,  statistics, privacy, fingertips"/>
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Privacy at your Fingertips" />
     <meta property="og:description" content="
@@ -89,14 +89,14 @@
                 </div>
                 <section id="text" class="Article-content"> Differential Privacy is a mathematical framework that provides a way to prevent an analyst from querying a data store to uncover information about an individual from a group of individuals in a database. Differential privacy is a way that prevents an analyst from identifying individual records in a database by carefully adding noise to the data while preserving the global statistical properties of the database. We can get aggregate information without sacrificing the privacy of an individual record. 
 
-There are basic anonymization techniques such as removing the field may be shortsighted and useless if there is multicollinearity, as the existing field may have the same information. Even if we get some level of privacy by removing the identifiable field, we still have a problem where we cannot objectively quantify the level of privacy guaranteed. Unfortunately, in this context, enhancing the privacy can be challenging as it is an difficult way to reason about privacy losses. There are several privacy-aware methods such as [zero-knowledge proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [homomorphic encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption), and [secure multi-party computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation) which are outside the scope of this work. We present a few case studies to show the applications of differential privacy in frequency estimation and negative databases.
+There are basic anonymization techniques such as removing the field may be shortsighted and useless if there is multicollinearity, as the existing field may have the same information. Even if we get some level of privacy by removing the identifiable field, we still have a problem where we cannot objectively quantify the level of privacy guaranteed. Unfortunately, in this context, enhancing the privacy can be challenging as it is a difficult way to reason about privacy losses. There are several privacy-aware methods such as [zero-knowledge proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [homomorphic encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption), and [secure multi-party computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation) which are outside the scope of this work. We present a few case studies to show the applications of differential privacy in frequency estimation and negative databases.
 
 Differential Privacy comes to our rescue. It provides a framework for adding structured noise into the data while at the same time preserving the statistical properties of the data. The use of Differential privacy provides a principled framework for determining how much is required to achieve a target level of privacy. There are alternative notions of privacy based on adding noise. They include:
 
 + Putterfish privacy [[7]](): This framework allows non-privacy experts to integrate their domain expertise into privacy definitions, which are tailored to their specific needs. It has foundations in Bayesian statistics. It makes use of quantification of the attacker's belief before and after seeing the data. This is analogous to the attacker advantage discussed in the section on the mathematical foundation for the "vanilla" differential privacy mechanism.`
 + Differential identifiability [[8]](): This mechanism aims to prevent the user from specifying $\xi$ which can be error-prone as there is a lack of guidance where inappropriate values may impact the privacy guarantees that can be achieved. This work can be augmented with ideas from the paper [[6]]() on figuring reasonable privacy bounds on ($\xi, \delta$) which can prevent privacy violations in real-world applications.
 
-Privacy losses can be subtle and hard to detect. Hence,  it is reasonable that differential privacy should be combined with engineering safeguards to enhance the privacy of the data. For example, an individual avoids oversharing by withholding the name of his employer on social media (LinkedIn). The individual may inadvertently reveal his employer if a large group of individuals in a firm becomes friends on social media. An individual can use this hint to deduce her employer. However, if your list of friends is randomized and friendship is not announced, then this information can be preserved. Hence, achieving a form of privacy. Any correlation may not give precise information but may reduce the guessing space leading to privacy leaks. For example, an individual can be identified by using a combination of zip code, sex, and birthday. The information alone may not appear serious, but an attacker can build a profile and connect information, especially in the era this era of security incidents where a future breach may make previously anonymized data re-identifiable.
+Privacy losses can be subtle and hard to detect. Hence, it is reasonable that differential privacy should be combined with engineering safeguards to enhance the privacy of the data. For example, an individual who avoids oversharing by withholding the name of his employer on social media (LinkedIn). The individual may inadvertently reveal his employer if a large group of individuals from a firm becomes friends on social media. Another individual (attacker) can use this hint to deduce her employer. However, if your list of friends is randomized and friendship is not announced, then this information can be preserved. Hence, achieving a form of privacy. Any correlation may not give precise information but may reduce the guessing space leading to privacy leaks. For example, an individual can be identified by using a combination of zip code, sex, and birthday. The information alone may not appear serious, but an attacker can build a profile and connect information, especially in the era this era of security incidents where a future breach may make previously anonymized data re-identifiable.
 
 Privacy protections are predominant in the jurisprudence of several countries. For example, the [4th amendment](https://constitution.congress.gov/constitution/amendment-4/) in the United States Constitution, protects citizens from unnecessary searches by the government. [Section 37](https://www.constituteproject.org/constitution/Nigeria_1999.pdf) of the Nigerian constitution guarantees citizens the right to privacy. [Section 8](https://www.canada.ca/content/dam/pch/documents/services/download-order-charter-bill/canadian-charter-rights-freedoms-eng.pdf) of the Canadian Charter of Rights and Freedom protects Canadians from arbitrary search by the authorities. Software engineers stand to financially benefit from the increased privacy regulations that will be enacted, both now and in the future. Some of these rules have nationalist interests, like where data can reside. There are some regulations such as:
 
@@ -181,11 +181,9 @@ There is a tradeoff between privacy and the accuracy of the computation.
 The paper consists of two cases for frequency estimation:
 
 + Compute histogram from a known distribution of words.
-
     -   This is to count the frequency of a term from a known dictionary of terms.
 
 + Compute a histogram from an unknown dictionary of words.
-
     -   This is to count the frequency of a term from an unknown dictionary of terms.
 
 The core of the algorithms makes use of hash functions, and Hadamard transforms.
@@ -207,7 +205,6 @@ where $H(x)$ is a polynomial of $degree \le k$
 My approach was to generate a random matrix and extract the vector on a row-by-row basis to feed into the hash function, $H(x)$.
 
 ```
-
 const hashCode = (s) => {
     let h = 0;
     let str = s.toLowerCase();
@@ -218,7 +215,6 @@ const hashCode = (s) => {
         h = h + (char * Math.pow(26, (n - i - 1)));
     }
     return h;
-
 }
 
 const hash = (d, k, m) => {
@@ -232,7 +228,6 @@ const hash = (d, k, m) => {
     let hashval = Math.round(hequationVec.dot(rvector)) % m;
     return hashval;
 }
-
 ```
 
 #### Hadamard Transforms
@@ -244,7 +239,6 @@ Hadamard Transforms by Sos Agaian, Hakob Sarukhanyan, Karen Egiazarian, Jaakko A
 It is desirable to have a shared hash functions family for sampling the hash function for both the client and server. One approach is to create a family of hash functions on the server and sent it to the client. However, if we are considering communication cost, we have different hash function families with similar distribution and avoid sending huge matrices over the network.
 
 ```
-
 const hadamard = (l) => {
     var H = $M([
       [1, 1],
@@ -259,7 +253,6 @@ const hadamard = (l) => {
     }
     return H;
 }
-
 ```
 
 #### implementation
@@ -267,11 +260,8 @@ const hadamard = (l) => {
 During this research, I implemented the following algorithms from the paper [[5]](). They include:
 
 + A_{client-HCMS} in Algorithm 5.
-
 + Hadamard count mean sketch HCMS in Algorithm 6.
-
 + A_{server} in Algorithm 4.
-
 + Compute Sketch matrix is known as Sketch-HCMS in Algorithm 7.
 
 An unsuccessful attempt to replicate the paper titled [Learning with privacy at scale](https://docs-assets.developer.apple.com/ml-research/papers/learning-with-privacy-at-scale.pdf). My failure was due to coding issues in the analyzer logic. Some of the root causes can be traced to the linear algebra library that I misunderstood and used, with a mix-up between zero-indexed and one-indexed for vector and matrix structure. I have run out of time for debugging given my extreme work schedule and my goal to finish all of my professional tasks before vacation.
@@ -320,7 +310,21 @@ Any errors in this manuscript are mine.
 
 - [[8]]() Jaewoo Lee, Chris Clifton. Differential identifiability. In Proceedings of the 18th ACM SIGKDD international conference on Knowledge discovery and data mining  Pages 1041–1049, 2012
 
-- [[9]]() Fernando Esponda, Elena S. Ackley, Paul Helman, Haixia Jia, and Stephanie Forrest. Protecting Data Privacy Through Hard-to-Reverse Negative Databases. In Proceedings of the International Conference on Information Security, 2006
+- [[9]]() Fernando Esponda, Elena S. Ackley, Paul Helman, Haixia Jia, and Stephanie Forrest. Protecting Data Privacy Through Hard-to-Reverse Negative Databases. In Proceedings of the International Conference on Information Security, 2006.
+
+
+# **How to Cite this Article**
+```
+BibTeX Citation
+
+@article{kodoh2022b,
+  author = {Odoh, Kenneth},
+  title = {Privacy at your Fingertips},
+  year = {2022},
+  note = {https://kenluck2001.github.io/blog_post/privacy_at_your_fingertips.html}
+}
+```
+
 
 Footnote:
 
