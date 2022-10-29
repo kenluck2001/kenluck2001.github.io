@@ -99,9 +99,8 @@ Differential Privacy comes to our rescue. It provides a framework for adding str
 Privacy losses can be subtle and hard to detect. Hence, it is reasonable that differential privacy should be combined with engineering safeguards to enhance the privacy of the data. For example, an individual who avoids oversharing by withholding the name of his employer on social media (LinkedIn). The individual may inadvertently reveal his employer if a large group of individuals from a firm becomes friends on social media. Another individual (attacker) can use this hint to deduce her employer. However, if your list of friends is randomized and friendship is not announced, then this information can be preserved. Hence, achieving a form of privacy. Any correlation may not give precise information but may reduce the guessing space leading to privacy leaks. For example, an individual can be identified by using a combination of zip code, sex, and birthday. The information alone may not appear serious, but an attacker can build a profile and connect information, especially in the era this era of security incidents where a future breach may make previously anonymized data re-identifiable.
 
 Privacy protections are predominant in the jurisprudence of several countries. For example, the [4th amendment](https://constitution.congress.gov/constitution/amendment-4/) in the United States Constitution, protects citizens from unnecessary searches by the government. [Section 37](https://www.constituteproject.org/constitution/Nigeria_1999.pdf) of the Nigerian constitution guarantees citizens the right to privacy. [Section 8](https://www.canada.ca/content/dam/pch/documents/services/download-order-charter-bill/canadian-charter-rights-freedoms-eng.pdf) of the Canadian Charter of Rights and Freedom protects Canadians from arbitrary search by the authorities. Software engineers stand to financially benefit from the increased privacy regulations that will be enacted, both now and in the future. Some of these rules have nationalist interests, like where data can reside. There are some regulations such as:
-
-+ [HIPAA](https://www.hhs.gov/hipaa/index.html) (health insurance portability and accountability act)
-+ [GDPR](https://gdpr-info.eu/) (General data protection regulation)
++ [HIPAA](https://www.hhs.gov/hipaa/index.html) (Health Insurance Portability and Accountability Act)
++ [GDPR](https://gdpr-info.eu/) (General Data Protection Regulation)
 
 These laws are designed to protect privacy. A key element of this regulation is the emphasis on anonymizing data before it is released publicly. In spite of the innocent intent of the firm releasing the data, privacy attacks ([2]()) are common, which can be used for re-identification, tracing, or reconstruction by combining existing public information.
 
@@ -114,7 +113,6 @@ Differential privacy has its roots in Cryptography and Theoretical Computer Scie
 Differential privacy can be configured in the following settings:
 
 + Local: Data is randomized on the client before sending off to the server. Local privacy provides stronger privacy guarantees.
-
 + Central: Data is collected and randomized on the server. Central privacy is easier to abuse in a centralized setting as we trust the server is impartial.
 
 # Mathematical Foundations
@@ -124,24 +122,17 @@ The architecture of differential privacy [[1]]()
 ![Differential privacy architecture](/static/images/privacy/diffprivarch.png)
 
 The architecture may be formalized into these phases, which take the form of a pipeline:
-
 + Randomizer (encoder): takes input from the client device and obtains an intermediary transformed output that is sent as input to the shuffler phase. This is essentially adding noise to the input.
-
 + Shuffler: This is optional in many applications. However, it takes transformed input from the randomizer and does permutation. In some application such as internet traffic, this may prevent privacy attack when the order is used to re-identify and tied a request to an individual (caveat as we assume DNS and other routers does save identifying metadata). Adding even more noise to the data at this stage.
-
 + Analyzer: this phase performs statistical computation on the input from a randomizer or shuffler based on application. This is where we get insight into the overall data. Carefully remove some noise and make meaningful computation that is needed by the application.
 
 Once, you can transform any two elements of the data, $d, \hat{d}$ using the randomizer, $A$. Every pair of elements, $(d, \hat{d})$, if we have a higher degree of privacy then most element pairs would look similar thereby making it hard to distinguish. With higher privacy, $Pr(A(d) = y)$ have similar values to $Pr(A(\hat{d}) = y)$. The perfect privacy is when $\xi = 0$, usually most of the statistical properties are lost, so it is useless for most purposes. No privacy is achieved when $\xi = \infty$. The order of the numerator or denominator does not matter, hence the sign is unimportant $ \pm \xi $.
 
 + $A: D \rightarrow Y$ (randomizer)
-
 + ($d, \hat{d}) \in D$ (data) and $y \in Y$ (label)
-
 + $Pr$: probability
 
-
 $-\xi \le \ln (\frac{Pr(A(d) = y)}{Pr(A(\hat{d}) = y)}) \le \xi$
-
 
 Specifying the level of privacy involves setting bound ($\xi, \delta$) [[3]](). This is how we set the level of privacy that we are using for our application.
 
@@ -150,7 +141,6 @@ $\xi$ is the measure that any two pairs of elements $(d, \hat{d})$ in the data s
 $\delta$ is a measure that represents the loss of information in relation to other items in the database. Smaller values of $\delta$ minimize this loss. This is better described in terms of advantage to the attack, see multiple cases in examples of probabilistic games in the book [[4]]().
 
 $(Pr_{post}(\hat{X}) - Pr_{pre}(\hat{X})) \le \delta$
-
 
 The attacker has some information about $X$ which is $\hat{X}$, we want to know how $X$ changes with this newly acquired information from the attacker's perspective. $\delta$ can be referred to as the attacker's advantage based on the latest information about the data.
 
@@ -164,7 +154,7 @@ The paper [[6]]() released by [Cybernetica AS](https://cyber.ee/) has provided a
 
 Their work presents a formulation of presenting the attacker's goal as a boolean expression over the attributes of the data, where each dimension must be pairwise independent. The method described in the paper provides multivariate data, we specify the set of dimensions with a probability, $p$, or a combination of these dimensions. The combinations can be AND-events or OR-events. We provide bounds that an attacker cannot correctly guess the combination of the dimensions. Hence, we add the appropriate amount of noise, $\xi$, defined in terms of a proscribed relative guessing advantage $\delta$.
 
-$\xi = \ln \frac{(\frac{p}{1-p}) (\frac{1}{\delta+p} - 1)}{R}$
+$\xi = - \ln \frac{(\frac{p}{1-p}) (\frac{1}{\delta+p} - 1)}{R}$
 
  where $R$ is a scaling value, see paper for exact calculation.
 
