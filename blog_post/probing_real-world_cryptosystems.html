@@ -118,8 +118,9 @@ Real-world cryptography protocols are broken in multiple ways. This precarious s
 - Every source code is the author's original work. The accompanying software is done in good faith and makes no claim about the correctness of the solution to the extent possible under the [MIT license](https://opensource.org/license/mit/).
 
 - This is intended to be a living document. See it as a research manifesto.
+- Repo: https://github.com/kenluck2001/cipherResearch
 
-A new attack surface keeps evolving and improves on previous exploits. Understanding the fundamentals can help discover out of the box vulnerabilities, before a well-funded bad actor beats us to it. Anecdotal evidence that exploiting a known attack vector may not be feasible due to limited technical mastery of the subject. The gulf of execution could impact the transferring a theoretical insight from theory to implementation. Practicality entails simplifying (abstracting) the real-world within reasonable constraints to achieve a proof-of-concept. For-profit certification has some utility, but security is a multi-headed hydra, so training individuals in a gamified system can be relevant for the basics, but will not help identify the rare vulnerabilities which would likely yield the highest utility for the bad actors. We recommend solving the [Cryptography puzzles](https://cryptopals.com/).
+A new attack surface keeps evolving and improves on previous exploits. Understanding the fundamentals can help discover out of the box vulnerabilities, before a well-funded bad actor beats us to it. Anecdotal evidence that exploiting a known attack vector may not be feasible due to limited technical mastery of the subject. The gulf of execution could impact the transferring a theoretical insight from theory to implementation. Practicality entails simplifying (abstracting) the real-world within reasonable constraints to achieve a proof-of-concept. For-profit certification has some utility, but security is a multi-headed hydra, so training individuals in a gamified system can be relevant for the basics, but will not help identify the rare vulnerabilities which would likely yield the highest utility for the bad actors. We recommend solving the [cryptography puzzles](https://cryptopals.com/).
 
 # **Algorithm implementations**
 
@@ -178,13 +179,13 @@ A principled way of performing constant-time operations could be the holy grail 
 
 ##### Practical Considerations
 
-The bits in the specification are about the length of the message and key. It should not be confused with storage space in actual memory.
+- The bits in the specification are about the length of the message and key. It should not be confused with storage space in actual memory.
 
-Utilize precise padding between number representations to prevent fractional bytes at (word, byte) boundaries.
+- Utilize precise padding between number representations to prevent fractional bytes at (word, byte) boundaries.
 
 - When implementing a cipher that will interact with the real world. Conforming to standard avoids deviation results in undecipherable messages. Understanding intricacies of the specifications is imperative, so the most effective approach is to validate your solution with the gold standard (cipher, plaintext, key).
 
-We can detect ciphertexts in ECB mode more easily in transmission since we have every nonoverlapping 16-byte segment until the end of the message, and check for collisions.
+- We can detect ciphertexts in ECB mode more easily in transmission since we have every nonoverlapping 16-byte segment until the end of the message, and check for collisions.
 
 - [PKC#7](https://datatracker.ietf.org/doc/html/rfc2315) padding scheme is a common standard for addressing variable sized messages, by adding a number of characters to make every message block equal in length. It appends a character '\x04'  to extend until the specified string length.
 
