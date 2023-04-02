@@ -5,16 +5,16 @@
     <title>Probing Real-World Cryptosystems</title>
     <meta name="author" content="Kenneth Emeka Odoh"/>
     <meta name="description" content="
-                                      In Sun Tzu&#39;s book &#34;The Art of war&#34;, quoting &#34;Attack is the secret of defence; defence is the planning of an attack&#34;.  It is vital for a cryptography engineer to develop a strong understanding of cryptography and (break / mitigate) a few cryptosystems
+                                      In Sun Tzu&#39;s book &#34;The Art of War&#34;, he writes, &#34;Attack is the secret of defence; defence is the planning of an attack&#34;.  It is vital for a cryptography engineer to develop a strong understanding of cryptography and (break / mitigate) a few cryptosystems
                                       "/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
 
-    <meta name="keywords" content="shift, note, manner, time, question, multi, cipher,  cryptosystems,  cryptography, probing real-world cryptosystems"/>
+    <meta name="keywords" content="shift, note, manner, time, question, make, multi, cipher,  cryptosystems,  cryptography, probing real-world cryptosystems"/>
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Probing Real-World Cryptosystems" />
     <meta property="og:description" content="
-                                              In Sun Tzu&#39;s book &#34;The Art of war&#34;, quoting &#34;Attack is the secret of defence; defence is the planning of an attack&#34;.  It is vital for a cryptography engineer to develop a strong understanding of cryptography and (break / mitigate) a few cryptosystems
+                                              In Sun Tzu&#39;s book &#34;The Art of War&#34;, he writes, &#34;Attack is the secret of defence; defence is the planning of an attack&#34;.  It is vital for a cryptography engineer to develop a strong understanding of cryptography and (break / mitigate) a few cryptosystems
                                               " />
 
     <script defer src="/static/js/backup/all.js"></script>
@@ -83,11 +83,11 @@
                         <a id=cryptography href=/blogs/cryptography/1.html> cryptography</a> 
                     
                 </div>
-                <section id="text" class="Article-content"> In Sun Tzu's book "The Art of war", quoting "Attack is the secret of defence; defence is the planning of an attack". It is vital for a cryptography engineer to develop a strong understanding of cryptography and (break / mitigate) a few cryptosystems. This knowledge will enable an individual to build the skill set required to succeed in cybersecurity industry. Every dual-use technology (Cryptography, Nuclear energy, Artificial Intelligence) with potential military applications led to the rise of naysayers hyping up an imaginary doomsday event with an existential threat. Motives are difficult to decipher among actors, so we give a benefit of doubt. However, these outrageous claims are unfounded and self-serving, for these concerns are overstated and limit intellectual charity.
+                <section id="text" class="Article-content"> In Sun Tzu's book "The Art of War", he writes, "Attack is the secret of defence; defence is the planning of an attack". It is vital for a cryptography engineer to develop a strong understanding of cryptography and (break / mitigate) a few cryptosystems. This knowledge will enable an individual to build the skill set required to succeed in the cybersecurity industry. Every dual-use technology (Cryptography, Nuclear energy, Artificial Intelligence) with potential military applications has naysayers hyping up an imaginary doomsday event with an existential threat. Motives are difficult to decipher among actors, so we give the benefit of doubt. However, these outrageous claims are unfounded and self-serving, for these concerns are overstated and limit intellectual charity.
 
-Security may be considered an afterthought. Some managers may consider security investment a sunken cost for the organization. It is important to note, that a few cyber security incidents will outweigh the cost savings, as the proposed mitigation and reputation damage can be substantial.
+Security may be an afterthought for some firms. Some managers may consider security investment a sunk cost for the organization. It is imperative to note that a few cyber security incidents will outweigh the cost savings, as the proposed mitigation and reputation damage can be substantial.
 
-# **Table of Contents**
+# Table of Contents
 
 + [Introduction](#introduction)
 
@@ -99,59 +99,63 @@ Security may be considered an afterthought. Some managers may consider security 
 
 + [Acknowledgements](#acknowledgments)
 
-+ [Conclusion](#conclusion)
++ [Conclusions](#conclusion)
 
 + [References](#references)
 
-# Introduction
+# **Introduction**
 
 <a name="introduction"></a>
 
-Real-world cryptography protocols are broken in multiple ways. This precarious situation provides an opportunity for a determined ethical hacker to uncover for the betterment of the internet. It also provide an opportunity for black hat hackers to damage their prey. Developing cybersecurity skills can help build a safer internet. Most armies were not created to win wars, but to make attacks prohibitive for the enemy. This analogy fits the selling point for cryptographic schemes.
+Real-world cryptography protocols are broken in multiple ways. This precarious situation provides an opportunity for a determined ethical hacker to uncover for the betterment of the internet. On the other hand, it also provides an opportunity for black hat hackers to damage their prey. Developing cybersecurity skills can help build a safer internet. Most armies were not created to win wars, but to make attacks prohibitive for the enemy. This analogy fits the selling point for cryptographic schemes.
 
 ##### Notes:
 
 - Our work is neither affected by [Canadian Export Control](https://www.international.gc.ca/controls-controles/export-exportation/crypto/FAQ2011.aspx?lang=en) nor [US Arms Export Control Act](https://en.m.wikipedia.org/wiki/Arms_Export_Control_Act), as it is already in public domain and not subject to [arms trafficking export controls](https://en.m.wikipedia.org/wiki/Export_of_cryptography).
 
-- We strive to be beyond ethical (moral) and discourage bad actors from gaining insight from our work. Every black hat hacker deserves persecution to the fullest extent permitted by law.
+- We strive to be beyond ethical (moral) and discourage bad actors from gaining insight from our work. Every black hat hacker deserves punishment to the fullest extent permitted by law.
 
 - Every source code is the author's original work. The accompanying software is done in good faith and makes no claim about the correctness of the solution to the extent possible under the [MIT license](https://opensource.org/license/mit/).
 
 - This is intended to be a living document. See it as a research manifesto.
+
 - Repo: https://github.com/kenluck2001/cipherResearch
 
-A new attack surface keeps evolving and improves on previous exploits. Understanding the fundamentals can help discover out of the box vulnerabilities, before a well-funded bad actor beats us to it. Anecdotal evidence that exploiting a known attack vector may not be feasible due to limited technical mastery of the subject. The gulf of execution could impact the transferring a theoretical insight from theory to implementation. Practicality entails simplifying (abstracting) the real-world within reasonable constraints to achieve a proof-of-concept. For-profit certification has some utility, but security is a multi-headed hydra, so training individuals in a gamified system can be relevant for the basics, but will not help identify the rare vulnerabilities which would likely yield the highest utility for the bad actors. We recommend solving the [cryptography puzzles](https://cryptopals.com/).
+Understanding the fundamentals can help discover out of the box vulnerabilities, before a well-funded bad actor beats us to it. Anecdotal evidence that exploiting a known attack vector may not be feasible due to limited technical mastery of the subject. A gulf in execution could impact the transfer of theoretical insights from theory to practice. Practicality entails simplifying (abstracting) the real-world within reasonable constraints to achieve a proof-of-concept. For-profit certification has some utility, but security is a multi-headed hydra, so training individuals in a gamified system can be relevant for the basics, but will not help identify the rare vulnerabilities which would likely yield the highest utility for bad actors. We recommend solving the [cryptography puzzles](https://cryptopals.com/).
 
 # **Algorithm implementations**
 
 <a name="algorithm-implementations"></a>
 
-Here is a popular cliché, "Don't roll out your own cryptosystem". The original advice was to prevent security incidents due to poor cryptography implementation and understanding. Another school of thought view the advice as an attempt to entrench knowledge within a group of elites. An autodidact learns by building from scratch, as every expert was once a novice. Based on personal experience, I can say that Software Engineers at top-notch firms also experience doubts. For most real-world purposes, "Don't roll out your own cryptosystem, but build protocols using well-tested ciphers"
+Here is a popular cliché, "Don't roll out your own cryptosystem". The original advice was to prevent security incidents due to poor cryptography implementation and understanding. A second school of thought views the advice as an attempt to entrench elite knowledge. Autodidacts learn by building from scratch, as every expert was once a novice. Based on personal experience, I can say that Software Engineers at top-notch firms also experience doubts. In most cases in the real-world, "Don't roll out your own cryptosystem, but build protocols using well-tested ciphers."
 
-What happens if you help protect your national interests in the face of crippling sanctions? In such a hypothetical situation, cryptographic software may no longer be available. Here is one contrived use case for learning to roll  out your own crypto. For emphasis, this idea does not represent the intentions of author either in the future, present, or past.
+What happens if you protect your national interests in the face of crippling sanctions? In such a hypothetical situation, cryptographic software may no longer be available. Here is one contrived use case for learning to roll out your own crypto. As a matter of emphasis, this idea does not represent the author's intentions, either in the future, present, or past.
 
-The Cryptosystems algorithm created for experiments are as follows:
+The Cryptosystems algorithm created for experiments is as follows:
 
 | S/N | Algorithms | Source Codes |
+
 | :--- | :----: | ---: |
+
 | 1 | Data Encryption Standard |[des.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/des.py) |
+
 | 2 | Advanced Encryption Standard |[aes.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/aes.py) |
 
 # **Discussion**
 
 <a name="discussion"></a>
 
-Here are some of my observation during this investigation.
+During this investigation, I made the following observations.
 
 ##### Data Encryption Standard, DES [[1]]()
 
 - The block size is context-specific as we can use (4, 6, 8) bits per block as required.
 
-- DES reserves 1 byte for error recovery. The scheme for error recovery is not clear to me. However, based on my observation of the algorithm, it is likely in the method E(R) known as `E BIT-SELECTION TABLE` where we increase the 48 bits. The bit pattern arrangement provides a way to check for errors.
+- DES reserves 1 byte for error recovery. The scheme for error recovery is not clear to me. Observing the algorithm, it's probably in the method "E BIT-SELECTION TABLE" where we increase the 48 bits to provide bit pattern arrangement so that errors can be detected.
 
-- In my DES implementation, I settled for 4 bits to avoid fractional bytes in the key schedule scheme in the 'ObtainKeyListParameters' method. At this moment, it is unclear if I need a left-shift or a circular left shift. In my opinion, a pure left-shift may lead to entropy loss as we iterate for 16 rounds. Hence, I have used a circular left-shift, as it may be more secure and could enhance the [diffusion and confusion](https://en.wikipedia.org/wiki/Confusion_and_diffusion) properties of the cipher.
+- In my DES implementation, I settled for 4 bits to avoid fractional bytes in the key schedule scheme in the 'ObtainKeyListParameters' method. At this moment, it is unclear if I need a left-shift or a circular-left-shift. In my opinion, a pure left-shift may lead to entropy loss as we iterate for 16 rounds. Hence, I have used a circular left-shift, as it may be more secure and could enhance the [diffusion and confusion](https://en.wikipedia.org/wiki/Confusion_and_diffusion) properties of the cipher.
 
-- Moving beyond 16 rounds is a waste of compute, because if you are left-circular-shifting 4 bits at a time, after a multiple rounds, you are back to the original block representation and doing repeated futile work.
+- Moving beyond 16 rounds is a waste of compute, because if you left-circular-shift 4 bits at a time, after multiple rounds, you are back to the original block representation and doing repeated futile work.
 
 ##### Advanced Encryption Standard, AES [[2]]()
 
@@ -159,9 +163,9 @@ Here are some of my observation during this investigation.
 
 - Key expansion schemes allow users to utilize small-sized keys and get the security benefits of a large-sized key.
 
-- Large-sized key (256 bits and above) in AES is "[Military Grade Cryptography](https://www.howtogeek.com/445096/what-does-military-grade-encryption-mean/)". Hence, I have a question about the standard. Message blocks are 128 bits. Is the XORing expansion sequence still needed because the key size is larger than the message block size (128 bits)? Or will there be sub-sampling like DES? We can reduce 48 bits to 32 bits in the key schedule scheme. Hence, I have not implemented (258, 512, 1024) bits of AES.
+- Larger-sized key (256 bits and above) in AES is "[Military Grade Cryptography](https://www.howtogeek.com/445096/what-does-military-grade-encryption-mean/)". Hence, I have a question about the standard. Message blocks are 128 bits. Is the XOR expansion sequence still needed because the key size is larger than the message block size (128 bits)? Or will there be sub-sampling like DES? We can reduce 48 bits to 32 bits in the key schedule scheme. Hence, I have not implemented (258, 512, 1024) bits of AES.
 
-##### Minimizing Timing Attacks
+##### Mitigating Timing Attacks
 
 A principled way of performing constant-time operations could be the holy grail for implementing real-world ciphers.
 
@@ -169,9 +173,9 @@ A principled way of performing constant-time operations could be the holy grail 
 
 - All permutation functions in DES should have equal length, which may require some padding as we permutate 32, 48, 64 bits in varying contexts.
 
-- Is double $for-loop$ of length, $n$ equivalent to a single $for-loop$ of length, $2n$ in terms of timing?
+- Is a double $for-loop$ of length, $n$ equivalent to a single $for-loop$ of length, $2n$ in terms of timing?
 
-- The number of rounds is not considered a timing leak. Each round step may be unrolled in a single operation, if there is an impact on timing in $for-loop$  in each round.
+- The number of rounds is not considered a timing leak. Each round step may be unrolled in a single operation, if there is an impact on timing in $for-loop$ in each round.
 
 - Timing behaviours may vary across many processors. Cross-platform support would depend on building a small set of generalizable categorizations across processors.
 
@@ -179,17 +183,17 @@ A principled way of performing constant-time operations could be the holy grail 
 
 ##### Practical Considerations
 
-- The bits in the specification are about the length of the message and key. It should not be confused with storage space in actual memory.
+- The bits in the specification are about the message and key length. It should not be confused with storage space in actual memory.
 
 - Utilize precise padding between number representations to prevent fractional bytes at (word, byte) boundaries.
 
-- When implementing a cipher that will interact with the real world. Conforming to standard avoids deviation results in undecipherable messages. Understanding intricacies of the specifications is imperative, so the most effective approach is to validate your solution with the gold standard (cipher, plaintext, key).
+- When implementing a cipher that interacts with the real world. Conforming to the standard avoids deviations that result in undecipherable messages. Understanding the intricacies of the specifications is imperative, so the most effective approach is to validate your solution with the gold standard (cipher, plaintext, key).
 
 - We can detect ciphertexts in ECB mode more easily in transmission since we have every nonoverlapping 16-byte segment until the end of the message, and check for collisions.
 
-- [PKC#7](https://datatracker.ietf.org/doc/html/rfc2315) padding scheme is a common standard for addressing variable sized messages, by adding a number of characters to make every message block equal in length. It appends a character '\x04'  to extend until the specified string length.
+- [PKC#7](https://datatracker.ietf.org/doc/html/rfc2315) padding scheme is a common standard for addressing variable-sized messages, by adding a number of characters to make every message block equal in length. It appends '/x04' to extend the string length.
 
-- Combination of secure ciphers chained in [cipher block chaining](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) (CBC)-like manner where different ciphers utilized to encrypt alternating blocks, thereby improving the hybrid cipher's security.
+- Combination of secure ciphers chained in [cipher block chaining](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) (CBC)-like manner where different ciphers are utilized to encrypt alternating blocks, thereby improving the hybrid cipher's security.
 
 - No matter how effective the cryptographic scheme is in practice. There is always a chance of compulsion by authorities in the form of [rubber-hose cryptanalysis](https://en.wikipedia.org/wiki/Rubber-hose_cryptanalysis).
 
@@ -201,7 +205,7 @@ These are topics I intend to explore in the coming years. They include:
 
 - Constant-time cryptography
 
-- Light-weight cryptography
+- Lightweight cryptography
 
 - Post-quantum cryptography
 
@@ -223,15 +227,15 @@ These are topics I intend to explore in the coming years. They include:
 
 <a name="conclusion"></a>
 
-Finally, the information shared in this blog post is strictly educational. Due to the vast nature of cybersecurity, one would require more supplementary material and significant domain knowledge to succeed in [Bug Bounty Programs](https://en.wikipedia.org/wiki/Bug_bounty_program) or to win [CTF Competitions](https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)).
+Finally, this blog post is educational. Due to the vast nature of cybersecurity, one would require more supplementary material and significant domain knowledge to succeed in [Bug Bounty Programs](https://en.wikipedia.org/wiki/Bug_bounty_program) or to win [CTF Competitions](https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)).
 
 # **References**
 
 <a name="references"></a>
 
 - [[1]]() [Data Encryption Standard](https://github.com/kenluck2001/cipherResearch/blob/main/references/FIPS%2046-2%20-%20(DES)%2C%20Data%20Encryption%20Standard.pdf).
-- [[2]]() [Advanced Encryption Standard](https://github.com/kenluck2001/cipherResearch/blob/main/references/NIST.FIPS.197.pdf).
- </section>
+
+- [[2]]() [Advanced Encryption Standard](https://github.com/kenluck2001/cipherResearch/blob/main/references/NIST.FIPS.197.pdf). </section>
 
                 <hr class="line"/>
                 <div style="display: flex; justify-content: center;">
