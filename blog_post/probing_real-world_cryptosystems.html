@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
 
-    <meta name="keywords" content="shift, note, maughan, manner, time, increase, question, cipher,  cryptosystems,  cryptography, probing real-world cryptosystems"/>
+    <meta name="keywords" content="shift, maughan, manner, time, increase, cipher,  cryptosystems,  cryptography, probing real-world cryptosystems"/>
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Probing Real-World Cryptosystems" />
     <meta property="og:description" content="
@@ -90,17 +90,11 @@ Security may be an afterthought for a few firms. Some managers may consider secu
 # Table of Contents
 
 + [Introduction](#introduction)
-
 + [Algorithm implementations](#algorithm-implementations)
-
 + [Discussion](#discussion)
-
-+ [Future Work](#future-work)
-
++ [Future Work](#futurework)
 + [Acknowledgements](#acknowledgments)
-
 + [Conclusions](#conclusion)
-
 + [References](#references)
 
 # **Introduction**
@@ -135,8 +129,8 @@ The Cryptosystems algorithm created for experiments is as follows:
 
 | S/N | Algorithms | Source Codes |
 | :--- | :----: | ---: |
-| 1 | Data Encryption Standard |[des.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/des.py) |
-| 2 | Advanced Encryption Standard |[aes.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/aes.py) |
+| 1 | Data Encryption Standard [[1]]()|[des.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/des.py) |
+| 2 | Advanced Encryption Standard [[2]]()|[aes.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/aes.py) |
 
 # **Discussion**
 
@@ -162,7 +156,7 @@ During this investigation, I made the following observations.
 
 - Key expansion schemes allow users to utilize small-sized keys and get the security benefits of a large-sized key.
 
-- Larger-sized key (256 bits and above) in AES is "[Military Grade Cryptography](https://www.howtogeek.com/445096/what-does-military-grade-encryption-mean/)". Hence, I have a question about the standard. Message blocks are 128 bits. Is the XOR expansion sequence still needed because the key size is larger than the message block size (128 bits)? Or will there be sub-sampling like DES? We can reduce 48 bits to 32 bits in the key schedule scheme. Hence, I have not implemented (258, 512, 1024) bits of AES.
+- Larger-sized key (256 bits and above) in AES is "[Military Grade Cryptography](https://www.howtogeek.com/445096/what-does-military-grade-encryption-mean/)", even though the orginal message blocks are 128 bits.
 
 ##### Mitigating Timing Attacks
 
@@ -198,9 +192,9 @@ A principled way of performing constant-time operations could be the holy grail 
 
 # **Future Work**
 
-<a name="future-work"></a>
-
+<a name="futurework"></a>
 These are topics I intend to explore in the coming years. They include:
+
 
 - Constant-time cryptography
 
