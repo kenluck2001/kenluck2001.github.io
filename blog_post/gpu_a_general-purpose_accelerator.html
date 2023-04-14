@@ -106,7 +106,7 @@ In a typical programming paradigm (fork-join) on the CPU, we have an optimal num
 
 GPU provides higher throughput than CPU by allowing more threads to run in parallel. Interleaving threads on a CPU are much smaller than the $\le 1024$ threads that can run at a time on GPU without performance degradation. Hence, in summary:
 
-- CPUs excel at sequential operations. Here is a basic CPU layout in Figure 1. It consists of instruction memory, input/output, control unit, arithmetric logic unit and data memory.
+- CPUs excel at sequential operations. Here is a basic CPU layout in Figure 1. It consists of instruction memory, input/output, control unit, arithmetic logic unit and data memory.
 
 | ![CPU Architecture](/static/images/gpu/CPU-architecture.PNG) |
 |:--:|
@@ -154,7 +154,7 @@ Here is a basic layout of the GPU core in `Figure 3` which consists of grids, bl
 
 | ![grid, block, and thread hierarchy](/static/images/gpu/thread-hierarchy.webp) |
 |:--:|
-| Figure 3: [CUDA Hierarchy](https://towardsdatascience.com/cuda-by-numba-examples-1-4-e0d06651612f) |
+| Figure 3: [CUDA Hierarchy](https://towardsdatascience.com/cuda-by-numba-examples-1-4-e0d06651612f)                  Credit: Carlos Costa, Ph.D.|
 
 - Do not allocate unnecessary memory copies from the device to the host and vice-versa. There is a concept of unified memory that supports zero-copy. This uses a mapped drive for the host and devices' memory.
 
