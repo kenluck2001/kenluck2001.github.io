@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>GPU: A General-Purpose Accelerator</title>
+    <meta name="author" content="Kenneth Emeka Odoh"/>
+    <meta name="description" content="
+                                      Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and some mobile phones and tablets have GPUs.  What is all the ruse about GPU? Even [Elon Musk bought thousands of A100 GPU cards](https://www
+                                      "/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
+
+    <meta name="keywords" content="choice, reference, post, parallel programming,  distributed computing distributed systems, gpu, general-purpose accelerator"/>
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="GPU: A General-Purpose Accelerator" />
+    <meta property="og:description" content="
+                                              Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and some mobile phones and tablets have GPUs.  What is all the ruse about GPU? Even [Elon Musk bought thousands of A100 GPU cards](https://www
+                                              " />
+
+    <script defer src="/static/js/backup/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="/static/js/backup/jquery-3.3.1.min.js" ></script>
+    <script src="/static/js/backup/marked.min.js"></script>
+    <script type="text/javascript" src="/static/js/backup/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: {
+             equationNumbers: {  autoNumber: "AMS"  },
+          },
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}},
+          linebreaks: { automatic: true, width: "container" }
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+    </script> 
+
+    <style>
+      mjx-container[display="block"] {
+        display: block;
+        margin: 1em 0;
+      }
+    </style>
+
+  </head>
+  <body class="Site">
+    <header class="Site-header">
+      <nav class="Nav">
+        <div class="Nav-home">
+          <a href=/index.html>Kenneth Emeka Odoh</a>
+        </div>
+        <div class="Nav-sections">
+          <a class="Nav-section " href=/index.html >About</a>
+          <a class="Nav-section " href=/projects.html>Projects</a>
+          <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a class="Nav-section" href=/publications.html>Publications</a>
+          <a class="Nav-section" href=/news.html>News</a>
+        </div>
+      </nav>
+      <div class="u-separator"></div>
+    </header>
+    <div class="Site-content">
+      <div class="u-container">
+
+        <div class="Page">
+            <article role="main" class="Article">
+                <h1 class="Article-title"> GPU: A General-Purpose Accelerator </h1>
+                <div class="Article-meta">
+                  <time datetime=2023-04-14 14:33:35.895215 class="Article-date">14 Apr, 2023</time>
+                </div>
+
+                <!--<div class="Article-meta">Tag: None</div> -->
+                <div id="tag" class="Article-meta">Tags:
+                    
+                    <!--<a id=data-tag-ParallelProgramming href=/blogs/ParallelProgramming/1.html>Parallel Programming</a> -->
+                        <a id=ParallelProgramming href=/blogs/ParallelProgramming/1.html>Parallel Programming</a> 
+                    <!--<a id=data-tag-DistributedComputingDistributedSystems href=/blogs/DistributedComputingDistributedSystems/1.html> Distributed Computing Distributed Systems</a> -->
+                        <a id=DistributedComputingDistributedSystems href=/blogs/DistributedComputingDistributedSystems/1.html> Distributed Computing Distributed Systems</a> 
+                    
+                </div>
+                <section id="text" class="Article-content"> Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and some mobile phones and tablets have GPUs. What is all the ruse about GPU? Even [Elon Musk bought thousands of A100 GPU cards](https://www.tomshardware.com/news/elon-musk-buys-tens-of-thousands-of-gpus-for-twitter-ai-project) to build an AI lab. In the early days of video processing, GPUs were used only for display. Recently, other use cases have emerged that include scientific computation, deep learning, and computational fluid mechanics.
+
+There are computing architectures where specialized processors relieve computational-heavy tasks. Custom accelerators offload computationally-expensive tasks optimally to dedicated hardware. Accelerators are popular. For example, the GPU is optimized for fast matrix-based operation and can serve as a coprocessor for the main processor on the system. There are a few cryptographic accelerators such as (https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-encryption-standard-instructions-aes-ni.html)[Intel Advanced Encryption Standard Instructions (AES-NI)] for (https://www.openssl.org/)[OpenSSL](https://www.libressl.org/)[LibreSSL]). Heavy tasks get moved to these accelerators as a distributed system between the main processor and these specialized hardware devices.
+
+Parallel programming was a luxury in the early days of computing. Due to the increasing capabilities of low-end computers, this skill set is essential for increasing computational performance. Overclocking was the mainstay of performance gains for a while. Moore's law shows that most platforms have almost maximum clock speeds. GPUs can improve performance gains. Why do things the difficult way if you can take a shortcut and get performance gains? Software optimization is about doing less and achieving similar performance. We suggest completing GPU puzzles to understand how to use GPU for problem-solving (https://github.com/srush/GPU-Puzzles)[GPU Puzzles] and (https://github.com/srush/Tensor-Puzzles)[Tensor Puzzles].
+
+My motivation for learning GPU programming is scientific computation and optimizing post-quantum encryption routines. As part of my [Research Manifesto](https://kenluck2001.github.io/blog_post/probing_real-world_cryptosystems.html), I came across lattice methods and `"Learning with Errors"` schemes which, on superficial examination, I think may benefit from GPU, rather than having a custom accelerator. Re-structure a problem for GPU computation by organizing it into matrix computations. Parallel programming involves breaking a large-sized problem into smaller ones and recursively solving them. This thinking contrasts with single-core architecture expectations.
+
+
+#### Glossary
+- CPU: Central Processing Unit
+- GPU: Graphical Processing Unit
+- host: CPU
+- device: GPU
+- kernel: GPU function triggered by the host and runs on the GPU.
+- A host and a device both have different memories.
+# Introduction
+In a typical programming paradigm (fork-join) on the CPU, we have an optimal number of threads to execute at a time. When this threshold is exceeded, we incur a performance hit as computing is wasted on needless process communication (coordination).
+GPU provides higher throughput than CPU by allowing more threads to run in parallel. Interleaving threads on a CPU are much smaller than the $\le 1024$ threads that can run at a time on GPU without performance degradation. Hence, in summary:
+- CPUs excel at sequential operations.
+| ![CPU Architecture](/static/images/gpu/CPU-architecture.PNG) |
+|:--:|
+| CPU Architecture [[1]]() |
+- GPUs excel at parallel operations.
+| ![GPU-CPU Co-Processor Architectures](/static/images/gpu/GPU-to-CPU-architecture.PNG) |
+|:--:|
+| GPU-CPU Co-Processor Architectures [[1]]() |
+CUDA serves as a computing engine for managing GPU access. It provides a categorization of thread groups, grids, blocks, shared memory, atomic, and barrier synchronization among others. This provides an API for structured parallelism. There are competing computing engines, including [DirectCompute](https://developer.nvidia.com/directcompute), and [OpenAcc](https://www.openacc.org/).
+
+On the browser, GPU computing can be accessed using [WebGPU](https://www.w3.org/TR/webgpu/) with (tutorial examples)[https://github.com/jack1232/webgpu01].
+Blocks may be 1D, 2D, or 3D vectors of thread blocks.
+Barriers are used internally to synchronize threads, grids, and blocks. However, it is used if you are trying to optimize how you parallelize your data.
+This blog will focus on [CUDA](https://en.wikipedia.org/wiki/CUDA), which supports a variety of programming languages. For example, in Python programming we have the following: [CuPy](https://docs.cupy.dev/en/stable/), [PyCuDA](https://pypi.org/project/pycuda/), and [CUDA Python](https://nvidia.github.io/cuda-python/overview.html). CUDA provides an accessible means to access the GPU, unlike building a custom accelerator. CUDA has two APIs: the Driver API and the Runtime API. It should be noted that both APIs cannot be combined at once in the same program.
+
+#### Structure of the CUDA program [[2]]()
+- Copy data from host to device
+- Run kernel in GPU
+- Copy the results back from the device to the host.
+# Practical Considerations
+- Ensure that the threads per block are multiples of 32. This is because we strive to minimize warp divergence, as a warp has 32 threads. The total number of threads in use, $n$, and the warp size, $W_{s}$ is
+\begin{equation}
+W_{s} = \lceil \frac{n}{32} \rceil
+\end{equation}
+- Avoid using smaller thread blocks. The choice of the block size (>= 128 or 256 threads per block)
+- It does not matter if it is a row/column major, you just need to structure your CUDA program using the hierarchy of grids, blocks, and threads. You have to index your structure. CUDA programming challenges are indexing and synchronization.
+Initialization of a kernel IN CUDA requires two arguments, $blocksPerGrid$, and $threadsPerBlock$. The total number of active thread is the product of both quantities, as shown
+
+$totalNumberOfLaunchedThreads = blocksPerGrid * threadsPerBlock$
+
+| ![grid, block, and thread hierarchy](/static/images/gpu/thread-hierarchy.webp) |
+|:--:|
+| [CUDA Hierarchy](https://towardsdatascience.com/cuda-by-numba-examples-1-4-e0d06651612f) |
+
+
+
+- Do not allocate unnecessary memory copies from the device to the host and vice-versa. There is a concept of unified memory that supports zero-copy. This uses a mapped drive for the host and devices' memory.
+- CUDA Kernel functions cannot return a value, but instead, return a reference via arguments.
+- It is possible to use atomic operations with non-blocking, such as compare-and-swap when contention is low.
+# Performance Evaluation
+GPU performance is influenced by the number of cores and (device, host) memory sizes. NVIDIA GPU architecture is based on a [Streaming Multiprocessor](https://stackoverflow.com/questions/3519598/streaming-multiprocessors-blocks-and-threads-cuda) (SM). There are 32 threads in a warp, which is the smallest grouping of threads that can be run on an SM.
+| ![structure of warp](/static/images/gpu/structure-of-warp.PNG) |
+|:--:|
+| Structure of the Warp [[1]]() |
+Here are some performance evaluation metrics:
+- Warp Divergence
+- Occupancy Rate
+
+#### Warp Divergence
+GPU lacks a complex branching mechanism. In contrast, the CPU has branching as a core feature. Branch prediction is the core of CPU branching, and branch misses are tolerated. Threads in a warp must execute identical operations during each instruction cycle. When there is a conditional within a warp, different threads can run different operations at the same time.
+SM favors identical operations within a warp as other unused threads are disabled, reducing performance. Here is a case where wrap divergence can be high. We split data into even or odd threads within a kernel. This can lead to divergence as some threads are inactive within a warp. On the contrary, we could use 'warp size` to offset the indexing and run even threads in one warp and odd threads in another warp. This metric is typically captured using the 'branch efficiency' metric.
+
+#### Occupancy Rate
+This metric measures how many GPU cores are used for computation. It evaluates GPU computation efficiency. It is desirable to use as many cores as possible. The ideal configuration is to fully utilize the GPU's warp capability, rather than underutilizing it. The occupancy rate, $O_{r}$, number of active warps, $n_{a}$, and total number of warps on the GPU, $n$.
+\begin{equation}
+O_{r} = \lceil \frac{n_{a}}{n} \rceil
+\end{equation}
+
+
+# Conclusions
+Underutilizing hardware potential for increased computational performance is a missed opportunity. Most user-end computers support graphic cards, which boost computationally-heavy tasks. Hence, it is imperative to use these GPUs to speed up computational processing speeds in these consumer devices.
+
+
+# References
+- [[1]]() Professional CUDA C Programming by John Cheng, Max Grossman, and Ty McKercher, John Wiley & Sons, Inc. 2014.
+- [[2]]() CUDA by Example: An introduction to general-purpose GPU programming by Jason Sanders, Edward Kandrot, Addison-Wesley, 2011. </section>
+
+                <hr class="line"/>
+                <div style="display: flex; justify-content: center;">
+                    <table>
+                      <tr>
+                        <td> <a class="left" id="left-15" data-min-index="0" data-max-index="14" href=/blog_post/gpu_a_general-purpose_accelerator.html><img id="left-0" data-toggle="tooltip" title="Click to previous page." src=/static/images/left.png style="width: 48px; height: 50px;" alt="previous here"/></a> </td>
+
+                        <td> <div class="squares">
+                              <div class="icon1">
+                                 <!--<p class="text-muted">14/14</p>-->
+                                 <p class="text-muted">1/14</p>
+                              </div>
+                            </div> 
+                        </td>
+                        
+                        <td> <a class="right" id="right-13" data-min-index="0" data-max-index="14" href=/blog_post/probing_real-world_cryptosystems.html><img id="right-1" data-toggle="tooltip" title="Click to next page." src=/static/images/right.png style="width: 48px; height: 50px;" alt="next here"/></a> </td>
+                      </tr>
+                    </table>
+                </div>
+                <hr class="line"/>
+
+                <div style="display: flex; justify-content: center;">
+                    <div class="Article-meta">
+Read more of our <a href=/blogs/1.html><b>blog posts</b></a>, technical <a target="_blank" href=/publications.html#talks><b>talks</b></a>, and <a target="_blank" href=/publications.html#publications><b>publications</b></a>.
+                    </div>
+
+                </div>   
+
+
+                <!--<div class="Footer">
+                <p> Please feel free to <b>donate</b> by clicking <a target="_blank" data-toggle="tooltip" title="Click to make a donation here" href="https://checkout.square.site/pay/a5a1bb5a14e941baae84556f133744cd"><img src=/static/images/donate.png style="width: 40px; height: 40px;" alt="donate here"/></a>using Square Checkout.</p>
+                </div>
+
+                <a target="_blank" data-size="large" class="twitter-share-button"
+                  href="https://twitter.com/intent/tweet?url=https://kenluck2001.github.io/blog_post/gpu_a_general-purpose_accelerator.html&text= Share the blog here">
+                 <img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" alt="Smiley face" height="42" width="42">  </a> -->
+
+
+            </article>
+        </div>
+
+      </div>
+    </div>
+
+        <footer class="footer">
+            <div class="Footer">
+                <p class="text-muted">Icon made by Freepik from www.flaticon.com</p>
+                <p class="text-muted">&copy; 2019 Copyright: Kenneth Odoh</p>
+            </div>
+        </footer>
+
+    <script  type="text/javascript" >
+
+        function animatePaginator(selector) {
+            var i = 0;
+            $(selector).css('opacity', '1.0');
+            setInterval(function () {
+                i++;
+                if ((i%2)==1)
+                {
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '0.5');
+                        $(this).fadeIn("slow");
+                    });
+                }else{
+                    //$(selector).css('opacity', '1.0');
+
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '1.0');
+                        $(this).fadeIn("slow");
+                    });
+                }
+                i = i % 2
+            }, 5000);
+        }
+
+        function disablePaginator(selector) {
+            $(selector).css('visibility','hidden')
+            $(selector).parent().removeAttr("href");
+        }
+
+
+        Array.range = function(a, b, step){
+            var A = [];
+            if(typeof a == 'number'){
+                A[0] = a;
+                step = step || 1;
+                while(a+step <= b){
+                    A[A.length]= a+= step;
+                }
+            }
+            else {
+                var s = 'abcdefghijklmnopqrstuvwxyz';
+                if(a === a.toUpperCase()){
+                    b = b.toUpperCase();
+                    s = s.toUpperCase();
+                }
+                s = s.substring(s.indexOf(a), s.indexOf(b)+ 1);
+                A = s.split('');        
+            }
+            return A;
+        }
+
+        var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
+
+
+        var ua = window.navigator.userAgent;
+        var isIE = /MSIE|Trident/.test(ua);
+
+        if ( isIE ) {
+            //IE specific code goes here
+            $(".left").hide()
+            $(".right").hide()
+        }
+
+        var min_index = $(".left").attr('data-min-index')
+        var max_index = $(".left").attr('data-max-index')
+
+
+        var selectorlist = ['#left', '#right'];
+        var indexlist = [min_index, max_index]
+
+        var div;
+        var ind;
+
+        // disable pagination
+        selector = "#left-" + (parseInt(max_index)+1).toString()
+        disablePaginator(selector) 
+
+        selector = "#right-" + min_index  
+        disablePaginator(selector) 
+
+
+        // animate pagination
+        for (div of selectorlist) {
+                for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                    var selector = div+"-"+ind
+                    animatePaginator(selector) 
+                } 
+
+        } 
+
+        // set the search token
+        $('#tag').find('a').each(function() {
+            var cID = $(this).attr("id"); // Get current url
+            $("#"+cID).click(function() {
+                localStorage.setItem("tag", cID);
+                //alert(cID)
+            }); 
+        });
+
+        if( isMobile.any() )
+        {
+            $('#tag').find('a').each(function() {
+                var oldUrl = $(this).attr("href"); // Get current url
+                var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
+                $(this).attr("href", newUrl); // Set herf value
+            });
+
+        }
+
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
+
+        txt = $('.Article-content').text( );     
+        $('.Article-content').html( marked.parse(txt) );
+
+    </script >
+
+
+  </body>
+</html>
