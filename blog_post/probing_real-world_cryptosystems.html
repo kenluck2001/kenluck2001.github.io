@@ -142,9 +142,9 @@ During this investigation, I made the following observations.
 
 - The block size is context-specific as we can use (4, 6, 8) bits per block as required.
 
-- DES reserves 1 byte for error recovery. The scheme for error recovery is not clear to me. Observing the algorithm, it's probably in the method "E BIT-SELECTION TABLE" where we increase the 48 bits to provide bit pattern arrangement so that errors can be detected.
+- DES reserves 1 byte for error recovery. The scheme for error recovery is not clear to me. Observing the algorithm, it's probably in the method `'E BIT-SELECTION TABLE'` where we increase the 48 bits to provide bit pattern arrangement so that errors can be detected.
 
-- In my DES implementation, I settled for 4 bits to avoid fractional bytes in the key schedule scheme in the 'ObtainKeyListParameters' method. At this moment, it is unclear if I need a left-shift or a circular-left-shift. In my opinion, a pure left-shift may lead to entropy loss as we iterate for 16 rounds. Hence, I have used a circular left-shift, as it may be more secure and could enhance the [diffusion and confusion](https://en.wikipedia.org/wiki/Confusion_and_diffusion) properties of the cipher.
+- In my DES implementation, I settled for 4 bits to avoid fractional bytes in the key schedule scheme in the `'ObtainKeyListParameters'` method. At this moment, it is unclear if I need a left-shift or a circular-left-shift. In my opinion, a pure left-shift may lead to entropy loss as we iterate for 16 rounds. Hence, I have used a circular left-shift, as it may be more secure and could enhance the [diffusion and confusion](https://en.wikipedia.org/wiki/Confusion_and_diffusion) properties of the cipher.
 
 - Moving beyond 16 rounds is a waste of compute, because if you left-circular-shift 4 bits at a time, after multiple rounds, you are back to the original block representation and doing repeated futile work.
 
@@ -184,11 +184,11 @@ A principled way of performing constant-time operations could be the holy grail 
 
 - We can detect ciphertexts in ECB mode more easily in transmission since we have every nonoverlapping 16-byte segment until the end of the message, and check for collisions.
 
-- [PKC#7](https://datatracker.ietf.org/doc/html/rfc2315) padding scheme is a common standard for addressing variable-sized messages, by adding a number of characters to make every message block equal in length. It appends '/x04' to extend the string length.
+- [PKC#7](https://datatracker.ietf.org/doc/html/rfc2315) padding scheme is a common standard for addressing variable-sized messages, by adding a number of characters to make every message block equal in length. It appends `/x04` to extend the string length.
 
 - Combination of secure ciphers chained in [cipher block chaining](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) (CBC)-like manner where different ciphers are utilized to encrypt alternating blocks, thereby improving the hybrid cipher's security.
 
-- Use a combination of different keys in a structure similar to [Triple DES](https://en.wikipedia.org/wiki/Triple_DES), but using a more secure cipher.
+- Use a combination of different keys in a structure similar to [Triple DES](https://en.wikipedia.org/wiki/Triple_DES), but using a more secure cipher. This configuration can create a more secure hybrid cipher.
 
 - No matter how effective the cryptographic scheme is in practice. There is always a chance of compulsion by authorities in the form of [rubber-hose cryptanalysis](https://en.wikipedia.org/wiki/Rubber-hose_cryptanalysis).
 
@@ -197,17 +197,11 @@ A principled way of performing constant-time operations could be the holy grail 
 <a name="futurework"></a>
 These are topics I intend to explore in the coming years. They include:
 
-
 - Constant-time cryptography
-
 - Lightweight cryptography
-
 - Post-quantum cryptography
-
 - [Zero-Knowledge Proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof)
-
 - [Homomorphic Encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption),
-
 - [Secure Multi-Party Computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation)
 
 # **Acknowledgements**
