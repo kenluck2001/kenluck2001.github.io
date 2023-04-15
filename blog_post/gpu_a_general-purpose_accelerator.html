@@ -85,7 +85,7 @@
                 </div>
                 <section id="text" class="Article-content"> Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and some mobile phones and tablets have GPUs. What is all the ruse about GPU? Even [Elon Musk bought thousands of A100 GPU cards](https://www.tomshardware.com/news/elon-musk-buys-tens-of-thousands-of-gpus-for-twitter-ai-project) to build an AI lab. In the early days of video processing, GPUs were used only for display. Recently, other use cases have emerged including scientific computation, deep learning, and computational fluid mechanics.
 
-There are computing architectures where specialized processors relieve computational-heavy tasks. Custom accelerators offload computationally-expensive tasks optimally to dedicated hardware. Accelerators are popular. For example, the GPU is optimized for fast matrix-based operation and can serve as a coprocessor for the main processor on the system. There are a few cryptographic accelerators such as [Intel Advanced Encryption Standard Instructions (AES-NI)](https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-encryption-standard-instructions-aes-ni.html) for [OpenSSL](https://www.openssl.org/) and [LibreSSL](https://www.libressl.org/). Heavy tasks get moved to these accelerators as a distributed system between the main processor and these specialized hardware devices.
+Typically, an accelerator is connected by a message bus to the main memory as a distributed system between the main processor and these specialized hardware devices. For example, the GPU is optimized for fast matrix-based operation and can serve as a coprocessor for the main processor in the system. There are computing architectures where specialized processors relieve the burden on the main processor by optimally offloading computational-heavy tasks. Accelerators optimize performance. There are a few cryptographic accelerators such as [Intel Advanced Encryption Standard Instructions (AES-NI)](https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-encryption-standard-instructions-aes-ni.html) for [OpenSSL](https://www.openssl.org/) and [LibreSSL](https://www.libressl.org/). 
 
 Parallel programming was a luxury in the early days of computing. Due to the increasing capabilities of low-end computers, this skill set is essential for increasing computational performance. Overclocking was the mainstay of performance gains for a while. Most platforms have almost maximum clock speeds based on Moore's law. GPUs can improve performance gains. Why do things the difficult way if you can take a shortcut and get performance gains? Software optimization is about doing less and achieving similar performance. We suggest completing GPU puzzles to understand how to use GPU for problem-solving: [GPU Puzzles](https://github.com/srush/GPU-Puzzles) and [Tensor Puzzles](https://github.com/srush/Tensor-Puzzles).
 
@@ -106,7 +106,7 @@ In a typical programming paradigm (fork-join) on the CPU, we have an optimal num
 
 GPU provides higher throughput than CPU by allowing more threads to run in parallel. Interleaving threads on a CPU are much smaller than the $\le 1024$ threads that can run at a time on GPU without performance degradation. Hence, in summary:
 
-- CPUs excel at sequential operations. Here is a basic CPU layout in Figure 1. It consists of instruction memory, input/output, control unit, arithmetic logic unit and data memory.
+- CPUs excel at sequential operations. Here is a basic CPU layout in Figure 1. It consists of instruction memory, input/output, control unit, arithmetric logic unit and data memory.
 
 | ![CPU Architecture](/static/images/gpu/CPU-architecture.PNG) |
 |:--:|
@@ -154,7 +154,7 @@ Here is a basic layout of the GPU core in `Figure 3` which consists of grids, bl
 
 | ![grid, block, and thread hierarchy](/static/images/gpu/thread-hierarchy.webp) |
 |:--:|
-| Figure 3: [CUDA Hierarchy](https://towardsdatascience.com/cuda-by-numba-examples-1-4-e0d06651612f)                  Credit: Carlos Costa, Ph.D.|
+| Figure 3: [CUDA Hierarchy](https://towardsdatascience.com/cuda-by-numba-examples-1-4-e0d06651612f) |
 
 - Do not allocate unnecessary memory copies from the device to the host and vice-versa. There is a concept of unified memory that supports zero-copy. This uses a mapped drive for the host and devices' memory.
 
