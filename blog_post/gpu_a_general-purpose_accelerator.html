@@ -5,7 +5,7 @@
     <title>GPU: A General-Purpose Accelerator</title>
     <meta name="author" content="Kenneth Emeka Odoh"/>
     <meta name="description" content="
-                                      Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and some mobile phones and tablets have GPUs.  What is all the ruse about GPU? Even [Elon Musk bought thousands of A100 GPU cards](https://www
+                                      Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and even some mobile phones and tablets have GPUs.  Why is the GPU so popular? Even [Elon Musk bought thousands of A100 GPU cards](https://www
                                       "/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="GPU: A General-Purpose Accelerator" />
     <meta property="og:description" content="
-                                              Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and some mobile phones and tablets have GPUs.  What is all the ruse about GPU? Even [Elon Musk bought thousands of A100 GPU cards](https://www
+                                              Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and even some mobile phones and tablets have GPUs.  Why is the GPU so popular? Even [Elon Musk bought thousands of A100 GPU cards](https://www
                                               " />
 
     <script defer src="/static/js/backup/all.js"></script>
@@ -83,13 +83,13 @@
                         <a id=Distributed-Systems href=/blogs/Distributed-Systems/1.html> Distributed-Systems</a> 
                     
                 </div>
-                <section id="text" class="Article-content"> Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and some mobile phones and tablets have GPUs. What is all the ruse about GPU? Even [Elon Musk bought thousands of A100 GPU cards](https://www.tomshardware.com/news/elon-musk-buys-tens-of-thousands-of-gpus-for-twitter-ai-project) to build an AI lab. In the early days of video processing, GPUs were used only for display. Recently, other use cases have emerged including scientific computation, deep learning, and computational fluid mechanics.
+                <section id="text" class="Article-content"> Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and even some mobile phones and tablets have GPUs. Why is the GPU so popular? Even [Elon Musk bought thousands of A100 GPU cards](https://www.tomshardware.com/news/elon-musk-buys-tens-of-thousands-of-gpus-for-twitter-ai-project) to build an AI lab. In the early days of video processing, GPUs were used only for display. Recently, other use cases have emerged including scientific computation, deep learning, and computational fluid mechanics. Parallel programming involves breaking a large-sized problem into smaller ones and recursively solving them. It contrasts with single-core problem-solving approaches.
 
-Typically, an accelerator is connected by a message bus to the main memory as a distributed system between the main processor and these specialized hardware devices. For example, the GPU is optimized for fast matrix-based operation and can serve as a coprocessor for the main processor in the system. There are computing architectures where specialized processors relieve the burden on the main processor by optimally offloading computational-heavy tasks. Accelerators optimize performance. There are a few cryptographic accelerators such as [Intel Advanced Encryption Standard Instructions (AES-NI)](https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-encryption-standard-instructions-aes-ni.html) for [OpenSSL](https://www.openssl.org/) and [LibreSSL](https://www.libressl.org/). 
+Typically, an accelerator is connected by a message bus to the CPU. It serves as a distributed system between the main processor and these specialized hardware devices. For example, the GPU is optimized for fast matrix-based operation and can serve as a coprocessor with the main processor in the system. Accelerators optimize performance by doing heavy computation, relieving the load on the main processor by offloading specific tasks to specialized hardware. There are a few cryptographic accelerators such as [Intel Advanced Encryption Standard Instructions (AES-NI)](https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-encryption-standard-instructions-aes-ni.html) for [OpenSSL](https://www.openssl.org/) and [LibreSSL](https://www.libressl.org/). 
 
-Parallel programming was a luxury in the early days of computing. Due to the increasing capabilities of low-end computers, this skill set is essential for increasing computational performance. Overclocking was the mainstay of performance gains for a while. Most platforms have almost maximum clock speeds based on Moore's law. GPUs can improve performance gains. Why do things the difficult way if you can take a shortcut and get performance gains? Software optimization is about doing less and achieving similar performance. We suggest completing GPU puzzles to understand how to use GPU for problem-solving: [GPU Puzzles](https://github.com/srush/GPU-Puzzles) and [Tensor Puzzles](https://github.com/srush/Tensor-Puzzles).
+Parallel programming was a luxury in the early days of computing. However, due to the increasing capabilities of low-end computers, this skill set is essential for increasing computational performance. Overclocking was the mainstay of performance gains in the past. This has created a situation where most platforms have almost reached maximum clock speeds. GPUs on the other hand can improve performance gains by doing computation and freeing up the CPU for other tasks. A school of thought asks why do things the difficult way if you can take a shortcut and still get performance gains? Software optimization is about doing less and achieving similar performance. We suggest completing GPU puzzles to understand how to use GPU for problem-solving: [GPU Puzzles](https://github.com/srush/GPU-Puzzles) and [Tensor Puzzles](https://github.com/srush/Tensor-Puzzles).
 
-My motivation for learning GPU programming is scientific computation and optimizing post-quantum encryption routines. As part of my [Research Manifesto](https://kenluck2001.github.io/blog_post/probing_real-world_cryptosystems.html), I came across lattice methods and `"Learning with Errors"` schemes which, on superficial examination, I think may benefit from GPU, rather than having a custom accelerator. Re-structure a problem for GPU computation by organizing it into matrix computations. Parallel programming involves breaking a large-sized problem into smaller ones and recursively solving them. This thinking contrasts with single-core architecture expectations.
+My aim for learning GPU programming is to perform scientific computations and optimize post-quantum encryption routines. As part of my [Research Manifesto](https://kenluck2001.github.io/blog_post/probing_real-world_cryptosystems.html), I came across lattice methods and `"Learning with Errors"` schemes which, on superficial examination, I think may benefit from using GPU, rather than having a custom accelerator. The ideal flow is to re-structure a problem into a suitable form for GPU computation. 
 
 #### Glossary
 
@@ -102,11 +102,11 @@ My motivation for learning GPU programming is scientific computation and optimiz
 
 # Introduction
 
-In a typical programming paradigm (fork-join) on the CPU, we have an optimal number of threads to execute at a time. When this threshold is exceeded, we incur a performance hit as computing is wasted on needless process communication (coordination).
+In a typical programming paradigm (fork-join) on the CPU, we have an optimal number of threads to execute at a time. When this threshold is exceeded, performance is hit as computing is wasted on needless process communication (coordination).
 
-GPU provides higher throughput than CPU by allowing more threads to run in parallel. Interleaving threads on a CPU are much smaller than the $\le 1024$ threads that can run at a time on GPU without performance degradation. Hence, in summary:
+GPU provides higher throughput than CPU by allowing more threads to run in parallel. Interleaving threads on a CPU are much smaller than the $\le 1024$ threads that can run at a time on a GPU without performance degradation. Hence, in summary:
 
-- CPUs excel at sequential operations. Here is a basic CPU layout in Figure 1. It consists of instruction memory, input/output, control unit, arithmetric logic unit and data memory.
+- CPUs excel at sequential operations. Here is a basic CPU layout in Figure 1. It consists of instruction memory, input/output, control unit, arithmetic logic unit, and data memory.
 
 | ![CPU Architecture](/static/images/gpu/CPU-architecture.PNG) |
 |:--:|
@@ -124,7 +124,7 @@ On the browser, GPU computing can be accessed using [WebGPU](https://www.w3.org/
 
 Blocks may be 1D, 2D, or 3D vectors of thread blocks.
 
-Barriers are used internally to synchronize threads, grids, and blocks. However, it is used if you are trying to optimize how you parallelize your data.
+Barriers are used internally to synchronize threads, grids, and blocks. 
 
 This blog will focus on [CUDA](https://en.wikipedia.org/wiki/CUDA), which supports a variety of programming languages. For example, in Python programming we have the following: [CuPy](https://docs.cupy.dev/en/stable/), [PyCuDA](https://pypi.org/project/pycuda/), and [CUDA Python](https://nvidia.github.io/cuda-python/overview.html). CUDA provides an accessible means to access the GPU, unlike building a custom accelerator. CUDA has two APIs: the Driver API and the Runtime API. It should be noted that both APIs cannot be combined at once in the same program.
 
@@ -143,7 +143,6 @@ W_{s} = \lceil \frac{n}{32} \rceil
 \end{equation}
 
 - Avoid using smaller-sized thread blocks. The choice of block size (>= 128 or 256 threads per block)
-
 - It does not matter if it is a row/column major, you just need to structure your CUDA program using the hierarchy of grids, blocks, and threads. You have to index your structure. CUDA programming challenges are indexing and synchronization.
 
 Initialization of a kernel IN CUDA requires two arguments, $blocksPerGrid$, and $threadsPerBlock$. The total number of active threads is the product of both quantities, as shown
@@ -156,15 +155,15 @@ Here is a basic layout of the GPU core in `Figure 3` which consists of grids, bl
 |:--:|
 | Figure 3: [CUDA Hierarchy](https://towardsdatascience.com/cuda-by-numba-examples-1-4-e0d06651612f) |
 
-- Do not allocate unnecessary memory copies from the device to the host and vice-versa. There is a concept of unified memory that supports zero-copy. This uses a mapped drive for the host and devices' memory.
+- Do not perform unnecessary memory copies from the device to the host and vice-versa. There is a concept of unified memory that supports zero-copy. This uses a mapped drive for the host and devices' memory.
 
-- CUDA Kernel functions cannot return a value, but instead, return a reference via arguments.
+- CUDA Kernel functions cannot return a value, but instead return a reference via arguments.
 
 - It is possible to use atomic operations in non-blocking modes, such as compare-and-swap when contention is low.
 
 # Performance Evaluation
 
-GPU performance is influenced by the number of cores and (device, host) memory sizes. NVIDIA GPU architecture is based on a [Streaming Multiprocessor](https://stackoverflow.com/questions/3519598/streaming-multiprocessors-blocks-and-threads-cuda) (SM). There are 32 threads in a warp, which is the smallest grouping of threads that can be run on an SM.
+GPU performance is influenced by core count and (device, host) memory sizes. NVIDIA GPU architecture is based on a [Streaming Multiprocessor](https://stackoverflow.com/questions/3519598/streaming-multiprocessors-blocks-and-threads-cuda) (SM). There are 32 threads in a warp, which is the smallest grouping of threads that can be run on an SM.
 
 Here is a basic layout of the warp in the GPU core as shown in `Figure 4`.
 
@@ -196,7 +195,6 @@ O_{r} = \lceil \frac{n_{a}}{n} \rceil
 Underutilizing hardware potential for increased computational performance is a missed opportunity. Most user-end computers support graphic cards, which boost computationally-heavy tasks. Hence, it is imperative to use these GPUs to speed up computational processing speeds in these consumer devices.
 
 # References
-
 - [[1]]() Professional CUDA C Programming by John Cheng, Max Grossman, and Ty McKercher, John Wiley & Sons, Inc. 2014.
 - [[2]]() CUDA by Example: An introduction to general-purpose GPU programming by Jason Sanders, Edward Kandrot, Addison-Wesley, 2011. </section>
 
