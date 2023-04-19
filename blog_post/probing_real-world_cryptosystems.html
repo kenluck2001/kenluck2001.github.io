@@ -5,16 +5,16 @@
     <title>Probing Real-World Cryptosystems</title>
     <meta name="author" content="Kenneth Emeka Odoh"/>
     <meta name="description" content="
-                                      In Sun Tzu&#39;s book &#34;The Art of War&#34;, he writes, &#34;Attack is the secret of defence; defence is the planning of an attack&#34;.  It is vital for a cryptography engineer to develop a strong understanding of the subject and (break / mitigate) a few cryptosystems
+                                      In Sun Tzu&#39;s book &#34;The Art of War&#34;, he writes, &#34;Attack is the secret of defence; defence is the planning of an attack&#34;.  It is vital for a cryptography engineer to develop a strong understanding of the subject and be able to break or mitigate a few cryptosystems
                                       "/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
 
-    <meta name="keywords" content="shift, note, manner, time, increase, cipher,  cryptosystems,  cryptography, probing real-world cryptosystems"/>
+    <meta name="keywords" content="shift, note, manner, time, increase, png, cipher,  cryptosystems,  cryptography, probing real-world cryptosystems"/>
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Probing Real-World Cryptosystems" />
     <meta property="og:description" content="
-                                              In Sun Tzu&#39;s book &#34;The Art of War&#34;, he writes, &#34;Attack is the secret of defence; defence is the planning of an attack&#34;.  It is vital for a cryptography engineer to develop a strong understanding of the subject and (break / mitigate) a few cryptosystems
+                                              In Sun Tzu&#39;s book &#34;The Art of War&#34;, he writes, &#34;Attack is the secret of defence; defence is the planning of an attack&#34;.  It is vital for a cryptography engineer to develop a strong understanding of the subject and be able to break or mitigate a few cryptosystems
                                               " />
 
     <script defer src="/static/js/backup/all.js"></script>
@@ -83,7 +83,7 @@
                         <a id=cryptography href=/blogs/cryptography/1.html> cryptography</a> 
                     
                 </div>
-                <section id="text" class="Article-content"> In Sun Tzu's book "The Art of War", he writes, "Attack is the secret of defence; defence is the planning of an attack". It is vital for a cryptography engineer to develop a strong understanding of the subject and (break / mitigate) a few cryptosystems. This knowledge will enable an individual to build the skill set required to succeed in the cybersecurity industry. Every dual-use technology (Cryptography, Nuclear energy, Artificial Intelligence) with potential military applications has naysayers hyping up an imaginary doomsday event with an existential threat. Motives are difficult to decipher among actors, so we give the benefit of doubt. However, these outrageous claims are unfounded and self-serving, for these concerns are overstated and limit intellectual charity.
+                <section id="text" class="Article-content"> In Sun Tzu's book "The Art of War", he writes, "Attack is the secret of defence; defence is the planning of an attack". It is vital for a cryptography engineer to develop a strong understanding of the subject and be able to break or mitigate a few cryptosystems. This knowledge will enable an individual to build the skill set required to succeed in the cybersecurity industry. Every dual-use technology (Cryptography, Nuclear energy, Artificial Intelligence) with potential military applications has naysayers hyping up an imaginary doomsday event with an existential threat. Motives are difficult to decipher among actors, so we give them the benefit of doubt. However, these outrageous claims are unfounded and self-serving, for these concerns are overstated and limit intellectual charity.
 
 Security may be an afterthought for a number of firms. Some managers may even consider security investment a sunk cost for the organization. It is imperative to note that a few cyber security incidents will outweigh the cost savings, as the proposed mitigation and reputation damage can be substantial.
 
@@ -97,11 +97,11 @@ Security may be an afterthought for a number of firms. Some managers may even co
 + [Conclusions](#conclusion)
 + [References](#references)
 
-# **Introduction**
+# Introduction
 
 <a name="introduction"></a>
 
-Real-world cryptography protocols are broken in multiple ways. This precarious situation provides an opportunity for a determined ethical hacker to uncover for the betterment of the internet. On the other hand, it also provides an opportunity for black hat hackers to damage their prey. Developing cybersecurity skills can help build a safer internet. Most armies were not created to win wars, but to make attacks prohibitive for the enemy. This analogy fits the selling point for cryptographic schemes.
+Real-world cryptography protocols are broken in multiple ways. This precarious situation provides an opportunity for a determined ethical hacker to uncover for the internet's betterment. On the other hand, it also provides an opportunity for black hat hackers to damage their prey. Developing cybersecurity skills can help build a safer internet. Most armies were not created to win wars, but to make attacks prohibitive for the enemy. This analogy fits the selling point for cryptographic schemes.
 
 ##### Notes:
 
@@ -117,7 +117,7 @@ Real-world cryptography protocols are broken in multiple ways. This precarious s
 
 Understanding the fundamentals can help discover out of the box vulnerabilities, before a well-funded bad actor beats us to it. Anecdotal evidence suggests that exploiting a known attack vector may not be feasible due to limited technical mastery of the subject. A gulf in execution could impact the transfer of theoretical insights from theory to practice. Practicality entails simplifying (abstracting) the real-world within reasonable constraints to achieve a proof-of-concept. For-profit certification has some utility, but security is a multi-headed hydra, so training individuals in a gamified system can be relevant for the basics, but will not help identify the rare vulnerabilities which would likely yield the highest utility for bad actors. We recommend solving the [cryptography puzzles](https://cryptopals.com/).
 
-# **Algorithm implementations**
+# Algorithm implementations
 
 <a name="algorithm-implementations"></a>
 
@@ -131,14 +131,19 @@ The Cryptosystems algorithm created for experiments is as follows:
 | :--- | :----: | ---: |
 | 1 | Data Encryption Standard [[1]]()|[des.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/des.py) |
 | 2 | Advanced Encryption Standard [[2]]()|[aes.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/aes.py) |
+| 3 | Ascon (Lightweight Cryptography) [[3]]()|[ascon.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/ascon.py) |
 
-# **Discussion**
+# Discussion
 
 <a name="discussion"></a>
 
 During this investigation, I made the following observations.
 
 ##### Data Encryption Standard, DES [[1]]()
+
+| ![DES Cipher](/static/images/crypto/des.PNG) |
+|:--:|
+| DES Cipher [[1]]() |
 
 - The block size is context-specific as we can use (4, 6, 8) bits per block as required.
 
@@ -154,9 +159,19 @@ During this investigation, I made the following observations.
 
 - Permutation is the process of increasing entropy in the data representation.
 
-- Key expansion schemes allow users to utilize small-sized keys and get the security benefits of a large-sized key.
+- Key expansion schemes allow users to utilize small-sized keys and get the security benefits of using a large-sized key.
 
-- Larger-sized key (256 bits and above) in AES is "[Military Grade Cryptography](https://www.howtogeek.com/445096/what-does-military-grade-encryption-mean/)", even though the orginal message blocks are 128 bits.
+- Larger-sized key (256 bits and above) in AES is "[Military Grade Cryptography](https://www.howtogeek.com/445096/what-does-military-grade-encryption-mean/)", even though the original message blocks are 128 bits.
+
+##### Ascon [[3]]()
+
+| ![ASCON Cipher](/static/images/crypto/ascon.PNG) |
+|:--:|
+| ASCON Cipher [[3]]() |
+
+ASCON is a light-weight authenticated encryption scheme. The padding is multiples of the `r-bits` message block. When properly implemented, it does not need ECB and CBC modes. The initialization vector is auto-derived and not user-supplied. The associated data is used to update the state. The cipher uses S-Box to make cryptographic schemes resistant to differential cryptoanalysis. As a result, side channel attack mitigations can be easily integrated. Decryption should return data only after signature verification passes.
+
+The permutation routine uses the Hadamard product for binary, which I approximated as an AND operation.
 
 ##### Mitigating Timing Attacks
 
@@ -176,7 +191,7 @@ A principled way of performing constant-time operations could be the holy grail 
 
 ##### Practical Considerations
 
-- The bits in the specification are about the message and key length. It should not be confused with storage space in actual memory.
+- The bits in the specification are about message and key length. It should not be confused with storage space in actual memory.
 
 - Utilize precise padding between number representations to prevent fractional bytes at (word, byte) boundaries.
 
@@ -192,9 +207,10 @@ A principled way of performing constant-time operations could be the holy grail 
 
 - No matter how effective the cryptographic scheme is in practice. There is always a chance of compulsion by authorities in the form of [rubber-hose cryptanalysis](https://en.wikipedia.org/wiki/Rubber-hose_cryptanalysis).
 
-# **Future Work**
+# Future Work
 
 <a name="futurework"></a>
+
 These are topics I intend to explore in the coming years. They include:
 
 - Constant-time cryptography
@@ -204,7 +220,7 @@ These are topics I intend to explore in the coming years. They include:
 - [Homomorphic Encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption),
 - [Secure Multi-Party Computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation)
 
-# **Acknowledgements**
+# Acknowledgements
 
 <a name="acknowledgments"></a>
 
@@ -212,13 +228,13 @@ These are topics I intend to explore in the coming years. They include:
 
 - Thanks to Professor Raija Tuohi for teaching me Cryptography and Probability during my undergraduate days.
 
-# **Conclusions**
+# Conclusions
 
 <a name="conclusion"></a>
 
 Finally, this blog post is educational. Due to the vast nature of cybersecurity, one would require more supplementary material and significant domain knowledge to succeed in [Bug Bounty Programs](https://en.wikipedia.org/wiki/Bug_bounty_program) or to win [CTF Competitions](https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)).
 
-# **References**
+# References
 
 <a name="references"></a>
 
@@ -226,9 +242,10 @@ Finally, this blog post is educational. Due to the vast nature of cybersecurity,
 
 - [[2]]() [Advanced Encryption Standard](https://github.com/kenluck2001/cipherResearch/blob/main/references/NIST.FIPS.197.pdf).
 
+- [[3]]() [Ascon v1.2](https://github.com/kenluck2001/cipherResearch/blob/main/references/asconv12.pdf)
 
+# How to Cite this Article
 
-# **How to Cite this Article**
 ```
 BibTeX Citation
 
@@ -238,9 +255,7 @@ BibTeX Citation
   year = {2023},
   note = {https://kenluck2001.github.io/blog_post/probing_real-world_cryptosystems.html}
 }
-``` 
-
- </section>
+```  </section>
 
                 <hr class="line"/>
                 <div style="display: flex; justify-content: center;">
