@@ -85,7 +85,7 @@
                 </div>
                 <section id="text" class="Article-content"> In Sun Tzu's book "The Art of War", he writes, "Attack is the secret of defence; defence is the planning of an attack". It is vital for a cryptography engineer to develop a strong understanding of the subject and be able to break or mitigate a few cryptosystems. This knowledge will enable an individual to build the skill set required to succeed in the cybersecurity industry. Every dual-use technology (Cryptography, Nuclear energy, Artificial Intelligence) with potential military applications has naysayers hyping up an imaginary doomsday event with an existential threat. Motives are difficult to decipher among actors, so we give them the benefit of doubt. However, these outrageous claims are unfounded and self-serving, for these concerns are overstated and limit intellectual charity.
 
-Security may be an afterthought for a number of firms. Some managers may even consider security investment a sunk cost for the organization. It is imperative to note that a few cyber security incidents will outweigh the cost savings, as the proposed mitigation and reputation damage can be substantial.
+Security may be an afterthought for many firms. Some managers may even consider security investment a sunk cost for the organization. It is imperative to note that a few cyber security incidents will outweigh the cost savings, as the proposed mitigation and reputation damage can be substantial.
 
 # Table of Contents
 
@@ -169,7 +169,7 @@ During this investigation, I made the following observations.
 |:--:|
 | ASCON Cipher [[3]]() |
 
-ASCON is a light-weight authenticated encryption scheme. The padding is multiples of the `r-bits` message block. When properly implemented, it does not need ECB and CBC modes. The initialization vector is auto-derived and not user-supplied. It also makes use of noce to prevent replay attacks. The associated data is used to update the state. The cipher uses S-Box to make cryptographic schemes resistant to differential cryptoanalysis. As a result, side channel attack mitigations can be easily integrated. Decryption should return data only after signature verification passes.
+ASCON is a light-weight authenticated encryption scheme. The padding is multiples of the `r-bits` message block. When properly implemented, it does not need ECB and CBC modes. The initialization vector is auto-derived and not user-supplied. It also uses nonce to prevent replay attacks. The associated data is used to update the state. Another usecase for the associated data is to capture metadata about the plaintext (ancillary information about the plaintext) that is uniquely identifiable. The cipher employs S-Box to resist differential cryptoanalysis and easen the process for incoporating side channel attack mitigation can be easily integrated. Decryption should return data only after signature verification passes.
 
 The permutation routine uses the Hadamard product for binary, which I approximated as an AND operation.
 
@@ -187,7 +187,7 @@ A principled way of performing constant-time operations could be the holy grail 
 
 - Timing behaviours may vary across many processors. Cross-platform support would depend on building a small set of generalizable categorizations across processors.
 
-- Avoid flighting the timing specific mitigations, as branching may provide a signal to an attacker.
+- Avoid flighting the timing-specific mitigations, as branching may provide an attack vector.
 
 ##### Practical Considerations
 
