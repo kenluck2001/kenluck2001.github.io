@@ -143,7 +143,7 @@ During this investigation, I made the following observations.
 
 | ![DES Cipher](/static/images/crypto/des.PNG) |
 |:--:|
-| DES Cipher [[1]]() |
+| DES Cipher (encryption scheme) [[1]]() |
 
 - The block size is context-specific as we can use (4, 6, 8) bits per block as required.
 
@@ -169,7 +169,7 @@ During this investigation, I made the following observations.
 |:--:|
 | ASCON Cipher [[3]]() |
 
-ASCON is a light-weight authenticated encryption scheme. The padding is multiples of the `r-bits` message block. When properly implemented, it does not need ECB and CBC modes. The initialization vector is auto-derived and not user-supplied. The associated data is used to update the state. The cipher uses S-Box to make cryptographic schemes resistant to differential cryptoanalysis. As a result, side channel attack mitigations can be easily integrated. Decryption should return data only after signature verification passes.
+ASCON is a light-weight authenticated encryption scheme. The padding is multiples of the `r-bits` message block. When properly implemented, it does not need ECB and CBC modes. The initialization vector is auto-derived and not user-supplied. It also makes use of noce to prevent replay attacks. The associated data is used to update the state. The cipher uses S-Box to make cryptographic schemes resistant to differential cryptoanalysis. As a result, side channel attack mitigations can be easily integrated. Decryption should return data only after signature verification passes.
 
 The permutation routine uses the Hadamard product for binary, which I approximated as an AND operation.
 
