@@ -83,11 +83,11 @@
                         <a id=Distributed-Systems href=/blogs/Distributed-Systems/1.html> Distributed-Systems</a> 
                     
                 </div>
-                <section id="text" class="Article-content"> Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and even some mobile phones and tablets have GPUs. Why is the GPU so popular? Even [Elon Musk bought thousands of A100 GPU cards](https://www.tomshardware.com/news/elon-musk-buys-tens-of-thousands-of-gpus-for-twitter-ai-project) to build an AI lab. In the early days of video processing, GPUs were used only for display. Recently, other use cases have emerged including scientific computation, deep learning, and computational fluid mechanics. Parallel (concurrent) programming involves breaking a large-sized problem into smaller ones and recursively solving them. It contrasts with single-core problem-solving approaches for sequential programming.
+                <section id="text" class="Article-content"> Video cards are ubiquitous in almost every commercial PC/laptop sold in the modern era, and even some mobile phones and tablets have GPUs. Why is the GPU so popular? Even [Elon Musk bought thousands of A100 GPU cards](https://www.tomshardware.com/news/elon-musk-buys-tens-of-thousands-of-gpus-for-twitter-ai-project) to build an AI lab. In the early days of video processing, GPUs were used only for display. Recently, other use cases have emerged including scientific computation, deep learning, and computational fluid mechanics. 
 
 Typically, an accelerator is connected by a message bus to the CPU. It serves as a distributed system between the main processor and these specialized hardware devices. For example, the GPU is optimized for fast matrix-based operation and can serve as a coprocessor with the main processor in the system. Accelerators optimize performance by doing heavy computation, relieving the load on the main processor by offloading specific tasks to specialized hardware. There are a few cryptographic accelerators such as [Intel Advanced Encryption Standard Instructions (AES-NI)](https://www.intel.com/content/www/us/en/developer/articles/technical/advanced-encryption-standard-instructions-aes-ni.html) for [OpenSSL](https://www.openssl.org/) and [LibreSSL](https://www.libressl.org/). 
 
-Parallel programming was a luxury in the early days of computing. However, due to the increasing capabilities of low-end computers, this skill set is essential for increasing computational performance. [Overclocking](https://en.wikipedia.org/wiki/Overclocking) was the mainstay of performance gains in the past. This has created a situation where most platforms have almost reached maximum clock speeds. GPUs on the other hand can improve performance gains by doing computation and freeing up the CPU for other tasks. A school of thought asks why do things the difficult way if you can take a shortcut and still get performance gains? Software optimization is about doing less and achieving similar performance. We suggest completing GPU puzzles to understand how to use GPU for problem-solving: [GPU Puzzles](https://github.com/srush/GPU-Puzzles) and [Tensor Puzzles](https://github.com/srush/Tensor-Puzzles).
+Parallel programming was a luxury in the early days of computing. However, due to the increasing capabilities of low-end computers, this skill set is essential for increasing computational performance. [Overclocking](https://en.wikipedia.org/wiki/Overclocking) was the mainstay of performance gains in the past. This has created a situation where most platforms have almost reached maximum clock speeds. GPUs on the other hand can improve performance gains by doing computation and freeing up the CPU for other tasks. A school of thought asks why do things the difficult way if you can take a shortcut and still get performance gains? Software optimization is about doing less and achieving similar performance. Parallel (concurrent) programming involves breaking a large-sized problem into smaller ones and recursively solving them. It contrasts with single-core problem-solving approaches to sequential programming. We suggest completing GPU puzzles to understand how to use GPU for problem-solving: [GPU Puzzles](https://github.com/srush/GPU-Puzzles) and [Tensor Puzzles](https://github.com/srush/Tensor-Puzzles).
 
 My aim for learning GPU programming is to perform scientific computations and optimize post-quantum encryption routines. As part of my [Research Manifesto](https://kenluck2001.github.io/blog_post/probing_real-world_cryptosystems.html), I came across lattice methods and `"Learning with Errors"` schemes which, on superficial examination, I think may benefit from using GPU, rather than having a custom accelerator. The ideal flow is to re-structure a problem into a suitable form for GPU computation. 
 
@@ -143,6 +143,7 @@ W_{s} = \lceil \frac{n}{32} \rceil
 \end{equation}
 
 - Avoid using smaller-sized thread blocks. The choice of block size (>= 128 or 256 threads per block)
+
 - It does not matter if it is a row/column major, you just need to structure your CUDA program using the hierarchy of grids, blocks, and threads. You have to index your structure. CUDA programming challenges are indexing and synchronization.
 
 Initialization of a kernel IN CUDA requires two arguments, $blocksPerGrid$, and $threadsPerBlock$. The total number of active threads is the product of both quantities, as shown
@@ -174,6 +175,7 @@ Here is a basic layout of the warp in the GPU core as shown in `Figure 4`.
 Here are some performance evaluation metrics:
 
 - Warp Divergence
+
 - Occupancy Rate
 
 #### Warp Divergence
@@ -192,10 +194,13 @@ O_{r} = \lceil \frac{n_{a}}{n} \rceil
 
 # Conclusions
 
-Underutilizing hardware potential for increased computational performance is a missed opportunity. Most user-end computers support graphic cards, which boost computationally-heavy tasks. Hence, it is imperative to use these GPUs to speed up computational processing speeds in these consumer devices.
+- GPU programming may require a parallel programming mindset. 
+- Underutilizing hardware potential for increased computational performance is a missed opportunity. Most user-end computers support graphic cards, which boost computationally-heavy tasks. Hence, it is imperative to use these GPUs to speed up computational processing speeds in these consumer devices.
 
 # References
+
 - [[1]]() Professional CUDA C Programming by John Cheng, Max Grossman, and Ty McKercher, John Wiley & Sons, Inc. 2014.
+
 - [[2]]() CUDA by Example: An introduction to general-purpose GPU programming by Jason Sanders, Edward Kandrot, Addison-Wesley, 2011. </section>
 
                 <hr class="line"/>
