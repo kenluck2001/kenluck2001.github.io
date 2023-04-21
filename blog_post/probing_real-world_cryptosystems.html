@@ -169,7 +169,7 @@ During this investigation, I made the following observations.
 |:--:|
 | ASCON Cipher [[3]]() |
 
-ASCON is a light-weight authenticated encryption scheme. The padding is multiples of the `r-bits` message block. When properly implemented, ECB and CBC modes are still needed. The initialization vector is auto-derived and not user-supplied. It also uses nonce to prevent replay attacks. The associated data is used to update the state. Another usecase for the associated data is to capture metadata about the plaintext (ancillary information about the plaintext) that is uniquely identifiable. The cipher employs S-Box to resist differential cryptoanalysis and easen the process for incoporating side channel attack mitigation can be easily integrated. Decryption should return data only after signature verification passes.
+ASCON is a light-weight authenticated encryption scheme. The padding is multiples of the `r-bits` message block. When properly implemented, ECB and CBC modes may not be needed. The initialization vector is auto-derived and not user-supplied. It also uses nonce to prevent replay attacks. The associated data is used to update the state. Another usecase for the associated data is to capture metadata about the plaintext (ancillary information about the plaintext) that is uniquely identifiable. The cipher employs S-Box to resist differential cryptoanalysis and easen the process for incoporating side channel attack mitigation can be easily integrated. Decryption should return data only after signature verification passes.
 
 The permutation routine uses the Hadamard product for binary, which I approximated as an AND operation.
 
