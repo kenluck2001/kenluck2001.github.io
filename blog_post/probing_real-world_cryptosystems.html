@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
 
-    <meta name="keywords" content="operation, cipher, cryptography, cryptosystems, probing real-world cryptosystems"/>
+    <meta name="keywords" content="cryptography, robustness, probing real-world cryptosystems, cipher, operation, cryptosystems"/>
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Probing Real-World Cryptosystems" />
     <meta property="og:description" content="
@@ -169,9 +169,18 @@ During this investigation, I made the following observations.
 |:--:|
 | ASCON Cipher [[3]]() |
 
-ASCON is a light-weight authenticated encryption scheme. The padding is multiples of the `r-bits` message block. When properly implemented, ECB and CBC modes may not be needed. The initialization vector is auto-derived and not user-supplied. It also uses nonce to prevent replay attacks. The associated data is used to update the state. Another usecase for the associated data is to capture metadata about the plaintext (ancillary information about the plaintext) that is uniquely identifiable. The cipher employs S-Box to resist differential cryptoanalysis and easen the process for incoporating side channel attack mitigation can be easily integrated. Decryption should return data only after signature verification passes.
+ASCON is a light-weight authenticated encryption scheme. The padding is multiples of the `r-bits` message block. When properly implemented, ECB and CBC modes may not be needed. The initialization vector is auto-derived and not user-supplied. It also uses nonce to prevent replay attacks. The associated data is used to update the state. Another usecase for associated data is to capture metadata about the plaintext (ancillary information about the plaintext) that is uniquely identifiable. It employs S-Box to resist differential cryptoanalysis and facilitate the future integration of schemes for side channel attack mitigation. Decryption should return data only after signature verification passes.
 
 The permutation routine uses the Hadamard product for binary, which I approximated as an AND operation.
+
+### Honorary Mention
+
+Since these ciphers are so simple and still have great features, I refused to implement them.
+
+##### Deoxys [[4]]()
+
+Deoxys is an authenticated encryption scheme, which was a winning submission to the [CAESAR](https://en.wikipedia.org/wiki/CAESAR_Competition) competition in the `"defense in depth"` category. There are two modes of the algorithm, nonce-respecting and non-misuse-resistance. In my opinion, it isn't a novel cipher, but a principled method for strengthening existing ciphers. There are several ways to harden a cipher, including the [Triple DES](https://en.wikipedia.org/wiki/Triple_DES) mechanism and alternating ciphers in a [CBC](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)-like mode. Deoxys that a different approach at hardening uses AES as a routine and enhances by applying a number of checksums, careful padding, and other non-linear operations, thereby making it resilient to replay attacks even when nonce are reused. In addition, it also makes the cipher invulnerable to birthday-bound attacks. Since most published ciphers have weaknesses, designers do not need to start from scratch. Instead, they can patch existing ciphers and benefit from their proven security and robustness. 
+
 
 ##### Mitigating Timing Attacks
 
@@ -191,7 +200,7 @@ A principled way of performing constant-time operations could be the holy grail 
 
 ##### Practical Considerations
 
-- The bits in the specification are about message and key length. It should not be confused with storage space in actual memory.
+Message and key are represented in bits in the specification. It should not be confused with storage space in actual memory.
 
 - Utilize precise padding between number representations to prevent fractional bytes at (word, byte) boundaries.
 
@@ -220,7 +229,7 @@ These are topics I intend to explore in the coming years. They include:
 - [Homomorphic Encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption),
 - [Secure Multi-Party Computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation)
 
-# Acknowledgements
+# Acknowledgement
 
 <a name="acknowledgments"></a>
 
@@ -243,6 +252,8 @@ Finally, this blog post is educational. Due to the vast nature of cybersecurity,
 - [[2]]() [Advanced Encryption Standard](https://github.com/kenluck2001/cipherResearch/blob/main/references/NIST.FIPS.197.pdf).
 
 - [[3]]() [Ascon v1.2](https://github.com/kenluck2001/cipherResearch/blob/main/references/asconv12.pdf)
+
+- [[4]]() [Deoxys v1.41](https://github.com/kenluck2001/cipherResearch/blob/main/references/deoxysv141.pdf)
 
 # How to Cite this Article
 
