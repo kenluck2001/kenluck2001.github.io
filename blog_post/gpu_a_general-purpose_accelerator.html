@@ -144,9 +144,9 @@ W_{s} = \lceil \frac{n}{32} \rceil
 
 - Avoid using smaller-sized thread blocks. The choice of block size (>= 128 or 256 threads per block)
 
-- It does not matter if it is a row/column major, you just need to structure your CUDA program using the hierarchy of grids, blocks, and threads. You have to index your structure. CUDA programming challenges are indexing and synchronization.
+- It does not matter if it is a row/column major, you just need to structure your CUDA program using the hierarchy of grids, blocks, and threads. CUDA programming challenges are indexing and synchronization when developing your source code.
 
-Initialization of a kernel IN CUDA requires two arguments, $blocksPerGrid$, and $threadsPerBlock$. The total number of active threads is the product of both quantities, as shown
+Initialization of a kernel in CUDA requires two arguments, $blocksPerGrid$, and $threadsPerBlock$. The total number of active threads is the product of both quantities, as shown
 
 $totalNumberOfLaunchedThreads = blocksPerGrid * threadsPerBlock$
 
@@ -195,6 +195,7 @@ O_{r} = \lceil \frac{n_{a}}{n} \rceil
 # Conclusions
 
 - GPU programming may require a parallel programming mindset. 
+
 - Underutilizing hardware potential for increased computational performance is a missed opportunity. Most user-end computers support graphic cards, which boost computationally-heavy tasks. Hence, it is imperative to use these GPUs to speed up computational processing speeds in these consumer devices.
 
 # References
