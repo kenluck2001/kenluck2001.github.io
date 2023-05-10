@@ -87,11 +87,15 @@
 
 Security may be an afterthought for many firms. Some managers may even consider security investment a sunk cost for the organization. It is imperative to note that a few cyber security incidents will outweigh the cost savings, as the proposed mitigation and reputation damage can be substantial.
 
+### **Real-Life Impact of this Research**
++ This author has made an exploit for retrieving full secret key in a variant of picnic. See section named [Cryptographic Attack](#cryptoattack).
+
 # Table of Contents
 
 + [Introduction](#introduction)
 + [Algorithm implementations](#algorithm-implementations)
 + [Discussion](#discussion)
++ [Cryptographic Attack](#cryptoattack)
 + [Future Work](#futurework)
 + [Acknowledgements](#acknowledgments)
 + [Conclusions](#conclusion)
@@ -132,6 +136,8 @@ The Cryptosystems algorithm created for experiments is as follows:
 | 1 | Data Encryption Standard [[1]]()|[des.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/des.py) |
 | 2 | Advanced Encryption Standard [[2]]()|[aes.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/aes.py) |
 | 3 | Ascon (Lightweight Cryptography) [[3]]()|[ascon.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/ascon.py) |
+| 4 | Picnic (Post-Quantum Signature) [[5]]()|[picnic.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/picnic.py) |
+
 
 # Discussion
 
@@ -173,13 +179,32 @@ ASCON is a light-weight authenticated encryption scheme. The padding is multiple
 
 The permutation routine uses the Hadamard product for binary, which I approximated as an AND operation.
 
+##### Picnic [[5]]()
+
+Picnic is a post-quantum cryptographic signature system. This is a public key cryptography system, where the user creates a pair of private and public keys using the KDB++ protocol. This is done to create an irrefutable signature on a document during the signing phase. The signature is based on the user's private key and document digest. The signature can be used to authenticate the document owner by his private key, which is only known by him. However, during the verification phase, the user wants to know if the document is signed by the party it claims to be, thereby preventing forgeries. In this phase, the user uses the signer's public key to ensure that the signature can be recreated. This signature matches the exact signature created at the time of signing. This would require a description of the following concepts in no particular order. They include: [Zero-knowledge proof](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [Secure multi-party computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation), [Commitment schemes](https://en.wikipedia.org/wiki/Commitment_scheme), and, Circuit decomposition.
+
+Let us describe the concept of Zero-knowledge proof with the analogy of a teacher and student. The teacher wants to know if the student knows his real age and wants to validate the student's age without the student saying his/her age out loud. The teacher creates a set of challenges and sends them to the pupil several times. The teacher can validate that the student knows his/her age without knowing the exact student's age. The teacher can verify the secret (age) knowledge by grading the student's response to his challenge, then checking for consistency in his/her answers. For the analogy, we may limit the challenge to a combination of a few mathematical operations of his/her age. The teacher feels confident that the student knows his/her age if he creates many challenges and if there is consistency in the student's response that is beyond random chance (>=50%). The teacher has only verified the student's age without actually knowing it.
+
+The above description of zero-knowledge proof is interactive and requires multiple round trips. Furthermore, due to the interactive nature between the prover (student) and the verifier (teacher), there is a chance that transcripts can be obtained and used for replay attacks. Hence, we need to allow the student and teacher to role-play the change and response scenario on their own. Simulating a multiparty computation circuit is used by both parties to perform this self-thinking. The original zero-knowledge proof is interactive and hence converted to a non-interactive form by [Fiat-Shamir transformation](https://en.wikipedia.org/wiki/Fiat%E2%80%93Shamir_heuristic) and UR transformation, leading to a minimized round trips compared to interactive forms.
+
+Each party runs a challenge/response flow. It is like talking to yourself to prevent your conversation transcript from being eavesdropped by a third party. By decomposing circuits, multi-party computation becomes more efficient. Multiparty computation requires multiple parties to cooperate to complete a task. Let's say $x$ is the data to be computed. The $x$ is split into shares $x_1, x_2, x_3$ and $x = x_1 + x_2 + x_3$, in the case of 3 parties in the mix. We have each party having $x_i$ where $i$ is the index of the number of parties. In our case, we can retain the privacy of $x$ at most if only two shares are exposed. If the 3 shares are exposed, it is trivial to get the secret $x$ where $x = x_1 + x_2 + x_3$. (2, 3) Circuit decomposition is a protocol that provides 2=privacy when there are 3 players in the circuit. Even if two players reveal their shares, privacy is not compromised.
+
+In my implementation of Picnic, I used only the Fiat-Shamir transformation. My Python installation does not use the [SHAKE](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf) hash algorithms which provide a variable output from the algorithm unlike SHA1, MD5, SHA224, SHA512 which has a constant output. Due to the change, I had to modify the challenge rounds to $T$ where the length of the challenge is upper bounded by $\frac{T}{2}$. I ignored serialization to string as it is easy to integrate into real production settings, unlike experiment prototypes based on my research.
+
+The KDB++ scheme was utilized to create public and private keys. I used AES instead of LowMC, despite using a higher number of multiplications in the hardware. However, the LowMC cipher has required a minimal number of multiplications in its operations. It has been used for encryption flow during signing and decryption flow during verification.
+
+There is a problem in the specification, where the seeds created in the signing phase cannot be easily retrieved in the verification step. Hence, I modified my implementation to allow for seed retrieval. My exploit involved the release of the third player's shares at the end of the signing phase. More details on my vulnerability will be included in an upcoming section called "Cryptography Attack" in this blog.
+
+Unfortunately, for unknown reasons, I am unable to do so as debugging is ongoing. I suspect without concrete evidence may be due to using a Sbox that may not be invertible. I could not recreate the challenge created during signing during verification.
+
+
 ### Honorary Mention
 
 Since these ciphers are so simple and still have great features, I refused to implement them.
 
 ##### Deoxys [[4]]()
 
-Deoxys is an authenticated encryption scheme, which was a winning submission to the [CAESAR](https://en.wikipedia.org/wiki/CAESAR_Competition) competition in the `"defense in depth"` category. There are two modes of the algorithm, nonce-respecting and non-misuse-resistance. In my opinion, it isn't a novel cipher, but a principled method for strengthening existing ciphers. There are several ways to harden a cipher, including the [Triple DES](https://en.wikipedia.org/wiki/Triple_DES) mechanism and alternating ciphers in a [CBC](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)-like mode. Deoxys that a different approach at hardening uses AES as a routine and enhances by applying a number of checksums, careful padding, and other non-linear operations, thereby making it resilient to replay attacks even when nonce are reused. In addition, it also makes the cipher invulnerable to birthday-bound attacks. Since most published ciphers have weaknesses, designers do not need to start from scratch. Instead, they can patch existing ciphers and benefit from their proven security and robustness. 
+Deoxys is an authenticated encryption scheme, which was a winning submission to the [CAESAR](https://en.wikipedia.org/wiki/CAESAR_Competition) competition in the `"defense in depth"` category. There are two modes of the algorithm, nonce-respecting and non-misuse-resistance. In my opinion, it isn't a novel cipher, but a principled method for strengthening existing ciphers. There are several ways to harden a cipher, including the [Triple DES](https://en.wikipedia.org/wiki/Triple_DES) mechanism and alternating ciphers in a [CBC](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)-like mode. Deoxys takes a different approach at hardening uses AES as a routine and enhances by applying a number of checksums, careful padding, and other non-linear operations, thereby making it resilient to replay attacks even when nonce are reused. In addition, it also makes the cipher invulnerable to birthday-bound attacks. Since most published ciphers have weaknesses, designers do not need to start from scratch. Instead, they can patch existing ciphers and benefit from their proven security and robustness. 
 
 
 ##### Mitigating Timing Attacks
@@ -216,6 +241,48 @@ Message and key are represented in bits in the specification. It should not be c
 
 - No matter how effective the cryptographic scheme is in practice. There is always a chance of compulsion by authorities in the form of [rubber-hose cryptanalysis](https://en.wikipedia.org/wiki/Rubber-hose_cryptanalysis).
 
+# Cryptographic Attack
+<a name="cryptoattack"></a>
+
+My attack on the picnic scheme and the author's response are covered here. Here are the details.
+
+Step 5 on page 12 of the [attached spec](https://github.com/kenluck2001/cipherResearch/blob/main/references/spec-v3.0-picnic.pdf) has a risk of leaking the secret key during the verification process
+
+This is a specific flow in Figure 1.
+
+| ![CPU Architecture](/static/images/crypto/picnic.PNG) |
+|:--:|
+| Figure 1: Picnic signature scheme [[5]]() |
+
+In Figure 1, we have highlighted the screenshot in Figure 1 with labels (`"A"` and `"B"`) depicting $view[t][2].iShare$ should not be shared at all because, in the MPC circuit in the verification flow, we only use two parties. Therefore, releasing the third share from the signing flow will release the secret key. The secret has only undergone a linear transformation as shown below
+
+\begin{equation}
+x[2] = sk ⊕ x[0] ⊕ x[1]
+\end{equation}
+
+The secret key is not transformed by a non-linear transformation, making it vulnerable to multiple attacks.
+
+The secret key, sk, is constant for every T round as described in the specs. We can recreate two parties ($v[0], v[1]$) and we can recover the secret key in the verification phase
+
+\begin{equation}
+sk = x[2] ⊕ v[0] ⊕ v[1]
+\end{equation}
+
+My suggestion is to fix the issue and ensure that all the seeds can be recovered, because in the present form of step 5 of signing. If the first challenge string is 1, we cannot recover `seeds[0]`, but with this modification.
+
+This specific flow for labels (`"A"` and `"B"`) as shown in Figure 1, should be replaced with $view[t][0].iShare$ and $view[t][1].iShare$ respectively.
+
+In essence, do not share anything about the third player from the signing process, in the verification as we will recreate it on the verifier alone.
+
+##### Response from the algorithm author
+
+"""
+In each of the T parallel repetitions, new independent random shares are chosen.  The key is the same, but three fresh shares are chosen, only two of which are revealed.  The attack you’re proposing might work if the same shares were used in more than one parallel repetition, but that’s not what Picnic does.
+
+You should be able to try out your proposed attack using the Picnic reference implementation. 
+
+"""
+
 # Future Work
 
 <a name="futurework"></a>
@@ -228,6 +295,7 @@ These are topics I intend to explore in the coming years. They include:
 - [Zero-Knowledge Proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof)
 - [Homomorphic Encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption),
 - [Secure Multi-Party Computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation)
+- [Error correction code](https://en.wikipedia.org/wiki/Error_correction_code)
 
 # Acknowledgement
 
@@ -254,6 +322,10 @@ Finally, this blog post is educational. Due to the vast nature of cybersecurity,
 - [[3]]() [Ascon v1.2](https://github.com/kenluck2001/cipherResearch/blob/main/references/asconv12.pdf)
 
 - [[4]]() [Deoxys v1.41](https://github.com/kenluck2001/cipherResearch/blob/main/references/deoxysv141.pdf)
+
+- [[5]]() [Picnic](https://github.com/kenluck2001/cipherResearch/blob/main/references/spec-v3.0-picnic.pdf)
+
+
 
 # How to Cite this Article
 
