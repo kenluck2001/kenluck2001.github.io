@@ -5,16 +5,16 @@
     <title>Probing Real-World Cryptosystems</title>
     <meta name="author" content="Kenneth Emeka Odoh"/>
     <meta name="description" content="
-                                      In Sun Tzu&#39;s book &#34;The Art of War&#34;, he writes, &#34;Attack is the secret of defence; defence is the planning of an attack&#34;.  It is vital for a cryptography engineer to develop a strong understanding of the subject and be able to break or mitigate a few cryptosystems
+                                      In Sun Tzu&#39;s book &#34;The Art of War&#34;, he writes, &#34;Attack is the secret of defense; defense is the planning of an attack&#34;.  A cryptography engineer needs to develop a strong understanding of the subject and be able to break or mitigate a few cryptosystems
                                       "/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
 
-    <meta name="keywords" content="cryptography, robustness, probing real-world cryptosystems, cipher, operation, cryptosystems, kenneth emeka odoh, kenneth odoh, kenneth emeka, emeka odoh, odoh"/>
+    <meta name="keywords" content="operation, cipher, cryptography, cryptosystems, probing real-world cryptosystems, kenneth emeka odoh, kenneth odoh, kenneth emeka, emeka odoh, odoh"/>
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Probing Real-World Cryptosystems" />
     <meta property="og:description" content="
-                                              In Sun Tzu&#39;s book &#34;The Art of War&#34;, he writes, &#34;Attack is the secret of defence; defence is the planning of an attack&#34;.  It is vital for a cryptography engineer to develop a strong understanding of the subject and be able to break or mitigate a few cryptosystems
+                                              In Sun Tzu&#39;s book &#34;The Art of War&#34;, he writes, &#34;Attack is the secret of defense; defense is the planning of an attack&#34;.  A cryptography engineer needs to develop a strong understanding of the subject and be able to break or mitigate a few cryptosystems
                                               " />
 
     <script defer src="/static/js/backup/all.js"></script>
@@ -83,12 +83,12 @@
                         <a id=cryptography href=/blogs/cryptography/1.html> cryptography</a> 
                     
                 </div>
-                <section id="text" class="Article-content"> In Sun Tzu's book "The Art of War", he writes, "Attack is the secret of defence; defence is the planning of an attack". It is vital for a cryptography engineer to develop a strong understanding of the subject and be able to break or mitigate a few cryptosystems. This knowledge will enable an individual to build the skill set required to succeed in the cybersecurity industry. Every dual-use technology (Cryptography, Nuclear energy, Artificial Intelligence) with potential military applications has naysayers hyping up an imaginary doomsday event with an existential threat. Motives are difficult to decipher among actors, so we give them the benefit of doubt. However, these outrageous claims are unfounded and self-serving, for these concerns are overstated and limit intellectual charity.
+                <section id="text" class="Article-content"> In Sun Tzu's book "The Art of War", he writes, "Attack is the secret of defense; defense is the planning of an attack". A cryptography engineer needs to develop a strong understanding of the subject and be able to break or mitigate a few cryptosystems. This knowledge will enable an individual to build the skill set required to succeed in the cybersecurity industry. Every dual-use technology (Cryptography, Nuclear energy, Artificial Intelligence) with potential military applications has naysayers hyping up an imaginary doomsday event with an existential threat. Motives are difficult to decipher among actors, so we give them the benefit of the doubt. However, these outrageous claims are unfounded and self-serving, for these concerns are overstated and limit intellectual charity.
 
 Security may be an afterthought for many firms. Some managers may even consider security investment a sunk cost for the organization. It is imperative to note that a few cyber security incidents will outweigh the cost savings, as the proposed mitigation and reputation damage can be substantial.
 
 ### **Real-Life Impact of this Research**
-+ This author has made an exploit for retrieving full secret key in a variant of picnic. See section named [Cryptographic Attack](#cryptoattack).
++ This author has made an exploit for retrieving the full secret key in a variant of Picnic. See the section named [Cryptographic Attack](#cryptoattack).
 
 # Table of Contents
 
@@ -105,13 +105,13 @@ Security may be an afterthought for many firms. Some managers may even consider 
 
 <a name="introduction"></a>
 
-Real-world cryptography protocols are broken in multiple ways. This precarious situation provides an opportunity for a determined ethical hacker to uncover for the internet's betterment. On the other hand, it also provides an opportunity for black hat hackers to damage their prey. Developing cybersecurity skills can help build a safer internet. Most armies were not created to win wars, but to make attacks prohibitive for the enemy. This analogy fits the selling point for cryptographic schemes.
+Real-world cryptography protocols are broken in multiple ways. This precarious situation provides an opportunity for a determined ethical hacker to uncover the internet's betterment. On the other hand, it also provides an opportunity for black hat hackers to damage their prey. Developing cybersecurity skills can help build a safer internet. Most armies were not created to win wars, but to make attacks prohibitive for the enemy. This analogy fits the selling point for cryptographic schemes.
 
 ##### Notes:
 
 - Our work is neither affected by [Canadian Export Control](https://www.international.gc.ca/controls-controles/export-exportation/crypto/FAQ2011.aspx?lang=en) nor [US Arms Export Control Act](https://en.m.wikipedia.org/wiki/Arms_Export_Control_Act), as it is already in public domain and not subject to [arms trafficking export controls](https://en.m.wikipedia.org/wiki/Export_of_cryptography).
 
-- We strive to be beyond ethical (moral) and discourage bad actors from gaining insight from our work. Every black hat hacker deserves punishment to the fullest extent permitted by law.
+- We strive to be beyond ethical (moral) and discourage bad actors from gaining insight from our work. Every black hat hacker deserves a punishment to the fullest extent permitted by law.
 
 - Every source code is the author's original work. The accompanying software is done in good faith and makes no claim about the correctness of the solution to the extent possible under the [MIT license](https://opensource.org/license/mit/).
 
@@ -119,15 +119,15 @@ Real-world cryptography protocols are broken in multiple ways. This precarious s
 
 - Repo: https://github.com/kenluck2001/cipherResearch
 
-Understanding the fundamentals can help discover out of the box vulnerabilities, before a well-funded bad actor beats us to it. Anecdotal evidence suggests that exploiting a known attack vector may not be feasible due to limited technical mastery of the subject. A gulf in execution could impact the transfer of theoretical insights from theory to practice. Practicality entails simplifying (abstracting) the real-world within reasonable constraints to achieve a proof-of-concept. For-profit certification has some utility, but security is a multi-headed hydra, so training individuals in a gamified system can be relevant for the basics, but will not help identify the rare vulnerabilities which would likely yield the highest utility for bad actors. We recommend solving the [cryptography puzzles](https://cryptopals.com/).
+Understanding the fundamentals can help discover out-of-the-box vulnerabilities before a well-funded bad actor beats us to it. Anecdotal evidence suggests that exploiting a known attack vector may not be feasible due to limited technical mastery of the subject. A gulf in execution could impact the transfer of theoretical insights from theory to practice. Practicality entails simplifying (abstracting) the real-world within reasonable constraints to achieve a proof-of-concept. For-profit certification has some utility, but security is a multi-headed hydra, so training individuals in a gamified system can be relevant for the basics, but will not help identify the rare vulnerabilities which would likely yield the highest utility for bad actors. We recommend solving the [cryptography puzzles](https://cryptopals.com/).
 
 # Algorithm implementations
 
 <a name="algorithm-implementations"></a>
 
-Here is a popular cliché, "Don't roll out your own cryptosystem". The original advice was to prevent security incidents due to poor cryptography implementation and understanding. A second school of thought views the advice as an attempt to entrench elite knowledge. Autodidacts learn by building from scratch, as every expert was once a novice. Based on personal experience, I can say that Software Engineers at top-notch firms also experience doubts. In most cases in the real-world, "Don't roll out your own cryptosystem, but build protocols using well-tested ciphers."
+Here is a popular cliché, "Don't roll out your own cryptosystem". The original advice was to prevent security incidents due to poor cryptography implementation and understanding. A second school of thought views the advice as an attempt to entrench elite knowledge. Autodidacts learn by building from scratch, as every expert was once a novice. Based on personal experience, I can say that Software Engineers at top-notch firms also experience doubts. In most cases in the real world, "Don't roll out your own cryptosystem, but build protocols using well-tested ciphers."
 
-What happens if you protect your national interests in the face of crippling sanctions? In such a hypothetical situation, cryptographic software may no longer be available. Here is one contrived use case for learning to roll out your own crypto. As a matter of emphasis, this idea does not represent the author's intentions, either in the future, present, or past.
+What happens if you protect your national interests in the face of crippling sanctions? In such a hypothetical situation, cryptographic software may no longer be available. Here is one contrived use case for learning to roll out your crypto. As a matter of emphasis, this idea does not represent the author's intentions, either in the future, present, or past.
 
 The Cryptosystems algorithm created for experiments is as follows:
 
@@ -137,6 +137,7 @@ The Cryptosystems algorithm created for experiments is as follows:
 | 2 | Advanced Encryption Standard [[2]]()|[aes.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/aes.py) |
 | 3 | Ascon (Lightweight Cryptography) [[3]]()|[ascon.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/ascon.py) |
 | 4 | Picnic (Post-Quantum Signature) [[5]]()|[picnic.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/picnic.py) |
+| 5 | FrodoPKE [[6]]()|[frodopke.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/frodopke.py) |
 
 
 # Discussion
@@ -157,7 +158,7 @@ During this investigation, I made the following observations.
 
 - In my DES implementation, I settled for 4 bits to avoid fractional bytes in the key schedule scheme in the `'ObtainKeyListParameters'` method. At this moment, it is unclear if I need a left-shift or a circular-left-shift. In my opinion, a pure left-shift may lead to entropy loss as we iterate for 16 rounds. Hence, I have used a circular left-shift, as it may be more secure and could enhance the [diffusion and confusion](https://en.wikipedia.org/wiki/Confusion_and_diffusion) properties of the cipher.
 
-- Moving beyond 16 rounds is a waste of compute, because if you left-circular-shift 4 bits at a time, after multiple rounds, you are back to the original block representation and doing repeated futile work.
+- Moving beyond 16 rounds is a waste of computing because if you left-circular-shift 4 bits at a time, after multiple rounds, you are back to the original block representation and doing repeated futile work.
 
 - I did not consider the initial and inverse initial permutation transformations in my implementation. At this moment, I am not sure how this change impacts the overall cipher's security.
 
@@ -175,7 +176,7 @@ During this investigation, I made the following observations.
 |:--:|
 | ASCON Cipher [[3]]() |
 
-ASCON is a light-weight authenticated encryption scheme. The padding is multiples of the `r-bits` message block. When properly implemented, ECB and CBC modes may not be needed. The initialization vector is auto-derived and not user-supplied. It also uses nonce to prevent replay attacks. The associated data is used to update the state. Another usecase for associated data is to capture metadata about the plaintext (ancillary information about the plaintext) that is uniquely identifiable. It employs S-Box to resist differential cryptoanalysis and facilitate the future integration of schemes for side channel attack mitigation. Decryption should return data only after signature verification passes.
+ASCON is a lightweight authenticated encryption scheme. The padding is multiples of the `r-bits` message block. When properly implemented, ECB and CBC modes may not be needed. The initialization vector is auto-derived and not user-supplied. It also uses nonce to prevent replay attacks. The associated data is used to update the state. Another use-case for associated data is to capture metadata about the plaintext (ancillary information about the plaintext) that is uniquely identifiable. It employs S-Box to resist differential cryptoanalysis and facilitate the future integration of schemes for side-channel attack mitigation. Decryption should return data only after signature verification passes.
 
 The permutation routine uses the Hadamard product for binary, which I approximated as an AND operation.
 
@@ -183,7 +184,7 @@ The permutation routine uses the Hadamard product for binary, which I approximat
 
 Picnic is a post-quantum cryptographic signature system. This is a public key cryptography system, where the user creates a pair of private and public keys using the KDB++ protocol. This is done to create an irrefutable signature on a document during the signing phase. The signature is based on the user's private key and document digest. The signature can be used to authenticate the document owner by his private key, which is only known by him. However, during the verification phase, the user wants to know if the document is signed by the party it claims to be, thereby preventing forgeries. In this phase, the user uses the signer's public key to ensure that the signature can be recreated. This signature matches the exact signature created at the time of signing. This would require a description of the following concepts in no particular order. They include: [Zero-knowledge proof](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [Secure multi-party computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation), [Commitment schemes](https://en.wikipedia.org/wiki/Commitment_scheme), and, Circuit decomposition.
 
-Let us describe the concept of Zero-knowledge proof with the analogy of a teacher and student. The teacher wants to know if the student knows his real age and wants to validate the student's age without the student saying his/her age out loud. The teacher creates a set of challenges and sends them to the pupil several times. The teacher can validate that the student knows his/her age without knowing the exact student's age. The teacher can verify the secret (age) knowledge by grading the student's response to his challenge, then checking for consistency in the pupil's answers. For the analogy, we may limit the challenge to a combination of a few mathematical operations of student's age. The teacher feels confident that the student knows his/her age if he creates many challenges and if there is consistency in the student's response that is beyond random chance (>=50%). The teacher has only verified the student's age without actually knowing it.
+Let us describe the concept of Zero-knowledge proof with the analogy of a teacher and student. The teacher wants to know if the student knows his real age and wants to validate the student's age without the student saying his/her age out loud. The teacher creates a set of challenges and sends them to the pupil several times. The teacher can validate that the student knows his/her age without knowing the exact student's age. The teacher can verify the secret (age) knowledge by grading the student's response to his challenge, then checking for consistency in the pupil's answers. For the analogy, we may limit the challenge to a combination of a few mathematical operations of the student's age. The teacher feels confident that the student knows his/her age if he creates many challenges and if there is consistency in the student's response that is beyond random chance (>=50%). The teacher has only verified the student's age without actually knowing it.
 
 The above description of zero-knowledge proof is interactive and requires multiple round trips. Furthermore, due to the interactive nature between the prover (student) and the verifier (teacher), there is a chance that transcripts can be obtained and used for replay attacks. Hence, we need to allow the student and teacher to role-play the change and response scenario on their own. Simulating a multiparty computation circuit is used by both parties to perform this self-thinking. The original zero-knowledge proof is interactive and hence converted to a non-interactive form by [Fiat-Shamir transformation](https://en.wikipedia.org/wiki/Fiat%E2%80%93Shamir_heuristic) and UR transformation, leading to a minimized round trips compared to interactive forms.
 
@@ -197,6 +198,35 @@ There is a problem in the specification, where the seeds created in the signing 
 
 Unfortunately, for unknown reasons, I am unable to do so as debugging is ongoing. I suspect without concrete evidence may be due to using a Sbox that may not be invertible. I could not recreate the challenge created during signing during verification.
 
+##### FrodoPKE [[6]]()
+
+Current cryptography schemes are based on integer factorization and discrete logarithms. Unfortunately, quantum computers can solve these foundational problems easily.
+
+Key encapsulation mechanisms (KEM) and public key encryption (PKE) schemes are the most common methods of post-quantum cryptography. KEM is an ideal key exchange protocol for creating shared keys between communication participants. PKE allows the creation of public and private keys for encrypting and decrypting messages. It is easier to manage keys in a PKE than in secret-key cryptography. One potential advantage of KEM is it can help us create ephemeral keys for communication and achieve [forward secrecy](https://crypto.stackexchange.com/questions/81745/what-does-perfect-mean-within-perfect-forward-secrecy-and-why-do-some-cryptograp).
+
+[NIST](https://csrc.nist.gov/Projects/post-quantum-cryptography/selected-algorithms-2022) has favored lattice-encryption cryptography. Most lattice-based algorithms are based on `"Learning with errors"` (LWE). The problem is summarized in [Short Vector Problem](https://cseweb.ucsd.edu/~daniele/LatticeLinks/SVP.html) and [Shortest Independent Vector Problem](http://web.stanford.edu/class/cs354/scribe/lecture13.pdf).
+
+LWE recovers a secret vector, $s \in {Z_q}^n$. Here is a description based on the [book](https://eprint.iacr.org/2015/938.pdf).
+
+Alice creates the following:
+
+- creates $e \in {Z_q}^{1 x m}$
+- secret vector: $s \in {Z_q}^n$
+- public key: $A \in {Z_q}^{n x m}$, ${b}^t = {s}^t A + {e}^t$
+
+Bob sent the following to Alice:
+
+- creates $x \in {0,1}^{m}$
+- create $u, \hat{u}$ respectively.
+    + $u = Ax$
+    + $\hat{u} = {b}^t x + bit \frac{q}{2}$
+
+On receipt, Alice decodes $\hat{u} - {s}^t u \approx bit \frac{q}{2}$
+
+Because we created an underspecified simultaneous equation without providing a y-intercept, the expected runtime will be exponential. Hence, it cannot be solved by Gaussian elimination.
+
+I like FrodoPKE because it does not use polynomials. These polynomials can be difficult to implement because they may have specific structures that make estimating roots difficult. FrodoPKE uses a conservative approach to ensure its security. With suitable parametrization, we can achieve security levels 1, 3, and 5. Despite my implementation challenges due to Endian mismatches. FrodoPKE provides schemes for key encapsulation and public key encryption. As part of my research, I have implemented a public key encryption scheme using the FrodoPKE cipher
+
 
 ### Honorary Mention
 
@@ -204,22 +234,22 @@ Since these ciphers are so simple and still have great features, I refused to im
 
 ##### Deoxys [[4]]()
 
-Deoxys is an authenticated encryption scheme, which was a winning submission to the [CAESAR](https://en.wikipedia.org/wiki/CAESAR_Competition) competition in the `"defense in depth"` category. There are two modes of the algorithm, nonce-respecting and non-misuse-resistance. In my opinion, it isn't a novel cipher, but a principled method for strengthening existing ciphers. There are several ways to harden a cipher, including the [Triple DES](https://en.wikipedia.org/wiki/Triple_DES) mechanism and alternating ciphers in a [CBC](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)-like mode. Deoxys takes a different approach at hardening uses AES as a routine and enhances by applying a number of checksums, careful padding, and other non-linear operations, thereby making it resilient to replay attacks even when nonce are reused. In addition, it also makes the cipher invulnerable to birthday-bound attacks. Since most published ciphers have weaknesses, designers do not need to start from scratch. Instead, they can patch existing ciphers and benefit from their proven security and robustness. 
+Deoxys is an authenticated encryption scheme, which was a winning submission to the [CAESAR](https://en.wikipedia.org/wiki/CAESAR_Competition) competition in the `"defense in depth"` category. There are two modes of the algorithm, nonce-respecting and non-misuse-resistance. In my opinion, it isn't a novel cipher, but a principled method for strengthening existing ciphers. There are several ways to harden a cipher, including the [Triple DES](https://en.wikipedia.org/wiki/Triple_DES) mechanism and alternating ciphers in a [CBC](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)-like mode. Deoxys takes a different approach to harden uses AES as a routine and enhances it by applying several checksums, careful padding, and other non-linear operations, thereby making it resilient to replay attacks even when nonce are reused. In addition, it also makes the cipher invulnerable to birthday-bound attacks. Since most published ciphers have weaknesses, designers do not need to start from scratch. Instead, they can patch existing ciphers and benefit from their proven security and robustness. 
 
 
 ##### Mitigating Timing Attacks
 
 A principled way of performing constant-time operations could be the holy grail for implementing real-world ciphers.
 
-- Use tables to speed-up computation and minimize branching (for number representations (binary, decimal).
+- Use tables to speed up computation and minimize branching (for number representations (binary, decimal).
 
-- All permutation functions in DES should have equal length, which may require some padding as we permutate 32, 48, 64 bits in varying contexts.
+- All permutation functions in DES should have equal length, which may require some padding as we permutate 32, 48, and 64 bits in varying contexts.
 
 - Is a double $for-loop$ of length, $n$ equivalent to a single $for-loop$ of length, $2n$ in terms of timing?
 
 - The number of rounds is not considered a timing leak. Each round step may be unrolled in a single operation, if there is an impact on timing in $for-loop$ in each round.
 
-- Timing behaviours may vary across many processors. Cross-platform support would depend on building a small set of generalizable categorizations across processors.
+- Timing behaviors may vary across many processors. Cross-platform support would depend on building a small set of generalizable categorizations across processors.
 
 - Avoid flighting the timing-specific mitigations, as branching may provide an attack vector.
 
@@ -233,11 +263,11 @@ Message and key are represented in bits in the specification. It should not be c
 
 - We can detect ciphertexts in ECB mode more easily in transmission since we have every nonoverlapping 16-byte segment until the end of the message, and check for collisions.
 
-- [PKC#7](https://datatracker.ietf.org/doc/html/rfc2315) padding scheme is a common standard for addressing variable-sized messages, by adding a number of characters to make every message block equal in length. It appends `/x04` to extend the string length.
+- [PKC#7](https://datatracker.ietf.org/doc/html/rfc2315) padding scheme is a common standard for addressing variable-sized messages, by adding many characters to make every message block equal in length. It appends `/x04` to extend the string length.
 
 - Combination of secure ciphers chained in [cipher block chaining](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation) (CBC)-like manner where different ciphers are utilized to encrypt alternating blocks, thereby improving the hybrid cipher's security.
 
-- Use a combination of different keys in a structure similar to [Triple DES](https://en.wikipedia.org/wiki/Triple_DES), but using a more secure cipher. This configuration can create a more secure hybrid cipher.
+- Use a combination of different keys in a structure similar to [Triple DES](https://en.wikipedia.org/wiki/Triple_DES), but use a more secure cipher. This configuration can create a more secure hybrid cipher.
 
 - No matter how effective the cryptographic scheme is in practice. There is always a chance of compulsion by authorities in the form of [rubber-hose cryptanalysis](https://en.wikipedia.org/wiki/Rubber-hose_cryptanalysis).
 
@@ -325,6 +355,7 @@ Finally, this blog post is educational. Due to the vast nature of cybersecurity,
 
 - [[5]]() [Picnic](https://github.com/kenluck2001/cipherResearch/blob/main/references/spec-v3.0-picnic.pdf)
 
+- [[6]]() [FrodoPKE](https://github.com/kenluck2001/cipherResearch/blob/main/references/FrodoKEM-specification-20210604.pdf)
 
 
 # How to Cite this Article
