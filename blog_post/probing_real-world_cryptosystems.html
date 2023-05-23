@@ -210,13 +210,13 @@ LWE recovers a secret vector, $s \in {Z_q}^n$. Here is a description based on th
 
 Alice creates the following:
 
-- creates $e \in {Z_q}^{1 x m}$
+- creates $e \in {Z_q}^{1 \times m}$
 - secret vector: $s \in {Z_q}^n$
-- public key: $A \in {Z_q}^{n x m}$, ${b}^t = {s}^t A + {e}^t$
+- public key: $A \in {Z_q}^{n \times m}$, ${b}^t = {s}^t A + {e}^t$
 
 Bob sent the following to Alice:
 
-- creates $x \in {0,1}^{m}$
+- creates $x \in \left({0,1}\right)^{m}$
 - create $u, \hat{u}$ respectively.
     + $u = Ax$
     + $\hat{u} = {b}^t x + bit \frac{q}{2}$
@@ -369,7 +369,9 @@ BibTeX Citation
   year = {2023},
   note = {https://kenluck2001.github.io/blog_post/probing_real-world_cryptosystems.html}
 }
-```  </section>
+``` 
+
+ </section>
 
                 <hr class="line"/>
                 <div style="display: flex; justify-content: center;">
