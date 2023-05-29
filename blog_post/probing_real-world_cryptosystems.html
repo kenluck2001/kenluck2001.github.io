@@ -271,6 +271,10 @@ Message and key are represented in bits in the specification. It should not be c
 
 - No matter how effective the cryptographic scheme is in practice. There is always a chance of compulsion by authorities in the form of [rubber-hose cryptanalysis](https://en.wikipedia.org/wiki/Rubber-hose_cryptanalysis).
 
+- Debugging a program that has an undocumented mixup of (big-endian and little-endian) bit order can be very tricky. In reality, endianness can be described as a representation of bits in memory address locations. There are two options: bytes are either represented from left to right or from right to left. I have spent a few days investigating a bug due to a mismatch of endianness, especially when it is not documented. There are a few remedies, but varying word sizes and other variables can make triaging a nightmare. Unfortunately, the small details take the most debugging time.
+
+- As a result of my lack of knowledge in coding theory and error control codes, I lack the needed background. For example, Classical McEliece uses Goppa code. I have issues understanding the generator matrix, the rationale for the row-echelon form of matrix in systematic form, and other ideas in coding theory that can help me understand Reed Solomon codes, turbo codes and other error correction schemes to allow for implementation simplification.
+
 # Cryptographic Attack
 <a name="cryptoattack"></a>
 
@@ -369,9 +373,7 @@ BibTeX Citation
   year = {2023},
   note = {https://kenluck2001.github.io/blog_post/probing_real-world_cryptosystems.html}
 }
-``` 
-
- </section>
+```  </section>
 
                 <hr class="line"/>
                 <div style="display: flex; justify-content: center;">
