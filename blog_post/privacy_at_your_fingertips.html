@@ -5,7 +5,7 @@
     <title>Privacy at your Fingertips</title>
     <meta name="author" content="Kenneth Emeka Odoh"/>
     <meta name="description" content="
-                                      Differential Privacy is a mathematical framework that prevents an analyst from querying a data store.  This is to uncover information about an individual from a group of individuals in a database
+                                      Differential Privacy is a mathematical framework that prevents an analyst from leaking information when querying a data store.  This scheme allows us to uncover only information about an individual from a group of individuals in a database
                                       "/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Privacy at your Fingertips" />
     <meta property="og:description" content="
-                                              Differential Privacy is a mathematical framework that prevents an analyst from querying a data store.  This is to uncover information about an individual from a group of individuals in a database
+                                              Differential Privacy is a mathematical framework that prevents an analyst from leaking information when querying a data store.  This scheme allows us to uncover only information about an individual from a group of individuals in a database
                                               " />
 
     <script defer src="/static/js/backup/all.js"></script>
@@ -87,7 +87,7 @@
                         <a id=statistics href=/blogs/statistics/1.html> statistics</a> 
                     
                 </div>
-                <section id="text" class="Article-content"> Differential Privacy is a mathematical framework that prevents an analyst from querying a data store. This is to uncover information about an individual from a group of individuals in a database. It works by carefully adding noise to the data while preserving the database's global statistical properties. We can get aggregate information without sacrificing individual privacy. As we explore the uncharted territories on this hot-buttoned topic of privacy in society. When it comes to privacy, what are the limits? To err on the side of caution, we discussed this topic with the shrewdness of an elder statesman, the diligence of a hacker, and the rigor of a `'street fighting mathematician'`.
+                <section id="text" class="Article-content"> Differential Privacy is a mathematical framework that prevents an analyst from leaking information when querying a data store. This scheme allows us to uncover only information about an individual from a group of individuals in a database. It works by carefully adding noise to the data, while preserving the database's global statistical properties. We can get aggregated information without sacrificing individual privacy. As we explore the uncharted territories of privacy in society, who decides what is an acceptable privacy level for citizens? How is it defined? When it comes to privacy, what are the limits? To err on the side of caution, we discussed this topic with the shrewdness of an elder statesman, the diligence of a hacker, and the rigor of a `'street fighting mathematician'`.
 
 Source code can be found here.
 
@@ -101,7 +101,7 @@ Differential privacy comes to our rescue. It provides a framework for adding str
 
 + Differential identifiability [[8]](): This mechanism aims to prevent the user from specifying $\xi$ which can be error-prone as there is a lack of guidance where inappropriate values may impact privacy guarantees.-* This work can be augmented with ideas from the paper [[6]]() on figuring reasonable privacy bounds on ($\xi, \delta$) which can prevent privacy violations in real-world applications.
 
-Privacy losses can be subtle and challenging to detect. Therefore, differential privacy should be combined with engineering safeguards to enhance data privacy. For example, an individual avoids oversharing by withholding his employer's name on social media (LinkedIn). The individual may inadvertently reveal his employer if a large group of colleagues become friends on social media. Another individual (attacker) can use this hint to deduce her employer. However, if your friend list is randomized or friendships are not announced, this information can be preserved. Thus, we can achieve a form of privacy in relation to our employers. The correlation may not give precise information, but it reduces the guessing space, resulting in privacy leaks. For example, an individual can be identified using a combination of zip code, gender, and birthday. A single data point alone may not leak anything, but an attacker can build a profile and connect information. This is especially true in this era of security incidents where a future breach may make previously anonymized data re-identifiable.
+Privacy losses can be subtle and challenging to detect. Therefore, differential privacy should be combined with engineering safeguards to enhance data privacy. For example, an individual avoids oversharing by withholding his employer's name on social media (LinkedIn). The individual may inadvertently reveal his employer if a large group of colleagues become friends on social media. Another individual (attacker) can use this hint to deduce her employer. However, if your friend list is randomized or friendships are not announced, this information can be preserved. Thus, we can achieve privacy in relation to our employers. The correlation may not give precise information, but it reduces guessing space, resulting in privacy leaks. For example, an individual can be identified using a combination of zip code, gender, and birthday. A single data point alone may not leak anything, but an attacker can build a profile and connect information. This is especially true in this era of security incidents where a future breach may make previously anonymized data re-identifiable.
 
 Privacy protections are prevalent in several countries. For example, the [4th Amendment](https://constitution.congress.gov/constitution/amendment-4/) in the United States Constitution, protects citizens from unnecessary searches by the government. [Section 37](https://www.constituteproject.org/constitution/Nigeria_1999.pdf) of the Nigerian constitution guarantees citizens the right to privacy. [Section 8](https://www.canada.ca/content/dam/pch/documents/services/download-order-charter-bill/canadian-charter-rights-freedoms-eng.pdf) of the Canadian Charter of Rights and Freedoms protects Canadians from arbitrary searches by the authorities. Software engineers stand to financially benefit from increased privacy regulations, both now and in the future. Some of these rules have nationalist interests, like where data can reside. There are some regulations such as:
 
@@ -111,9 +111,9 @@ Privacy protections are prevalent in several countries. For example, the [4th Am
 
 These laws are designed to protect privacy. A key element of this regulation is the emphasis on anonymizing data before it is released publicly. Despite the innocent intent of the firm releasing the data, privacy attacks [[2]]() are common. These attacks can be used for re-identification, tracing, or reconstruction by combining existing public information.
 
-Software engineers should adopt a privacy-first approach to complying with these regulations. Privacy by design should not be an afterthought, but a fundamental requirement for building applications that meet users' trust. As expected, governments will evolve these regulations and their enforcement will become more stringent leading to a cat-and-mouse game in play. This is the situation where methods based on solid theoretical underpinnings like differential privacy, and homomorphic encryption among others will become ubiquitous. Firms will get tired of paying fines for privacy violations and rather invest this money in software engineers, leading to more employment opportunities.
+Software engineers should adopt a privacy-first approach to complying with these regulations. Privacy by design should not be an afterthought, but a fundamental requirement for building applications that meet users' trust. As expected, governments will evolve these regulations and their enforcement will become more stringent leading to a cat-and-mouse game in play. This is the situation where methods based on solid theoretical underpinnings like differential privacy, and homomorphic encryption among others will become ubiquitous. Firms will get tired of paying fines for privacy violations and invest this money in software engineers, leading to more employment opportunities.
 
-We will remain apolitical for the remainder of this manuscript. This is because I write through the lens of intellectual charity, which yields the greatest impact on humanity. This is no part of the work that proposes policy positions, and no attempt was made to shape public perception of a politically-charged topic. My goal is to reveal the beauty of mathematics, even though I see myself as a "street-fighting mathematician" who is less formal and jumps steps when writing proofs.
+We will remain apolitical for the remainder of this manuscript. This is because I wrote through the lens of intellectual charity, which has the greatest impact on humanity. This is no part of the work that proposes policy positions, and no attempt was made to shape public perception of a politically-charged topic. My goal is to reveal the beauty of mathematics, even though I see myself as a "street-fighting mathematician" who is less formal and jumps steps when writing proofs.
 
 Differential privacy has its roots in cryptography and theoretical computer science. However, I would like to contrast differential privacy with encryption/decryption (cryptography). Both are simple, as differential privacy processing includes an encoder (randomizer) where we add noise and a decoder (analyzer) where we remove some of the noise before performing the statistical calculation. In my opinion, differential privacy encodings are lossy transformations, as we cannot recover the exact original data at the decoder stage. On the contrary, in encryption/decryption (Cryptography), when we decrypt, we recover the exact message that was encrypted. Hence, it is a lossless transformation. Note that we did not consider homomorphic encryption in this analogy, for it is outside the scope of our work.
 
@@ -133,16 +133,14 @@ The architecture may be formalized into these phases, which take the form of a p
 
 + Randomizer (encoder): takes input from the client device and obtains an intermediary transformed output that is sent as input to the shuffler phase. This adds noise to the input.
 
-+ Shuffler: This is optional in many applications. However, it takes transformed input from the randomizer and does permutation. In some application such as internet traffic, this may prevent privacy attack when the order is used to re-identify and tied a request to an individual (caveat as we assume DNS and other routers does save identifying metadata). We are essentially adding even more noise to the data at this stage.
++ Shuffler: This is optional in many applications. However, it takes transformed input from the randomizer and does permutation. In some application such as internet traffic, this may prevent privacy attack when the order is used to re-identify and tied a request to an individual (caveat as we assume DNS and other routers does save identifying metadata). We are adding even more noise to the data at this stage.
 
 + Analyzer (decoder): this phase performs statistical computation on the input from a randomizer or shuffler based on the application. This is where we get insight into the overall data. Ensure that you remove some noise and make meaningful computations needed by the application.
 
 Once, you can transform any two elements of the data, $d, \hat{d}$ using the randomizer, $A$. Every pair of elements, $(d, \hat{d})$, if we have a higher degree of privacy then most element pairs would look similar thereby making it difficult to distinguish. With higher privacy, $Pr(A(d) = y)$ has similar values to $Pr(A(\hat{d}) = y)$. The perfect privacy is when $\xi = 0$, usually most statistical properties are lost, so it is useless for most purposes. No privacy is achieved when $\xi = \infty$. The order of the numerator or denominator does not matter, hence the sign is unimportant $ \pm \xi $.
 
 + $A: D \rightarrow Y$ (randomizer)
-
 + ($d, \hat{d}) \in D$ (data) and $y \in Y$ (label)
-
 + $Pr$: probability
 
 $-\xi \le \ln (\frac{Pr(A(d) = y)}{Pr(A(\hat{d}) = y)}) \le \xi$
@@ -159,7 +157,7 @@ The attacker has some information about $X$ which is $\hat{X}$, we want to know 
 
 # Case Studies
 
-The purpose of this section is to explore the ways in which differential privacy can be used in the industry. The choice is based on applications interesting to the blog author. We begin by providing a principled way for individuals to set privacy bounds ($\xi, \delta$) to prevent privacy violations, which renders our privacy mechanism ineffective. This is followed by a differentially private counting mechanism to estimate the frequency. Finally, we discussed a negative database which is a differential private database mechanism that prevents arbitrary inspection of data.
+This section explores how differential privacy can be used in the industry. The choice is based on applications interesting to the blog author. We begin by providing a principled way for individuals to set privacy bounds ($\xi, \delta$) to prevent privacy violations, which renders our privacy mechanism ineffective. This is followed by a differentially private counting mechanism to estimate the frequency. Finally, we discussed a negative database which is a differential private database mechanism that prevents arbitrary inspection of data.
 
 My writing will explore the following use cases:
 
@@ -189,7 +187,7 @@ $\xi$ does not have an upper bound and specifying a lower bound is not straightf
 
 One of the ways to minimize infectious disease spread is to identify infected individuals and track them down for isolation. This is until they recover in solitude. [Covid-19](https://en.wikipedia.org/wiki/COVID-19) was an infectious disease and several attempts were made to create a contact-tracing system. However, government regulations meant any system must be privacy-preserving to prevent abuse. Forced isolation would undermine civil liberties and trigger a constitutional crisis if people were forced into solitude. There were several attempts by one by a [Consortium of BigTech firms](https://covid19.apple.com/contacttracing) and a [collaboration of leading European institutions](https://arxiv.org/pdf/2005.12273.pdf).
 
-Most systems use [Bluetooth](https://en.wikipedia.org/wiki/Bluetooth)-like technology for creating peer-to-peer networks. This method uses proximity to infested individuals as a proxy for a covid-19 test to be performed. For this to work, there is a central server with a list of infected individuals that should be anonymous. Each phone can save neighboring pings from the surrounding area and then query a central server to measure if they are close to an infected individual. It is possible to implement contact-tracing without a centralized service. This version has data from phones about their covid-19 status and pings so that the phone's status is not broadcast. There needs to be care taken that any broadcast does not expose user privacy. Privacy-enhancing schemes are introduced in these models to preserve identity.
+Most systems use [Bluetooth](https://en.wikipedia.org/wiki/Bluetooth)-like technology for creating peer-to-peer networks. This method uses proximity to infested individuals as a proxy for a covid-19 test to be performed. For this to work, there is a central server with a list of infected individuals that should be anonymous. Each phone can save neighboring pings from the surrounding area and then query a central server to measure if they are close to an infected individual. Contact-tracing can also be implemented without a centralized service. This version has data from phones about their covid-19 status and pings so that the phone's status is not broadcast. There needs to be care taken that any broadcast does not expose user privacy. Privacy-enhancing schemes are introduced in these models to preserve identity.
 
 ### Privacy-aware Video Surveillance System
 
@@ -230,9 +228,9 @@ Our implementation supports the following operations:
 
 Cyclic redundancy checks is an error-correction code to identify errors using a polynomial divisor while shifting character by character one at a time on a bit string and taking the remainder as a checksum. This scheme identifies or corrects errors. Most error correction schemes have added redundancy to help with error correction and detection.
 
-Communication systems are susceptible to errors. Superfluous strings can be inadvertently created in the randomization process. We create hard-to-reverse negative records based on the 3-SAT problem. We can use CRC to handle this case. In most cases, the generator polynomial may identify a burst error. However, our use case will likely have errors due to bit order corruption, rather than burst error. 
+Communication systems are susceptible to errors. Superfluous strings can be inadvertently introduced in the randomization process for creating hard-to-reverse negative records based on the 3-SAT problem. We can use CRC to handle this case. In most cases, the generator polynomial may identify a burst error. However, our use case will likely have errors due to bit order corruption, rather than burst error. 
 
-In our negative database implementation, records are harder to reverse-engineer if they are at least 1000 bits long. Hence, I have reversed 1000 bits for the database records and 24 bits for CRC checksums. There are [several standard suggestions for polynomials](http://blog.martincowen.me.uk/choosing-an-optimal-crc-polynomial.html). However, there may be a suboptimal approach to the application's error type. In my case, I have chosen a polynomial hexadecimal value of `6BC0F5`. Our use of CRC has helped to minimize duplicate records and superfluous strings in the negative database.
+In our negative database implementation, records are more difficult to reverse-engineer if they are at least 1000 bits long. Hence, I have reversed 1000 bits for the database records and 24 bits for CRC checksums. There are [several standard suggestions for polynomials](http://blog.martincowen.me.uk/choosing-an-optimal-crc-polynomial.html). However, there may be a suboptimal approach to the application's error type. In my case, I have chosen a polynomial hexadecimal value of `6BC0F5`. Our use of CRC has helped to minimize duplicate records and superfluous strings in the negative database.
 
 ### Frequency Estimation using Differential Privacy
 
@@ -243,8 +241,11 @@ Source code link: https://github.com/kenluck2001/diffprivacy/tree/main/Privacy-P
 This is a large-scale privacy-aware frequency aggregation of event telemetry. During this research, I implemented the following algorithms from the paper [[5]](). They include:
 
 + $A_{client-HCMS}$ in Algorithm 5.
+
 + Hadamard count mean sketch HCMS in Algorithm 6.
+
 + $A_{server}$ in Algorithm 4.
+
 + Compute Sketch matrix is known as Sketch-HCMS in Algorithm 7.
 
 The paper [[5]]() released by [Apple](https://www.apple.com/) was so influential in my study of privacy that I took the time to derive the formulas in the paper. This information, which I believe the authors omitted due to space constraints.
@@ -304,7 +305,6 @@ const hadamard = (l) => {
     }
     return H;
 }
-
 ```
 
 #### Implementation Details
@@ -356,6 +356,7 @@ Any errors in this manuscript are mine.
 # How to Cite this Article
 
 ```
+
 BibTeX Citation
 
 @article{kodoh2022b,
@@ -370,6 +371,7 @@ BibTeX Citation
 Footnote:
 
 [Privacy-aware DNS](https://dnsprivacy.org/ietf_dns_privacy_tutorial/), [Oblivious HTTP](https://www.ietf.org/archive/id/draft-thomson-http-oblivious-01.html) can provide privacy on the Internet.
+
  </section>
 
                 <hr class="line"/>
