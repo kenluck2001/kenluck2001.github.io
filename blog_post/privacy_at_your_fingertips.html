@@ -5,7 +5,7 @@
     <title>Privacy at your Fingertips</title>
     <meta name="author" content="Kenneth Emeka Odoh"/>
     <meta name="description" content="
-                                      Differential Privacy is a mathematical framework that prevents an analyst from leaking information when querying a data store.  It works by carefully adding noise to the data, while preserving the database&#39;s global statistical properties
+                                      Differential Privacy is a mathematical framework that prevents an analyst from leaking information when querying a data store.  It works by carefully adding noise to the data while preserving the database&#39;s global statistical properties
                                       "/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
@@ -14,7 +14,7 @@
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Privacy at your Fingertips" />
     <meta property="og:description" content="
-                                              Differential Privacy is a mathematical framework that prevents an analyst from leaking information when querying a data store.  It works by carefully adding noise to the data, while preserving the database&#39;s global statistical properties
+                                              Differential Privacy is a mathematical framework that prevents an analyst from leaking information when querying a data store.  It works by carefully adding noise to the data while preserving the database&#39;s global statistical properties
                                               " />
 
     <script defer src="/static/js/backup/all.js"></script>
@@ -87,11 +87,15 @@
                         <a id=statistics href=/blogs/statistics/1.html> statistics</a> 
                     
                 </div>
-                <section id="text" class="Article-content"> Differential Privacy is a mathematical framework that prevents an analyst from leaking information when querying a data store. It works by carefully adding noise to the data, while preserving the database's global statistical properties. We can get aggregated information without sacrificing individual privacy. As we explore the uncharted territories of privacy in society, who decides what is an acceptable privacy level for citizens? How is it defined? When it comes to privacy, what are the limits? To err on the side of caution, we discussed this topic with the shrewdness of an elder statesman, the diligence of a hacker, and the rigor of a `'street fighting mathematician'`.
+                <section id="text" class="Article-content"> Differential Privacy is a mathematical framework that prevents an analyst from leaking information when querying a data store. It works by carefully adding noise to the data while preserving the database's global statistical properties. We can get aggregated information without sacrificing individual privacy. As we explore the uncharted territories of privacy in society, who decides what is an acceptable privacy level for citizens? How is it defined? When it comes to privacy, what are the limits? To err on the side of caution, we discussed this topic with the shrewdness of an elder statesman, the diligence of a hacker, and the rigor of a 'street fighting mathematician'.
 
-Source code can be found here.
 
-- Link: https://github.com/kenluck2001/diffprivacy
+##### Notes:
+
+- Every source code is the author's original work. The accompanying software is done in good faith and makes no claim about the correctness of the solution to the extent possible under the [MIT license](https://opensource.org/license/mit/).
+
+- Repo: https://github.com/kenluck2001/diffprivacy
+
 
 When there is multicollinearity, using basic anonymization techniques like removing the field may be shortsighted and useless, as the existing field may contain the same information. Even if we get some level of privacy by removing the identifiable field, we still have a problem where we cannot objectively quantify the level of privacy guaranteed. Unfortunately, in this context, enhancing privacy can be challenging as it is difficult to explain privacy losses. There are several privacy-aware methods such as [zero-knowledge proofs](https://en.wikipedia.org/wiki/Zero-knowledge_proof), [homomorphic encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption), and [secure multi-party computation](https://en.wikipedia.org/wiki/Secure_multi-party_computation) which are outside the scope of this work. We present a few case studies to show the applications of differential privacy in frequency estimation and negative databases.
 
@@ -101,7 +105,7 @@ Differential privacy comes to our rescue. It provides a framework for adding str
 
 + Differential identifiability [[8]](): This mechanism aims to prevent the user from specifying $\xi$ which can be error-prone as there is a lack of guidance where inappropriate values may impact privacy guarantees.-* This work can be augmented with ideas from the paper [[6]]() on figuring reasonable privacy bounds on ($\xi, \delta$) which can prevent privacy violations in real-world applications.
 
-Privacy losses can be subtle and challenging to detect. Therefore, differential privacy should be combined with engineering safeguards to enhance data privacy. For example, an individual avoids oversharing by withholding his employer's name on social media (LinkedIn). The individual may inadvertently reveal his employer if a large group of colleagues become friends on social media. Another individual (attacker) can use this hint to deduce her employer. However, if your friend list is randomized or friendships are not announced, this information can be preserved. Thus, we can achieve privacy in relation to our employers. The correlation may not give precise information, but it reduces guessing space, resulting in privacy leaks. For example, an individual can be identified using a combination of zip code, gender, and birthday. A single data point alone may not leak anything, but an attacker can build a profile and connect information. This is especially true in this era of security incidents where a future breach may make previously anonymized data re-identifiable.
+Privacy losses can be subtle and challenging to detect. Therefore, differential privacy should be combined with engineering safeguards to enhance data privacy. For example, an individual avoids oversharing by withholding his employer's name on social media (LinkedIn). The individual may inadvertently reveal his employer if a large group of colleagues becomes friends on social media. Another individual (attacker) can use this hint to deduce her employer. However, if your friend list is randomized or friendships are not announced, this information can be preserved. Thus, we can achieve privacy in relation to our employers. The correlation may not give precise information, but it reduces guessing space, resulting in privacy leaks. For example, an individual can be identified using a combination of zip code, gender, and birthday. A single data point alone may not leak anything, but an attacker can build a profile and connect information. This is especially true in this era of security incidents where a future breach may make previously anonymized data re-identifiable.
 
 Privacy protections are prevalent in several countries. For example, the [4th Amendment](https://constitution.congress.gov/constitution/amendment-4/) in the United States Constitution, protects citizens from unnecessary searches by the government. [Section 37](https://www.constituteproject.org/constitution/Nigeria_1999.pdf) of the Nigerian constitution guarantees citizens the right to privacy. [Section 8](https://www.canada.ca/content/dam/pch/documents/services/download-order-charter-bill/canadian-charter-rights-freedoms-eng.pdf) of the Canadian Charter of Rights and Freedoms protects Canadians from arbitrary searches by the authorities. Software engineers stand to financially benefit from increased privacy regulations, both now and in the future. Some of these rules have nationalist interests, like where data can reside. There are some regulations such as:
 
@@ -187,7 +191,7 @@ $\xi$ does not have an upper bound and specifying a lower bound is not straightf
 
 One of the ways to minimize infectious disease spread is to identify infected individuals and track them down for isolation. This is until they recover in solitude. [Covid-19](https://en.wikipedia.org/wiki/COVID-19) was an infectious disease and several attempts were made to create a contact-tracing system. However, government regulations meant any system must be privacy-preserving to prevent abuse. Forced isolation would undermine civil liberties and trigger a constitutional crisis if people were forced into solitude. There were several attempts by one by a [Consortium of BigTech firms](https://covid19.apple.com/contacttracing) and a [collaboration of leading European institutions](https://arxiv.org/pdf/2005.12273.pdf).
 
-Most systems use [Bluetooth](https://en.wikipedia.org/wiki/Bluetooth)-like technology for creating peer-to-peer networks. This method uses proximity to infested individuals as a proxy for a covid-19 test to be performed. For this to work, there is a central server with a list of infected individuals that should be anonymous. Each phone can save neighboring pings from the surrounding area and then query a central server to measure if they are close to an infected individual. Contact-tracing can also be implemented without a centralized service. This version has data from phones about their covid-19 status and pings so that the phone's status is not broadcast. There needs to be care taken that any broadcast does not expose user privacy. Privacy-enhancing schemes are introduced in these models to preserve identity.
+Most systems use [Bluetooth](https://en.wikipedia.org/wiki/Bluetooth)-like technology for creating peer-to-peer networks. This method uses proximity to infested individuals as a proxy for a covid-19 test to be performed. For this to work, there is a central server with a list of infected individuals that should be anonymous. Each phone can save neighboring pings from the surrounding area and then query a central server to measure if they are close to an infected individual. Contact tracing can also be implemented without a centralized service. This version has data from phones about their covid-19 status and pings so that the phone's status is not broadcast. There needs to be care taken that any broadcast does not expose user privacy. Privacy-enhancing schemes are introduced in these models to preserve identity.
 
 ### Privacy-aware Video Surveillance System
 
@@ -356,7 +360,6 @@ Any errors in this manuscript are mine.
 # How to Cite this Article
 
 ```
-
 BibTeX Citation
 
 @article{kodoh2022b,
@@ -365,7 +368,6 @@ BibTeX Citation
   year = {2022},
   note = {https://kenluck2001.github.io/blog_post/privacy_at_your_fingertips.html}
 }
-
 ```
 
 Footnote:
