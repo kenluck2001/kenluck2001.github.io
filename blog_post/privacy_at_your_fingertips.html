@@ -295,6 +295,8 @@ Hadamard Transforms by Sos Agaian, Hakob Sarukhanyan, Karen Egiazarian, Jaakko A
 It is desirable to have a shared hash functions family for sampling the hash function for both the client and server. One approach is to create a family of hash functions on the server and send them to the client. However, if we consider communication cost, we have different hash function families with similar distributions and avoid sending huge matrices over the network.
 
 ```
+// Routine for creating hadamard matric in 
+// JavaScript using Syvester library
 const hadamard = (l) => {
     var H = $M([
       [1, 1],
