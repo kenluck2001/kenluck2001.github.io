@@ -138,7 +138,7 @@ The Cryptosystems algorithm created for experiments is as follows:
 | 3 | Ascon (Lightweight Cryptography) [[3]]()|[ascon.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/ascon.py) |
 | 4 | Picnic (Post-Quantum Signature) [[5]]()|[picnic.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/picnic.py) |
 | 5 | FrodoPKE [[6]]()|[frodopke.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/frodopke.py) |
-
+| 6 | Deoxys [[4]]()|[deoxys.py](https://github.com/kenluck2001/cipherResearch/blob/main/src/deoxys/deoxys.py) |
 
 # Discussion
 
@@ -228,14 +228,11 @@ Because we created an underspecified simultaneous equation without providing a y
 I like FrodoPKE because it does not use polynomials. These polynomials can be difficult to implement because they may have specific structures that make estimating roots difficult. FrodoPKE uses a conservative approach to ensure its security. With suitable parametrization, we can achieve security levels 1, 3, and 5. Despite my implementation challenges due to Endian mismatches. FrodoPKE provides schemes for key encapsulation and public key encryption. As part of my research, I have implemented a public key encryption scheme using the FrodoPKE cipher
 
 
-### Honorary Mention
-
-Since these ciphers are so simple and still have great features, I refused to implement them.
-
 ##### Deoxys [[4]]()
 
 Deoxys is an authenticated encryption scheme, which was a winning submission to the [CAESAR](https://en.wikipedia.org/wiki/CAESAR_Competition) competition in the `"defense in depth"` category. There are two modes of the algorithm, nonce-respecting and non-misuse-resistance. In my opinion, it isn't a novel cipher, but a principled method for strengthening existing ciphers. There are several ways to harden a cipher, including the [Triple DES](https://en.wikipedia.org/wiki/Triple_DES) mechanism and alternating ciphers in a [CBC](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation)-like mode. Deoxys takes a different approach to harden uses AES as a routine and enhances it by applying several checksums, careful padding, and other non-linear operations, thereby making it resilient to replay attacks even when nonce are reused. In addition, it also makes the cipher invulnerable to birthday-bound attacks. Since most published ciphers have weaknesses, designers do not need to start from scratch. Instead, they can patch existing ciphers and benefit from their proven security and robustness. 
 
+Note: this scheme must use a tewakable block cipher, otherwise, we just have ECB especially without padding. My current implementation does not use a tweakable cipher.
 
 ##### Mitigating Timing Attacks
 
