@@ -636,7 +636,8 @@ display : inline-block;
     float: left;
     min-width: 40px;
     height: 20px;
-    background: #9ebcda;
+    /*background: #9ebcda;*/
+    background: rgba(158, 188, 218, 0.6);
     overflow: hidden;
 	display: inline-block;
 	padding: .25em .4em;
