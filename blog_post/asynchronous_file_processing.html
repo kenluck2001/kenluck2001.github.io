@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Asynchronous File Processing</title>
+    <meta name="author" content="Kenneth Emeka Odoh"/>
+    <meta name="description" content="
+                                      Asynchronous file reading optimizes the computational speed of a file reading via parallel or concurrent programming paradigms.  There are a few approaches in the realm of parallel programming, such as using [Multiprocessing](https://docs
+                                      "/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="icon" type="image/png" href="https://avatars0.githubusercontent.com/u/1905599?s=460&u=facecba98174fef837b6440652f90a2610e00e4c&v=4">
+
+    <meta name="keywords" content="distributed computing, concurrent programming, parallel programming, file processing, feature, asynchronous processing, project, https, asynchronous file processing, kenneth emeka odoh, kenneth odoh, kenneth emeka, emeka odoh, odoh"/>
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Asynchronous File Processing" />
+    <meta property="og:description" content="
+                                              Asynchronous file reading optimizes the computational speed of a file reading via parallel or concurrent programming paradigms.  There are a few approaches in the realm of parallel programming, such as using [Multiprocessing](https://docs
+                                              " />
+
+    <script defer src="/static/js/backup/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="/static/js/backup/jquery-3.3.1.min.js" ></script>
+    <script src="/static/js/backup/marked.min.js"></script>
+    <script type="text/javascript" src="/static/js/backup/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+
+    <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+          TeX: {
+             equationNumbers: {  autoNumber: "AMS"  },
+          },
+          "HTML-CSS": {
+          styles: {
+          ".MathJax .mo, .MathJax .mi": {color: "black ! important"}},
+          linebreaks: { automatic: true, width: "container" }
+          },
+          tex2jax: {inlineMath: [['$','$'], ['\\\\(','\\\\)']],processEscapes: true}
+          });
+    </script> 
+
+    <style>
+      mjx-container[display="block"] {
+        display: block;
+        margin: 1em 0;
+      }
+    </style>
+
+  </head>
+  <body class="Site">
+    <header class="Site-header">
+      <nav class="Nav">
+        <div class="Nav-home">
+          <a href=/index.html>Kenneth Emeka Odoh</a>
+        </div>
+        <div class="Nav-sections">
+          <a class="Nav-section " href=/index.html >About</a>
+          <a class="Nav-section " href=/projects.html>Projects</a>
+          <a id="blog" class="Nav-section Nav-section--active" href=/blogs/1.html>Blogs</a>
+          <a class="Nav-section" href=/publications.html>Publications</a>
+          <a class="Nav-section" href=/news.html>News</a>
+        </div>
+      </nav>
+      <div class="u-separator"></div>
+    </header>
+    <div class="Site-content">
+      <div class="u-container">
+
+        <div class="Page">
+            <article role="main" class="Article">
+                <h1 class="Article-title"> Asynchronous File Processing </h1>
+                <div class="Article-meta">
+                  <time datetime=2024-11-12 01:00:02.729377 class="Article-date">12 Nov, 2024</time>
+                </div>
+
+                <!--<div class="Article-meta">Tag: None</div> -->
+                <div id="tag" class="Article-meta">Tags:
+                    
+                    <a id=Parallel-Programming href=/blogs/Parallel-Programming/1.html>Parallel-Programming</a> 
+                    <a id=Concurrent-Programming href=/blogs/Concurrent-Programming/1.html> Concurrent-Programming</a> 
+                    <a id=Distributed-Computing href=/blogs/Distributed-Computing/1.html> Distributed-Computing</a> 
+                    <a id=File-Processing href=/blogs/File-Processing/1.html> File-Processing</a> 
+                    <a id=Asynchronous-Processing href=/blogs/Asynchronous-Processing/1.html> Asynchronous-Processing</a> 
+                    
+                </div>
+                <section id="text" class="Article-content"> Asynchronous file reading optimizes the computational speed of a file reading via parallel or concurrent programming paradigms. There are a few approaches in the realm of parallel programming, such as using [Multiprocessing](https://docs.python.org/3/library/multiprocessing.html) and concurrency-based approaches, including [threads](https://docs.python.org/3/library/threading.html) and [asyncio](https://docs.python.org/3/library/asyncio.html). The asynchronous file reading feature is supported by an off-the-shelf [aiofiles](https://pypi.org/project/aiofiles/) library which is outside the scope of our writing. Hence, we split the file into several smaller CSV files and read them concurrently. We have Asyncio as the base for our solution.
+
+### Source code
+
++ [Version 1](https://gist.github.com/kenluck2001/9e3630c5a8f394bd2f7622c033cb0092#file-asyncfilev1-py)
++ [Version 2](https://gist.github.com/kenluck2001/9e3630c5a8f394bd2f7622c033cb0092#file-asyncfilev2-py)
++ [Dataset](https://data.lacity.org/api/views/2nrs-mtv8/rows.csv?accessType=DOWNLOAD)
+
+
+### System Setup
+
+The [source code](https://gist.github.com/kenluck2001/9e3630c5a8f394bd2f7622c033cb0092) tested on the system with the following characteristics:
++ Ubuntu 24.04
++ Python 3.12
+
+# Method
+
+The first approach in solving a problem with multiprogramming is to determine if the problem is CPU-bound or I/O bound. A rule of thumb to decide is to figure out if the core bottleneck of your serial program is spending time with number crunching, then your problem is CPU-bound. On the contrary, when our serial program has the computational bottleneck of read/write operations. The problem of parallel file reading is mainly I/O-bound, rather than CPU-bound.
+
+Asyncio is a cooperative scheduling of threads to solve a problem. This async/await pattern of asyncio is ideal for I/O-bound tasks. [Multiprocessing](https://docs.python.org/3/library/multiprocessing.html)  is limited by the number of available CPUs for parallelizing a task. Asynchio uses careful slicing to run multiple threads within a process, while [Multiprocessing](https://docs.python.org/3/library/multiprocessing.html) maps a process to a CPU (single process per core).
+
+
+# Issues
+
++ Our solution in [Version 1](https://gist.github.com/kenluck2001/9e3630c5a8f394bd2f7622c033cb0092#file-asyncfilev1-py) did not consider deleting split files. There are several approaches to removing these stale secondary files from chunking the original files into a set of ancillary files for concurrent processing. One approach is to use the temporary files provided by Python. However, it is problematic as there is no guarantee that the temporary files get deleted using the lifecycle of the instance of the FileContent class via the destructor. Another approach is to prevent potential race conditions by using unique filenames for derived files, which still has not solved the deletion problem. 
++ In the `processBatch` method of the FileContent class, we optimize for space complexity by using the 'readlines` method of the file object with a predefined buffer size to avoid reading huge bulk of data that can't fit in memory at a time. Hence, we incrementally load chunks of the data.
+
+```
+    async def processBatch(self, config_file_name: str) -> int:
+        """
+        Given a file name extract every content in the file
+        """
+        total_record_count: int = 0
+        cnt: int = 0
+        with open(config_file_name, "r") as csvfile:
+            # simplify file reading with an implicit generator
+            lines = csvfile.readlines(Settings.NUM_OF_LINES_READ_BUFFER)
+            while lines:
+                lines = csvfile.readlines(Settings.NUM_OF_LINES_READ_BUFFER)
+        return total_record_count
+```
++ Furthermore, we adopted the approach of catching exceptions, as reading files is an error-prone activity, as demonstrated in the snippet. We have used the argument `return_exceptions` to alter the execution logic.
+
+```
+    async def load_file_contents_using_tasks(self, config_file_name: str, return_exceptions: bool = True) -> int:
+        """
+        Asynchronously read the files.
+        """
+        tasks = await self.__createTaskList(config_file_name)
+
+        file_paths = self.splitCSVToMultipleFiles(config_file_name)
+        for file_name in file_paths:
+            tasks.append(self.processBatch(file_name))
+
+        count_lst = [
+            v
+            for v in await asyncio.gather(*tasks, return_exceptions=True)
+            if not isinstance(v, Exception)
+        ]
+
+        # recreate a task for use and testing
+        if not return_exceptions:
+            tasks = await self.__createTaskList(config_file_name)
+            count_lst = await asyncio.gather(*tasks)
+        return sum(count_lst)
+```
++ One must avoid mixing [Multiprocessing](https://docs.python.org/3/library/multiprocessing.html)  with asyncio as shown in the first part of the snippet below.
+
+```
+    from multiprocessing import cpu_count
+    from multiprocessing.dummy import Pool
+    from functools import partial
+
+    async def load_file_contents_using_tasks(config_file_name: str)  -> None:
+        '''
+         DON'T MIX ASYNCIO AND MULTIPROCESSING AS IT MAKES NO SENSE TO CONSIDER I/O BOUND TASKS AS CPU-BOUND TASK
+        '''
+        file_paths = splitCSVToMultipleFiles(config_file_name) # restrict the number of split files to the number of available CPU
+        total_record_count = 0
+        available_num_cores = cpu_count()  # Don't take all system resources
+        with Pool(processes=available_num_cores) as pool:
+            for record_cnt in pool.map(partial(processBatch), file_paths):
+                total_record_count += record_cnt
+        print(f"Total number of Inserted {total_record_count} records into database")
+
+    if __name__ == "__main__":
+        # don't do this
+        asyncio.run(load_file_contents_using_tasks(csvfile))
+
+        # instead do
+        load_file_contents_using_tasks(csvfile)
+```
+
+# Remedies
+
+We took a two-step approach to address the problem by explicitly destroying derived files from the original file in the destructor. We provide side effects in the shared state of the parent_file_lst field of the FileContent class by using a [Context Manager](https://book.pythontips.com/en/latest/context_managers.html). This step helps to prevent stale files and manage the lifecycle of instances of the FileContent class. Hence, we present our solution in [Version 2](https://gist.github.com/kenluck2001/9e3630c5a8f394bd2f7622c033cb0092#file-asyncfilev2-py).
+
+# Evaluation
+
+The output from executing the program is displayed in the snippet below.
+```
+    ~/asyncfile$ python3 asyncfilev2.py 
+    [ASYNC RUNS: ] Average Execution time: 211.65 seconds for 990294 records.
+    [SYNCHRONOUS RUNS: ] Average Execution time: 41.82 seconds for 990294 records.
+    ~/asyncfile$ 
+```
+
+The [dataset](https://data.lacity.org/api/views/2nrs-mtv8/rows.csv?accessType=DOWNLOAD) used for our evaluation is a [CSV](https://catalog.data.gov/dataset/crime-data-from-2020-to-present) of crime gathered by the Los Angeles Police Department. For consistency, we have used similar shared settings across synchronous and asynchronous file readings to allow for comparisons. I assumed the problem was I/O-bound because I thought a counter is simple in computational complexity. We observed that when an exception gets swallowed, some rows of the CSV file get skipped as asyncio seems slower when we don't return the exception as captured in the argument named `return_exceptions` in load_file_contents_using_tasks of FileContent class.
+
+Unfortunately, we experienced a fivefold slowdown on the async version of file reading, as shown by the timing of the runs. This observation follows as the serial version of the file reading is faster than the async version because time slicing in asyncio spends unnecessary time with opening/closing file overhead and saving the states during thread interrupt. The performance degradation when using [asyncio](https://docs.python.org/3/library/asyncio.html) as the number of threads keeps increasing due to rising communication overhead. [Multiprocessing](https://docs.python.org/3/library/multiprocessing.html) is a better option for parallelizing our task. Although the problem looks like an I/O-bound operation in an ideal world should be faster, the bookkeeping operation can be expensive during thread preemption.
+
+# Conclusions
+
+This work has allowed me to learn [asyncio](https://docs.python.org/3/library/asyncio.html) and how to apply it in the real world. In retrospect, maybe our experiment was not a failure after all. When asyncio gets utilized in the appropriate scenario, it becomes a valuable addition to the programmer's toolbox. We demonstrate the usability of parallel file reading to the problem of CSV processing. However, it is ubiquitous in many other uses. We aimed for pedagogy and not performant source code. </section>
+
+                <hr class="line"/>
+                <div style="display: flex; justify-content: center;">
+                    <table>
+                      <tr>
+                        <td> <a class="left" id="left-17" data-min-index="0" data-max-index="16" href=/blog_post/asynchronous_file_processing.html><img id="left-0" data-toggle="tooltip" title="Click to previous page." src=/static/images/left.png style="width: 48px; height: 50px;" alt="previous here"/></a> </td>
+
+                        <td> <div class="squares">
+                              <div class="icon1">
+                                 <p class="text-muted">1/16</p>
+                              </div>
+                            </div> 
+                        </td>
+                        
+                        <td> <a class="right" id="right-15" data-min-index="0" data-max-index="16" href=/blog_post/low-cost_research_opportunities_in_stem_fields.html><img id="right-1" data-toggle="tooltip" title="Click to next page." src=/static/images/right.png style="width: 48px; height: 50px;" alt="next here"/></a> </td>
+                      </tr>
+                    </table>
+                </div>
+
+
+        <hr/>
+<p style="text-align:center;"> Please feel free to <b>donate</b> to support my work by clicking <a target="_blank" data-toggle="tooltip" title="Click to make a donation here" href="https://buymeacoffee.com/kenluck2001"><img src=/static/images/donate.png style="width: 40px; height: 40px;" alt="donate here"/></a> </p>
+        <hr/>
+
+
+                <hr class="line"/>
+
+                <div style="display: flex; justify-content: center;">
+                    <div class="Article-meta">
+Read more of our <a href=/blogs/1.html><b>blog posts</b></a>, technical <a target="_blank" href=/publications.html#talks><b>talks</b></a>, and <a target="_blank" href=/publications.html#publications><b>publications</b></a>.
+                    </div>
+
+                </div>   
+
+            </article>
+        </div>
+
+      </div>
+    </div>
+
+        <footer class="footer">
+            <div class="Footer">
+                <p class="text-muted">Icon made by Freepik from www.flaticon.com</p>
+                <p class="text-muted">&copy; 2019 Copyright: Kenneth Odoh</p>
+            </div>
+        </footer>
+
+    <script  type="text/javascript" >
+
+        function animatePaginator(selector) {
+            var i = 0;
+            $(selector).css('opacity', '1.0');
+            setInterval(function () {
+                i++;
+                if ((i%2)==1)
+                {
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '0.5');
+                        $(this).fadeIn("slow");
+                    });
+                }else{
+                    //$(selector).css('opacity', '1.0');
+
+                    $(selector).fadeOut("slow", function () {
+                        $(this).css('opacity', '1.0');
+                        $(this).fadeIn("slow");
+                    });
+                }
+                i = i % 2
+            }, 5000);
+        }
+
+        function disablePaginator(selector) {
+            $(selector).css('visibility','hidden')
+            $(selector).parent().removeAttr("href");
+        }
+
+
+        Array.range = function(a, b, step){
+            var A = [];
+            if(typeof a == 'number'){
+                A[0] = a;
+                step = step || 1;
+                while(a+step <= b){
+                    A[A.length]= a+= step;
+                }
+            }
+            else {
+                var s = 'abcdefghijklmnopqrstuvwxyz';
+                if(a === a.toUpperCase()){
+                    b = b.toUpperCase();
+                    s = s.toUpperCase();
+                }
+                s = s.substring(s.indexOf(a), s.indexOf(b)+ 1);
+                A = s.split('');        
+            }
+            return A;
+        }
+
+        var isMobile = { Android: function() { return navigator.userAgent.match(/Android/i); }, BlackBerry: function() { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function() { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function() { return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i); }, any: function() { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); }};
+
+
+        var ua = window.navigator.userAgent;
+        var isIE = /MSIE|Trident/.test(ua);
+
+        if ( isIE ) {
+            //IE specific code goes here
+            $(".left").hide()
+            $(".right").hide()
+        }
+
+        var min_index = $(".left").attr('data-min-index')
+        var max_index = $(".left").attr('data-max-index')
+
+
+        var selectorlist = ['#left', '#right'];
+        var indexlist = [min_index, max_index]
+
+        var div;
+        var ind;
+
+        // disable pagination
+        selector = "#left-" + (parseInt(max_index)+1).toString()
+        disablePaginator(selector) 
+
+        selector = "#right-" + min_index  
+        disablePaginator(selector) 
+
+
+        // animate pagination
+        for (div of selectorlist) {
+                for (ind of Array.range(parseInt(indexlist[0]), parseInt(indexlist[1])+1)) {
+                    var selector = div+"-"+ind
+                    animatePaginator(selector) 
+                } 
+
+        } 
+
+        // set the search token
+        $('#tag').find('a').each(function() {
+            var cID = $(this).attr("id"); // Get current url
+            $("#"+cID).click(function() {
+                localStorage.setItem("tag", cID);
+                //alert(cID)
+            }); 
+        });
+
+        if( isMobile.any() )
+        {
+            $('#tag').find('a').each(function() {
+                var oldUrl = $(this).attr("href"); // Get current url
+                var newUrl = oldUrl.replace("blogs", "blogs_mob"); // Create new url
+                $(this).attr("href", newUrl); // Set herf value
+            });
+
+        }
+
+        $("#blog").click(function() {
+            localStorage.setItem("tag", "");
+        }); 
+
+        txt = $('.Article-content').text( );     
+        $('.Article-content').html( marked.parse(txt) );
+
+    </script >
+
+
+  </body>
+</html>
