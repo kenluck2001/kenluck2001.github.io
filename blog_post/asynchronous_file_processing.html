@@ -106,7 +106,7 @@ Asyncio is a cooperative scheduling of threads to solve a problem. This async/aw
 
 # Issues
 
-+ Our solution in [Version 1](https://gist.github.com/kenluck2001/9e3630c5a8f394bd2f7622c033cb0092#file-asyncfilev1-py) did not consider deleting split files. There are several approaches to removing these stale secondary files from chunking the original files into a set of ancillary files for concurrent processing. One approach is to use the temporary files provided by Python. However, it is problematic as there is no guarantee that the temporary files get deleted using the lifecycle of the instance of the FileContent class via the destructor. Another approach is to prevent potential race conditions by using unique filenames for derived files, which still has not solved the deletion problem. 
++ Our solution in [Version 1](https://gist.github.com/kenluck2001/9e3630c5a8f394bd2f7622c033cb0092#file-asyncfilev1-py) did not consider deleting split files. There are several approaches to removing these stale secondary files derived from chunking the original files into a set of ancillary files for concurrent processing. One approach is to use the temporary files provided by Python. However, it is problematic as there is no guarantee that the temporary files get deleted using the lifecycle of the instance of the FileContent class via the destructor. Another approach is to prevent potential race conditions by using unique filenames for derived files, which still has not solved the deletion problem. 
 + In the `processBatch` method of the FileContent class, we optimize for space complexity by using the 'readlines` method of the file object with a predefined buffer size to avoid reading huge bulk of data that can't fit in memory at a time. Hence, we incrementally load chunks of the data.
 
 ```
@@ -168,7 +168,7 @@ Asyncio is a cooperative scheduling of threads to solve a problem. This async/aw
         print(f"Total number of Inserted {total_record_count} records into database")
 
     if __name__ == "__main__":
-        # don't do this
+        # Don't do this
         asyncio.run(load_file_contents_using_tasks(csvfile))
 
         # instead do

@@ -1001,6 +1001,23 @@ We have used the Lamport clock to make a distributed hashmap where every node ha
 + The number of clients that can participate in quorum using the limits of the synchronous, asynchronous, and partially synchronous.
 + It is critical to be mindful of failures and implement so form of bounded wait on the response and timeout when necessary. it can also be useful for debugging failures. Livelock can up in terminal conditions on a loop is not received to change to the terminal condition.
 
+## Case Study: Post-mortem on triaging a distributed systems bug
+The challenge arose as part of my research into building distributed systems from first principles, as documented as part of this research. Paxos is a consensus algorithm that allows multiple nodes to agree on a single value. In fact, it is arguably one of the most fundamental algorithms for building a real-world, resilient distributed system.
+
+My task was to use the OpenMPI library to write a variant of the Paxos algorithm known as sequence Paxos. This variant would allow consensus across machines on a list of objects rather than on a single object. Due to its support for the message-passing paradigm, OpenMPI was chosen for the distributed consensus algorithm.
+
+The problem occurred when I waited for responses from connecting nodes (to achieve a quorum) after broadcasting. The receiving node was blocked even though I was in non-blocking mode. However, I used the debugger, but it just showed the process had stopped, and there was no meaningful information. I took the OpenMPI version and started checking message boards to see if people were having similar problems. OpenMPI was popular, but nothing showed up. It is necessary to debug parallel programming on paper by writing proof to ensure there are no common failure patterns. After investigating for a few days, I noticed there was no process waiting for another process and vice versa in a typical deadlock scenario. I verified the message order to ensure that deadlocks couldn't happen, so I started looking at the termination condition in the end loop for pooling for messages from other nodes, then I realized that it was a livelock manifesting as a race condition was affecting the terminal case for the loop, there affecting retrieval for message in an endless loop.
+
+Finally, after a week of investigation, I identified the root cause of the issue as livelock and not deadlock. I wrote a fix for the problem.
+
+### Lessons from the project
+
+1. When faced with a problem, don't make assumptions based on past knowledge. Treat every problem as independent. Make only assertions based on facts.
+2. Prepare for unexpected delays and project overruns due to unexpected issues. Be sure that budgeting with time takes into account unforeseeable circumstances.
+3. Emphasize learning from the first principles. It is time-consuming, but it helps debug problems effectively in the future.
+4. Develop a complete theoretical understanding, then proceed to practical implementations, alternate as necessary. Half-baked knowledge is a recipe for disaster.
+
+
 ## Tips for Testing
 
 + Modularizing the source code and performing the unit test. Read more about the characteristics of [concurrency bugs](https://danluu.com/concurrency-bugs/) and be inspired to write unit tests.
